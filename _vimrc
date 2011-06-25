@@ -26,9 +26,9 @@ map <space>p "+gP
 " vimrc関連
 "-----------------------------------------------------
 " vimrcへのホットキー
-nnoremap <space><space> :<C-u>edit ~/.vimrc<CR>
+nnoremap <space><space> :<C-u>edit $MYVIMRC<CR>
 " vimrcをリロード
-nnoremap <space>s :<C-u>source ~/.vimrc<CR>
+nnoremap <space>s :<C-u>source $MYVIMRC<CR>
 
 "-----------------------------------------------------
 " ファイル操作関連
