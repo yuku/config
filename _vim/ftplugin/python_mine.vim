@@ -35,18 +35,6 @@ setlocal omnifunc=pythoncomplete#Complete
 setlocal tags+=~/.vim/tags/python/python.tags
 
 "------------------------------------------------------------
-" Cleaning stuff
-"------------------------------------------------------------
-function! _CleanPythonCode()
-    exe ":retab"
-    exe ":%s/ \\+$//e"
-endfunction
-
-command! CleanCode call _CleanPythonCode()
-
-autocmd BufWrite *.{py} :CleanCode
-
-"------------------------------------------------------------
 " Django
 "------------------------------------------------------------
 map <leader>dt :set makeprg=python\ manage.py\ test\|:call MakeGreen()<CR>

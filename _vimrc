@@ -88,7 +88,7 @@ set hlsearch
 " 行末の空白をハイライト
 highlight WhitespaceEOL ctermbg=red guibg=red
 matc WhitespaceEOL /\s\+$/
-autocmd WinEnter * match WhitespaceEOL /\s\+$/
+"autocmd WinEnter * match WhitespaceEOL /\s\+$/
 " コメントの色を変更
 highlight Comment ctermfg=DarkCyan
 " コマンドライン補完を拡張モードにする
@@ -103,9 +103,14 @@ set wrap
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 matc ZenkakuSpace /　/
 " ステータスラインに表示する情報の指定
-set statusline=%n\:%y%F\ \|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=%c\:%l/%L\|%P\|
+set statusline=%n\:%y%F\ %{fugitive#statusline()}\|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=%c\:%l/%L\|%P\|
 " ステータスラインの色
 highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=white
+" カーソル行を表示
+set cursorline
+set ruler
+set nostartofline
+set virtualedit=block
 
 "-----------------------------------------------------
 " ウィンドウ
@@ -151,12 +156,15 @@ set termencoding=utf-8
 set fileencoding=utf-8
 
 "----------------------------------------------------
-" 表示・移動
+" 移動
 "----------------------------------------------------
-set cursorline
-set ruler
-set nostartofline
-set virtualedit=block
+
+imap {} {}<Left>
+imap [] []<Left>
+imap () ()<Left>
+imap <> <><Left>
+imap "" ""<Left>
+imap '' ''<Left>
 
 "----------------------------------------------------
 " vim-tab
@@ -211,7 +219,7 @@ Bundle 'The-NERD-Commenter'
 vmap <space>c <plug>NERDCommenterToggle
 
 " TaskList
-Bundle 'TaskLisk.vim'
+Bundle 'TaskList.vim'
 
 " pydoc.vim
 Bundle 'pydoc.vim'
@@ -219,7 +227,24 @@ Bundle 'pydoc.vim'
 " taglist.vim
 Bundle 'taglist.vim'
 
+" neocomplcache
+Bundle 'neocomplcache'
+let g:neocomplcache_enable_at_startup = 1
+
 filetype plugin indent on
+
+"-----------------------------------------------------
+" 
+"-----------------------------------------------------
+if !exists("rtrim")
+    function! RTrim()
+        let s:cursor = getpos(".")
+        %s/\s\+$//e
+        call setpos(".", s:cursor)
+    endfunction
+    
+    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css} call RTrim()
+endif
 
 "-----------------------------------------------------
 " local settings
