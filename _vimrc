@@ -169,9 +169,9 @@ imap '' ''<Left>
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-"nnoremap <C-k> :Texplore<Return>
-"nnoremap <C-l> :tabnext<Return>
-"nnoremap <C-h> :tabprevious<Return>
+nnoremap :t :Texplore
+nnoremap >> :tabnext
+nnoremap << :tabprevious
 
 set clipboard=unnamed
 
