@@ -118,10 +118,10 @@ set virtualedit=block
 "-----------------------------------------------------
 " ウィンドウ
 "-----------------------------------------------------
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-h> <C-w>h
-map <C-l> <C-w>l
+"map <C-j> <C-w>j
+"map <C-k> <C-w>k
+"map <C-h> <C-w>h
+"map <C-l> <C-w>l
 imap <C-w> <C-o><C-w>
 
 "-----------------------------------------------------
@@ -166,8 +166,6 @@ imap {} {}<Left>
 imap [] []<Left>
 imap () ()<Left>
 imap <> <><Left>
-imap "" ""<Left>
-imap '' ''<Left>
 
 "----------------------------------------------------
 " vim-tab
@@ -224,9 +222,6 @@ vmap <space>c <plug>NERDCommenterToggle
 
 " TaskList
 Bundle 'TaskList.vim'
-
-" pydoc.vim
-Bundle 'pydoc.vim'
 
 " taglist.vim
 Bundle 'taglist.vim'

@@ -48,7 +48,7 @@ setenv SCREENTITLE auto
 # SCREEN KEYBINDINGS
 # ------------------------------------------------------------------------------
 
-escape ^Tt
+escape ^Jj
 
 #ウィンドウ操作モード(^t w でウィンドウを連続的に操作できるようになる)
 bind w eval 'echo "Operate window"' 'command -c operate'

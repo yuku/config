@@ -3,15 +3,11 @@
 "------------------------------------------------------------
 setlocal autoindent
 setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-inoremap # X^H#
 setlocal textwidth=79
 
 if v:version >= 703
     setlocal colorcolumn=80
 endif
-
-" Run pep8
-let g:pep8_map='<leader>8'
 
 " run py.test's
 nmap <silent><Leader>tf <Esc>:Pytest file<CR>
@@ -25,14 +21,6 @@ nmap <silent><Leader>te <Esc>:Pytest file<CR>
 " Syntax Highlight
 "------------------------------------------------------------
 let python_highlight_all=1
-
-"------------------------------------------------------------
-" Completion
-"------------------------------------------------------------
-" Turn on completion
-setlocal omnifunc=pythoncomplete#Complete
-" tags
-setlocal tags+=~/.vim/tags/python/python.tags
 
 "------------------------------------------------------------
 " Django
