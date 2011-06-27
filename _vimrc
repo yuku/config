@@ -45,6 +45,9 @@ if !filewritable($HOME."/.vim-backup")
     call mkdir($HOME."/.vim-backup", "p")
 endif
 set backupdir=$HOME/.vim-backup
+if !filewritable($HOME."/.vim-swap")
+    call mkdir($HOME."/.vim-swap", "p")
+endif
 set directory=$HOME/.vim-swap
 "let &directory = &backup dir
 " ファイルの上書き前にバックアップ作成。成功したら削除
