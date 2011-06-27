@@ -172,9 +172,10 @@ imap '' ''<Left>
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-nnoremap :t :Texplore
-nnoremap >> :tabnext
-nnoremap << :tabprevious
+nnoremap <space>te :<C-u>Texplore<CR>
+nnoremap <space>ve :Vexplore!<CR>
+nnoremap >> :tabnext<CR>
+nnoremap << :tabprevious<CR>
 
 set clipboard=unnamed
 
