@@ -12,3 +12,8 @@
 	email = taka84u9@gmail.com
 [http]
     sslVerify = false
+[alias]
+	co = checkout
+	st = status
+[gui]
+	encoding = utf-8
