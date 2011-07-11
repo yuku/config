@@ -20,9 +20,6 @@ alias vi='vim'
 alias df='df -h'
 alias du='du -h'
 alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
-alias gls='git branch'
-alias gla='git branch -a'
-alias gst='git status'
 alias screen='screen -U'
 
 #----------------------------------------------------------
