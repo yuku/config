@@ -2,7 +2,7 @@
 # 文字コードの設定
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
-export JLESSCHARSET=japanese-sjis
+export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
 #----------------------------------------------------------
