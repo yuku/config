@@ -156,16 +156,17 @@ set smartindent
 " fileencodingsの設定ではencodingの値を一番最後に記述する
 set encoding=utf-8
 set termencoding=utf-8
-set fileencoding=utf-8
+set fileencodings=utf-8
+
 
 "----------------------------------------------------
 " 移動
 "----------------------------------------------------
 
-imap {} {}<Left>
-imap [] []<Left>
-imap () ()<Left>
-imap <> <><Left>
+"imap {} {}<Left>
+"imap [] []<Left>
+"imap () ()<Left>
+"imap <> <><Left>
 
 "----------------------------------------------------
 " vim-tab
