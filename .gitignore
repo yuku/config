@@ -3,7 +3,3 @@
 *.pyc
 *.pyo
 _vim/bundle
-_pythonbrew/dists
-_pythonbrew/pythons
-_pythonbrew/log
-_pythonbrew/build
