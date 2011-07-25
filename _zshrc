@@ -194,7 +194,7 @@ export MYVIMRC='~/code/dotfiles/_vimrc'
 #----------------------------------------------------------
 # pythonbrew
 #----------------------------------------------------------
-source ~/.pythonbrew/etc/zshrc
+[ -f ~/.pythonbrew/etc/zshrc ] && source ~/.pythonbrew/etc/zshrc
 
 #----------------------------------------------------------
 # 環境依存対応
