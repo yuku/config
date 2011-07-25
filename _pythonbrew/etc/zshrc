@@ -1,0 +1,110 @@
+PATH_ROOT="$HOME/.pythonbrew"
+PATH_ETC="$PATH_ROOT/etc"
+
+__pythonbrew_set_default()
+{
+    PATH_PYTHONBREW="$PATH_ROOT/bin"
+}
+
+__pythonbrew_set_path()
+{
+    PATH_WITHOUT_PYTHONBREW=$(printf $PATH | awk -v RS=: -v ORS=: "/${PATH_ROOT//\//\/}/ {next} {print}" | sed -e 's#:$##')
+    export PATH=$PATH_PYTHONBREW:$PATH_WITHOUT_PYTHONBREW
+}
+
+__pythonbrew_set_temp_path()
+{
+    if [[ -s "$PATH_ETC/temp" ]] ; then
+        source "$PATH_ETC/temp"
+    else
+        __pythonbrew_set_default
+    fi
+    __pythonbrew_set_path
+}
+
+__pythonbrew_set_current_path()
+{
+    if [[ -s "$PATH_ETC/current" ]] ; then
+        source "$PATH_ETC/current"
+    else
+        __pythonbrew_set_default
+    fi
+    __pythonbrew_set_path
+}
+
+__pythonbrew_reload()
+{
+    [[ -s "$PATH_ETC/bashrc" ]] && source "$PATH_ETC/bashrc"
+}
+
+__pythonbrew_use()
+{
+    command pythonbrew "$@"
+    [[ $? == 0 ]] && __pythonbrew_set_temp_path
+}
+
+__pythonbrew_switch()
+{
+    command pythonbrew "$@"
+    [[ $? == 0 ]] && __pythonbrew_set_current_path
+}
+
+__pythonbrew_off()
+{
+    command pythonbrew "$@"
+    [[ $? == 0 ]] && __pythonbrew_set_current_path
+}
+
+__pythonbrew_update()
+{
+    command pythonbrew "$@"
+    [[ $? == 0 ]] && __pythonbrew_reload
+}
+
+__pythonbrew_venv()
+{
+    command pythonbrew "$@"
+    if [[ $? == 0 ]] ; then
+        if [[ -s "$PATH_ETC/venv.run" ]] ; then
+            source "$PATH_ETC/venv.run"
+            cat /dev/null > "$PATH_ETC/venv.run"
+        fi
+    fi
+}
+
+__pythonbrew_find_command()
+{
+    command_name=""
+    for arg in "$@" ; do
+        case $arg in
+            --*) continue;;
+            -*) continue;;
+            *)
+            command_name=$arg 
+            break
+            ;;
+        esac
+    done
+}
+
+pythonbrew()
+{
+    __pythonbrew_find_command "$@"
+    case $command_name in
+        use) __pythonbrew_use "$@";;
+        switch) __pythonbrew_switch "$@" ;;
+        off) __pythonbrew_off "$@" ;;
+        update) __pythonbrew_update "$@" ;;
+        venv) __pythonbrew_venv "$@" ;;
+        *) command pythonbrew "$@" ;;
+    esac
+    builtin hash -r
+}
+
+pybrew()
+{
+    pythonbrew "$@"
+}
+
+# main
+__pythonbrew_set_current_path

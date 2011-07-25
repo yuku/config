@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+/opt/local/Library/Frameworks/Python.framework/Versions/2.5/Resources/Python.app/Contents/MacOS/Python /Users/taka84u9/.pythonbrew/scripts/pythonbrew_main.py "$@"
