@@ -173,8 +173,8 @@ set fileencodings=utf-8
 "----------------------------------------------------
 nnoremap <space>te :<C-u>Texplore<CR>
 nnoremap <space>ve :Vexplore!<CR>
-nnoremap >> :tabnext<CR>
-nnoremap << :tabprevious<CR>
+"nnoremap >> :tabnext<CR>
+"nnoremap << :tabprevious<CR>
 
 set clipboard=unnamed
 

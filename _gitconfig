@@ -5,7 +5,7 @@
 	branch = auto
 	interactive = auto
 [core]
-	excludesfile = /home/yuku/.gitignore
+	excludesfile = /Users/taka84u9/.gitignore
 	editor = vim
 [user]
 	name = Yuku TAKAHASHI
