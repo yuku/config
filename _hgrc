@@ -1,0 +1,25 @@
+[extensions]
+color =
+eol =
+graphlog =
+fetch =
+rebase =
+mq =
+record =
+hgshelve = ~/.hg/extensions/hgshelve.py
+info = ~/.hg/extensions/info.py
+
+[alias]
+l = log
+lb = log -b
+gl = glog
+gll = glob --limit
+pr = pull --rebase
+sh = shelve
+ush = unshelve
+qi = qimport
+qr = qrefresh
+qf = qfinish
+
+[patch]
+eol = auto
