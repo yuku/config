@@ -190,23 +190,24 @@ Bundle 'YankRing.vim'
 nnoremap <silent> <F1> :YRShow<CR>
 let g:yankring_history_file='.yankring_history'
 
-" Syntax highlight
-Bundle 'cucumber.zip'
-Bundle 'Markdown'
-
 " Git integration
 Bundle 'git.zip'
 Bundle 'fugitive.vim'
 Bundle 'unimpaired.vim'
 
-" FuzzyFinder
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-let g:fuf_mrufile_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
-let g:fuf_file_exclude = '\v\.DS_Store|\.git|\.swp|\.svn'
-let g:fuf_modesDisable = []
-nnoremap <space>b  :FufBuffer!<CR>
-nnoremap <space>f  :FufFile!<CR>
+" unite.vim
+Bundle 'unite.vim'
+nnoremap <silent><space>ub :<C-u>Unite buffer<CR>
+nnoremap <silent><space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent><space>ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent><space>um :<C-u>Unite file_mru<CR>
+nnoremap <silent><space>uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent><space>ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+
+au FileType unite nnoremap <silent><buffer><expr><C-k> unite#do_action('split')
+au FileType unite inoremap <silent><buffer><expr><C-k> unite#do_action('split')
+au FileType unite nnoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
+au FileType unite inoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
 
 " surround
 Bundle 'surround.vim'
@@ -219,13 +220,11 @@ nmap <space>r <plug>(quickrun)
 
 " NERD Commenter
 Bundle 'The-NERD-Commenter'
-vmap <space>c <plug>NERDCommenterToggle
-
-" TaskList
-Bundle 'TaskList.vim'
+vmap / <plug>NERDCommenterToggle
 
 " taglist.vim
 Bundle 'taglist.vim'
+nnoremap <silent><space>tl :<C-u>Tlist<CR>
 
 " neocomplcache
 Bundle 'neocomplcache'
