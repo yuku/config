@@ -169,10 +169,9 @@ set fileencodings=utf-8
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-nnoremap <space>te :<C-u>Texplore<CR>
-nnoremap <space>ve :Vexplore!<CR>
-"nnoremap >> :tabnext<CR>
-"nnoremap << :tabprevious<CR>
+nnoremap <silent><C-t><C-t> :<C-u>tabnew<CR>
+nnoremap <silent><C-t><C-l> :<C-u>tabnext<CR>
+nnoremap <silent><C-t><C-h> :<C-u>tabprevious<CR>
 
 set clipboard=unnamed
 
@@ -185,7 +184,7 @@ call vundle#rc()
 
 " YankRing
 Bundle 'YankRing.vim'
-nnoremap <silent> <F1> :YRShow<CR>
+nnoremap <silent>;ys  :<C-u>YRShow<CR>
 let g:yankring_history_file='.yankring_history'
 
 " Git integration
@@ -195,17 +194,19 @@ Bundle 'unimpaired.vim'
 
 " unite.vim
 Bundle 'unite.vim'
-nnoremap <silent><space>ub :<C-u>Unite buffer<CR>
-nnoremap <silent><space>uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent><space>ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent><space>um :<C-u>Unite file_mru<CR>
-nnoremap <silent><space>uu :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent><space>ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+let g:unite_enable_start_insert=1
+nnoremap <silent>;ub :<C-u>Unite buffer<CR>
+nnoremap <silent>;uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent>;ur :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent>;um :<C-u>Unite file_mru<CR>
+nnoremap <silent>;uu :<C-u>Unite buffer file_mru<CR>
+nnoremap <silent>;ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
 
 au FileType unite nnoremap <silent><buffer><expr><C-k> unite#do_action('split')
 au FileType unite inoremap <silent><buffer><expr><C-k> unite#do_action('split')
 au FileType unite nnoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
 au FileType unite inoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
+
 
 " surround
 Bundle 'surround.vim'
@@ -214,7 +215,7 @@ let g:surround_{char2nr("p")} = "<?php \r ?>"
 
 " quick run
 Bundle 'quickrun.vim'
-nmap <space>r <plug>(quickrun)
+nmap ;r <plug>(quickrun)
 
 " NERD Commenter
 Bundle 'The-NERD-Commenter'
@@ -222,7 +223,7 @@ vmap / <plug>NERDCommenterToggle
 
 " taglist.vim
 Bundle 'taglist.vim'
-nnoremap <silent><space>tl :<C-u>Tlist<CR>
+nnoremap <silent>;tl :<C-u>Tlist<CR>
 
 " neocomplcache
 Bundle 'neocomplcache'
@@ -231,12 +232,10 @@ let g:neocomplcache_enable_at_startup = 1
 filetype plugin indent on
 
 " VimShell
-if !exists("VimShell")
-    nnoremap <silent><space>is :<C-u>VimShell<CR>
-    nnoremap <silent><space>ipy :<C-u>VimShellInteractive ipython<CR>
-    nnoremap <silent><space>irb :<C-u>VimShellInteractive irb<CR>
-    vmap <silent><space>ss :<C-u>VimShellSendString<CR>
-endif
+nnoremap <silent>;is :<C-u>VimShell<CR>
+nnoremap <silent>;ipy :<C-u>VimShellInteractive ipython<CR>
+nnoremap <silent>;irb :<C-u>VimShellInteractive irb<CR>
+vmap <silent>;ss :<C-u>VimShellSendString<CR>
 
 "-----------------------------------------------------
 " 
