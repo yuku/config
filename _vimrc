@@ -162,12 +162,10 @@ set fileencodings=utf-8
 "----------------------------------------------------
 " 移動
 "----------------------------------------------------
-
 "imap {} {}<Left>
 "imap [] []<Left>
 "imap () ()<Left>
 "imap <> <><Left>
-
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
@@ -231,6 +229,14 @@ Bundle 'neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
 
 filetype plugin indent on
+
+" VimShell
+if !exists("VimShell")
+    nnoremap <silent><space>is :<C-u>VimShell<CR>
+    nnoremap <silent><space>ipy :<C-u>VimShellInteractive ipython<CR>
+    nnoremap <silent><space>irb :<C-u>VimShellInteractive irb<CR>
+    vmap <silent><space>ss :<C-u>VimShellSendString<CR>
+endif
 
 "-----------------------------------------------------
 " 

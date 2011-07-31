@@ -4,3 +4,5 @@
 *.pyo
 _vim/bundle
 _vim/.vim
+_vim/autoload
+_vim/plugin

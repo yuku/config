@@ -154,11 +154,18 @@ PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 
 #----------------------------------------------------------
 export PYTHONSTARTUP=~/.pythonrc.py
 export NOSE_REDNOSE=1
+[ -f ~/.pythonbrew/etc/zshrc ] && source ~/.pythonbrew/etc/zshrc
+export DJANGO_ENV='local'
+
+# virtualenv settings
+if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+    export WORKON_HOME=$HOME/.virtualenvs
+    source /usr/local/bin/irturalenvwrapper.sh
+fi
 
 #----------------------------------------------------------
-# Django
+# Ruby
 #----------------------------------------------------------
-export DJANGO_ENV='local'
 
 #----------------------------------------------------------
 # Perl
@@ -190,11 +197,6 @@ function make() {
 }
 
 export MYVIMRC='~/code/dotfiles/_vimrc'
-
-#----------------------------------------------------------
-# pythonbrew
-#----------------------------------------------------------
-[ -f ~/.pythonbrew/etc/zshrc ] && source ~/.pythonbrew/etc/zshrc
 
 #----------------------------------------------------------
 # 環境依存対応
