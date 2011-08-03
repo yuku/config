@@ -1,10 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-#----------#
-# optparse #
-#----------#
-
 #import optparse
 
 #parser = OptionParser()
@@ -12,10 +8,6 @@
 #                  metavar='FILE', help='help text')
 #options, args = parser.parse_args()
 
-
-#-------------#
-# progressbar #
-#-------------#
 
 #import progressbar
 
@@ -28,3 +20,8 @@
 #progress = ProgressBar()
 #for i in progress(some_iterable):
 #    do something
+
+
+#if __name__ == "__main__":
+#    import sys
+#    main(sys.argv)

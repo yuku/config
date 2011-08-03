@@ -1,46 +1,28 @@
-"-----------------------------------------------------
-" 基本的な設定
-"-----------------------------------------------------
-" viとの互換性をとらない(vimの拡張機能を使うため）
 set nocompatible
-" 改行コードの自動認識
-set fileformats=unix,dos,mac
-" ビープ音を鳴らさない
-set vb t_vb=
-" バックスペースで削除できるものを指定
+set fileformats=unix,mac,dos
+set vb t_vb= " no beep sound
 set backspace=indent,eol,start
 "" Leader
-let mapleader=","
+"let mapleader=","
 " Path
-let path = "~/my_settings"
-" 8進数を10進数として扱う
-set nrformats-=octal
-" マウスを使える場合はvim内で使用可能にする
+let path = "~/code/dotfiles"
+set nrformats-=octal " treat octal and hexadecimal number as decimal number
 if has("mouse")
     set mouse=a
 endif
-" クリップボードから貼付け
-map <space>p "+gP
 
 "-----------------------------------------------------
-" vimrc関連
+" short cut keys
 "-----------------------------------------------------
-" vimrcへのホットキー
+" Jump to vimrc
 nnoremap <space><space> :<C-u>edit $MYVIMRC<CR>
-" vimrcをリロード
+" Reload vimrc setting
 nnoremap <space>s :<C-u>source $MYVIMRC<CR>
 
 "-----------------------------------------------------
-" ファイル操作関連
+" Backup
 "-----------------------------------------------------
-" Exploreでカレントディレクトリを開く
-set browsedir=current
-
-"-----------------------------------------------------
-" バックアップ関連
-"-----------------------------------------------------
-" バックアップをとる
-set backup
+set nobackup
 if !filewritable($HOME."/.vim-backup")
     call mkdir($HOME."/.vim-backup", "p")
 endif
@@ -50,133 +32,92 @@ if !filewritable($HOME."/.vim-swap")
 endif
 set directory=$HOME/.vim-swap
 "let &directory = &backup dir
-" ファイルの上書き前にバックアップ作成。成功したら削除
 set writebackup
 
 "-----------------------------------------------------
-" 検索関係
+" Search
 "-----------------------------------------------------
-" コマンド、検索パターンを100個まで履歴に残す
 set history=100
-" 検索の時に大文字小文字を区別しない
 set ignorecase
-" 検索の時に大文字が含まれている場合は区別して検索する
 set smartcase
-" 最後まで検索したら先頭に戻らない
-set nowrapscan
-" インクリメンタルサーチを使う
+set wrapscan
 set incsearch
 
 "-----------------------------------------------------
-" 表示関係
+" Display
 "-----------------------------------------------------
-" タイトルをウィンドウ枠に表示する
-set title
-" 行番号を表示する
-set number
-" ルーラーを表示
-set ruler
-" 入力中のコマンドをステータスに表示する
-set showcmd
-" ステータスラインを常に表示
-set laststatus=2
-" 括弧入力時に対応する括弧を表示
-set showmatch
-" 対応する括弧の表示時間を3にする
-set matchtime=3
-" シンタックスハイライトを有効にする
 syntax on
-" 検索結果文字列のハイライトを有効にする
+set title
+set number
+set ruler
+set showcmd
+set laststatus=2
+set showmatch
+set matchtime=3
 set hlsearch
-" 行末の空白をハイライト
-highlight WhitespaceEOL ctermbg=red guibg=red
-matc WhitespaceEOL /\s\+$/
-"autocmd WinEnter * match WhitespaceEOL /\s\+$/
-" コメントの色を変更
+"highlight WhitespaceEOL ctermbg=red guibg=red
+"matc WhitespaceEOL /\s\+$/
 highlight Comment ctermfg=DarkCyan
-" コマンドライン補完を拡張モードにする
 set wildmenu
-" 行末から次の行へ移るようにする
 set whichwrap=b,s,h,l,<,>,[,]
-" 入力されているテキストの最大幅を無効にする
 set textwidth=0
-" ウィンドウの幅より長い行は折り返して、次の行に続けて表示する
-set wrap
-" 全角スペースの表示
+" Show zenkaku space
 highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
 matc ZenkakuSpace /　/
-" ステータスラインに表示する情報の指定
+"
 set statusline=%n\:%y%F\ %{fugitive#statusline()}\|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=%c\:%l/%L\|%P\|
-" ステータスラインの色
 highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=white
-" カーソル行を表示
 set cursorline
 set ruler
 set nostartofline
 set virtualedit=block
+set scrolloff=5
+set sidescroll=10
 
 "-----------------------------------------------------
-" ウィンドウ
+" Window
 "-----------------------------------------------------
-"map <C-j> <C-w>j
-"map <C-k> <C-w>k
-"map <C-h> <C-w>h
-"map <C-l> <C-w>l
 imap <C-w> <C-o><C-w>
 
 "-----------------------------------------------------
-" タブ
+" Template
 "-----------------------------------------------------
-" タブが対応する空白の数
+autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
+autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
+
+"-----------------------------------------------------
+" Tab
+"-----------------------------------------------------
 set tabstop=4
-" タブやバックスペースの使用等の編集操作をするときに、タブが対応する空白の数
 set softtabstop=4
-" インデントの各段階に使われる空白の数
 set shiftwidth=4
-" タブを挿入するとき、代わりに空白を使う
 set expandtab
-" インデントをオプションの'shiftwidth'の値の倍数に丸める
 set shiftround
 
 "-----------------------------------------------------
-" インデント
+" Indent
 "-----------------------------------------------------
-" オートインデントを有効にする
 set autoindent
-" 新しい行を作ったときに高度な自動インデントを行う。 'cindent'
-" がオンのときは、'smartindent' をオンにしても効果はない。
 set smartindent
-" Cプログラムファイルの自動インデントを始める。
-"set cindent
 
 "----------------------------------------------------
-"" 国際化関係
+" Character encoding
 "----------------------------------------------------
-" 文字コードの設定
-" fileencodingsの設定ではencodingの値を一番最後に記述する
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
 
-
-"----------------------------------------------------
-" 移動
-"----------------------------------------------------
-"imap {} {}<Left>
-"imap [] []<Left>
-"imap () ()<Left>
-"imap <> <><Left>
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-nnoremap <silent><C-t><C-t> :<C-u>tabnew<CR>
-nnoremap <silent><C-t><C-l> :<C-u>tabnext<CR>
-nnoremap <silent><C-t><C-h> :<C-u>tabprevious<CR>
+cmap tnew :tabnew<space>
+nnoremap <silent> <C-l> :<C-u>tabnext<CR>
+nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
 
 set clipboard=unnamed
 
 "-----------------------------------------------------
-" プラグイン
+" Plugins
 "-----------------------------------------------------
 filetype off
 set rtp+=~/.vim/vundle.git/
@@ -187,43 +128,59 @@ Bundle 'YankRing.vim'
 nnoremap <silent>;ys  :<C-u>YRShow<CR>
 let g:yankring_history_file='.yankring_history'
 
-" Git integration
-Bundle 'git.zip'
+" fugitive
 Bundle 'fugitive.vim'
-Bundle 'unimpaired.vim'
 
 " unite.vim
 Bundle 'unite.vim'
-let g:unite_enable_start_insert=1
-nnoremap <silent>;ub :<C-u>Unite buffer<CR>
-nnoremap <silent>;uf :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent>;ur :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent>;um :<C-u>Unite file_mru<CR>
-nnoremap <silent>;uu :<C-u>Unite buffer file_mru<CR>
-nnoremap <silent>;ua :<C-u>UniteWithBufferDir -buffer-name=files buffer file_mru bookmark file<CR>
+let g:unite_enable_split_vertically = 1
+let g:unite_winwidth = 50
+nnoremap [unite] <Nop>
+nmap <space>u [unite]
+nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
+nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap [unite]s :<C-u>Unite source<CR>
 
-au FileType unite nnoremap <silent><buffer><expr><C-k> unite#do_action('split')
-au FileType unite inoremap <silent><buffer><expr><C-k> unite#do_action('split')
-au FileType unite nnoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
-au FileType unite inoremap <silent><buffer><expr><C-l> unite#do_action('vsplit')
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()"{{{
+    " Overwrite settings
+    nmap <buffer><ESC>  <Plug>(unite_exit)
+    nmap <buffer><C-c>  <Plug>(unite_exit)
+    imap <buffer>jj     <Plug>(unite_insert_leave)
+    imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
 
+    " <C-l>: manual neocomplecache completion.
+    inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
+
+    " Start insert.
+    let g:unite_enable_start_insert = 1
+
+    nmap <buffer><expr><C-k>  unite#do_action('split')
+    imap <buffer><expr><C-k>  unite#do_action('split')
+    nmap <buffer><expr><C-i>  unite#do_action('vsplit')
+    imap <buffer><expr><C-i>  unite#do_action('vsplit')
+endfunction"}}}
 
 " surround
 Bundle 'surround.vim'
+let g:surround_{char2nr("#")} = "{# \r #}"
 let g:surround_{char2nr("*")} = "/* \r */"
 let g:surround_{char2nr("p")} = "<?php \r ?>"
 
 " quick run
 Bundle 'quickrun.vim'
-nmap ;r <plug>(quickrun)
+nmap <Leader>r <plug>(quickrun)
 
-" NERD Commenter
-Bundle 'The-NERD-Commenter'
-vmap / <plug>NERDCommenterToggle
+" NERD Tree
+"Bundle 'The-NERD-Tree'
+"let NERDChristmasTree = 1
+"let NERDTreeAutoCenterThreshold = 5
+"let NERDTreeShowHidden = 1
 
 " taglist.vim
 Bundle 'taglist.vim'
-nnoremap <silent>;tl :<C-u>Tlist<CR>
 
 " neocomplcache
 Bundle 'neocomplcache'
@@ -232,13 +189,15 @@ let g:neocomplcache_enable_at_startup = 1
 filetype plugin indent on
 
 " VimShell
-nnoremap <silent>;is :<C-u>VimShell<CR>
-nnoremap <silent>;ipy :<C-u>VimShellInteractive ipython<CR>
-nnoremap <silent>;irb :<C-u>VimShellInteractive irb<CR>
-vmap <silent>;ss :<C-u>VimShellSendString<CR>
+nnoremap [vimshell] <Nop>
+nmap <space>v [vimshell]
+nnoremap <silent> [vimshell]s :<C-u>VimShell<CR>
+nnoremap <silent> [vimshell]py :<C-u>VimShellInteractive ipython<CR>
+nnoremap <silent> [vimshell]rb :<C-u>VimShellInteractive irb<CR>
+vmap <silent> [vimshell]s :<C-u>VimShellSendString<CR>
 
 "-----------------------------------------------------
-" 
+" Code Cleaning 
 "-----------------------------------------------------
 if !exists("rtrim")
     function! RTrim()
@@ -247,7 +206,7 @@ if !exists("rtrim")
         call setpos(".", s:cursor)
     endfunction
     
-    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css} call RTrim()
+    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css,rhtml,yml} call RTrim()
 endif
 
 "-----------------------------------------------------

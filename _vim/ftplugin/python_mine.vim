@@ -1,7 +1,6 @@
 "------------------------------------------------------------
 " Code Style
 "------------------------------------------------------------
-setlocal autoindent
 setlocal smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
 setlocal textwidth=79
 
