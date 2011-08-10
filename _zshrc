@@ -160,7 +160,7 @@ export DJANGO_ENV='local'
 # virtualenv settings
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
     export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/irturalenvwrapper.sh
+    source /usr/local/bin/virtualenvwrapper.sh
 fi
 
 #----------------------------------------------------------
