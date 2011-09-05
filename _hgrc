@@ -23,3 +23,11 @@ qf = qfinish
 
 [patch]
 eol = auto
+
+[ui]
+username = Yuku Takahashi <yuku.takahashi@gmail.com>
+verbose = True
+editor = vim
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output

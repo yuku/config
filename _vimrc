@@ -77,7 +77,7 @@ set sidescroll=10
 "-----------------------------------------------------
 " Window
 "-----------------------------------------------------
-imap <C-w> <C-o><C-w>
+"imap <C-w> <C-o><C-w>
 
 "-----------------------------------------------------
 " Template
@@ -133,12 +133,13 @@ Bundle 'fugitive.vim'
 
 " unite.vim
 Bundle 'unite.vim'
-let g:unite_enable_split_vertically = 1
+"let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
 nnoremap [unite] <Nop>
 nmap <space>u [unite]
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
+nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
 nnoremap [unite]s :<C-u>Unite source<CR>
@@ -191,7 +192,7 @@ filetype plugin indent on
 " VimShell
 nnoremap [vimshell] <Nop>
 nmap <space>v [vimshell]
-nnoremap <silent> [vimshell]s :<C-u>VimShell<CR>
+nnoremap <silent> [vimshell]v :<C-u>VimShell<CR>
 nnoremap <silent> [vimshell]py :<C-u>VimShellInteractive ipython<CR>
 nnoremap <silent> [vimshell]rb :<C-u>VimShellInteractive irb<CR>
 vmap <silent> [vimshell]s :<C-u>VimShellSendString<CR>

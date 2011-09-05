@@ -4,3 +4,4 @@
 *.pyo
 *.class
 .DS_Store
+.noseids
