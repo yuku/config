@@ -1,3 +1,4 @@
+colorscheme default
 set nocompatible
 set fileformats=unix,mac,dos
 set vb t_vb= " no beep sound
@@ -48,7 +49,7 @@ set incsearch
 "-----------------------------------------------------
 syntax on
 set title
-set number
+set nonumber
 set ruler
 set showcmd
 set laststatus=2
@@ -132,7 +133,7 @@ let g:yankring_history_file='.yankring_history'
 Bundle 'fugitive.vim'
 
 " unite.vim
-Bundle 'unite.vim'
+Bundle 'Shougo/unite.vim'
 "let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
 nnoremap [unite] <Nop>
@@ -196,6 +197,22 @@ nnoremap <silent> [vimshell]v :<C-u>VimShell<CR>
 nnoremap <silent> [vimshell]py :<C-u>VimShellInteractive ipython<CR>
 nnoremap <silent> [vimshell]rb :<C-u>VimShellInteractive irb<CR>
 vmap <silent> [vimshell]s :<C-u>VimShellSendString<CR>
+
+" Vimfiler
+Bundle 'Shougo/vimfiler'
+let g:vimfiler_as_default_explorer = 1
+
+" Speeddating
+Bundle 'tpope/vim-speeddating'
+
+" indent-guides
+Bundle 'nathanaelkane/vim-indent-guides'
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+
+" EasyMotion
+Bundle 'Lokaltog/vim-easymotion'
 
 "-----------------------------------------------------
 " Code Cleaning 
