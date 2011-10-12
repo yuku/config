@@ -183,6 +183,7 @@ nmap <Leader>r <plug>(quickrun)
 
 " taglist.vim
 Bundle 'taglist.vim'
+let g:tlist_javascript_settings = 'javascript;c:class;m:method;F:function;p:property'
 
 " neocomplcache
 Bundle 'neocomplcache'
