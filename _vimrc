@@ -1,4 +1,5 @@
-colorscheme default
+set background=dark
+colorscheme solarized
 set nocompatible
 set fileformats=unix,mac,dos
 set vb t_vb= " no beep sound
@@ -83,8 +84,8 @@ set sidescroll=10
 "-----------------------------------------------------
 " Template
 "-----------------------------------------------------
-autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
-autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
+"autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
+"autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
 
 "-----------------------------------------------------
 " Tab
@@ -183,11 +184,16 @@ nmap <Leader>r <plug>(quickrun)
 
 " taglist.vim
 Bundle 'taglist.vim'
-let g:tlist_javascript_settings = 'javascript;c:class;m:method;F:function;p:property'
+let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
 
 " neocomplcache
-Bundle 'neocomplcache'
+Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
+"let g:neocomplcache_enable_quick_match = 1
+let g:neocomplcache_enable_auto_select = 1
+imap <C-k> <Plug>(neocomplcache_snippets_expand)
+smap <C-k> <Plug>(neocomplcache_snippets_expand)
+
 
 filetype plugin indent on
 
@@ -210,7 +216,7 @@ Bundle 'tpope/vim-speeddating'
 Bundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_color_change_percent = 30
-let g:indent_guides_guide_size = 1
+"let g:indent_guides_guide_size = 1
 
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
@@ -218,15 +224,15 @@ Bundle 'Lokaltog/vim-easymotion'
 "-----------------------------------------------------
 " Code Cleaning 
 "-----------------------------------------------------
-if !exists("rtrim")
-    function! RTrim()
-        let s:cursor = getpos(".")
-        %s/\s\+$//e
-        call setpos(".", s:cursor)
-    endfunction
-    
-    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css,rhtml,yml} call RTrim()
-endif
+"if !exists("rtrim")
+"    function! RTrim()
+"        let s:cursor = getpos(".")
+"        %s/\s\+$//e
+"        call setpos(".", s:cursor)
+"    endfunction
+"    
+"    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css,rhtml,yml} call RTrim()
+"endif
 
 "-----------------------------------------------------
 " local settings

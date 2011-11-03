@@ -1,1 +1,1 @@
---regex-javascript=/([A-Za-z0-9._$()]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/F,function/
+--regex-javascript=/([^(this\.)][A-Za-z0-9._$()]+)[ \t]*[:=][ \t]*function[ \t]*\(/\1/F,function/
