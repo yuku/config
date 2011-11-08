@@ -34,7 +34,7 @@ setopt prompt_subst
 # コマンドラインでも#以降をコメントと見なす
 setopt interactive_comments
 # vi風のキーバインド
-bindkey -v
+#bindkey -v
 # C-s, C-qを無効にする
 setopt no_flow_control
 # 日本語のファイル名を表示可能
