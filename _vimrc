@@ -221,6 +221,15 @@ let g:indent_guides_color_change_percent = 30
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
 
+" Gist.vim
+Bundle "mattn/gist-vim"
+let g:gist_detect_filetype = 1
+let g:github_user = "taka84u9"
+let g:github_token = "e9f46f535783ba347658b0569a450f74"
+
+" vim-coffee-script
+"Bundle "kchmck/vim-coffee-script"
+
 "-----------------------------------------------------
 " Code Cleaning 
 "-----------------------------------------------------

@@ -5,10 +5,10 @@
 	branch = auto
 	interactive = auto
 [core]
-	excludesfile = /home/taka84u9/.gitignore
+	excludesfile = /Users/yuku/.gitignore_global
 	editor = vim
 [user]
-	name = Yuku TAKAHASHI
+	name = Yuku Takahashi
 	email = taka84u9@gmail.com
 [http]
     sslVerify = false
@@ -17,3 +17,9 @@
 	st = status
 [gui]
 	encoding = utf-8
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
