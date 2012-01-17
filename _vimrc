@@ -230,6 +230,30 @@ let g:github_token = "e9f46f535783ba347658b0569a450f74"
 " vim-coffee-script
 Bundle "kchmck/vim-coffee-script"
 
+" tabman
+Bundle "kien/tabman.vim"
+
+" zencoding-vim
+Bundle "mattn/zencoding-vim"
+
+" syntastic
+Bundle "scrooloose/syntastic"
+
+"localrc
+Bundle "thinca/vim-localrc"
+
+"JavaScript-syntax
+Bundle "JavaScript-syntax"
+
+"vim-javascript
+Bundle "pangloss/vim-javascript"
+
+"vim-powerline
+Bundle "Lokaltog/vim-powerline"
+
+"vim-jade
+Bundle "digitaltoad/vim-jade"
+
 "-----------------------------------------------------
 " Code Cleaning 
 "-----------------------------------------------------
@@ -242,6 +266,10 @@ Bundle "kchmck/vim-coffee-script"
 "    
 "    autocmd BufWritePre *.{py,java,rb,js,php,pl,js,html,css,rhtml,yml} call RTrim()
 "endif
+
+
+autocmd FileType javascript :compiler gjslint
+autocmd QuickfixCmdPost make copen
 
 "-----------------------------------------------------
 " local settings
