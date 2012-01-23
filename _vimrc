@@ -229,6 +229,7 @@ let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
 " vim-coffee-script
 Bundle "kchmck/vim-coffee-script"
+nnoremap <silent> <Space>c :CoffeeCompile vert <CR><C-w>h
 
 " tabman
 Bundle "kien/tabman.vim"
@@ -254,6 +255,13 @@ Bundle "Lokaltog/vim-powerline"
 "vim-jade
 Bundle "digitaltoad/vim-jade"
 
+"project.tar.gz
+Bundle "project.tar.gz"
+let g:proj_flags = "imst"
+nmap <silent> <Leader>P <Plug>ToggleProject
+nmap <silent> <Leader>p :Project<CR>
+autocmd BufAdd .vimprojects silent! %foldopen!
+
 "-----------------------------------------------------
 " Code Cleaning 
 "-----------------------------------------------------
@@ -268,8 +276,8 @@ Bundle "digitaltoad/vim-jade"
 "endif
 
 
-autocmd FileType javascript :compiler gjslint
-autocmd QuickfixCmdPost make copen
+"autocmd FileType javascript :compiler gjslint
+"autocmd QuickfixCmdPost make copen
 
 "-----------------------------------------------------
 " local settings
