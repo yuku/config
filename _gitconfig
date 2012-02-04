@@ -5,8 +5,8 @@
 	branch = auto
 	interactive = auto
 [core]
-	excludesfile = /Users/yuku/.gitignore_global
 	editor = vim
+	excludesfile = /Users/yuku/.gitignore_global
 [user]
 	name = Yuku Takahashi
 	email = taka84u9@gmail.com

@@ -7,7 +7,7 @@ set backspace=indent,eol,start
 "" Leader
 "let mapleader=","
 " Path
-let path = "~/code/dotfiles"
+let path = "~/projects/dotfiles"
 set nrformats-=octal " treat octal and hexadecimal number as decimal number
 if has("mouse")
     set mouse=a
@@ -84,8 +84,8 @@ set sidescroll=10
 "-----------------------------------------------------
 " Template
 "-----------------------------------------------------
-"autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
-"autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
+"autocmd BufNewFile *.html 0r ~/projects/dotfiles/template/skeleton.html
+"autocmd BufNewFile *.py   0r ~/projects/dotfiles/template/skeleton.py
 
 "-----------------------------------------------------
 " Tab
@@ -208,6 +208,7 @@ vmap <silent> [vimshell]s :<C-u>VimShellSendString<CR>
 " Vimfiler
 Bundle 'Shougo/vimfiler'
 let g:vimfiler_as_default_explorer = 1
+let g:vimfiler_safe_mode_by_default = 0
 
 " Speeddating
 Bundle 'tpope/vim-speeddating'
@@ -220,6 +221,7 @@ let g:indent_guides_color_change_percent = 30
 
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
+let g:EasyMotion_leader_key = '<Space>j'
 
 " Gist.vim
 Bundle "mattn/gist-vim"
@@ -233,21 +235,23 @@ nnoremap <silent> <Space>c :CoffeeCompile vert <CR><C-w>h
 
 " tabman
 Bundle "kien/tabman.vim"
+let g:tabman_toggle = '<Space>mt'
+let g:tabman_focus = '<Space>mf'
 
 " zencoding-vim
 Bundle "mattn/zencoding-vim"
 
 " syntastic
-Bundle "scrooloose/syntastic"
+"Bundle "scrooloose/syntastic"
 
 "localrc
 Bundle "thinca/vim-localrc"
 
 "JavaScript-syntax
-Bundle "JavaScript-syntax"
+"Bundle "JavaScript-syntax"
 
 "vim-javascript
-Bundle "pangloss/vim-javascript"
+"Bundle "pangloss/vim-javascript"
 
 "vim-powerline
 Bundle "Lokaltog/vim-powerline"
@@ -258,9 +262,11 @@ Bundle "digitaltoad/vim-jade"
 "project.tar.gz
 Bundle "project.tar.gz"
 let g:proj_flags = "imst"
-nmap <silent> <Leader>P <Plug>ToggleProject
-nmap <silent> <Leader>p :Project<CR>
+nmap <silent> <Space>p <Plug>ToggleProject
 autocmd BufAdd .vimprojects silent! %foldopen!
+
+"rails.vim
+"Bundle 'tpope/vim-rails'
 
 "-----------------------------------------------------
 " Code Cleaning 
@@ -282,6 +288,11 @@ autocmd BufAdd .vimprojects silent! %foldopen!
 "-----------------------------------------------------
 " local settings
 "-----------------------------------------------------
+
+autocmd BufNewFile,BufReadPost Cakefile set filetype=coffee
+autocmd BufNewFile,BufReadPost *.jade set filetype=jade
+
+
 if filereadable(expand('~/.vimrc.mine'))
     source ~/.vimrc.mine
 endif
