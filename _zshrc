@@ -1,12 +1,13 @@
 #!/usr/bin/zsh
-# 文字コードの設定
+
+# chractor code
 export LC_CTYPE=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
 #----------------------------------------------------------
-# エイリアス
+# Alias
 #----------------------------------------------------------
 # 補完される前にオリジナルのコマンドまで展開してチェックする
 setopt complete_aliases
@@ -155,7 +156,6 @@ PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 
 export PYTHONSTARTUP=~/.pythonrc.py
 export NOSE_REDNOSE=1
 [ -f ~/.pythonbrew/etc/zshrc ] && source ~/.pythonbrew/etc/zshrc
-export DJANGO_ENV='local'
 
 # virtualenv settings
 if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
@@ -231,8 +231,18 @@ function make() {
 
 export MYVIMRC='~/projects/dotfiles/_vimrc'
 
+# source-highlight による less の色付け
+if [ -f `which source-highlight` ]
+then
+    export LESS='-R'
+    export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
+fi
+
+[ -d /usr/local/bin ] && export PATH=/usr/local/bin:$PATH
+
 #----------------------------------------------------------
 # 環境依存対応
 #----------------------------------------------------------
 # .zshrc.mineがあれば読み込む
 [ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
+
