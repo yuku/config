@@ -7,7 +7,7 @@ set backspace=indent,eol,start
 "" Leader
 "let mapleader=","
 " Path
-let path = "~/projects/dotfiles"
+let path = "~/code/dotfiles"
 set nrformats-=octal " treat octal and hexadecimal number as decimal number
 if has("mouse")
     set mouse=a
@@ -84,8 +84,8 @@ set sidescroll=10
 "-----------------------------------------------------
 " Template
 "-----------------------------------------------------
-"autocmd BufNewFile *.html 0r ~/projects/dotfiles/template/skeleton.html
-"autocmd BufNewFile *.py   0r ~/projects/dotfiles/template/skeleton.py
+"autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
+"autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
 
 "-----------------------------------------------------
 " Tab
@@ -124,6 +124,7 @@ set clipboard=unnamed
 filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
+filetype plugin indent on
 
 " YankRing
 Bundle 'YankRing.vim'
@@ -137,8 +138,10 @@ Bundle 'fugitive.vim'
 Bundle 'Shougo/unite.vim'
 "let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
+let g:unite_enable_start_insert = 1
+let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
 nnoremap [unite] <Nop>
-nmap <space>u [unite]
+nmap     <space>u [unite]
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
 nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer<CR>
@@ -151,20 +154,24 @@ function! s:unite_my_settings()"{{{
     " Overwrite settings
     nmap <buffer><ESC>  <Plug>(unite_exit)
     nmap <buffer><C-c>  <Plug>(unite_exit)
-    imap <buffer>jj     <Plug>(unite_insert_leave)
+    "imap <buffer>jj     <Plug>(unite_insert_leave)
     imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
 
     " <C-l>: manual neocomplecache completion.
     inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
 
-    " Start insert.
-    let g:unite_enable_start_insert = 1
-
+    nmap <buffer><expr><C-d>  unite#do_action('delete')
+    imap <buffer><expr><C-d>  unite#do_action('delete')
+    nmap <buffer><expr><C-b>  unite#do_action('bookmark')
+    imap <buffer><expr><C-b>  unite#do_action('bookmark')
     nmap <buffer><expr><C-k>  unite#do_action('split')
     imap <buffer><expr><C-k>  unite#do_action('split')
     nmap <buffer><expr><C-i>  unite#do_action('vsplit')
     imap <buffer><expr><C-i>  unite#do_action('vsplit')
 endfunction"}}}
+
+" unite-script
+Bundle 'hakobe/unite-script'
 
 " surround
 Bundle 'surround.vim'
@@ -194,17 +201,6 @@ let g:neocomplcache_enable_auto_select = 1
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
-
-filetype plugin indent on
-
-" VimShell
-nnoremap [vimshell] <Nop>
-nmap <space>v [vimshell]
-nnoremap <silent> [vimshell]v :<C-u>VimShell<CR>
-nnoremap <silent> [vimshell]py :<C-u>VimShellInteractive ipython<CR>
-nnoremap <silent> [vimshell]rb :<C-u>VimShellInteractive irb<CR>
-vmap <silent> [vimshell]s :<C-u>VimShellSendString<CR>
-
 " Vimfiler
 Bundle 'Shougo/vimfiler'
 let g:vimfiler_as_default_explorer = 1
@@ -231,7 +227,8 @@ let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
 " vim-coffee-script
 Bundle "kchmck/vim-coffee-script"
-nnoremap <silent> <Space>c :CoffeeCompile vert <CR><C-w>h
+nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
+let coffee_compile_vert = 1
 
 " tabman
 Bundle "kien/tabman.vim"
@@ -239,7 +236,7 @@ let g:tabman_toggle = '<Space>mt'
 let g:tabman_focus = '<Space>mf'
 
 " zencoding-vim
-Bundle "mattn/zencoding-vim"
+"Bundle "mattn/zencoding-vim"
 
 " syntastic
 "Bundle "scrooloose/syntastic"
@@ -257,13 +254,16 @@ Bundle "thinca/vim-localrc"
 Bundle "Lokaltog/vim-powerline"
 
 "vim-jade
-Bundle "digitaltoad/vim-jade"
+"Bundle "digitaltoad/vim-jade"
+
+"vim-stylus
+"Bundle "wavded/vim-stylus"
 
 "project.tar.gz
-Bundle "project.tar.gz"
-let g:proj_flags = "imst"
-nmap <silent> <Space>p <Plug>ToggleProject
-autocmd BufAdd .vimprojects silent! %foldopen!
+"Bundle "project.tar.gz"
+"let g:proj_flags = "imst"
+"nmap <silent> <Space>p <Plug>ToggleProject
+"autocmd BufAdd .vimprojects silent! %foldopen!
 
 "rails.vim
 "Bundle 'tpope/vim-rails'
@@ -289,8 +289,8 @@ autocmd BufAdd .vimprojects silent! %foldopen!
 " local settings
 "-----------------------------------------------------
 
-autocmd BufNewFile,BufReadPost Cakefile set filetype=coffee
-autocmd BufNewFile,BufReadPost *.jade set filetype=jade
+"autocmd BufNewFile,BufReadPost Cakefile set filetype=coffee
+"autocmd BufNewFile,BufReadPost *.jade set filetype=jade
 
 
 if filereadable(expand('~/.vimrc.mine'))

@@ -1,47 +1,81 @@
-#!/usr/bin/zsh
+# users generic .zshrc file for zsh(1)
 
-# chractor code
-export LC_CTYPE=ja_JP.UTF-8
+## Environment variable configuration
+#
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
+export LC_CTYPE=ja_JP.UTF-8
 
-#----------------------------------------------------------
-# Alias
-#----------------------------------------------------------
-# 補完される前にオリジナルのコマンドまで展開してチェックする
-setopt complete_aliases
 
-alias ls='ls -hF'
-alias ll='ls -l'
-alias lla='ls -lA'
-alias la='ls -A'
-alias vi='vim'
-#alias ps='ps -fU`whoami` --forest'
-alias df='df -h'
-alias du='du -h'
-alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
-alias screen='screen -U'
+## Alias configuration
+#
+# expand aliases before completing
+#
+setopt complete_aliases   # aliased ls needs if file/dir completions work
 
-#----------------------------------------------------------
-# 基本
-#----------------------------------------------------------
-# 色を使う
-autoload -U colors; colors
+
+## Backspace key
+#
+bindkey "^?" backward-delete-char
+
+
+## Prompt configuration
+#
+autoload -U colors; colors  # use colors
+
+#
+# Color
+#
+DEFAULT=$'%{\e[1;0m%}'
+RESET="%{${reset_color}%}"
+GREEN="%{${fg[green]}%}"
+BLUE="%{${fg[blue]}%}"
+RED="%{${fg[red]}%}"
+CYAN="%{${fg[cyan]}%}"
+YELLOW="%{${fg[yellow]}%}"
+WHITE="%{${fg[white]}%}"
+GRAY="%{${fg[GRAY]}%}"
+
+RPROMPT="%T"
+setopt transient_rprompt
+function precmd() {
+    PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET}" 
+    st=`git status 2>/dev/null`
+    if [[ -n `echo "$st" | grep "^nothing to"` ]]
+    then
+        color=${fg[cyan]}
+    elif [[ -n `echo "$st" | grep "^nothing added"` ]]
+    then
+        color=${fg[blue]}
+    elif [[ -n `echo "$st" | grep "^# Untracked"` ]]
+    then
+        color=${fg_bold[red]}
+    else
+        color=${fg[red]}
+    fi
+    PROMPT+="
+%{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
+}
+
 # ビープを鳴らさない
 setopt nobeep
+
 # エスケープシーケンスを使う
 setopt prompt_subst
+
 # コマンドラインでも#以降をコメントと見なす
 setopt interactive_comments
-# vi風のキーバインド
-#bindkey -v
+
 # C-s, C-qを無効にする
 setopt no_flow_control
+
 # 日本語のファイル名を表示可能
 setopt print_eight_bit
+
 # C-wで直前の/までを削除する
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
+
 # ディレクトリを水色にする
 export LS_COLORS='di=01;36'
 
@@ -49,34 +83,48 @@ export LS_COLORS='di=01;36'
 # 補完関連
 #----------------------------------------------------------
 # 補完機能を強化
-autoload -Uz compinit; compinit
+autoload -Uz compinit
+compinit
+
 # URLを自動エスケープ
 autoload -Uz url-quote-magic; zle -N self-insert url-quote-magic
 
 # TABで順に補完候補を切り替える
 setopt auto_menu
+
 # 補完候補を一覧表示
 setopt auto_list
+
 # 補完候補をEmacsのキーバインドで動けるように
 zstyle ':completion:*:default' menu select=1
+
 # --prefix=/usrなどの=以降も補間
 setopt magic_equal_subst
+
 # ディレクトリ名の補間で末尾の/を自動的に付加し、次の補間に備える
 setopt auto_param_slash
+
 ## 補完候補の色付け
 #eval `dircolors`
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
 # 補完候補を詰めて表示
 setopt list_packed
+
 # 補完候補一覧でファイルの種別をマーク表示
 setopt list_types
+
 # 最後のスラッシュを自動的に削除しない
 setopt noautoremoveslash
+
 # スペルチェック
 setopt correct
+
 # killコマンドでプロセスを補完
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
+
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 
 #----------------------------------------------------------
 # 移動関連
@@ -126,90 +174,6 @@ bindkey "^S" history-incremental-search-forward
 # 全履歴の一覧を出力する
 function history-all { history -E 1 }
 
-#----------------------------------------------------------
-# プロンプト表示関連
-#----------------------------------------------------------
-# 右側に時間を表示する
-RPROMPT="%T"
-# 右側まで入力が来ら時間を消す
-setopt transient_rprompt
-# プロンプト
-function precmd() {
-PROMPT="%{${fg[green]}%}%n%{${fg[yellow]}%} %~%{${reset_color}%}" 
-st=`git status 2>/dev/null`
-if [[ -n `echo "$st" | grep "^nothing to"` ]]; then
-	color=${fg[cyan]}
-elif [[ -n `echo "$st" | grep "^nothing added"` ]]; then
-	color=${fg[blue]}
-elif [[ -n `echo "$st" | grep "^# Untracked"` ]]; then
-	color=${fg_bold[red]}
-else
-	color=${fg[red]}
-fi
-PROMPT+=" %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b%{${reset_color}%}
-"
-}
-
-#----------------------------------------------------------
-# Python
-#----------------------------------------------------------
-export PYTHONSTARTUP=~/.pythonrc.py
-export NOSE_REDNOSE=1
-[ -f ~/.pythonbrew/etc/zshrc ] && source ~/.pythonbrew/etc/zshrc
-
-# virtualenv settings
-if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-    export WORKON_HOME=$HOME/.virtualenvs
-    source /usr/local/bin/virtualenvwrapper.sh
-fi
-
-#----------------------------------------------------------
-# Git
-#----------------------------------------------------------
-
-# aliases for git
-#function git(){hub "$@"}
-alias g="git"
-alias gad="git add"
-alias gb="git branch -v"
-alias gba="git branch -a"
-alias gbr="git branch -r"
-alias gc="git commit -v"
-alias gco="git checkout"
-alias gd="git diff"
-alias gdc="git diff --cached"
-alias gf="git fetch"
-alias gg="git grep -n"
-alias ggi="git grep -ni"
-alias gl="git log --stat"
-alias gll="git log --oneline"
-alias glp="git log -p"
-alias gls="git ls-files"
-alias gm="git merge"
-alias gst="git status"
-alias gs="git show"
-alias gsp="git stash pop"
-alias gss="git stash save"
-alias gssh="git stash show"
-alias gsl="git stash list"
-alias gPull="git pull"
-#alias up='cd ./$(git rev-parse --show-cdup)' # cd to current repo's root dir
-alias gcb="git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'" # Show current branch
-
-#----------------------------------------------------------
-# Ruby
-#----------------------------------------------------------
-
-#----------------------------------------------------------
-# Perl
-#----------------------------------------------------------
-PERL_BADLANG=0; export PERL_BADLANG
-
-#----------------------------------------------------------
-# Java
-#----------------------------------------------------------
-alias javac='javac -J-Dfile.encoding=UTF-8'
-alias java='java -Dfile.encoding=UTF-8'
 
 #----------------------------------------------------------
 # その他
@@ -229,7 +193,7 @@ function make() {
     LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export MYVIMRC='~/projects/dotfiles/_vimrc'
+export MYVIMRC='~/code/dotfiles/_vimrc'
 
 # source-highlight による less の色付け
 if [ -f `which source-highlight` ]
@@ -242,9 +206,51 @@ fi
 
 export GREP_OPTIONS='--color=auto'
 
-#----------------------------------------------------------
-# 環境依存対応
-#----------------------------------------------------------
-# .zshrc.mineがあれば読み込む
-[ -f ~/.zshrc.mine ] && source ~/.zshrc.mine
 
+## Python
+#
+[[ -s "$HOME/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
+[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source $HOME/.pythonbrew/etc/bashrc
+export NOSE_REDNOSE=1
+
+## Ruby
+#
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+
+## Node
+#
+[[ -s "$HOME/.nvm/nvm.sh" ]] && source $HOME/.nvm/nvm.sh
+
+## Perl
+#
+PERL_BADLANG=0; export PERL_BADLANG
+
+## Java
+#
+export LC_ALL=en
+
+## Git
+#
+[[ -s "$HOME/.gitignore" ]] && git config --global core.excludesfile $HOME/.gitignore
+
+
+
+## alias
+#
+[ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
+
+## os depending settings
+#
+case ${OSTYPE} in
+darwin*) # Mac OS X
+    [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
+    export PATH=$PATH:/opt/local/bin:/opt/local/sbin/
+    export PATH=$PATH:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/
+    ;;
+linux*)
+    [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
+    ;;
+esac
+
+## local settings
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -4,9 +4,10 @@
 	status = auto
 	branch = auto
 	interactive = auto
+	grep = auto
 [core]
 	editor = vim
-	excludesfile = /Users/yuku/.gitignore_global
+	excludesfile = /Users/yuku/.gitignore
 [user]
 	name = Yuku Takahashi
 	email = taka84u9@gmail.com
@@ -15,6 +16,14 @@
 [alias]
 	co = checkout
 	st = status
+	ci = commit -v
+	di = diff
+	br = branch
+	puhs = push
+	psuh = push
+	pus = push
+	puh = push
+	pl = !git pull && git submodule update --init
 [gui]
 	encoding = utf-8
 [difftool "sourcetree"]
@@ -23,3 +32,5 @@
 [mergetool "sourcetree"]
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
+[push]
+	default = current
