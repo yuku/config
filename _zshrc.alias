@@ -12,6 +12,7 @@ alias df='df -h'
 alias du='du -h'
 alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
 alias screen='screen -U'
+alias gcc='gcc -Wall -lstdc++'
 
 ## Git
 #
