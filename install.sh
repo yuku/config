@@ -1,9 +1,15 @@
 #!/usr/bin/env zsh
 
-if ! [ -d "$HOME/.oh-my-zsh" ] ; then
-    echo 'Installing oh-my-zsh'
-    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
-fi
+## oh-my-zsh
+#
+#if ! [ -d "$HOME/.oh-my-zsh" ] ; then
+#    echo 'Installing oh-my-zsh'
+#    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+#fi
+#if [ -e ~/.oh-my-zsh/custom/oh-my.zsh ] ; then
+#    mv ~/.oh-my-zsh/custom/oh-my.zsh ~/.oh-my-zsh/custom/oh-my.zsh
+#fi
+#ln -sf ~/code/dotfiles/oh-my.zsh ~/.oh-my-zsh/custom/oh-my.zsh
 
 function link_file() {
     source="${PWD}/$1"
@@ -24,10 +30,6 @@ do
     link_file $i
 done
 
-if [ -e ~/.oh-my-zsh/custom/oh-my.zsh ] ; then
-    mv ~/.oh-my-zsh/custom/oh-my.zsh ~/.oh-my-zsh/custom/oh-my.zsh
-fi
-ln -sf ~/code/dotfiles/oh-my.zsh ~/.oh-my-zsh/custom/oh-my.zsh
 
 git submodule sync
 git submodule init
