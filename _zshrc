@@ -212,6 +212,7 @@ export GREP_OPTIONS='--color=auto'
 [[ -s "$HOME/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
 [[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source $HOME/.pythonbrew/etc/bashrc
 export NOSE_REDNOSE=1
+export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
 ## Ruby
 #
