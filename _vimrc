@@ -125,13 +125,8 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-" YankRing
-Bundle 'YankRing.vim'
-nnoremap <silent>;ys  :<C-u>YRShow<CR>
-let g:yankring_history_file='.yankring_history'
-
 " fugitive
-Bundle 'fugitive.vim'
+Bundle 'tpope/vim-fugitive'
 
 " unite.vim
 Bundle 'Shougo/unite.vim'
@@ -143,10 +138,13 @@ nnoremap [unite] <Nop>
 nmap     <space>u [unite]
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
-nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer<CR>
+nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
 nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap [unite]s :<C-u>Unite source<CR>
+nnoremap <silent> [unite]l :<C-u>Unite line<CR>
+nnoremap <silent> [unite]t :<C-u>Unite -immediately tab:no-current<CR>
+nnoremap <silent> [unite]h :<C-u>Unite -start-insert help<CR>
+nnoremap <silent> [unite]s :<C-u>Unite source<CR>
 
 autocmd FileType unite call s:unite_my_settings()
 function! s:unite_my_settings()"{{{
@@ -155,6 +153,7 @@ function! s:unite_my_settings()"{{{
     nmap <buffer><C-c>  <Plug>(unite_exit)
     "imap <buffer>jj     <Plug>(unite_insert_leave)
     imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
+
 
     " <C-l>: manual neocomplecache completion.
     inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
@@ -172,8 +171,14 @@ endfunction"}}}
 " unite-script
 Bundle 'hakobe/unite-script'
 
+" unite-outline
+Bundle 'h1mesuke/unite-outline'
+
+" unite-help
+Bundle 'tsukkee/unite-help'
+
 " surround
-Bundle 'surround.vim'
+Bundle 'tpope/surround.vim'
 let g:surround_{char2nr("#")} = "{# \r #}"
 let g:surround_{char2nr("*")} = "/* \r */"
 let g:surround_{char2nr("p")} = "<?php \r ?>"
@@ -189,13 +194,12 @@ nmap <Leader>r <plug>(quickrun)
 "let NERDTreeShowHidden = 1
 
 " taglist.vim
-Bundle 'taglist.vim'
-let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
+"Bundle 'taglist.vim'
+"let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
 
 " neocomplcache
 Bundle 'Shougo/neocomplcache'
 let g:neocomplcache_enable_at_startup = 1
-"let g:neocomplcache_enable_quick_match = 1
 let g:neocomplcache_enable_auto_select = 1
 imap <C-k> <Plug>(neocomplcache_snippets_expand)
 smap <C-k> <Plug>(neocomplcache_snippets_expand)
@@ -204,9 +208,6 @@ smap <C-k> <Plug>(neocomplcache_snippets_expand)
 Bundle 'Shougo/vimfiler'
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
-
-" Speeddating
-Bundle 'tpope/vim-speeddating'
 
 " indent-guides
 Bundle 'nathanaelkane/vim-indent-guides'
@@ -229,14 +230,6 @@ Bundle "kchmck/vim-coffee-script"
 nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
 let coffee_compile_vert = 1
 
-" tabman
-Bundle "kien/tabman.vim"
-let g:tabman_toggle = '<Space>mt'
-let g:tabman_focus = '<Space>mf'
-
-" zencoding-vim
-"Bundle "mattn/zencoding-vim"
-
 " syntastic
 Bundle "scrooloose/syntastic"
 let g:syntastic_mode_map = { 'mode': 'passive',
@@ -246,12 +239,6 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 "localrc
 Bundle "thinca/vim-localrc"
 
-"JavaScript-syntax
-"Bundle "JavaScript-syntax"
-
-"vim-javascript
-"Bundle "pangloss/vim-javascript"
-
 "vim-powerline
 Bundle "Lokaltog/vim-powerline"
 
@@ -260,9 +247,6 @@ Bundle "digitaltoad/vim-jade"
 
 "vim-less
 Bundle "groenewege/vim-less"
-
-"rails.vim
-Bundle 'tpope/vim-rails'
 
 filetype plugin indent on
 
