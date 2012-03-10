@@ -124,7 +124,6 @@ set clipboard=unnamed
 filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
-filetype plugin indent on
 
 " YankRing
 Bundle 'YankRing.vim'
@@ -239,7 +238,10 @@ let g:tabman_focus = '<Space>mf'
 "Bundle "mattn/zencoding-vim"
 
 " syntastic
-"Bundle "scrooloose/syntastic"
+Bundle "scrooloose/syntastic"
+let g:syntastic_mode_map = { 'mode': 'passive',
+              \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
+              \ 'passive_filetypes': [] }
 
 "localrc
 Bundle "thinca/vim-localrc"
@@ -254,19 +256,15 @@ Bundle "thinca/vim-localrc"
 Bundle "Lokaltog/vim-powerline"
 
 "vim-jade
-"Bundle "digitaltoad/vim-jade"
+Bundle "digitaltoad/vim-jade"
 
-"vim-stylus
-"Bundle "wavded/vim-stylus"
-
-"project.tar.gz
-"Bundle "project.tar.gz"
-"let g:proj_flags = "imst"
-"nmap <silent> <Space>p <Plug>ToggleProject
-"autocmd BufAdd .vimprojects silent! %foldopen!
+"vim-less
+Bundle "groenewege/vim-less"
 
 "rails.vim
-"Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-rails'
+
+filetype plugin indent on
 
 "-----------------------------------------------------
 " Code Cleaning 
