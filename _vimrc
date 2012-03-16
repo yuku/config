@@ -183,6 +183,11 @@ if v:version > 702
     imap <C-k> <Plug>(neocomplcache_snippets_expand)
     smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
+    " Vimfiler
+    Bundle 'Shougo/vimfiler'
+    let g:vimfiler_as_default_explorer = 1
+    let g:vimfiler_safe_mode_by_default = 0
+
 endif
 
 " fugitive
@@ -207,11 +212,6 @@ nmap <Leader>r <plug>(quickrun)
 " taglist.vim
 "Bundle 'taglist.vim'
 "let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
-
-" Vimfiler
-Bundle 'Shougo/vimfiler'
-let g:vimfiler_as_default_explorer = 1
-let g:vimfiler_safe_mode_by_default = 0
 
 " indent-guides
 Bundle 'nathanaelkane/vim-indent-guides'
