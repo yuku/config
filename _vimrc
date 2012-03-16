@@ -125,57 +125,62 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
+" UNITE
+if v:version > 702
+
+    " unite.vim
+    Bundle 'Shougo/unite.vim'
+    "let g:unite_enable_split_vertically = 1
+    let g:unite_winwidth = 50
+    let g:unite_enable_start_insert = 1
+    let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
+    nnoremap [unite] <Nop>
+    nmap     <space>u [unite]
+    nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+    nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
+    nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
+    nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
+    nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+    nnoremap <silent> [unite]l :<C-u>Unite line<CR>
+    nnoremap <silent> [unite]t :<C-u>Unite -immediately tab:no-current<CR>
+    nnoremap <silent> [unite]h :<C-u>Unite -start-insert help<CR>
+    nnoremap <silent> [unite]s :<C-u>Unite source<CR>
+
+    autocmd FileType unite call s:unite_my_settings()
+    function! s:unite_my_settings()"{{{
+        " Overwrite settings
+        nmap <buffer><ESC>  <Plug>(unite_exit)
+        nmap <buffer><C-c>  <Plug>(unite_exit)
+        "imap <buffer>jj     <Plug>(unite_insert_leave)
+        imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
+
+
+        " <C-l>: manual neocomplecache completion.
+        inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
+
+        nmap <buffer><expr><C-d>  unite#do_action('delete')
+        imap <buffer><expr><C-d>  unite#do_action('delete')
+        nmap <buffer><expr><C-b>  unite#do_action('bookmark')
+        imap <buffer><expr><C-b>  unite#do_action('bookmark')
+        nmap <buffer><expr><C-k>  unite#do_action('split')
+        imap <buffer><expr><C-k>  unite#do_action('split')
+        nmap <buffer><expr><C-i>  unite#do_action('vsplit')
+        imap <buffer><expr><C-i>  unite#do_action('vsplit')
+    endfunction"}}}
+
+    " unite-script
+    Bundle 'hakobe/unite-script'
+
+    " unite-outline
+    Bundle 'h1mesuke/unite-outline'
+
+    " unite-help
+    Bundle 'tsukkee/unite-help'
+
+endif
+
 " fugitive
 Bundle 'tpope/vim-fugitive'
-
-" unite.vim
-Bundle 'Shougo/unite.vim'
-"let g:unite_enable_split_vertically = 1
-let g:unite_winwidth = 50
-let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
-nnoremap [unite] <Nop>
-nmap     <space>u [unite]
-nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
-nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
-nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-nnoremap <silent> [unite]l :<C-u>Unite line<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -immediately tab:no-current<CR>
-nnoremap <silent> [unite]h :<C-u>Unite -start-insert help<CR>
-nnoremap <silent> [unite]s :<C-u>Unite source<CR>
-
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()"{{{
-    " Overwrite settings
-    nmap <buffer><ESC>  <Plug>(unite_exit)
-    nmap <buffer><C-c>  <Plug>(unite_exit)
-    "imap <buffer>jj     <Plug>(unite_insert_leave)
-    imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
-
-
-    " <C-l>: manual neocomplecache completion.
-    inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
-
-    nmap <buffer><expr><C-d>  unite#do_action('delete')
-    imap <buffer><expr><C-d>  unite#do_action('delete')
-    nmap <buffer><expr><C-b>  unite#do_action('bookmark')
-    imap <buffer><expr><C-b>  unite#do_action('bookmark')
-    nmap <buffer><expr><C-k>  unite#do_action('split')
-    imap <buffer><expr><C-k>  unite#do_action('split')
-    nmap <buffer><expr><C-i>  unite#do_action('vsplit')
-    imap <buffer><expr><C-i>  unite#do_action('vsplit')
-endfunction"}}}
-
-" unite-script
-Bundle 'hakobe/unite-script'
-
-" unite-outline
-Bundle 'h1mesuke/unite-outline'
-
-" unite-help
-Bundle 'tsukkee/unite-help'
 
 " surround
 Bundle 'tpope/surround.vim'
