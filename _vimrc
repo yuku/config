@@ -188,6 +188,12 @@ if v:version > 702
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_safe_mode_by_default = 0
 
+    " indent-guides
+    Bundle 'nathanaelkane/vim-indent-guides'
+    let g:indent_guides_enable_on_vim_startup = 1
+    let g:indent_guides_color_change_percent = 30
+    "let g:indent_guides_guide_size = 1
+
 endif
 
 " fugitive
@@ -202,22 +208,6 @@ let g:surround_{char2nr("p")} = "<?php \r ?>"
 " quick run
 Bundle 'quickrun.vim'
 nmap <Leader>r <plug>(quickrun)
-
-" NERD Tree
-"Bundle 'The-NERD-Tree'
-"let NERDChristmasTree = 1
-"let NERDTreeAutoCenterThreshold = 5
-"let NERDTreeShowHidden = 1
-
-" taglist.vim
-"Bundle 'taglist.vim'
-"let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
-
-" indent-guides
-Bundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 30
-"let g:indent_guides_guide_size = 1
 
 " EasyMotion
 Bundle 'Lokaltog/vim-easymotion'
