@@ -125,7 +125,6 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
-" UNITE
 if v:version > 702
 
     " unite.vim
@@ -177,6 +176,13 @@ if v:version > 702
     " unite-help
     Bundle 'tsukkee/unite-help'
 
+    " neocomplcache
+    Bundle 'Shougo/neocomplcache'
+    let g:neocomplcache_enable_at_startup = 1
+    let g:neocomplcache_enable_auto_select = 1
+    imap <C-k> <Plug>(neocomplcache_snippets_expand)
+    smap <C-k> <Plug>(neocomplcache_snippets_expand)
+
 endif
 
 " fugitive
@@ -201,13 +207,6 @@ nmap <Leader>r <plug>(quickrun)
 " taglist.vim
 "Bundle 'taglist.vim'
 "let g:tlist_javascript_settings = 'javascript;c:class;m:method;f:function;p:property'
-
-" neocomplcache
-Bundle 'Shougo/neocomplcache'
-let g:neocomplcache_enable_at_startup = 1
-let g:neocomplcache_enable_auto_select = 1
-imap <C-k> <Plug>(neocomplcache_snippets_expand)
-smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
 " Vimfiler
 Bundle 'Shougo/vimfiler'
