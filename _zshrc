@@ -39,7 +39,7 @@ GRAY="%{${fg[GRAY]}%}"
 
 RPROMPT="%T"
 setopt transient_rprompt
-function precmd() {
+precmd () {
     PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET}" 
     st=`git status 2>/dev/null`
     if [[ -n `echo "$st" | grep "^nothing to"` ]]
@@ -172,7 +172,9 @@ bindkey "^N" history-beginning-search-forward-end
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 # 全履歴の一覧を出力する
-function history-all { history -E 1 }
+history-all () {
+    history -E 1
+}
 
 
 #----------------------------------------------------------
@@ -189,15 +191,14 @@ setopt notify
 e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
-function make() {
+make () {
     LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
 export MYVIMRC='~/code/dotfiles/_vimrc'
 
 # source-highlight による less の色付け
-if [ -f `which source-highlight` ]
-then
+if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
     export LESS='-R'
     export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
 fi
@@ -209,18 +210,28 @@ export GREP_OPTIONS='--color=auto'
 
 ## Python
 #
-[[ -s "$HOME/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
-[[ -s "$HOME/.pythonbrew/etc/bashrc" ]] && source $HOME/.pythonbrew/etc/bashrc
+[[ -s "${HOME}/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
+[[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] && source $HOME/.pythonbrew/etc/bashrc
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
 ## Ruby
 #
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
 
 ## Node
 #
-[[ -s "$HOME/.nvm/nvm.sh" ]] && source $HOME/.nvm/nvm.sh
+[[ -s "${HOME}/.nvm/nvm.sh" ]] && source $HOME/.nvm/nvm.sh
+
+## CoffeeScript
+#
+_cake () {
+	if [ -f Cakefile ]; then
+        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+	fi
+}
+
+compdef _cake cake
 
 ## Perl
 #

@@ -9,3 +9,4 @@
 checksums
 build
 .rvmrc
+.powenv
