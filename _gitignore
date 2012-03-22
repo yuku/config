@@ -4,9 +4,6 @@
 *.pyc
 *.pyo
 *.class
-.DS_Store
 .noseids
 checksums
 build
-.rvmrc
-.powenv
