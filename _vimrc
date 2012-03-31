@@ -1,14 +1,43 @@
-set background=dark
-colorscheme solarized
+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"                                 _                                             "
+"                          _   __(_)___ ___  __________                         "
+"                         | | / / / __ `__ \/ ___/ ___/                         "
+"                         | |/ / / / / / / / /  / /__                           "
+"                         |___/_/_/ /_/ /_/_/   \___/                           "
+"                                                                               "
+"                                                                               "
+"++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 set nocompatible
-set fileformats=unix,mac,dos
-set vb t_vb= " no beep sound
+
+" Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-"" Leader
-"let mapleader=","
-" Path
-let path = "~/code/dotfiles"
-set nrformats-=octal " treat octal and hexadecimal number as decimal number
+
+"-----------------------------------------------------
+" Anonymous
+"-----------------------------------------------------
+" Use solarized
+" http://ethanschoonover.com/solarized
+syntax on
+colorscheme solarized
+set background=dark " light
+
+" Automatic end-of-file format detection
+set fileformats=unix,mac,dos
+
+" No beep sound
+set vb t_vb= 
+
+" Treat octal and hexadecimal number as decimal number
+" octal  Numbers that start with a zero will be considered to be octal
+"        Example: Using CTRL-A on "007" results in "010"
+" hex    Numbers starting with "0x" or "0X" will be considered to be hexadecimal
+"        Example: Using CTRL-X on "0x100" results in "0x0ff"
+set nrformats-=octal,hex
+
+" Print the line number in front of each line
+set number
+
+" Enable the use of the mouse in all modes
 if has("mouse")
     set mouse=a
 endif
@@ -17,14 +46,17 @@ endif
 " short cut keys
 "-----------------------------------------------------
 " Jump to vimrc
-nnoremap <space><space> :<C-u>edit $MYVIMRC<CR>
+nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
 " Reload vimrc setting
-nnoremap <space>s :<C-u>source $MYVIMRC<CR>
+nnoremap <space>s :<C-u>source $DOTFILES/_vimrc<CR>
+
 
 "-----------------------------------------------------
 " Backup
 "-----------------------------------------------------
+" backup current file, deleted afterwards
 set nobackup
+set writebackup
 if !filewritable($HOME."/.vim-backup")
     call mkdir($HOME."/.vim-backup", "p")
 endif
@@ -34,29 +66,35 @@ if !filewritable($HOME."/.vim-swap")
 endif
 set directory=$HOME/.vim-swap
 "let &directory = &backup dir
-set writebackup
 
 "-----------------------------------------------------
 " Search
 "-----------------------------------------------------
+" keep 100 lines of command line histories
 set history=100
 set ignorecase
 set smartcase
+" Searches wrap around the end of the file
 set wrapscan
+" While typing a search command, show where the pattern matches
 set incsearch
+" highlighting matches
+set hlsearch 
 
 "-----------------------------------------------------
 " Display
 "-----------------------------------------------------
-syntax on
 set title
-set nonumber
+" Show the line and column number of the cursor position, separated by a comma
 set ruler
+" Show (partial) command in the last line of the screen
 set showcmd
+" The last window always have status line
 set laststatus=2
+" When a bracket is inserted, briefly jump to the matching one
 set showmatch
+" 3 second to show the matching paren
 set matchtime=3
-set hlsearch
 "highlight WhitespaceEOL ctermbg=red guibg=red
 "matc WhitespaceEOL /\s\+$/
 highlight Comment ctermfg=DarkCyan
@@ -80,12 +118,6 @@ set sidescroll=10
 " Window
 "-----------------------------------------------------
 "imap <C-w> <C-o><C-w>
-
-"-----------------------------------------------------
-" Template
-"-----------------------------------------------------
-"autocmd BufNewFile *.html 0r ~/code/dotfiles/template/skeleton.html
-"autocmd BufNewFile *.py   0r ~/code/dotfiles/template/skeleton.py
 
 "-----------------------------------------------------
 " Tab
@@ -112,11 +144,14 @@ set fileencodings=utf-8
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-cmap tnew :tabnew<space>
+cmap <C-t> <C-u>tabnew<CR>
 nnoremap <silent> <C-l> :<C-u>tabnext<CR>
 nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
 
 set clipboard=unnamed
+
+" Leader
+"let mapleader=","
 
 
 source ~/.vimrc.plugin
