@@ -195,7 +195,7 @@ make () {
     LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export MYVIMRC='~/code/dotfiles/_vimrc'
+export DOTFILES="${HOME}/code/dotfiles"
 
 # source-highlight による less の色付け
 if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
