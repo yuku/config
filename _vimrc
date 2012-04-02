@@ -21,9 +21,6 @@ syntax on
 colorscheme solarized
 set background=dark " light
 
-" Automatic end-of-file format detection
-set fileformats=unix,mac,dos
-
 " No beep sound
 set vb t_vb= 
 
@@ -41,6 +38,8 @@ set number
 if has("mouse")
     set mouse=a
 endif
+" Enable all keys to move the cursor left/right to the previous/next line
+set whichwrap=b,s,h,l,<,>,[,]
 
 "-----------------------------------------------------
 " short cut keys
@@ -79,7 +78,7 @@ set wrapscan
 " While typing a search command, show where the pattern matches
 set incsearch
 " highlighting matches
-set hlsearch 
+set hlsearch
 
 "-----------------------------------------------------
 " Display
@@ -95,29 +94,23 @@ set laststatus=2
 set showmatch
 " 3 second to show the matching paren
 set matchtime=3
-"highlight WhitespaceEOL ctermbg=red guibg=red
-"matc WhitespaceEOL /\s\+$/
+" highlight whitespaces
+highlight WhitespaceEOL ctermbg=red guibg=red
+matc WhitespaceEOL /\s\+$/
+" highlight comments
 highlight Comment ctermfg=DarkCyan
+" Use enhanced command-line completion
 set wildmenu
-set whichwrap=b,s,h,l,<,>,[,]
+" Never break so long line
 set textwidth=0
-" Show zenkaku space
-highlight ZenkakuSpace cterm=underline ctermfg=lightblue guibg=darkgray
-matc ZenkakuSpace /　/
-"
-set statusline=%n\:%y%F\ %{fugitive#statusline()}\|%{(&fenc!=''?&fenc:&enc).'\|'.&ff.'\|'}%m%r%=%c\:%l/%L\|%P\|
-highlight StatusLine term=NONE cterm=NONE ctermfg=black ctermbg=white
-set cursorline
-set ruler
+set wrapmargin=0
+" Keep position of the cursor
 set nostartofline
+" Cursor can be positioned where there is no actual character in Visual block mode.
 set virtualedit=block
+" Keep at least 5 lines above and below the cursor
 set scrolloff=5
 set sidescroll=10
-
-"-----------------------------------------------------
-" Window
-"-----------------------------------------------------
-"imap <C-w> <C-o><C-w>
 
 "-----------------------------------------------------
 " Tab
@@ -140,6 +133,8 @@ set smartindent
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
+" Automatic end-of-file format detection
+set fileformats=unix,mac,dos
 
 "----------------------------------------------------
 " vim-tab
