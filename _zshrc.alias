@@ -1,0 +1,57 @@
+#!/usr/bin/zsh
+
+alias ps='ps aux'
+alias where='command -v'
+
+alias ls='ls -hF'
+alias ll='ls -l'
+alias lla='ls -lA'
+alias la='ls -A'
+alias vi='vim'
+alias df='df -h'
+alias du='du -h'
+alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias screen='screen -U'
+alias gcc='gcc -Wall -lstdc++'
+
+## Git
+#
+# aliases for git
+#function git(){hub "$@"}
+alias g="git"
+alias gad="git add"
+alias gb="git branch -v"
+alias gba="git branch -a"
+alias gbr="git branch -r"
+alias gc="git commit -v"
+alias gco="git checkout"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gf="git fetch"
+alias gg="git grep -n"
+alias ggi="git grep -ni"
+alias gl="git log --stat"
+alias gll="git log --oneline"
+alias glp="git log -p"
+alias gls="git ls-files"
+alias gm="git merge"
+alias gst="git status"
+alias gs="git show"
+alias gsp="git stash pop"
+alias gss="git stash save"
+alias gssh="git stash show"
+alias gsl="git stash list"
+alias gPull="git pull"
+# cd to current repo's root dir
+alias up='cd ./$(git rev-parse --show-cdup)'
+# Show current branch
+alias gcb="git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'"
+
+## Hg
+#
+alias hg="hg --encoding=utf-8"
+
+## Java
+#
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
