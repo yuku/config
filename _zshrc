@@ -1,3 +1,4 @@
+#!/usr/bin/env zsh
 # users generic .zshrc file for zsh(1)
 
 ## Environment variable configuration
@@ -58,80 +59,102 @@ precmd () {
 %{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
 }
 
-# ビープを鳴らさない
+# No beep
+#
 setopt nobeep
 
-# エスケープシーケンスを使う
+# Use escape sequences
+#
 setopt prompt_subst
 
-# コマンドラインでも#以降をコメントと見なす
+# Ignore commands following # in cui
+#
 setopt interactive_comments
 
-# C-s, C-qを無効にする
+# Disable C-s and C-q
+#
 setopt no_flow_control
 
-# 日本語のファイル名を表示可能
+# Enable Japanese file name
+#
 setopt print_eight_bit
 
-# C-wで直前の/までを削除する
+# C-w deletes the caractor next to the /
+#
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# ディレクトリを水色にする
+# Show direcotry in water color
+#
 export LS_COLORS='di=01;36'
 
 #----------------------------------------------------------
-# 補完関連
+# Complement
 #----------------------------------------------------------
-# 補完機能を強化
+# Use full complement functionality
+#
 autoload -Uz compinit
 compinit
 
-# URLを自動エスケープ
+# Automatically escape URL string
+#
 autoload -Uz url-quote-magic; zle -N self-insert url-quote-magic
 
-# TABで順に補完候補を切り替える
+# Toggle complement candidates using TAB
+#
 setopt auto_menu
 
-# 補完候補を一覧表示
+# Show all candidates
+#
 setopt auto_list
 
-# 補完候補をEmacsのキーバインドで動けるように
+# Can use Emacs style keybind to select candidates
+#
 zstyle ':completion:*:default' menu select=1
 
-# --prefix=/usrなどの=以降も補間
+# Even option args are complemented
+#
 setopt magic_equal_subst
 
-# ディレクトリ名の補間で末尾の/を自動的に付加し、次の補間に備える
+# Insert / after a complemented directory name
+#
 setopt auto_param_slash
 
-## 補完候補の色付け
+# Colorize
+#
 #eval `dircolors`
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# 補完候補を詰めて表示
+# Use compackt style candidates viewer mode
+#
 setopt list_packed
 
-# 補完候補一覧でファイルの種別をマーク表示
+# Show kinds of file using marks
+#
 setopt list_types
 
-# 最後のスラッシュを自動的に削除しない
+# Don't automatically remove / on the tail
+#
 setopt noautoremoveslash
 
-# スペルチェック
+# Do spell check
+#
 setopt correct
 
-# killコマンドでプロセスを補完
+# Complement process name with kill command
+#
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 
 #----------------------------------------------------------
-# 移動関連
+# Move
 #----------------------------------------------------------
-# ディレクトリ名でもcd
+# Change direcroty with it's name
+#
 setopt auto_cd
-# cdのタイミングで自動的にpushd.直前と同じ場合は無視
+# Execute pushd command when current directory is changed by cd command
+#
 setopt auto_pushd
 setopt pushd_ignore_dups
 
