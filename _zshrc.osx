@@ -1,3 +1,1 @@
 #!/usr/bin/env zsh
-
-export RAILS_ENV=local
