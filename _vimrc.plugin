@@ -1,6 +1,3 @@
-"-----------------------------------------------------
-" Plugins
-"-----------------------------------------------------
 filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
@@ -10,12 +7,11 @@ if v:version > 702
     " unite.vim
     Bundle 'Shougo/unite.vim'
     "let g:unite_enable_split_vertically = 1
-    let g:unite_winwidth = 50
     let g:unite_enable_start_insert = 1
     let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
     nnoremap [unite] <Nop>
     nmap     <space>u [unite]
-    nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file<CR>
+    nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
     nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
     nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
     nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
@@ -96,6 +92,9 @@ let g:surround_{char2nr("#")} = "{# \r #}"
 let g:surround_{char2nr("*")} = "/* \r */"
 let g:surround_{char2nr("p")} = "<?php \r ?>"
 
+" rails.vim
+Bundle 'tpope/vim-rails'
+
 " quick run
 Bundle 'quickrun.vim'
 nmap <Leader>r <plug>(quickrun)
@@ -106,6 +105,7 @@ let g:EasyMotion_leader_key = '<Space>j'
 
 " Gist.vim
 Bundle "mattn/gist-vim"
+Bundle "mattn/webapi-vim"
 let g:gist_detect_filetype = 1
 let g:github_user = "taka84u9"
 let g:github_token = "e9f46f535783ba347658b0569a450f74"

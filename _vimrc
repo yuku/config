@@ -130,6 +130,7 @@ set smartindent
 "----------------------------------------------------
 " Character encoding
 "----------------------------------------------------
+" Use utf-8
 set encoding=utf-8
 set termencoding=utf-8
 set fileencodings=utf-8
@@ -139,7 +140,7 @@ set fileformats=unix,mac,dos
 "----------------------------------------------------
 " vim-tab
 "----------------------------------------------------
-cmap <C-t> <C-u>tabnew<CR>
+cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <silent> <C-l> :<C-u>tabnext<CR>
 nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
 
@@ -147,7 +148,6 @@ set clipboard=unnamed
 
 " Leader
 "let mapleader=","
-
 
 source ~/.vimrc.plugin
 
