@@ -3,10 +3,12 @@
 
 ## Environment variable configuration
 #
-export LANG=ja_JP.UTF-8
+export LC_ALL=C
+#export LANG=ja_JP.UTF-8
+#export LC_CTYPE=ja_JP.UTF-8
+
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
-export LC_CTYPE=ja_JP.UTF-8
 
 
 ## Alias configuration
@@ -261,7 +263,7 @@ PERL_BADLANG=0; export PERL_BADLANG
 
 ## Java
 #
-export LC_ALL=en
+#export LC_ALL=en
 
 ## Git
 #
