@@ -15,11 +15,13 @@ set backspace=indent,eol,start
 "-----------------------------------------------------
 " Anonymous
 "-----------------------------------------------------
-" Use solarized
-" http://ethanschoonover.com/solarized
 syntax on
+" solarized - http://ethanschoonover.com/solarized
 colorscheme solarized
-set background=dark " light
+set background=dark
+
+"colorscheme molokai
+"colorscheme desert
 
 " No beep sound
 set vb t_vb= 
@@ -32,7 +34,7 @@ set vb t_vb=
 set nrformats-=octal,hex
 
 " Print the line number in front of each line
-set number
+set nonumber
 
 " Enable the use of the mouse in all modes
 if has("mouse")

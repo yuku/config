@@ -1089,6 +1089,10 @@ endfunction
 
 autocmd ColorScheme * if g:colors_name != "solarized" | silent! aunmenu Solarized | else | call SolarizedMenu() | endif
 
+" for indent-guides
+exe "hi! IndentGuidesOdd" .s:fg_none .s:bg_none .s:fmt_none
+exe "hi! IndentGuidesEven" .s:fg_none .s:bg_base02 .s:fmt_none
+
 "}}}
 " License "{{{
 " ---------------------------------------------------------------------
