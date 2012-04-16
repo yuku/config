@@ -87,7 +87,7 @@ endif
 Bundle 'tpope/vim-fugitive'
 
 " surround
-Bundle 'tpope/surround.vim'
+Bundle 'tpope/vim-surround'
 let g:surround_{char2nr("#")} = "{# \r #}"
 let g:surround_{char2nr("*")} = "/* \r */"
 let g:surround_{char2nr("p")} = "<?php \r ?>"

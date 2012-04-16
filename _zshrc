@@ -3,10 +3,12 @@
 
 ## Environment variable configuration
 #
-export LANG=ja_JP.UTF-8
+export LC_ALL=C
+#export LANG=ja_JP.UTF-8
+#export LC_CTYPE=ja_JP.UTF-8
+
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
-export LC_CTYPE=ja_JP.UTF-8
 
 
 ## Alias configuration
@@ -233,13 +235,22 @@ export GREP_OPTIONS='--color=auto'
 ## Python
 #
 [[ -s "${HOME}/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
-[[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] && source $HOME/.pythonbrew/etc/bashrc
+if [[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] then
+    source $HOME/.pythonbrew/etc/bashrc
+elif [[ -s /usr/local/pythonbrew/etc/bashrc ]] then
+    export PYTHONBREW_ROOT=/usr/local/pythonbrew
+    source /usr/local/pythonbrew/etc/bashrc
+fi
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
 ## Ruby
 #
-[[ -s "${HOME}/.rvm/scripts/rvm" ]] && source $HOME/.rvm/scripts/rvm
+if [[ -s "${HOME}/.rvm/scripts/rvm" ]] then
+    source $HOME/.rvm/scripts/rvm
+elif [[ -s /etc/profile.d/rvm.sh ]] then
+    source /etc/profile.d/rvm.sh
+fi
 
 ## Node
 #
@@ -261,7 +272,7 @@ PERL_BADLANG=0; export PERL_BADLANG
 
 ## Java
 #
-export LC_ALL=en
+#export LC_ALL=en
 
 ## Git
 #
