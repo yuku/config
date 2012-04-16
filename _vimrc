@@ -149,7 +149,7 @@ nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
 set clipboard=unnamed
 
 " Leader
-"let mapleader=","
+let mapleader='\'
 
 source ~/.vimrc.plugin
 
