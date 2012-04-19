@@ -82,6 +82,8 @@ if v:version > 702
     " vim-ref
     Bundle 'thinca/vim-ref'
 
+    "localrc
+    Bundle "thinca/vim-localrc"
 endif
 
 " fugitive
@@ -121,9 +123,6 @@ Bundle "scrooloose/syntastic"
 let g:syntastic_mode_map = { 'mode': 'passive',
     \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
     \ 'passive_filetypes': [] }
-
-"localrc
-Bundle "thinca/vim-localrc"
 
 "vim-powerline
 Bundle "Lokaltog/vim-powerline"
