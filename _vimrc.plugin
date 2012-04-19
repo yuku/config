@@ -84,6 +84,12 @@ if v:version > 702
 
     "localrc
     Bundle "thinca/vim-localrc"
+
+    " syntastic
+    Bundle "scrooloose/syntastic"
+    let g:syntastic_mode_map = { 'mode': 'passive',
+        \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
+        \ 'passive_filetypes': [] }
 endif
 
 " fugitive
@@ -117,12 +123,6 @@ let g:github_token = "e9f46f535783ba347658b0569a450f74"
 Bundle "kchmck/vim-coffee-script"
 nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
 let coffee_compile_vert = 1
-
-" syntastic
-Bundle "scrooloose/syntastic"
-let g:syntastic_mode_map = { 'mode': 'passive',
-    \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
-    \ 'passive_filetypes': [] }
 
 "vim-powerline
 Bundle "Lokaltog/vim-powerline"
