@@ -81,6 +81,8 @@ set wrapscan
 set incsearch
 " highlighting matches
 set hlsearch
+" turn off highlight by Esc x 2
+nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
 "-----------------------------------------------------
 " Display
@@ -113,6 +115,17 @@ set virtualedit=block
 " Keep at least 5 lines above and below the cursor
 set scrolloff=5
 set sidescroll=10
+" highlight cursor line in current window
+set cursorline
+augroup cch
+    autocmd! cch
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
+augroup END
+highlight clear CursorLine
+highlight CursorLine gui=underline
+highlight CursorLine ctermbg=black guibg=black
+
 
 "-----------------------------------------------------
 " Tab
@@ -153,6 +166,6 @@ let mapleader='\'
 
 source ~/.vimrc.plugin
 
-if filereadable(expand('~/.vimrc.mine'))
-    source ~/.vimrc.mine
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
 endif

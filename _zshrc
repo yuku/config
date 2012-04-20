@@ -234,13 +234,13 @@ export GREP_OPTIONS='--color=auto'
 
 ## Python
 #
-[[ -s "${HOME}/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
-if [[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] then
-    source $HOME/.pythonbrew/etc/bashrc
-elif [[ -s /usr/local/pythonbrew/etc/bashrc ]] then
-    export PYTHONBREW_ROOT=/usr/local/pythonbrew
-    source /usr/local/pythonbrew/etc/bashrc
-fi
+#[[ -s "${HOME}/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
+#if [[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] then
+#    source $HOME/.pythonbrew/etc/bashrc
+#elif [[ -s /usr/local/pythonbrew/etc/bashrc ]] then
+#    export PYTHONBREW_ROOT=/usr/local/pythonbrew
+#    source /usr/local/pythonbrew/etc/bashrc
+#fi
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
