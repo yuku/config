@@ -232,27 +232,18 @@ export GREP_OPTIONS='--color=auto'
 
 ## Python
 #
-#[[ -s "${HOME}/.pythonrc.py" ]] && export PYTHONSTARTUP=$HOME/.pythonrc.py
-#if [[ -s "${HOME}/.pythonbrew/etc/bashrc" ]] then
-#    source $HOME/.pythonbrew/etc/bashrc
-#elif [[ -s /usr/local/pythonbrew/etc/bashrc ]] then
-#    export PYTHONBREW_ROOT=/usr/local/pythonbrew
-#    source /usr/local/pythonbrew/etc/bashrc
-#fi
+[ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
+export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 ## Ruby
 #
-if [[ -s "${HOME}/.rvm/scripts/rvm" ]] then
-    source $HOME/.rvm/scripts/rvm
-elif [[ -s /etc/profile.d/rvm.sh ]] then
-    source /etc/profile.d/rvm.sh
-fi
+[ -s "${HOME}/.rvm/scripts/rvm" ] && source $HOME/.rvm/scripts/rvm
 
 ## Node
 #
-[[ -s "${HOME}/.nvm/nvm.sh" ]] && source $HOME/.nvm/nvm.sh
+[ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
 
 ## CoffeeScript
 #
