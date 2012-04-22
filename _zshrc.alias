@@ -55,3 +55,6 @@ alias hg="hg --encoding=utf-8"
 #
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
+
+## tmux
+alias tmux='tmux -u'
