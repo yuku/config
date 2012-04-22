@@ -51,7 +51,6 @@ nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
 " Reload vimrc setting
 nnoremap <space>s :<C-u>source $DOTFILES/_vimrc<CR>
 
-
 "-----------------------------------------------------
 " Backup
 "-----------------------------------------------------

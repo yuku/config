@@ -227,8 +227,6 @@ if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
     export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
 fi
 
-[ -d /usr/local/bin ] && export PATH=/usr/local/bin:$PATH
-
 export GREP_OPTIONS='--color=auto'
 
 
@@ -268,7 +266,7 @@ compdef _cake cake
 
 ## Perl
 #
-PERL_BADLANG=0; export PERL_BADLANG
+export PERL_BADLANG=0
 
 ## Java
 #
@@ -276,9 +274,7 @@ PERL_BADLANG=0; export PERL_BADLANG
 
 ## Git
 #
-[[ -s "$HOME/.gitignore" ]] && git config --global core.excludesfile $HOME/.gitignore
-
-
+#[[ -s "$HOME/.gitignore" ]] && git config --global core.excludesfile $HOME/.gitignore
 
 ## alias
 #
@@ -289,8 +285,6 @@ PERL_BADLANG=0; export PERL_BADLANG
 case ${OSTYPE} in
 darwin*) # Mac OS X
     [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
-    export PATH=$PATH:/opt/local/bin:/opt/local/sbin
-    export PATH=$PATH:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources
     ;;
 linux*)
     [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux

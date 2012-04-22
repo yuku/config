@@ -30,6 +30,8 @@ do
     link_file $i
 done
 
+link_file bin
+
 
 git submodule sync
 git submodule init
