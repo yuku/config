@@ -165,6 +165,9 @@ let mapleader='\'
 
 source ~/.vimrc.plugin
 
+au BufRead,BufNewFile Gemfile set filetype=ruby
+au BufRead,BufNewFile *.json set filetype=javascript
+
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
