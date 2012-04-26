@@ -135,7 +135,6 @@ if v:version > 702
     " vim-ref
     " -------
     Bundle 'thinca/vim-ref'
-    let g:ref_refe_cmd = "~/bin/refe"
 
     " -------
     " localrc
