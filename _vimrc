@@ -24,7 +24,7 @@ set background=dark
 "colorscheme desert
 
 " No beep sound
-set vb t_vb= 
+set vb t_vb=
 
 " Treat octal and hexadecimal number as decimal number
 " octal  Numbers that start with a zero will be considered to be octal

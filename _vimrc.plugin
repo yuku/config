@@ -4,7 +4,9 @@ call vundle#rc()
 
 if v:version > 702
 
+    " ---------
     " unite.vim
+    " ---------
     Bundle 'Shougo/unite.vim'
     "let g:unite_enable_split_vertically = 1
     let g:unite_enable_start_insert = 1
@@ -45,93 +47,175 @@ if v:version > 702
         imap <buffer><expr><C-i>  unite#do_action('vsplit')
     endfunction
 
+    " ------------
     " unite-script
+    " ------------
     Bundle 'hakobe/unite-script'
 
+    " --------------
     " unite-git_grep
+    " --------------
     Bundle 'sgur/unite-git_grep'
 
+    " ---------
     " unite-git
+    " ---------
     Bundle 'taka84u9/unite-git'
 
+    " -------------
     " unite-outline
+    " -------------
     Bundle 'h1mesuke/unite-outline'
 
+    " ----------
     " unite-help
+    " ----------
     Bundle 'tsukkee/unite-help'
 
+    " -------------
     " neocomplcache
+    " -------------
     Bundle 'Shougo/neocomplcache'
-    let g:neocomplcache_enable_at_startup = 1
+    Bundle 'Shougo/neocomplcache-snippets-complete'
     let g:neocomplcache_enable_auto_select = 1
     imap <C-k> <Plug>(neocomplcache_snippets_expand)
     smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
+    " Disable AutoComplPop.
+    let g:acp_enableAtStartup = 0
+    " Use neocomplcache.
+    let g:neocomplcache_enable_at_startup = 1
+    " Use underbar completion.
+    let g:neocomplcache_enable_underbar_completion = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplcache_min_syntax_length = 3
+    let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+    " Use smartcase.
+    let g:neocomplcache_enable_smart_case = 1
+    " Use camel case completion.
+    let g:neocomplcache_enable_camel_case_completion = 1
+    " Select with <TAB>
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+
+    let g:neocomplcache_ctags_arguments_list = {
+    \ 'perl' : '-R -h ".pm"'
+    \ }
+
+    let g:neocomplcache_snippets_dir = "~/.vim/snippets"
+    " Define dictionary.
+    let g:neocomplcache_dictionary_filetype_lists = {
+        \ 'default'    : '',
+        \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+        \ }
+
+    " Define keyword.
+    if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+    endif
+    let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+    " --------
     " Vimfiler
+    " --------
     Bundle 'Shougo/vimfiler'
     let g:vimfiler_as_default_explorer = 1
     let g:vimfiler_safe_mode_by_default = 0
 
+    " -------------
     " indent-guides
+    " -------------
     Bundle 'nathanaelkane/vim-indent-guides'
     let g:indent_guides_auto_colors = 0 " read help txt
     let g:indent_guides_enable_on_vim_startup = 1
     let g:indent_guides_color_change_percent = 30
     "let g:indent_guides_guide_size = 1
 
+    " -------
     " vim-ref
+    " -------
     Bundle 'thinca/vim-ref'
+    let g:ref_refe_cmd = "~/bin/refe"
 
-    "localrc
+    " -------
+    " localrc
+    " -------
     Bundle "thinca/vim-localrc"
 
+    " ---------
     " syntastic
+    " ---------
     Bundle "scrooloose/syntastic"
     let g:syntastic_mode_map = { 'mode': 'passive',
         \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
         \ 'passive_filetypes': [] }
 endif
 
+" --------
 " fugitive
+" --------
 Bundle 'tpope/vim-fugitive'
 
+" --------
 " surround
+" --------
 Bundle 'tpope/vim-surround'
 let g:surround_{char2nr("#")} = "{# \r #}"
 let g:surround_{char2nr("*")} = "/* \r */"
 let g:surround_{char2nr("p")} = "<?php \r ?>"
 
+" ---------
 " rails.vim
+" ---------
 Bundle 'tpope/vim-rails'
 
+" ---------
 " quick run
+" ---------
 Bundle 'thinca/vim-quickrun'
 nmap <Leader>r <plug>(quickrun)
 
+" ----------
 " EasyMotion
+" ----------
 Bundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_leader_key = '<Space>j'
 
+" --------
 " Gist.vim
+" --------
 Bundle "mattn/gist-vim"
 Bundle "mattn/webapi-vim"
 let g:gist_detect_filetype = 1
 let g:github_user = "taka84u9"
 let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
+" -----------------
 " vim-coffee-script
+" -----------------
 Bundle "kchmck/vim-coffee-script"
 nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
 let coffee_compile_vert = 1
 
-"vim-powerline
+" -------------
+" vim-powerline
+" -------------
 Bundle "Lokaltog/vim-powerline"
 
-"vim-jade
+" --------
+" vim-jade
+" --------
 Bundle "digitaltoad/vim-jade"
 
-"vim-less
+" --------
+" vim-less
+" --------
 Bundle "groenewege/vim-less"
+
+" --------
+" vim-perl
+" --------
+Bundle 'petdance/vim-perl'
 
 filetype plugin indent on
 
