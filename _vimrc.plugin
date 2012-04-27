@@ -47,21 +47,17 @@ if v:version > 702
         imap <buffer><expr><C-i>  unite#do_action('vsplit')
     endfunction
 
-    function! s:unite_ref_clear()
-        nnoremap [unite]<space> <Nop>
+    function! UniteRefDoc()
+        if &filetype =~ 'perl'
+            Unite ref/perldoc
+        elseif &filetype =~ 'python'
+            Unite ref/pydoc
+        elseif &filetype =~ 'ruby'
+            Unite ref/refe
+        endif
     endfunction
 
-    autocmd BufEnter *.pl call s:unite_ref_perldoc()
-    autocmd BufLeave *.pl call s:unite_ref_clear()
-    function! s:unite_ref_perldoc()
-        nnoremap <silent> [unite]<space> :<C-u>Unite ref/perldoc<CR>
-    endfunction
-
-    autocmd BufEnter *.py call s:unite_ref_pydoc()
-    autocmd BufLeave *.py call s:unite_ref_clear()
-    function! s:unite_ref_pydoc()
-        nnoremap <silent> [unite]<space> :<C-u>Unite ref/pydoc<CR>
-    endfunction
+    nnoremap <silent> [unite]d :<C-u>call UniteRefDoc()<CR>
 
     " -------
     " vim-ref
