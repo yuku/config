@@ -246,16 +246,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc.py
 #
 [ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
 
-## CoffeeScript
-#
-_cake () {
-	if [ -f Cakefile ]; then
-        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-	fi
-}
-
-compdef _cake cake
-
 ## Perl
 #
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
@@ -273,6 +263,10 @@ export PERL_BADLANG=0
 ## alias
 #
 [ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
+
+## Completion
+[ -f ~/.zshrc.comp ] && source ~/.zshrc.comp
+
 
 ## os depending settings
 #

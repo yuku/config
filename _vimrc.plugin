@@ -135,6 +135,8 @@ if v:version > 702
     " vim-ref
     " -------
     Bundle 'thinca/vim-ref'
+    let g:ref_perldoc_complete_head = 1
+    let g:ref_open = 'vsplit'
 
     " -------
     " localrc

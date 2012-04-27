@@ -1,0 +1,19 @@
+# CoffeeScript
+_cake () {
+	if [ -f Cakefile ]; then
+        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+	fi
+}
+
+compdef _cake cake
+
+
+# Orig
+_study () {
+    local -a langs
+    langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
+    compadd $langs
+    return 1;
+}
+
+compdef _study study
