@@ -171,3 +171,5 @@ au BufRead,BufNewFile *.json set filetype=javascript
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
+
+" vim : set filetype=vim :

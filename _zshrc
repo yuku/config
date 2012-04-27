@@ -258,6 +258,8 @@ compdef _cake cake
 
 ## Perl
 #
+export PERLBREW_ROOT=$HOME/.perl5/perlbrew
+[[ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ]] && source $HOME/.perl5/perlbrew/etc/bashrc
 export PERL_BADLANG=0
 
 ## Java
