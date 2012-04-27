@@ -4,14 +4,14 @@ link_file() {
     source="${PWD}/$1"
     target="${HOME}/${1/_/.}"
 
-    if [ -e "${target}" -a ! -d "${target}" ] ; then
-        if [ -e "${target}.bak" ] ; then
-            rm $target.bak
+    if [ -e $target ] ; then
+        if [ ! -d $target ] ; then
+            mv $target $target.bak
+            ln -sf ${source} ${target}
         fi
-        mv $target $target.bak
+    else
+        ln -sf ${source} ${target}
     fi
-
-    ln -sf ${source} ${target}
 }
 
 for i in _*
