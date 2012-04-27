@@ -9,6 +9,10 @@ compdef _cake cake
 
 
 # Orig
+study () {
+    cd ~/code/study/$1
+}
+
 _study () {
     local -a langs
     langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )

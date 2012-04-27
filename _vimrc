@@ -7,21 +7,18 @@
 "                                                                               "
 "                                                                               "
 "++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"-----------------------------------------------------
+" General {{{
+"-----------------------------------------------------
 set nocompatible
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-"-----------------------------------------------------
-" Anonymous
-"-----------------------------------------------------
 syntax on
 " solarized - http://ethanschoonover.com/solarized
 colorscheme solarized
 set background=dark
-
-"colorscheme molokai
-"colorscheme desert
 
 " No beep sound
 set vb t_vb=
@@ -43,16 +40,19 @@ endif
 " Enable all keys to move the cursor left/right to the previous/next line
 set whichwrap=b,s,h,l,<,>,[,]
 
+" }}}
 "-----------------------------------------------------
-" short cut keys
+" Short cut keys {{{
 "-----------------------------------------------------
+
 " Jump to vimrc
 nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
 " Reload vimrc setting
 nnoremap <space>s :<C-u>source $DOTFILES/_vimrc<CR>
 
+" }}}
 "-----------------------------------------------------
-" Backup
+" Backup {{{
 "-----------------------------------------------------
 " backup current file, deleted afterwards
 set nobackup
@@ -67,8 +67,9 @@ endif
 set directory=$HOME/.vim-swap
 "let &directory = &backup dir
 
+" }}}
 "-----------------------------------------------------
-" Search
+" Search {{{
 "-----------------------------------------------------
 " keep 100 lines of command line histories
 set history=100
@@ -83,8 +84,9 @@ set hlsearch
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
+" }}}
 "-----------------------------------------------------
-" Display
+" Display {{{
 "-----------------------------------------------------
 set title
 " Show the line and column number of the cursor position, separated by a comma
@@ -98,7 +100,7 @@ set showmatch
 " 3 second to show the matching paren
 set matchtime=3
 " highlight whitespaces
-highlight WhitespaceEOL ctermbg=red guibg=red
+highlight WhitespaceEOL ctermbg=red
 matc WhitespaceEOL /\s\+$/
 " highlight comments
 highlight Comment ctermfg=DarkCyan
@@ -125,9 +127,9 @@ highlight clear CursorLine
 highlight CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-
+" }}}
 "-----------------------------------------------------
-" Tab
+" Tab {{{
 "-----------------------------------------------------
 set tabstop=4
 set softtabstop=4
@@ -135,14 +137,16 @@ set shiftwidth=4
 set expandtab
 set shiftround
 
+" }}}
 "-----------------------------------------------------
-" Indent
+" Indent {{{
 "-----------------------------------------------------
 set autoindent
 set smartindent
 
+" }}}
 "----------------------------------------------------
-" Character encoding
+" Character encoding {{{
 "----------------------------------------------------
 " Use utf-8
 set encoding=utf-8
@@ -151,8 +155,9 @@ set fileencodings=utf-8
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 
+" }}}
 "----------------------------------------------------
-" vim-tab
+" Vim Tab {{{
 "----------------------------------------------------
 cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <silent> <C-l> :<C-u>tabnext<CR>
@@ -163,13 +168,18 @@ set clipboard=unnamed
 " Leader
 let mapleader='\'
 
+" }}}
+"----------------------------------------------------
+" Source {{{
+"----------------------------------------------------
 source ~/.vimrc.plugin
 
-au BufRead,BufNewFile Gemfile set filetype=ruby
-au BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile Gemfile set filetype=ruby
+autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 endif
-
-" vim : set filetype=vim :
+" }}}
+"----------------------------------------------------
+" vim: set foldmethod=marker :
