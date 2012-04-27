@@ -2,6 +2,9 @@ filetype off
 set rtp+=~/.vim/vundle.git/
 call vundle#rc()
 
+" let Vundle manage Vundle
+Bundle 'gmarik/vundle'
+
 if v:version > 702
 
     " ---------
@@ -162,6 +165,11 @@ if v:version > 702
     let g:syntastic_mode_map = { 'mode': 'passive',
         \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
         \ 'passive_filetypes': [] }
+
+    " -------
+    " vimproc
+    " -------
+    Bundle 'Shougo/vimproc'
 endif
 
 " --------
