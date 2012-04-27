@@ -1,26 +1,21 @@
 #!/bin/sh
 
-link_file() {
-    source="${PWD}/$1"
-    target="${HOME}/${1/_/.}"
-
-    if [ -e "${target}" -a ! -d "${target}" ] ; then
-        if [ -e "${target}.bak" ] ; then
-            rm $target.bak
-        fi
-        mv $target $target.bak
-    fi
-
-    ln -sf ${source} ${target}
-}
-
-for i in _*
-do
-    link_file $i
-done
-
-link_file bin
-
 git submodule sync
 git submodule init
-git submodule update
+
+sh update.sh
+
+## install vimproc
+unzip src/Shougo-vimproc-ver.5.3-0-g73fa395.zip
+cd Shougo-vimproc-73fa395
+case ${OSTYPE} in
+darwin*)
+    make -f make_mac.mak
+    ;;
+linux*)
+    make -f make_gcc.mak
+    ;;
+esac
+cp autoload/proc.c ~/.vim/autoload
+cd ../
+rm -fr Shougo-vimproc-73fa395
