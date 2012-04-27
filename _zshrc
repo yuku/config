@@ -1,8 +1,8 @@
 #!/usr/bin/env zsh
 # users generic .zshrc file for zsh(1)
 
-## Environment variable configuration
-#
+## Environment variable configuration {{{
+
 export LC_ALL=C
 #export LANG=ja_JP.UTF-8
 #export LC_CTYPE=ja_JP.UTF-8
@@ -11,6 +11,8 @@ export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
 export PATH=$HOME/bin:$PATH
+
+# }}}
 
 ## Alias configuration
 #
@@ -281,3 +283,6 @@ esac
 
 ## local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+
+# vim: set foldmethod=marker :

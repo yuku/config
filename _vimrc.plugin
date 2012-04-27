@@ -47,6 +47,29 @@ if v:version > 702
         imap <buffer><expr><C-i>  unite#do_action('vsplit')
     endfunction
 
+    function! s:unite_ref_clear()
+        nnoremap [unite]<space> <Nop>
+    endfunction
+
+    autocmd BufEnter *.pl call s:unite_ref_perldoc()
+    autocmd BufLeave *.pl call s:unite_ref_clear()
+    function! s:unite_ref_perldoc()
+        nnoremap <silent> [unite]<space> :<C-u>Unite ref/perldoc<CR>
+    endfunction
+
+    autocmd BufEnter *.py call s:unite_ref_pydoc()
+    autocmd BufLeave *.py call s:unite_ref_clear()
+    function! s:unite_ref_pydoc()
+        nnoremap <silent> [unite]<space> :<C-u>Unite ref/pydoc<CR>
+    endfunction
+
+    " -------
+    " vim-ref
+    " -------
+    Bundle 'thinca/vim-ref'
+    let g:ref_perldoc_complete_head = 1
+    let g:ref_open = 'vsplit'
+
     " ------------
     " unite-script
     " ------------
@@ -132,13 +155,6 @@ if v:version > 702
     "let g:indent_guides_guide_size = 1
 
     " -------
-    " vim-ref
-    " -------
-    Bundle 'thinca/vim-ref'
-    let g:ref_perldoc_complete_head = 1
-    let g:ref_open = 'vsplit'
-
-    " -------
     " localrc
     " -------
     Bundle "thinca/vim-localrc"
@@ -217,6 +233,14 @@ Bundle "groenewege/vim-less"
 " vim-perl
 " --------
 Bundle 'petdance/vim-perl'
+
+" ------
+" foldCC
+" ------
+Bundle 'LeafCage/foldCC'
+set foldtext=FoldCCtext()
+hi Folded ctermfg=DarkBlue
+hi FoldColumn ctermfg=LightGrey
 
 filetype plugin indent on
 
