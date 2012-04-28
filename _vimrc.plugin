@@ -11,6 +11,7 @@ if v:version > 702
     " unite.vim
     " ---------
     Bundle 'Shougo/unite.vim'
+    " {{{
     "let g:unite_enable_split_vertically = 1
     let g:unite_enable_start_insert = 1
     let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
@@ -27,6 +28,12 @@ if v:version > 702
     nnoremap <silent> [unite]s :<C-u>Unite source<CR>
     nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
     nnoremap <silent> [unite]g :<C-u>Unite vcs_grep/git<CR>
+
+    autocmd FileType *      nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=split ref/man<CR>
+    autocmd FileType erlang nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=split ref/erlang<CR>
+    autocmd FileType ruby   nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=split ref/ri<CR>
+    autocmd FileType python nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=split ref/pydoc<CR>
+    autocmd FileType perl   nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=split ref/perldoc<CR>
 
     autocmd FileType unite call s:unite_my_settings()
     function! s:unite_my_settings()
@@ -50,17 +57,7 @@ if v:version > 702
         imap <buffer><expr><C-i>  unite#do_action('vsplit')
     endfunction
 
-    function! UniteRefDoc()
-        if &filetype =~ 'perl'
-            Unite ref/perldoc
-        elseif &filetype =~ 'python'
-            Unite ref/pydoc
-        elseif &filetype =~ 'ruby'
-            Unite ref/refe
-        endif
-    endfunction
-
-    nnoremap <silent> [unite]d :<C-u>call UniteRefDoc()<CR>
+    " }}}
 
     " -------
     " vim-ref
@@ -68,6 +65,8 @@ if v:version > 702
     Bundle 'thinca/vim-ref'
     let g:ref_perldoc_complete_head = 1
     let g:ref_open = 'vsplit'
+
+    Bundle 'taka84u9/vim-ref-ri'
 
     " ------------
     " unite-script
@@ -247,4 +246,3 @@ hi Folded ctermfg=DarkBlue
 hi FoldColumn ctermfg=LightGrey
 
 filetype plugin indent on
-
