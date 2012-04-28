@@ -2,6 +2,8 @@
 
 ```
 $ sh install.sh
+$ sh install_vimproc.sh
+$ sh install_refe.sh
 ```
 
 in Vim
@@ -11,7 +13,3 @@ in Vim
 ```
 
 #Update
-
-```
-$ sh update.sh
-```
