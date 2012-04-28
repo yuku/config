@@ -9,5 +9,5 @@ linux*)
     make -f make_unix.mak
     ;;
 esac
-cp autoload/* $HOME/.vim/autoload
-cp plugin/* $HOME/.vim/plugin
+cp -r autoload/* $HOME/.vim/autoload
+cp -r plugin/* $HOME/.vim/plugin
