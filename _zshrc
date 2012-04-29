@@ -11,80 +11,91 @@
 #                                                          #
 #----------------------------------------------------------#
 
-## Locale settings {{{1
+# Locale settings {{{1
 export LC_ALL=ja_JP.UTF-8
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
-## Environment variables {{{1
+# Environment variables {{{1
 export PATH=$HOME/bin:$PATH
 export DOTFILES=$HOME/code/dotfiles
 
-## Alias {{{1
+# Alias {{{1
+
 # expand aliases before completing
 setopt complete_aliases
 
-    ## General {{{2
-    alias ps='ps aux'
-    alias where='command -v'
+_vim=`which vim`
 
-    alias ls='ls -hF'
-    alias ll='ls -l'
-    alias lla='ls -lA'
-    alias la='ls -A'
-    alias vi='vim'
-    alias df='df -h'
-    alias du='du -h'
-    alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
-    alias gcc='gcc -Wall -lstdc++'
+vim() {
+  if [ $1 ] ; then
+    $_vim $1
+  else
+    $_vim ~/.vimrc
+  fi
+}
 
-    ## Git {{{2
-    #function git(){hub "$@"}
-    alias g="git"
-    alias gad="git add"
-    alias gb="git branch -v"
-    alias gba="git branch -a"
-    alias gbr="git branch -r"
-    alias gc="git commit -v"
-    alias gco="git checkout"
-    alias gd="git diff"
-    alias gdc="git diff --cached"
-    alias gf="git fetch"
-    alias gg="git grep -n"
-    alias ggi="git grep -ni"
-    alias gl="git log --stat"
-    alias gll="git log --oneline"
-    alias glp="git log -p"
-    alias gls="git ls-files"
-    alias gm="git merge"
-    alias gst="git status"
-    alias gs="git show"
-    alias gsp="git stash pop"
-    alias gss="git stash save"
-    alias gssh="git stash show"
-    alias gsl="git stash list"
-    alias gPull="git pull"
-    # cd to current repo's root dir
-    alias up='cd ./$(git rev-parse --show-cdup)'
-    # Show current branch
-    alias gcb="git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'"
+## General
+alias ps='ps aux'
+#alias where='command -v'
 
-    ## Hg {{{2
-    alias hg="hg --encoding=utf-8"
+alias ls='ls -hF'
+alias ll='ls -l'
+alias lla='ls -lA'
+alias la='ls -A'
+alias df='df -h'
+alias du='du -h'
+alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias gcc='gcc -Wall -lstdc++'
 
-    ## Java {{{2
-    alias javac='javac -J-Dfile.encoding=UTF-8'
-    alias java='java -Dfile.encoding=UTF-8'
+## Git
+#function git(){hub "$@"}
+alias g="git"
+alias gad="git add"
+alias gb="git branch -v"
+alias gba="git branch -a"
+alias gbr="git branch -r"
+alias gc="git commit -v"
+alias gco="git checkout"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gf="git fetch"
+alias gg="git grep -n"
+alias ggi="git grep -ni"
+alias gl="git log --stat"
+alias gll="git log --oneline"
+alias glp="git log -p"
+alias gls="git ls-files"
+alias gm="git merge"
+alias gst="git status"
+alias gs="git show"
+alias gsp="git stash pop"
+alias gss="git stash save"
+alias gssh="git stash show"
+alias gsl="git stash list"
+alias gPull="git pull"
+# cd to current repo's root dir
+alias up='cd ./$(git rev-parse --show-cdup)'
+# Show current branch
+alias gcb="git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'"
 
-    ## tmux {{{2
-    alias tmux='tmux -u'
+## Other {{{2
+## Hg
+alias hg="hg --encoding=utf-8"
 
-## Backspace key {{{1
+## Java
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+
+## tmux
+alias tmux='tmux -u'
+
+# Backspace key {{{1
 bindkey "^?" backward-delete-char
 
 
-## Prompt configuration {{{1
+# Prompt configuration {{{1
 autoload -U colors; colors  # use colors
 
 #
@@ -164,7 +175,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-## History {{{1
+# History {{{1
 # 履歴の保存先
 HISTFILE=$HOME/.zsh-history
 # メモリに展開する履歴の数
@@ -203,7 +214,7 @@ history-all () {
     history -E 1
 }
 
-## Other {{{1
+# Other {{{1
 # ログアウト時にバックグラウンドジョブをkillしない
 setopt no_hup
 # ログアウト時にバックグラウンドジョブを確認しない
@@ -228,89 +239,88 @@ fi
 
 export GREP_OPTIONS='--color=auto'
 
-## Completion {{{1
-    ## options {{{2
-    # Use full complement functionality
-    autoload -Uz compinit
-    compinit
-    # Toggle complement candidates using TAB
-    setopt auto_menu
-    # Show all candidates
-    setopt auto_list
-    # Can use Emacs style keybind to select candidates
-    zstyle ':completion:*:default' menu select=1
-    # Even option args are complemented
-    setopt magic_equal_subst
-    # Insert / after a complemented directory name
-    setopt auto_param_slash
-    # Use compackt style candidates viewer mode
-    setopt list_packed
-    # Show kinds of file using marks
-    setopt list_types
-    # Do spell check
-    setopt correct
-    # Complement process name with kill command
-    zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
-    zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
+# Completion {{{1
 
-    ## cake {{{2
-    _cake () {
-    	if [ -f Cakefile ]; then
-            compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-    	fi
-    }
-    compdef _cake cake
+# options
+# Use full complement functionality
+autoload -Uz compinit
+compinit
+# Toggle complement candidates using TAB
+setopt auto_menu
+# Show all candidates
+setopt auto_list
+# Can use Emacs style keybind to select candidates
+zstyle ':completion:*:default' menu select=1
+# Even option args are complemented
+setopt magic_equal_subst
+# Insert / after a complemented directory name
+setopt auto_param_slash
+# Use compackt style candidates viewer mode
+setopt list_packed
+# Show kinds of file using marks
+setopt list_types
+# Do spell check
+setopt correct
+# Complement process name with kill command
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 
-    ## study {{{2
-    study () {
-        cd ~/code/study/$1
-    }
-    _study () {
-        local -a langs
-        langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
-        compadd $langs
-        return 1;
-    }
-    compdef _study study
+## custom {{{2
 
-## Language specific configuration {{{1
+# cake
+_cake () {
+    if [ -f Cakefile ]; then
+        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+    fi
+}
+compdef _cake cake
 
-    ## Python {{{2
-    [ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
-    export NOSE_REDNOSE=1
-    export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
-    export PYTHONSTARTUP=$HOME/.pythonrc.py
-    
-    ## Ruby {{{2
-    [ -s "${HOME}/.rvm/scripts/rvm" ] && source $HOME/.rvm/scripts/rvm
-    # refe
-    [ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
-    
-    ## Perl {{{2
-    export PERLBREW_ROOT=$HOME/.perl5/perlbrew
-    [[ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ]] && source $HOME/.perl5/perlbrew/etc/bashrc
-    export PERL_BADLANG=0
-    
-    ## Node {{{2
-    [ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
-    
-    ## Java {{{2
-    #export LC_ALL=en
-    
+# study
+study () {
+    cd ~/code/study/$1
+}
+_study () {
+    local -a langs
+    langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
+    compadd $langs
+    return 1;
+}
+compdef _study study
 
+# Language specific configuration {{{1
 
-## Extra zshrc files {{{1
-    ## os depending settings {{{2
-    case ${OSTYPE} in
-    darwin*) # Mac OS X
-        [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
-        ;;
-    linux*)
-        [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
-        ;;
-    esac
+## Python
+[ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
+export NOSE_REDNOSE=1
+export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
+export PYTHONSTARTUP=$HOME/.pythonrc.py
 
-    ## local settings {{{2
-    [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+## Ruby
+[ -s "${HOME}/.rvm/scripts/rvm" ] && source $HOME/.rvm/scripts/rvm
+# refe
+[ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
+
+## Perl
+export PERLBREW_ROOT=$HOME/.perl5/perlbrew
+[[ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ]] && source $HOME/.perl5/perlbrew/etc/bashrc
+export PERL_BADLANG=0
+
+## Node
+[ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
+
+# Extra zshrc files {{{1
+
+# os depending settings
+case ${OSTYPE} in
+darwin*) # Mac OS X
+    [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
+    ;;
+linux*)
+    [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
+    ;;
+esac
+
+# local settings
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 # vim: set foldmethod=marker :

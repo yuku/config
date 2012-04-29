@@ -26,9 +26,13 @@ set tabstop=4
 set expandtab               " expand tabs to spaces
 set nosmarttab              " fuck tabs
 set formatoptions+=n        " support for numbered/bullet lists
-set textwidth=80            " wrap at 80 chars by default
+set textwidth=79            " wrap at 79 chars by default
+if v:version >= 703
+  setlocal colorcolumn=80
+endif
 set wrapmargin=0
 set virtualedit=block       " allow virtual edit in visual block ..
+
 
 "" Remapping {{{1
 
@@ -57,7 +61,7 @@ set number                  " line numbers
 set nolazyredraw            " don't redraw while executing macros
 set wildmenu                " turn on wild menu
 set wildmode=list:longest,full
-set cmdheight=2             " command line height
+set cmdheight=1             " command line height
 " Enable all keys to move the cursor left/right to the previous/next line
 set whichwrap=b,s,h,l,<,>,[,]
 " Allow backspacing over everything in insert mode
@@ -80,18 +84,20 @@ if has("mouse") " Enable the use of the mouse in all modes
   set mouse=a
 endif
 
+syntax on
+"" Colorize {{{2
+
+" Keep this order!
+" solarized - http://ethanschoonover.com/solarized
+colorscheme solarized
+set background=dark
+
 " highlight whitespaces
 highlight WhitespaceEOL ctermbg=red
 matc WhitespaceEOL /\s\+$/
 
 " highlight comments
 highlight Comment ctermfg=DarkCyan
-
-syntax on
-
-" solarized - http://ethanschoonover.com/solarized
-colorscheme solarized
-set background=dark
 
 "" Backup {{{1
 
