@@ -1,55 +1,100 @@
-"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-"                       _                                    "
-"                _   __(_)___ ___  __________                "
-"               | | / / / __ `__ \/ ___/ ___/                "
-"               | |/ / / / / / / / /  / /__                  "
-"               |___/_/_/ /_/ /_/_/   \___/                  "
-"                                                            "
-"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+"                                _                                          "
+"                         _   __(_)___ ___  __________                      "
+"                        | | / / / __ `__ \/ ___/ ___/                      "
+"                        | |/ / / / / / / / /  / /__                        "
+"                        |___/_/_/ /_/ /_/_/   \___/                        "
+"                                                                           "
+"+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
 "" General {{{1
-set nocompatible
-set clipboard=unnamed
 
-" Leader
-let mapleader='\'
+set nocompatible            " use Vim in more useful way
+set clipboard=unnamed       " share clipboard with other systems
 
+"" Text Formatting {{{1
+
+set autoindent              " automatic indent new lines
+set smartindent             " be smart about it
+inoremap # X<BS>#
+set nowrap                  " do not wrap lines
+set sidescroll=5
+set softtabstop=2
+set shiftwidth=2
+set shiftround
+set tabstop=4
+set expandtab               " expand tabs to spaces
+set nosmarttab              " fuck tabs
+set formatoptions+=n        " support for numbered/bullet lists
+set textwidth=80            " wrap at 80 chars by default
+set wrapmargin=0
+set virtualedit=block       " allow virtual edit in visual block ..
+
+"" Remapping {{{1
+
+let mapleader=','           " Lead with ,
+" Jump to vimrc
+nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
+" Reload vimrc setting
+nnoremap <space>s       :<C-u>source $DOTFILES/_vimrc<CR>
+" Create new tab
+cnoremap <C-t> <C-u>tabnew<CR>
+
+"" UI {{{1
+
+set ruler                   " show the cursor position all the time
+" highlight cursor line in current window{{{2
+augroup cch
+  autocmd! cch
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
+augroup END
+highlight clear CursorLine
+highlight CursorLine ctermbg=black
+" }}}2
+set showcmd                 " display incomplete commands
+set number                  " line numbers
+set nolazyredraw            " don't redraw while executing macros
+set wildmenu                " turn on wild menu
+set wildmode=list:longest,full
+set cmdheight=2             " command line height
+" Enable all keys to move the cursor left/right to the previous/next line
+set whichwrap=b,s,h,l,<,>,[,]
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-
-syntax on
-" solarized - http://ethanschoonover.com/solarized
-colorscheme solarized
-set background=dark
-
-" No beep sound
-set vb t_vb=
-
+set shortmess=filtIoOA      " shorten messages
+set report=0                " tell us about changes
+set nostartofline           " don't jum to the start of line when scrolling
+set showmatch               " brackets/braces that is
+set matchtime=3             " duration to show matching brace (1/10 sec)
+set laststatus=2            " The last window always have status line
+set scrolloff=5             " Keep at least 5 lines above and below the cursor
+set visualbell t_vb=        " No beep sound
 " Treat octal and hexadecimal number as decimal number
 " octal  Numbers that start with a zero will be considered to be octal
 "        Example: Using CTRL-A on "007" results in "010"
 " hex    Numbers starting with "0x" or "0X" will be considered to be hexadecimal
 "        Example: Using CTRL-X on "0x100" results in "0x0ff"
 set nrformats-=octal,hex
-
-" Print the line number in front of each line
-set nonumber
-
-" Enable the use of the mouse in all modes
-if has("mouse")
-    set mouse=a
+if has("mouse") " Enable the use of the mouse in all modes
+  set mouse=a
 endif
-" Enable all keys to move the cursor left/right to the previous/next line
-set whichwrap=b,s,h,l,<,>,[,]
 
-"" Short cut keys {{{1
+" highlight whitespaces
+highlight WhitespaceEOL ctermbg=red
+matc WhitespaceEOL /\s\+$/
 
-" Jump to vimrc
-nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
-" Reload vimrc setting
-nnoremap <space>s :<C-u>source $DOTFILES/_vimrc<CR>
+" highlight comments
+highlight Comment ctermfg=DarkCyan
+
+syntax on
+
+" solarized - http://ethanschoonover.com/solarized
+colorscheme solarized
+set background=dark
 
 "" Backup {{{1
+
 " backup current file, deleted afterwards
 set nobackup
 set writebackup
@@ -61,83 +106,24 @@ if !filewritable($HOME."/.vim-swap")
     call mkdir($HOME."/.vim-swap", "p")
 endif
 set directory=$HOME/.vim-swap
-"let &directory = &backup dir
 
 "" Search {{{1
-" keep 100 lines of command line histories
-set history=100
+
+set history=100             " keep 100 lines of command line histories
 set ignorecase
 set smartcase
-" Searches wrap around the end of the file
-set wrapscan
+set wrapscan                " Searches wrap around the end of the file
 " While typing a search command, show where the pattern matches
 set incsearch
-" highlighting matches
-set hlsearch
+set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
-"" Display {{{1
-set title
-" Show the line and column number of the cursor position, separated by a comma
-set ruler
-" Show (partial) command in the last line of the screen
-set showcmd
-" The last window always have status line
-set laststatus=2
-" When a bracket is inserted, briefly jump to the matching one
-set showmatch
-" 3 second to show the matching paren
-set matchtime=3
-" highlight whitespaces
-highlight WhitespaceEOL ctermbg=red
-matc WhitespaceEOL /\s\+$/
-" highlight comments
-highlight Comment ctermfg=DarkCyan
-" Use enhanced command-line completion
-set wildmenu
-" Never break so long line
-set textwidth=0
-set wrapmargin=0
-" Keep position of the cursor
-set nostartofline
-" Cursor can be positioned where there is no actual character in Visual block mode.
-set virtualedit=block
-" Keep at least 5 lines above and below the cursor
-set scrolloff=5
-set sidescroll=10
-" highlight cursor line in current window
-set cursorline
-augroup cch
-    autocmd! cch
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
-augroup END
-highlight clear CursorLine
-highlight CursorLine gui=underline
-highlight CursorLine ctermbg=black guibg=black
-
-"" Tab {{{1
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-set shiftround
-
-"" Vim Tab {{{1
-cnoremap <C-t> <C-u>tabnew<CR>
-"nnoremap <silent> <C-l> :<C-u>tabnext<CR>
-"nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
-
-"" Indent {{{1
-set autoindent
-set smartindent
-
 "" Character encoding {{{1
-" Use utf-8
-set encoding=utf-8
-set termencoding=utf-8
-set fileencodings=utf-8
+
+set encoding=utf-8          " Use utf-8
+set termencoding=utf-8      " ..
+set fileencodings=utf-8     " ..
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 
@@ -366,5 +352,5 @@ autocmd BufRead,BufNewFile Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json set filetype=javascript
 
 if filereadable(expand('~/.vimrc.local'))
-    source ~/.vimrc.local
+  source ~/.vimrc.local
 endif
