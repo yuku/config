@@ -5,10 +5,9 @@
 "               | |/ / / / / / / / /  / /__                  "
 "               |___/_/_/ /_/ /_/_/   \___/                  "
 "                                                            "
-"                                                            "
 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-" General {{{1
+"" General {{{1
 set nocompatible
 set clipboard=unnamed
 
@@ -43,14 +42,14 @@ endif
 " Enable all keys to move the cursor left/right to the previous/next line
 set whichwrap=b,s,h,l,<,>,[,]
 
-" Short cut keys {{{1
+"" Short cut keys {{{1
 
 " Jump to vimrc
 nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
 " Reload vimrc setting
 nnoremap <space>s :<C-u>source $DOTFILES/_vimrc<CR>
 
-" Backup {{{1
+"" Backup {{{1
 " backup current file, deleted afterwards
 set nobackup
 set writebackup
@@ -64,7 +63,7 @@ endif
 set directory=$HOME/.vim-swap
 "let &directory = &backup dir
 
-" Search {{{1
+"" Search {{{1
 " keep 100 lines of command line histories
 set history=100
 set ignorecase
@@ -78,7 +77,7 @@ set hlsearch
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
-" Display {{{1
+"" Display {{{1
 set title
 " Show the line and column number of the cursor position, separated by a comma
 set ruler
@@ -118,18 +117,23 @@ highlight clear CursorLine
 highlight CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-" Tab {{{1
+"" Tab {{{1
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
 set shiftround
 
-" Indent {{{1
+"" Vim Tab {{{1
+cnoremap <C-t> <C-u>tabnew<CR>
+"nnoremap <silent> <C-l> :<C-u>tabnext<CR>
+"nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
+
+"" Indent {{{1
 set autoindent
 set smartindent
 
-" Character encoding {{{1
+"" Character encoding {{{1
 " Use utf-8
 set encoding=utf-8
 set termencoding=utf-8
@@ -137,13 +141,8 @@ set fileencodings=utf-8
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 
-" Vim Tab {{{1
-cnoremap <C-t> <C-u>tabnew<CR>
-nnoremap <silent> <C-l> :<C-u>tabnext<CR>
-nnoremap <silent> <C-h> :<C-u>tabprevious<CR>
-
-" Plugins {{{1
-" NeoBundle {{{2
+"" Plugins {{{1
+"" NeoBundle {{{2
 filetype plugin indent off
 
 if has('vim_starting')
@@ -151,38 +150,36 @@ if has('vim_starting')
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 " let NeoBundle manage NeoBundle
-" required! 
 NeoBundle 'Shougo/neobundle.vim'
-"}}}2
 
-" for Version > 702 only {{{2
+"" for Version > 702 only {{{2
 if v:version > 702
-  " unite.vim {{{3
+  "" unite.vim {{{3
   NeoBundle 'Shougo/unite.vim'
 
   let g:unite_enable_split_vertically = 1
+  let g:unite_winwidth = 50
   let g:unite_enable_start_insert = 1
   let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
   nnoremap [unite] <Nop>
   nmap     <space>u [unite]
-  nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -buffer-name=files file file/new<CR>
-  nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -buffer-name=files buffer file_mru<CR>
+  nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
+  nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -horizontal -buffer-name=files buffer file_mru<CR>
   nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
   nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
   nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
   nnoremap <silent> [unite]l :<C-u>Unite line<CR>
   nnoremap <silent> [unite]t :<C-u>Unite -immediately tab:no-current<CR>
-  nnoremap <silent> [unite]h :<C-u>Unite -start-insert help<CR>
-  nnoremap <silent> [unite]s :<C-u>Unite source<CR>
   nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
-  nnoremap <silent> [unite]g :<C-u>Unite vcs_grep/git<CR>
 
-  autocmd FileType vim    nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert help<CR>
-  autocmd FileType *      nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
-  autocmd FileType erlang nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
-  autocmd FileType ruby   nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
-  autocmd FileType python nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
-  autocmd FileType perl   nnoremap <silent><buffer> [unite]k :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
+  nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
+  nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
+
+  autocmd FileType *      nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
+  autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
+  autocmd FileType ruby   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
+  autocmd FileType python nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
+  autocmd FileType perl   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
 
   autocmd FileType unite call s:unite_my_settings()
   function! s:unite_my_settings()
@@ -207,35 +204,35 @@ if v:version > 702
   endfunction
 
   " Unite Plugins
-    " unite-git_grep {{{4
+    "" unite-git_grep {{{4
     NeoBundle 'sgur/unite-git_grep'
 
-    " unite-git {{{4
+    "" unite-git {{{4
     NeoBundle 'taka84u9/unite-git'
 
-    " unite-outline {{{4
+    "" unite-outline {{{4
     NeoBundle 'h1mesuke/unite-outline'
 
-    " unite-help {{{4
+    "" unite-help {{{4
     NeoBundle 'tsukkee/unite-help'
 
 
-    " vim-ref {{{3
-    NeoBundle 'thinca/vim-ref'
+  "" vim-ref {{{3
+  NeoBundle 'thinca/vim-ref'
 
-    let g:ref_perldoc_complete_head = 1
-    let g:ref_open = 'vsplit'
+  let g:ref_perldoc_complete_head = 1
+  let g:ref_open = 'vsplit'
 
     " vim-ref Plugins
-    " vim-ref-ri {{{4
+    "" vim-ref-ri {{{4
     NeoBundle 'taka84u9/vim-ref-ri'
 
-  " neocomplcache {{{3
+  "" neocomplcache {{{3
   NeoBundle 'Shougo/neocomplcache'
   NeoBundle 'Shougo/neocomplcache-snippets-complete'
 
-  imap <C-k> <Plug>(neocomplcache_snippets_expand)
-  smap <C-k> <Plug>(neocomplcache_snippets_expand)
+  "imap <C-k> <Plug>(neocomplcache_snippets_expand)
+  "smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
   let g:neocomplcache_enable_auto_select = 1
 
@@ -271,13 +268,13 @@ if v:version > 702
   endif
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-  " Vimfiler {{{3
+  "" Vimfiler {{{3
   NeoBundle 'Shougo/vimfiler'
 
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_safe_mode_by_default = 0
 
-  " indent-guides {{{3
+  "" indent-guides {{{3
   NeoBundle 'nathanaelkane/vim-indent-guides'
 
   let g:indent_guides_auto_colors = 0 " read help txt
@@ -285,46 +282,46 @@ if v:version > 702
   let g:indent_guides_color_change_percent = 30
   "let g:indent_guides_guide_size = 1
 
-  " localrc {{{3
+  "" localrc {{{3
   NeoBundle "thinca/vim-localrc"
 
-  " syntastic {{{3
+  "" syntastic {{{3
   NeoBundle "scrooloose/syntastic"
 
   let g:syntastic_mode_map = { 'mode': 'passive',
         \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
         \ 'passive_filetypes': [] }
 
-  " vimproc {{{3
+  "" vimproc {{{3
   NeoBundle 'Shougo/vimproc'
 
 endif "}}}2
 
-" All version {{{2
+"" All version {{{2
 
-  " vim-fugitive {{{3
+  "" vim-fugitive {{{3
   NeoBundle 'tpope/vim-fugitive'
 
-  " vim-surround {{{3
+  "" vim-surround {{{3
   NeoBundle 'tpope/vim-surround'
   let g:surround_{char2nr("#")} = "{# \r #}"
   let g:surround_{char2nr("*")} = "/* \r */"
   let g:surround_{char2nr("p")} = "<?php \r ?>"
 
-  " rails.vim {{{3
+  "" rails.vim {{{3
   NeoBundle 'tpope/vim-rails'
 
-  " quick run {{{3
+  "" quick run {{{3
   NeoBundle 'thinca/vim-quickrun'
 
   nmap <Leader>r <plug>(quickrun)
 
-  " EasyMotion {{{3
+  "" EasyMotion {{{3
   NeoBundle 'Lokaltog/vim-easymotion'
 
   let g:EasyMotion_leader_key = '<Space>j'
 
-  " Gist.vim {{{3
+  "" Gist.vim {{{3
   NeoBundle "mattn/gist-vim"
   NeoBundle "mattn/webapi-vim"
 
@@ -332,22 +329,22 @@ endif "}}}2
   let g:github_user = "taka84u9"
   let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
-  " vim-coffee-script {{{3
+  "" vim-coffee-script {{{3
   NeoBundle "kchmck/vim-coffee-script"
 
   nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
   let coffee_compile_vert = 1
 
-  " vim-powerline {{{3
+  "" vim-powerline {{{3
   NeoBundle "Lokaltog/vim-powerline"
 
-  " vim-less {{{3
+  "" vim-less {{{3
   NeoBundle "groenewege/vim-less"
 
-  " vim-perl {{{3
+  "" vim-perl {{{3
   NeoBundle 'petdance/vim-perl'
 
-  " foldCC {{{3
+  "" foldCC {{{3
   NeoBundle 'LeafCage/foldCC'
   set foldtext=FoldCCtext()
   hi Folded ctermfg=DarkBlue
@@ -363,7 +360,7 @@ endif "}}}2
 
 " }}}2
 
-" Source {{{1
+"" Source {{{1
 
 autocmd BufRead,BufNewFile Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json set filetype=javascript
