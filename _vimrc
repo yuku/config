@@ -43,6 +43,8 @@ nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
 nnoremap <space>s       :<C-u>source $DOTFILES/_vimrc<CR>
 " Create new tab
 cnoremap <C-t> <C-u>tabnew<CR>
+nnoremap <C-h> :<C-u>tabprevious<CR>
+nnoremap <C-l> :<C-u>tabnext<CR>
 
 "" UI {{{1
 
@@ -165,7 +167,7 @@ if v:version > 702
   nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
 
   nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
-  nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
+  "nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
 
   autocmd FileType *      nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
   autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
