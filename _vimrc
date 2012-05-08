@@ -99,7 +99,7 @@ highlight WhitespaceEOL ctermbg=red
 matc WhitespaceEOL /\s\+$/
 
 " highlight comments
-highlight Comment ctermfg=DarkCyan
+"highlight Comment ctermfg=DarkCyan
 
 "" Backup {{{1
 
