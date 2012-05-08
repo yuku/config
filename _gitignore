@@ -5,5 +5,3 @@
 *.pyo
 *.class
 .noseids
-checksums
-build

@@ -7,7 +7,7 @@
 	grep = auto
 [core]
 	editor = vim
-	excludesfile = /Users/yuku/.gitignore
+	excludesfile = ~/.gitignore
 [user]
 	name = Yuku Takahashi
 	email = taka84u9@gmail.com
@@ -32,3 +32,5 @@
 [tig "bind"]
     generic = g move-first-line
     generic = G move-last-line
+[pull]
+	rebase = true

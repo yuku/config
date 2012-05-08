@@ -4,3 +4,5 @@ try:
     raise SystemExit
 except ImportError:
     pass
+
+# vim : set filetype=python :
