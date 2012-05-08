@@ -17,7 +17,7 @@ set clipboard=unnamed       " share clipboard with other systems
 set autoindent              " automatic indent new lines
 set smartindent             " be smart about it
 inoremap # X<BS>#
-set nowrap                  " do not wrap lines
+set wrap                    " wrap lines
 set sidescroll=5
 set softtabstop=2
 set shiftwidth=2
@@ -38,9 +38,9 @@ set virtualedit=block       " allow virtual edit in visual block ..
 
 let mapleader=','           " Lead with ,
 " Jump to vimrc
-nnoremap <space><space> :<C-u>edit $DOTFILES/_vimrc<CR>
+nnoremap <space><space> :<C-u>edit $HOME/.vimrc<CR>
 " Reload vimrc setting
-nnoremap <space>s       :<C-u>source $DOTFILES/_vimrc<CR>
+nnoremap <space>s       :<C-u>source $HOME/.vimrc<CR>
 " Create new tab
 cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <C-h> :<C-u>tabprevious<CR>
@@ -163,7 +163,7 @@ if v:version > 702
   nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
   nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
   nnoremap <silent> [unite]l :<C-u>Unite line<CR>
-  nnoremap <silent> [unite]t :<C-u>Unite -immediately tab:no-current<CR>
+  nnoremap <silent> [unite]t :<C-u>Unite -immediately -horizontal tab:no-current<CR>
   nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
 
   nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
@@ -331,6 +331,7 @@ endif "}}}2
 
   "" vim-powerline {{{3
   NeoBundle "Lokaltog/vim-powerline"
+  "let g:Powerline_symbols = 'fancy'
 
   "" vim-less {{{3
   NeoBundle "groenewege/vim-less"
@@ -343,6 +344,9 @@ endif "}}}2
   set foldtext=FoldCCtext()
   hi Folded ctermfg=DarkBlue
   hi FoldColumn ctermfg=LightGrey
+
+  "" vim-markdown {{{3
+  NeoBundle 'tpope/vim-markdown'
 
   filetype plugin indent on
   "
