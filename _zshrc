@@ -1,31 +1,101 @@
-#!/usr/bin/env zsh
-# users generic .zshrc file for zsh(1)
+#----------------------------------------------------------#
+#                                                          #
+#                         $$\                              #
+#                         $$ |                             #
+#     $$$$$$$$\  $$$$$$$\ $$$$$$$\   $$$$$$\   $$$$$$$\    #
+#     \____$$  |$$  _____|$$  __$$\ $$  __$$\ $$  _____|   #
+#       $$$$ _/ \$$$$$$\  $$ |  $$ |$$ |  \__|$$ /         #
+#      $$  _/    \____$$\ $$ |  $$ |$$ |      $$ |         #
+#     $$$$$$$$\ $$$$$$$  |$$ |  $$ |$$ |      \$$$$$$$\    #
+#     \________|\_______/ \__|  \__|\__|       \_______|   #
+#                                                          #
+#----------------------------------------------------------#
 
-## Environment variable configuration
-#
-export LC_ALL=C
-#export LANG=ja_JP.UTF-8
-#export LC_CTYPE=ja_JP.UTF-8
-
+# Locale settings {{{1
+export LC_ALL=ja_JP.UTF-8
+export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
+# Environment variables {{{1
 export PATH=$HOME/bin:$PATH
+export DOTFILES=$HOME/code/dotfiles
 
-## Alias configuration
-#
+# Alias {{{1
+
 # expand aliases before completing
-#
-setopt complete_aliases   # aliased ls needs if file/dir completions work
+setopt complete_aliases
 
+_vim=`which vim`
 
-## Backspace key
-#
+vim() {
+  if [ $1 ] ; then
+    $_vim $1
+  else
+    $_vim ~/.vimrc
+  fi
+}
+
+## General
+alias ps='ps aux'
+#alias where='command -v'
+
+alias ls='ls -hF'
+alias ll='ls -l'
+alias lla='ls -lA'
+alias la='ls -A'
+alias df='df -h'
+alias du='du -h'
+alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias gcc='gcc -Wall -lstdc++'
+
+## Git
+#function git(){hub "$@"}
+alias g="git"
+alias gad="git add"
+alias gb="git branch -v"
+alias gba="git branch -a"
+alias gbr="git branch -r"
+alias gc="git commit -v"
+alias gco="git checkout"
+alias gd="git diff"
+alias gdc="git diff --cached"
+alias gf="git fetch"
+alias gg="git grep -n"
+alias ggi="git grep -ni"
+alias gl="git log --stat"
+alias gll="git log --oneline"
+alias glp="git log -p"
+alias gls="git ls-files"
+alias gm="git merge"
+alias gst="git status"
+alias gs="git show"
+alias gsp="git stash pop"
+alias gss="git stash save"
+alias gssh="git stash show"
+alias gsl="git stash list"
+alias gPull="git pull"
+# cd to current repo's root dir
+alias up='cd ./$(git rev-parse --show-cdup)'
+# Show current branch
+alias gcb="git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'"
+
+## Other {{{2
+## Hg
+alias hg="hg --encoding=utf-8"
+
+## Java
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+
+## tmux
+alias tmux='tmux -u'
+
+# Backspace key {{{1
 bindkey "^?" backward-delete-char
 
 
-## Prompt configuration
-#
+# Prompt configuration {{{1
 autoload -U colors; colors  # use colors
 
 #
@@ -63,92 +133,36 @@ precmd () {
 }
 
 # No beep
-#
 setopt nobeep
 
 # Use escape sequences
-#
 setopt prompt_subst
 
 # Ignore commands following # in cui
-#
 setopt interactive_comments
 
 # Disable C-s and C-q
-#
 setopt no_flow_control
 
 # Enable Japanese file name
-#
 setopt print_eight_bit
 
 # C-w deletes the caractor next to the /
-#
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
 # Show direcotry in water color
-#
 export LS_COLORS='di=01;36'
 
-#----------------------------------------------------------
-# Complement
-#----------------------------------------------------------
-# Use full complement functionality
-#
-autoload -Uz compinit
-compinit
-
 # Automatically escape URL string
-#
 autoload -Uz url-quote-magic; zle -N self-insert url-quote-magic
 
-# Toggle complement candidates using TAB
-#
-setopt auto_menu
-
-# Show all candidates
-#
-setopt auto_list
-
-# Can use Emacs style keybind to select candidates
-#
-zstyle ':completion:*:default' menu select=1
-
-# Even option args are complemented
-#
-setopt magic_equal_subst
-
-# Insert / after a complemented directory name
-#
-setopt auto_param_slash
-
 # Colorize
-#
-#eval `dircolors`
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Use compackt style candidates viewer mode
-#
-setopt list_packed
-
-# Show kinds of file using marks
-#
-setopt list_types
-
 # Don't automatically remove / on the tail
-#
 setopt noautoremoveslash
 
-# Do spell check
-#
-setopt correct
-
-# Complement process name with kill command
-#
-zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
-
-zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 
 #----------------------------------------------------------
 # Move
@@ -161,9 +175,7 @@ setopt auto_cd
 setopt auto_pushd
 setopt pushd_ignore_dups
 
-#----------------------------------------------------------
-# 履歴関連
-#----------------------------------------------------------
+# History {{{1
 # 履歴の保存先
 HISTFILE=$HOME/.zsh-history
 # メモリに展開する履歴の数
@@ -202,9 +214,7 @@ history-all () {
     history -E 1
 }
 
-#----------------------------------------------------------
-# その他
-#----------------------------------------------------------
+# Other {{{1
 # ログアウト時にバックグラウンドジョブをkillしない
 setopt no_hup
 # ログアウト時にバックグラウンドジョブを確認しない
@@ -220,7 +230,6 @@ make () {
     LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-export DOTFILES="${HOME}/code/dotfiles"
 
 # source-highlight による less の色付け
 if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
@@ -230,50 +239,78 @@ fi
 
 export GREP_OPTIONS='--color=auto'
 
+# Completion {{{1
+
+# options
+# Use full complement functionality
+autoload -Uz compinit
+compinit
+# Toggle complement candidates using TAB
+setopt auto_menu
+# Show all candidates
+setopt auto_list
+# Can use Emacs style keybind to select candidates
+zstyle ':completion:*:default' menu select=1
+# Even option args are complemented
+setopt magic_equal_subst
+# Insert / after a complemented directory name
+setopt auto_param_slash
+# Use compackt style candidates viewer mode
+setopt list_packed
+# Show kinds of file using marks
+setopt list_types
+# Do spell check
+setopt correct
+# Complement process name with kill command
+zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
+zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
+
+## custom {{{2
+
+# cake
+_cake () {
+    if [ -f Cakefile ]; then
+        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+    fi
+}
+compdef _cake cake
+
+# study
+study () {
+    cd ~/code/study/$1
+}
+_study () {
+    local -a langs
+    langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
+    compadd $langs
+    return 1;
+}
+compdef _study study
+
+# Language specific configuration {{{1
 
 ## Python
-#
 [ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 export PYTHONSTARTUP=$HOME/.pythonrc.py
 
 ## Ruby
-#
 [ -s "${HOME}/.rvm/scripts/rvm" ] && source $HOME/.rvm/scripts/rvm
-
-## Node
-#
-[ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
-
-## CoffeeScript
-#
-_cake () {
-	if [ -f Cakefile ]; then
-        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-	fi
-}
-
-compdef _cake cake
+# refe
+[ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
 
 ## Perl
-#
+export PERLBREW_ROOT=$HOME/.perl5/perlbrew
+[[ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ]] && source $HOME/.perl5/perlbrew/etc/bashrc
 export PERL_BADLANG=0
 
-## Java
-#
-#export LC_ALL=en
+## Node
+[ -s "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
 
-## Git
-#
-#[[ -s "$HOME/.gitignore" ]] && git config --global core.excludesfile $HOME/.gitignore
+# Extra zshrc files {{{1
 
-## alias
-#
-[ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
-
-## os depending settings
-#
+# os depending settings
 case ${OSTYPE} in
 darwin*) # Mac OS X
     [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
@@ -283,7 +320,7 @@ linux*)
     ;;
 esac
 
-## local settings
+# local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# vim: set foldmethod=marker :
