@@ -136,20 +136,25 @@ set fileencodings=utf-8     " ..
 set fileformats=unix,mac,dos
 
 "" Plugins {{{1
-"" NeoBundle {{{2
-filetype plugin indent off
+"" Vundle {{{2
+filetype off
 
-if has('vim_starting')
-  set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
-endif
-" let NeoBundle manage NeoBundle
-NeoBundle 'Shougo/neobundle.vim'
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
 
 "" for Version > 702 only {{{2
 if v:version > 702
+  "" vimproc {{{3
+  Bundle 'Shougo/vimproc'
+
+  "" vimshell {{{3
+  Bundle 'Shougo/vimshell'
+
   "" unite.vim {{{3
-  NeoBundle 'Shougo/unite.vim'
+  Bundle 'Shougo/unite.vim'
 
   let g:unite_enable_split_vertically = 1
   let g:unite_winwidth = 50
@@ -199,31 +204,31 @@ if v:version > 702
 
   " Unite Plugins
     "" unite-git_grep {{{4
-    NeoBundle 'sgur/unite-git_grep'
+    Bundle 'sgur/unite-git_grep'
 
     "" unite-git {{{4
-    NeoBundle 'taka84u9/unite-git'
+    Bundle 'taka84u9/unite-git'
 
     "" unite-outline {{{4
-    NeoBundle 'h1mesuke/unite-outline'
+    Bundle 'h1mesuke/unite-outline'
 
     "" unite-help {{{4
-    NeoBundle 'tsukkee/unite-help'
+    Bundle 'tsukkee/unite-help'
 
 
   "" vim-ref {{{3
-  NeoBundle 'thinca/vim-ref'
+  Bundle 'thinca/vim-ref'
 
   let g:ref_perldoc_complete_head = 1
   let g:ref_open = 'vsplit'
 
     " vim-ref Plugins
     "" vim-ref-ri {{{4
-    NeoBundle 'taka84u9/vim-ref-ri'
+    Bundle 'taka84u9/vim-ref-ri'
 
   "" neocomplcache {{{3
-  NeoBundle 'Shougo/neocomplcache'
-  NeoBundle 'Shougo/neocomplcache-snippets-complete'
+  Bundle 'Shougo/neocomplcache'
+  Bundle 'Shougo/neocomplcache-snippets-complete'
 
   "imap <C-k> <Plug>(neocomplcache_snippets_expand)
   "smap <C-k> <Plug>(neocomplcache_snippets_expand)
@@ -263,13 +268,13 @@ if v:version > 702
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
   "" Vimfiler {{{3
-  NeoBundle 'Shougo/vimfiler'
+  Bundle 'Shougo/vimfiler'
 
   let g:vimfiler_as_default_explorer = 1
   let g:vimfiler_safe_mode_by_default = 0
 
   "" indent-guides {{{3
-  NeoBundle 'nathanaelkane/vim-indent-guides'
+  Bundle 'nathanaelkane/vim-indent-guides'
 
   let g:indent_guides_auto_colors = 0 " read help txt
   let g:indent_guides_enable_on_vim_startup = 1
@@ -277,83 +282,80 @@ if v:version > 702
   "let g:indent_guides_guide_size = 1
 
   "" localrc {{{3
-  NeoBundle "thinca/vim-localrc"
+  Bundle "thinca/vim-localrc"
 
   "" syntastic {{{3
-  NeoBundle "scrooloose/syntastic"
+  Bundle "scrooloose/syntastic"
 
   let g:syntastic_mode_map = { 'mode': 'passive',
         \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
         \ 'passive_filetypes': [] }
-
-  "" vimproc {{{3
-  NeoBundle 'Shougo/vimproc'
 
 endif "}}}2
 
 "" All version {{{2
 
   "" vim-fugitive {{{3
-  NeoBundle 'tpope/vim-fugitive'
+  Bundle 'tpope/vim-fugitive'
 
   "" vim-surround {{{3
-  NeoBundle 'tpope/vim-surround'
+  Bundle 'tpope/vim-surround'
   let g:surround_{char2nr("#")} = "{# \r #}"
   let g:surround_{char2nr("*")} = "/* \r */"
   let g:surround_{char2nr("p")} = "<?php \r ?>"
 
   "" rails.vim {{{3
-  NeoBundle 'tpope/vim-rails'
+  Bundle 'tpope/vim-rails'
 
   "" quick run {{{3
-  NeoBundle 'thinca/vim-quickrun'
+  Bundle 'thinca/vim-quickrun'
 
   nmap <Leader>r <plug>(quickrun)
 
   "" EasyMotion {{{3
-  NeoBundle 'Lokaltog/vim-easymotion'
+  Bundle 'Lokaltog/vim-easymotion'
 
   let g:EasyMotion_leader_key = '<Space>j'
 
   "" Gist.vim {{{3
-  NeoBundle "mattn/gist-vim"
-  NeoBundle "mattn/webapi-vim"
+  Bundle "mattn/gist-vim"
+  Bundle "mattn/webapi-vim"
 
   let g:gist_detect_filetype = 1
   let g:github_user = "taka84u9"
   let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
   "" vim-coffee-script {{{3
-  NeoBundle "kchmck/vim-coffee-script"
+  Bundle "kchmck/vim-coffee-script"
 
   nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
   let coffee_compile_vert = 1
 
   "" vim-powerline {{{3
-  NeoBundle "Lokaltog/vim-powerline"
+  Bundle "Lokaltog/vim-powerline"
   "let g:Powerline_symbols = 'fancy'
 
   "" vim-less {{{3
-  NeoBundle "groenewege/vim-less"
+  Bundle "groenewege/vim-less"
 
   "" vim-perl {{{3
-  NeoBundle 'petdance/vim-perl'
+  Bundle 'petdance/vim-perl'
 
   "" foldCC {{{3
-  NeoBundle 'LeafCage/foldCC'
+  Bundle 'LeafCage/foldCC'
   set foldtext=FoldCCtext()
   hi Folded ctermfg=DarkBlue
   hi FoldColumn ctermfg=LightGrey
 
   "" vim-markdown {{{3
-  NeoBundle 'tpope/vim-markdown'
+  Bundle 'tpope/vim-markdown'
 
   filetype plugin indent on
   "
   " Brief help
-  " :NeoBundleList       - list configured bundles
-  " :NeoBundleInstall(!) - install(update) bundles
-  " :NeoBundleClean(!)   - confirm(or auto-approve) removal of unused bundles
+  " :BundleList       - list configured bundles
+  " :BundleInstall(!) - install(update) bundles
+  " :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
   "
 
 " }}}2
@@ -362,6 +364,7 @@ endif "}}}2
 
 autocmd BufRead,BufNewFile Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json set filetype=javascript
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local

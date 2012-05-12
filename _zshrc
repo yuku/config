@@ -133,7 +133,9 @@ precmd () {
 }
 
 # No beep
+set bell-style none
 setopt nobeep
+setopt nolistbeep
 
 # Use escape sequences
 setopt prompt_subst
