@@ -155,10 +155,10 @@ if v:version > 702
 
   "" vimshell {{{3
   Bundle 'Shougo/vimshell'
-  nnoremap <silent> <leader>vs :<C-u>VimShell<CR>
-  nnoremap <silent> <leader>py :<C-u>VimShellInteractive python<CR>
-  nnoremap <silent> <leader>rb :<C-u>VimShellInteractive pry<CR>
-  nnoremap <silent> <leader>go :<C-u>VimShellInteractive gosh<CR>
+  autocmd FileType *      nnoremap <silent><buffer> <leader>vs :<C-u>VimShell<CR>
+  autocmd FileType python nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive python<CR>
+  autocmd FileType ruby   nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive pry<CR>
+  autocmd FileType scheme nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive gosh<CR>
   vmap     <silent> <leader>ss :<C-u>VimShellSendString<CR>
   nnoremap <silent> <leader>ss :<C-u>VimShellSendString<CR>
 
