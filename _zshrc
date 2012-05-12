@@ -109,27 +109,36 @@ RED="%{${fg[red]}%}"
 CYAN="%{${fg[cyan]}%}"
 YELLOW="%{${fg[yellow]}%}"
 WHITE="%{${fg[white]}%}"
-GRAY="%{${fg[GRAY]}%}"
+GRAY="%{${fg[gray]}%}"
+BOLD_GREEN="%{${fg_bold[green]}%}"
+BOLD_BLUE="%{${fg_bold[blue]}%}"
+BOLD_RED="%{${fg_bold[red]}%}"
+BOLD_CYAN="%{${fg_bold[cyan]}%}"
+BOLD_YELLOW="%{${fg_bold[yellow]}%}"
+BOLD_WHITE="%{${fg_bold[white]}%}"
+BOLD_GRAY="%{${fg_bold[gray]}%}"
 
-RPROMPT="%T"
-setopt transient_rprompt
+#RPROMPT="%T"
+#setopt transient_rprompt
 precmd () {
-    PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET}" 
-    st=`git status 2>/dev/null`
-    if [[ -n `echo "$st" | grep "^nothing to"` ]]
-    then
-        color=${fg[cyan]}
-    elif [[ -n `echo "$st" | grep "^nothing added"` ]]
-    then
-        color=${fg[blue]}
-    elif [[ -n `echo "$st" | grep "^# Untracked"` ]]
-    then
-        color=${fg_bold[red]}
+  PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} %T"
+  st=`git status 2>/dev/null`
+  if [ $? ] ; then
+    if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
+      color=$CYAN
+    elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
+      color=$BLUE
+    elif [[ -n `echo "$st" | grep "^# Untracked"` ]] ; then
+      color=$BOLD_RED
     else
-        color=${fg[red]}
+      color=$RED
     fi
     PROMPT+="
-%{$color%}$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
+$color$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
+  else
+    PROMPT+="
+"
+  fi
 }
 
 # No beep
@@ -178,65 +187,46 @@ setopt auto_pushd
 setopt pushd_ignore_dups
 
 # History {{{1
-# 履歴の保存先
-HISTFILE=$HOME/.zsh-history
-# メモリに展開する履歴の数
-HISTSIZE=10000
-# 保存する履歴の数
-SAVEHIST=10000
-# ヒストリ全体でのコマンドの重複を禁止する
-setopt hist_ignore_dups
-# コマンドの空白をけずる
-setopt hist_reduce_blanks
-# historyコマンドはログに記述しない
-setopt hist_no_store
-# 先頭が空白だった場合はログに残さない
-setopt hist_ignore_space
-# 履歴ファイルに時刻を記録
-setopt extended_history
-# シェルのプロセスごとに履歴を共有
-setopt share_history
-# 複数のzshを同時に使うときなどhistoryファイルに上書きせず追加
+HISTFILE=$HOME/.zsh-history # history file
+HISTSIZE=10000              # number of saved history on memory
+SAVEHIST=10000              # number of saved history
+setopt hist_ignore_dups     # ignore duplicated history
+setopt hist_reduce_blanks   # strip white spaces
+setopt hist_no_store        # ignore history command
+setopt hist_ignore_space    # ignore command starts with white spaces
+setopt extended_history     # current time is also saved
+setopt share_history        # share history across multi processes
 setopt append_history
-# 履歴をインクリメンタルに追加
 setopt inc_append_history
-# ヒストリを呼び出してから実行する間に一旦編集可能
-setopt hist_verify
-# 履歴検索機能のショートカット設定
+setopt hist_verify          # can edit history before execute it
+# short cut
 autoload history-search-end
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
-# インクリメンタルサーチの設定
+# incremental search
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
-# 全履歴の一覧を出力する
-history-all () {
-    history -E 1
-}
+history-all () { history -E 1 }
 
 # Other {{{1
-# ログアウト時にバックグラウンドジョブをkillしない
-setopt no_hup
-# ログアウト時にバックグラウンドジョブを確認しない
-setopt no_checkjobs
-# バックグラウンドジョブが終了したら(プロンプトの表示を待たずに)すぐに知らせる
-setopt notify
+setopt no_hup               # keep processs when logging out
+setopt checkjobs            # check background job when logging out
+setopt notify               # immediately notify when backgroung job finishes
 
-# makeのエラー出力に色付け
+# colorize make error message
 e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
 make () {
-    LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+  LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
 }
 
-
-# source-highlight による less の色付け
+# colorize less
 if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
-    export LESS='-R'
-    export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
+  export LESS='-R'
+  export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
 fi
 
 export GREP_OPTIONS='--color=auto'
@@ -270,24 +260,36 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 ## custom {{{2
 
 # cake
-_cake () {
-    if [ -f Cakefile ]; then
-        compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-    fi
+_cake() {
+  if [ -f Cakefile ]; then
+    compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+  fi
 }
 compdef _cake cake
 
 # study
-study () {
-    cd ~/code/study/$1
+study() {
+  cd ~/code/study/$1
 }
-_study () {
-    local -a langs
-    langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
-    compadd $langs
-    return 1;
+_study() {
+  local -a langs
+  langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
+  compadd $langs
+  return 1;
 }
 compdef _study study
+
+# code directory
+c() {
+  cd ~/code/$1
+}
+_c() {
+  local -a projs
+  projs=( $( find ~/code/* -type d -maxdepth 0 -exec basename '{}' ';') )
+  compadd $projs
+  return 1;
+}
+compdef _c c
 
 # Language specific configuration {{{1
 
@@ -315,11 +317,11 @@ export PERL_BADLANG=0
 # os depending settings
 case ${OSTYPE} in
 darwin*) # Mac OS X
-    [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
-    ;;
+  [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
+  ;;
 linux*)
-    [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
-    ;;
+  [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
+  ;;
 esac
 
 # local settings
