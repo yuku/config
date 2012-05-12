@@ -136,14 +136,17 @@ set fileencodings=utf-8     " ..
 set fileformats=unix,mac,dos
 
 "" Plugins {{{1
-"" Vundle {{{2
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
 Bundle 'gmarik/vundle'
-
+"
+" Brief help
+" :BundleList       - list configured bundles
+" :BundleInstall(!) - install(update) bundles
+" :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
+"
 
 "" for Version > 702 only {{{2
 if v:version > 702
@@ -152,6 +155,12 @@ if v:version > 702
 
   "" vimshell {{{3
   Bundle 'Shougo/vimshell'
+  nnoremap <silent> <leader>vs :<C-u>VimShell<CR>
+  nnoremap <silent> <leader>py :<C-u>VimShellInteractive python<CR>
+  nnoremap <silent> <leader>rb :<C-u>VimShellInteractive pry<CR>
+  nnoremap <silent> <leader>go :<C-u>VimShellInteractive gosh<CR>
+  vmap     <silent> <leader>ss :<C-u>VimShellSendString<CR>
+  nnoremap <silent> <leader>ss :<C-u>VimShellSendString<CR>
 
   "" unite.vim {{{3
   Bundle 'Shougo/unite.vim'
@@ -202,7 +211,7 @@ if v:version > 702
     imap <buffer><expr><C-i>  unite#do_action('left')
   endfunction
 
-  " Unite Plugins
+  " Unite Plugins {{{3
     "" unite-git_grep {{{4
     Bundle 'sgur/unite-git_grep'
 
@@ -214,7 +223,6 @@ if v:version > 702
 
     "" unite-help {{{4
     Bundle 'tsukkee/unite-help'
-
 
   "" vim-ref {{{3
   Bundle 'thinca/vim-ref'
@@ -294,7 +302,6 @@ if v:version > 702
 endif "}}}2
 
 "" All version {{{2
-
   "" vim-fugitive {{{3
   Bundle 'tpope/vim-fugitive'
 
@@ -353,12 +360,6 @@ endif "}}}2
 " }}}2
 
 filetype plugin indent on
-"
-" Brief help
-" :BundleList       - list configured bundles
-" :BundleInstall(!) - install(update) bundles
-" :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
-"
 
 "" Source {{{1
 
