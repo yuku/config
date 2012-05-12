@@ -350,15 +350,15 @@ endif "}}}2
   "" vim-markdown {{{3
   Bundle 'tpope/vim-markdown'
 
-  filetype plugin indent on
-  "
-  " Brief help
-  " :BundleList       - list configured bundles
-  " :BundleInstall(!) - install(update) bundles
-  " :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
-  "
-
 " }}}2
+
+filetype plugin indent on
+"
+" Brief help
+" :BundleList       - list configured bundles
+" :BundleInstall(!) - install(update) bundles
+" :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
+"
 
 "" Source {{{1
 
