@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 try:
     from IPython.frontend.terminal.ipapp import launch_new_instance
     launch_new_instance()
@@ -5,4 +7,4 @@ try:
 except ImportError:
     pass
 
-# vim : set filetype=python :
+# vim: set filetype=python :
