@@ -159,7 +159,7 @@ if v:version > 702
   autocmd FileType python nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive python<CR>
   autocmd FileType ruby   nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive pry<CR>
   autocmd FileType scheme nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive gosh<CR>
-  vmap     <silent> <leader>ss :<C-u>VimShellSendString<CR>
+  vmap     <silent> <leader>ss :VimShellSendString<CR>
   nnoremap <silent> <leader>ss :<C-u>VimShellSendString<CR>
 
   "" unite.vim {{{3

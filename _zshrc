@@ -26,15 +26,15 @@ export DOTFILES=$HOME/code/dotfiles
 # expand aliases before completing
 setopt complete_aliases
 
-_vim=`which vim`
-
-vim() {
-  if [ $1 ] ; then
-    $_vim $1
-  else
-    $_vim ~/.vimrc
-  fi
-}
+#_vim=`which vim`
+#
+#vim() {
+#  if [ $1 ] ; then
+#    $_vim $1
+#  else
+#    $_vim ~/.vimrc
+#  fi
+#}
 
 ## General
 alias ps='ps aux'
