@@ -297,7 +297,7 @@ compdef _c c
 [ -s /usr/local/bin/virtualenvwrapper.sh ] && source /usr/local/bin/virtualenvwrapper.sh
 export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
-export PYTHONSTARTUP=$HOME/.pythonrc.py
+export PYTHONSTARTUP=$HOME/.pythonrc
 
 ## Ruby
 [ -s "${HOME}/.rvm/scripts/rvm" ] && source $HOME/.rvm/scripts/rvm
@@ -327,4 +327,4 @@ esac
 # local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-# vim: set foldmethod=marker :
+# vim: set foldmethod=marker filetype=zsh :

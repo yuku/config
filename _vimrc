@@ -363,10 +363,12 @@ filetype plugin indent on
 
 "" Source {{{1
 
-autocmd BufRead,BufNewFile Gemfile set filetype=ruby
+autocmd BufRead,BufNewFile Capfile,Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json set filetype=javascript
 autocmd BufRead,BufNewFile *.md set filetype=markdown
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
+
+" vim: set foldmethod=marker filetype=vim :

@@ -34,3 +34,4 @@
     generic = G move-last-line
 [pull]
 	rebase = true
+# vim: set filetype=conf :

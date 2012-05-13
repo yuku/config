@@ -19,3 +19,5 @@ end
 Pry.config.commands.command "lastcopy", "Last result copy to clipboard" do
   pbcopy _pry_.last_result.chomp
 end
+
+# vim: set filetype=ruby :
