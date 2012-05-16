@@ -54,7 +54,7 @@ cd $DOTFILES
 # package install
 
 homebrew() {
-  if [ -n `brew info $1 | grep "^Not installed$"`] ; then
+  if [[ `brew info $1 | grep "^Not installed"` ]] ; then
     echo "Install\t$1"
     brew install $1
   fi
