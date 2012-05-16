@@ -1,5 +1,14 @@
 #!/bin/sh
 
+# submodules
+
+git submodule sync
+git submodule init
+git submodule update
+
+
+# make symbolic links
+
 link_file() {
   source="${PWD}/$1"
   target="${HOME}/${1/_/.}"
@@ -22,32 +31,28 @@ do
 done
 link_file bin
 
-git submodule sync
-git submodule init
-git submodule update
-
 
 # vim
 
-if [ ! -e _vim/bundle/vundle ] ; then
+if [ ! -e _vim/bundle/vim-fugitive ] ; then
   vim -c "BundleInstall!"
 fi
 
 cd _vim/bundle/vimproc
 case $OSTYPE in
 darwin*)
-  sofile="autoload/vimproc_mac.so"
-  makefile="make_mac.mak"
+  if [ ! -e autoload/vimproc_mac.so ] ; then
+    echo "Installing vimproc"
+    make -f make_mac.mak
+  fi
   ;;
 linux*)
-  sofile="autoload/vimproc_unix.so"
-  makefile="make_unix.mak"
+  if [ ! -e autoload/vimproc_unix.so ] ; then
+    echo "Installing vimproc"
+    make -f make_unix.mak
+  fi
   ;;
 esac
-if [ ! -e $sofile ] ; then
-  echo "Installing vimproc"
-  make -f $makefile
-fi
 cd $DOTFILES
 
 
@@ -64,5 +69,8 @@ case $OSTYPE in
 darwin*)
   homebrew source-highlight
   homebrew tmux
+  homebrew tig
+  homebrew wget
+  homebrew git-flow
   ;;
 esac
