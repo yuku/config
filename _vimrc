@@ -68,9 +68,9 @@ set cmdheight=1             " command line height
 set whichwrap=b,s,h,l,<,>,[,]
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set shortmess=filtIoOA      " shorten messages
+set shortmess=filtoOA       " shorten messages
 set report=0                " tell us about changes
-set nostartofline           " don't jum to the start of line when scrolling
+set nostartofline           " don't jump to the start of line when scrolling
 set showmatch               " brackets/braces that is
 set matchtime=3             " duration to show matching brace (1/10 sec)
 set laststatus=2            " The last window always have status line
