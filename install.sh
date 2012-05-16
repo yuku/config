@@ -1,17 +1,17 @@
 #!/bin/sh
 
-# dotfiles
-
 link_file() {
   source="${PWD}/$1"
   target="${HOME}/${1/_/.}"
 
   if [ -e $target ] ; then
     if [ ! -d $target ] ; then
+      echo "Update\t$target"
       mv $target $target.bak
       ln -sf ${source} ${target}
     fi
   else
+    echo "Install\t$target"
     ln -sf ${source} ${target}
   fi
 }
@@ -45,6 +45,24 @@ linux*)
   ;;
 esac
 if [ ! -e $sofile ] ; then
+  echo "Installing vimproc"
   make -f $makefile
 fi
 cd $DOTFILES
+
+
+# package install
+
+homebrew() {
+  if [ -n `brew info $1 | grep "^Not installed$"`] ; then
+    echo "Install\t$1"
+    brew install $1
+  fi
+}
+
+case $OSTYPE in
+darwin*)
+  homebrew source-highlight
+  homebrew tmux
+  ;;
+esac
