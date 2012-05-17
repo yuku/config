@@ -38,22 +38,24 @@ if [ ! -e _vim/bundle/vim-fugitive ] ; then
   vim -c "BundleInstall!"
 fi
 
-cd _vim/bundle/vimproc
-case $OSTYPE in
-darwin*)
-  if [ ! -e autoload/vimproc_mac.so ] ; then
-    echo "Installing vimproc"
-    make -f make_mac.mak
-  fi
-  ;;
-linux*)
-  if [ ! -e autoload/vimproc_unix.so ] ; then
-    echo "Installing vimproc"
-    make -f make_unix.mak
-  fi
-  ;;
-esac
-cd $DOTFILES
+if [ -d _vim/bundle/vimproc ] ; then
+  cd _vim/bundle/vimproc
+  case $OSTYPE in
+  darwin*)
+    if [ ! -e autoload/vimproc_mac.so ] ; then
+      echo "Installing vimproc"
+      make -f make_mac.mak
+    fi
+    ;;
+  linux*)
+    if [ ! -e autoload/vimproc_unix.so ] ; then
+      echo "Installing vimproc"
+      make -f make_unix.mak
+    fi
+    ;;
+  esac
+  cd $DOTFILES
+fi
 
 
 # package install
