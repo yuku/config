@@ -37,7 +37,7 @@ setopt complete_aliases
 #}
 
 ## General
-alias ps='ps aux'
+#alias ps='ps aux'
 #alias where='command -v'
 
 alias ls='ls -hF'
