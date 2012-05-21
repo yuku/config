@@ -35,3 +35,5 @@
 [pull]
 	rebase = true
 # vim: set filetype=conf :
+[grep]
+	lineNumbers = true
