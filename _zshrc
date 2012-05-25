@@ -326,6 +326,7 @@ esac
 
 source $DOTFILES/git-completion.bash
 source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fpath=($DOTFILES/modules/zsh-completions $fpath)
 
 # local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
