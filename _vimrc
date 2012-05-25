@@ -366,8 +366,9 @@ filetype plugin indent on
 "" Source {{{1
 
 autocmd BufRead,BufNewFile Capfile,Gemfile set filetype=ruby
-autocmd BufRead,BufNewFile *.json set filetype=javascript
-autocmd BufRead,BufNewFile *.md set filetype=markdown
+autocmd BufRead,BufNewFile *.json          set filetype=javascript
+autocmd BufRead,BufNewFile *.md            set filetype=markdown
+autocmd BufRead,BufNewFile *.psgi          set filetype=perl
 
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
