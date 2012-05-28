@@ -1,3 +1,4 @@
+# vim: set filetype=conf :
 [color]
 	ui = auto
 	diff = auto
@@ -18,7 +19,7 @@
 	st = status
 	ci = commit -v
 	di = diff
-	br = branch
+	br = branch -v
 	puhs = push
 	psuh = push
 	pus = push
@@ -34,6 +35,5 @@
     generic = G move-last-line
 [pull]
 	rebase = true
-# vim: set filetype=conf :
 [grep]
 	lineNumbers = true
