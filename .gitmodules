@@ -13,3 +13,6 @@
 [submodule "modules/zsh-completions"]
 	path = modules/zsh-completions
 	url = git://github.com/zsh-users/zsh-completions.git
+[submodule "modules/zaw"]
+	path = modules/zaw
+	url = git://github.com/zsh-users/zaw.git
