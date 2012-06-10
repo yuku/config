@@ -1,0 +1,9 @@
+path=(
+  $HOME/bin/osx
+  /opt/local/bin
+  /opt/local/sbin
+  /System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources
+  $path
+)
+
+# vim: set filetype=zsh :

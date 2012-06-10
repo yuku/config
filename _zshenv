@@ -1,0 +1,15 @@
+path=(
+  $HOME/bin
+  $path
+) 
+
+case ${OSTYPE} in
+darwin*) # Mac OS X
+  [ -f ~/.zshenv.osx ] && source ~/.zshenv.osx
+  ;;
+linux*)
+  [ -f ~/.zshenv.linux ] && source ~/.zshenv.linux
+  ;;
+esac
+
+# vim: set filetype=zsh :

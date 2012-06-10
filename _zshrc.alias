@@ -1,0 +1,32 @@
+# expand aliases before completing
+setopt complete_aliases
+
+## General
+alias ls='ls -GF'
+alias ll='ls -lh'
+alias lla='ls -lhA'
+alias la='ls -A'
+alias lsd='ls -ld *(-/DN)'
+alias df='df -h'
+alias du='du -h'
+alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias grep=egrep
+alias h=history
+alias j=jobs
+alias g=git
+
+## Global alias
+alias -g L='|less'
+alias -g H='|head'
+alias -g T='|tail'
+alias -g G='|grep'
+alias -g GI='|grep -i'
+
+
+alias tmux='tmux -u'
+alias hg='hg --encoding=utf-8'
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+alias gcc='gcc -Wall -lstdc++'
+
+# vim: set foldmethod=marker filetype=zsh :
