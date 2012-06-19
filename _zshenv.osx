@@ -1,3 +1,5 @@
+alias ls='ls -GF'
+
 path=(
   $HOME/bin/osx
   /opt/local/bin

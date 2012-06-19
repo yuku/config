@@ -2,7 +2,6 @@
 setopt complete_aliases
 
 ## General
-alias ls='ls -GF'
 alias ll='ls -lh'
 alias lla='ls -lhA'
 alias la='ls -A'
