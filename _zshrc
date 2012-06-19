@@ -22,8 +22,6 @@ export DOTFILES=$HOME/code/dotfiles
 
 cdpath=(.. ~ ~/code)
 
-[ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
-
 # Backspace key {{{1
 bindkey "^?" backward-delete-char
 
@@ -295,6 +293,8 @@ linux*)
   [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
   ;;
 esac
+
+[ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
 
 source $DOTFILES/git-completion.bash
 source $DOTFILES/modules/zaw/zaw.zsh
