@@ -26,6 +26,7 @@
 	puh = push
 	pl = !git pull && git submodule update --init
     lg = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
+    today = log --oneline --since='12 hour ago'
 [gui]
 	encoding = utf-8
 [push]
