@@ -176,7 +176,7 @@ defbce "on"
 # screen -t mail 8 mutt
 # screen -t daemon 9 tail -f /var/log/daemon.log
 
-source ~/.screenrc.mine
+#source ~/.screenrc.mine
 
 #idle 1200
 #blankerprg /opt/local/bin/fortune
