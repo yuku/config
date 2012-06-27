@@ -7,12 +7,12 @@
 "                                                                           "
 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-"" General {{{1
+"" General
 
 set nocompatible            " use Vim in more useful way
-"set clipboard=unnamed       " share clipboard with other systems
+"set clipboard+=unnamed     " share clipboard with other systems
 
-"" Text Formatting {{{1
+"" Text Formatting
 
 set autoindent              " automatic indent new lines
 set smartindent             " be smart about it
@@ -34,7 +34,7 @@ set wrapmargin=0
 set virtualedit=block       " allow virtual edit in visual block ..
 
 
-"" Remapping {{{1
+"" Remapping
 
 let mapleader=','           " Lead with ,
 " Jump to vimrc
@@ -46,10 +46,10 @@ cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <C-h> :<C-u>tabprevious<CR>
 nnoremap <C-l> :<C-u>tabnext<CR>
 
-"" UI {{{1
+"" UI
 
 set ruler                   " show the cursor position all the time
-" highlight cursor line in current window{{{2
+" highlight cursor line in current window
 augroup cch
   autocmd! cch
   autocmd WinLeave * set nocursorline
@@ -57,7 +57,7 @@ augroup cch
 augroup END
 highlight clear CursorLine
 highlight CursorLine ctermbg=black
-" }}}2
+"
 set showcmd                 " display incomplete commands
 set number                  " line numbers
 set nolazyredraw            " don't redraw while executing macros
@@ -87,7 +87,7 @@ if has("mouse") " Enable the use of the mouse in all modes
 endif
 
 syntax on
-"" Colorize {{{2
+"" Colorize
 
 " Keep this order!
 " solarized - http://ethanschoonover.com/solarized
@@ -101,7 +101,7 @@ matc WhitespaceEOL /\s\+$/
 " highlight comments
 "highlight Comment ctermfg=DarkCyan
 
-"" Backup {{{1
+"" Backup
 
 " backup current file, deleted afterwards
 set nobackup
@@ -115,7 +115,7 @@ if !filewritable($HOME."/.vim-swap")
 endif
 set directory=$HOME/.vim-swap
 
-"" Search {{{1
+"" Search
 
 set history=100             " keep 100 lines of command line histories
 set ignorecase
@@ -127,7 +127,7 @@ set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :nohlsearch<CR><ESC>
 
-"" Character encoding {{{1
+"" Character encoding
 
 set encoding=utf-8          " Use utf-8
 set termencoding=utf-8      " ..
@@ -135,7 +135,7 @@ set fileencodings=utf-8     " ..
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 
-"" Plugins {{{1
+"" Plugins
 filetype off
 
 set rtp+=~/.vim/bundle/vundle/
@@ -148,12 +148,12 @@ Bundle 'gmarik/vundle'
 " :BundleClean(!)   - confirm(or auto-approve) removal of unused bundles
 "
 
-"" for Version > 702 only {{{2
+"" for Version > 702 only
 if v:version > 702
-  "" vimproc {{{3
+  "" vimproc
   Bundle 'Shougo/vimproc'
 
-  "" vimshell {{{3
+  "" vimshell
   Bundle 'Shougo/vimshell'
   autocmd FileType *      nnoremap <silent><buffer> <leader>vs :<C-u>VimShell<CR>
   autocmd FileType python nnoremap <silent><buffer> <leader>vs :<C-u>VimShellInteractive python<CR>
@@ -162,7 +162,7 @@ if v:version > 702
   vmap     <silent> <leader>ss :VimShellSendString<CR>
   nnoremap <silent> <leader>ss :<C-u>VimShellSendString<CR>
 
-  "" unite.vim {{{3
+  "" unite.vim
   Bundle 'Shougo/unite.vim'
 
   let g:unite_enable_split_vertically = 1
@@ -211,30 +211,30 @@ if v:version > 702
     imap <buffer><expr><C-i>  unite#do_action('left')
   endfunction
 
-  " Unite Plugins {{{3
-    "" unite-git_grep {{{4
+  " Unite Plugins
+    "" unite-git_grep
     Bundle 'sgur/unite-git_grep'
 
-    "" unite-git {{{4
+    "" unite-git
     Bundle 'taka84u9/unite-git'
 
-    "" unite-outline {{{4
+    "" unite-outline
     Bundle 'h1mesuke/unite-outline'
 
-    "" unite-help {{{4
+    "" unite-help
     Bundle 'tsukkee/unite-help'
 
-  "" vim-ref {{{3
+  "" vim-ref
   Bundle 'thinca/vim-ref'
 
   let g:ref_perldoc_complete_head = 1
   let g:ref_open = 'vsplit'
 
     " vim-ref Plugins
-    "" vim-ref-ri {{{4
+    "" vim-ref-ri
     Bundle 'taka84u9/vim-ref-ri'
 
-  "" neocomplcache {{{3
+  "" neocomplcache
   Bundle 'Shougo/neocomplcache'
   Bundle 'Shougo/neocomplcache-snippets-complete'
 
@@ -275,7 +275,7 @@ if v:version > 702
   endif
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-  "" Vimfiler {{{3
+  "" Vimfiler
   Bundle 'Shougo/vimfiler'
 
   let g:vimfiler_as_default_explorer = 1
@@ -283,7 +283,7 @@ if v:version > 702
 
   nnoremap <silent><space>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -toggle -no-quit<CR>
 
-  "" indent-guides {{{3
+  "" indent-guides
   Bundle 'nathanaelkane/vim-indent-guides'
 
   let g:indent_guides_auto_colors = 0 " read help txt
@@ -291,79 +291,78 @@ if v:version > 702
   let g:indent_guides_color_change_percent = 30
   "let g:indent_guides_guide_size = 1
 
-  "" localrc {{{3
+  "" localrc
   Bundle "thinca/vim-localrc"
 
-  "" syntastic {{{3
+  "" syntastic
   Bundle "scrooloose/syntastic"
 
   let g:syntastic_mode_map = { 'mode': 'passive',
         \ 'active_filetypes': ['ruby', 'javascript', 'python', 'cpp', 'coffeescript'],
         \ 'passive_filetypes': [] }
 
-endif "}}}2
+endif
 
-"" All version {{{2
-  "" vim-fugitive {{{3
-  Bundle 'tpope/vim-fugitive'
+"" All version
 
-  "" vim-surround {{{3
-  Bundle 'tpope/vim-surround'
-  let g:surround_{char2nr("#")} = "{# \r #}"
-  let g:surround_{char2nr("*")} = "/* \r */"
-  let g:surround_{char2nr("p")} = "<?php \r ?>"
+"" vim-fugitive
+Bundle 'tpope/vim-fugitive'
 
-  "" rails.vim {{{3
-  Bundle 'tpope/vim-rails'
+"" vim-surround
+Bundle 'tpope/vim-surround'
+let g:surround_{char2nr("#")} = "{# \r #}"
+let g:surround_{char2nr("*")} = "/* \r */"
+let g:surround_{char2nr("p")} = "<?php \r ?>"
 
-  "" quick run {{{3
-  Bundle 'thinca/vim-quickrun'
+"" rails.vim
+Bundle 'tpope/vim-rails'
 
-  nmap <Leader>r <plug>(quickrun)
+"" quick run
+Bundle 'thinca/vim-quickrun'
 
-  "" EasyMotion {{{3
-  Bundle 'Lokaltog/vim-easymotion'
+nmap <Leader>r <plug>(quickrun)
 
-  let g:EasyMotion_leader_key = '<Space>j'
+"" EasyMotion
+Bundle 'Lokaltog/vim-easymotion'
 
-  "" Gist.vim {{{3
-  Bundle "mattn/gist-vim"
-  Bundle "mattn/webapi-vim"
+let g:EasyMotion_leader_key = '<Space>j'
 
-  let g:gist_detect_filetype = 1
-  let g:github_user = "taka84u9"
-  let g:github_token = "e9f46f535783ba347658b0569a450f74"
+"" Gist.vim
+Bundle "mattn/gist-vim"
+Bundle "mattn/webapi-vim"
 
-  "" vim-coffee-script {{{3
-  Bundle "kchmck/vim-coffee-script"
+let g:gist_detect_filetype = 1
+let g:github_user = "taka84u9"
+let g:github_token = "e9f46f535783ba347658b0569a450f74"
 
-  nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
-  let coffee_compile_vert = 1
+"" vim-coffee-script
+Bundle "kchmck/vim-coffee-script"
 
-  "" vim-powerline {{{3
-  Bundle "Lokaltog/vim-powerline"
-  "let g:Powerline_symbols = 'fancy'
+nnoremap <silent> <Space>c :CoffeeCompile watch vert <CR><C-w>h
+let coffee_compile_vert = 1
 
-  "" vim-less {{{3
-  Bundle "groenewege/vim-less"
+"" vim-powerline
+Bundle "Lokaltog/vim-powerline"
+"let g:Powerline_symbols = 'fancy'
 
-  "" vim-perl {{{3
-  Bundle 'petdance/vim-perl'
+"" vim-less
+Bundle "groenewege/vim-less"
 
-  "" foldCC {{{3
-  Bundle 'LeafCage/foldCC'
-  set foldtext=FoldCCtext()
-  hi Folded ctermfg=DarkBlue
-  hi FoldColumn ctermfg=LightGrey
+"" vim-perl
+Bundle 'petdance/vim-perl'
 
-  "" vim-markdown {{{3
-  Bundle 'tpope/vim-markdown'
+"" foldCC
+Bundle 'LeafCage/foldCC'
+set foldtext=FoldCCtext()
+hi Folded ctermfg=DarkBlue
+hi FoldColumn ctermfg=LightGrey
 
-" }}}2
+"" vim-markdown
+Bundle 'tpope/vim-markdown'
 
 filetype plugin indent on
 
-"" Source {{{1
+"" Source
 
 autocmd BufRead,BufNewFile Capfile,Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json          set filetype=javascript
@@ -374,4 +373,4 @@ if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
 
-" vim: set foldmethod=marker filetype=vim :
+" vim: set filetype=vim :
