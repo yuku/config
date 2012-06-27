@@ -148,7 +148,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 history-all () { history -E 1 }
 
-# Other {{{1
+# Other
 setopt no_hup               # keep processs when logging out
 setopt checkjobs            # check background job when logging out
 setopt notify               # immediately notify when backgroung job finishes
@@ -169,7 +169,7 @@ fi
 
 export GREP_OPTIONS='--color=auto'
 
-# Completion {{{1
+# Completion
 
 # options
 # Use full complement functionality
@@ -195,55 +195,58 @@ setopt correct
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 
-## custom {{{2
+## custom
 
-# cake
-_cake() {
-  if [ -f Cakefile ]; then
-    compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-  fi
-}
-compdef _cake cake
+## cake
+#_cake() {
+#  if [ -f Cakefile ]; then
+#    compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
+#  fi
+#}
+#compdef _cake cake
+#
+## study
+#study() {
+#  cd ~/code/study/$1
+#}
+#_study() {
+#  local -a langs
+#  langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
+#  compadd $langs
+#  return 1;
+#}
+#compdef _study study
+#
+## code directory
+#c() {
+#  cd ~/code/$1
+#}
+#_c() {
+#  local -a projs
+#  projs=( $( find ~/code/* -type d -maxdepth 0 -exec basename '{}' ';') )
+#  compadd $projs
+#  return 1;
+#}
+#compdef _c c
 
-# study
-study() {
-  cd ~/code/study/$1
-}
-_study() {
-  local -a langs
-  langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
-  compadd $langs
-  return 1;
-}
-compdef _study study
-
-# code directory
-c() {
-  cd ~/code/$1
-}
-_c() {
-  local -a projs
-  projs=( $( find ~/code/* -type d -maxdepth 0 -exec basename '{}' ';') )
-  compadd $projs
-  return 1;
-}
-compdef _c c
-
-# Language specific configuration {{{1
+# Language specific configuration
 
 ## Python
 #export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 export PYTHONSTARTUP=$HOME/.pythonrc
+use python
 
 ## Ruby
 [ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
+use ruby
 
 ## Perl
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
 export PERL_BADLANG=0
+use perl
 
-# Extra zshrc files {{{1
+# Extra zshrc files
 
 # os depending settings
 case ${OSTYPE} in
@@ -272,4 +275,4 @@ fpath=($DOTFILES/modules/zsh-completions $fpath)
 
 typeset -U path cdpath fpath manpath
 
-# vim: set foldmethod=marker filetype=zsh :
+# vim: set filetype=zsh :
