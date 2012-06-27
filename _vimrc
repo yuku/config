@@ -238,9 +238,6 @@ if v:version > 702
   Bundle 'Shougo/neocomplcache'
   Bundle 'Shougo/neocomplcache-snippets-complete'
 
-  "imap <C-k> <Plug>(neocomplcache_snippets_expand)
-  "smap <C-k> <Plug>(neocomplcache_snippets_expand)
-
   let g:neocomplcache_enable_auto_select = 1
 
   " Use neocomplcache.
@@ -262,18 +259,21 @@ if v:version > 702
         \ 'perl' : '-R -h ".pm"'
         \ }
 
-  let g:neocomplcache_snippets_dir = "~/.vim/snippets"
-  " Define dictionary.
-  let g:neocomplcache_dictionary_filetype_lists = {
-        \ 'default'    : '',
-        \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
-        \ }
-
   " Define keyword.
   if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
   endif
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+
+  let g:neocomplcache_snippets_dir = "~/.vim/snippets"
+  " Define dictionary.
+  let g:neocomplcache_dictionary_filetype_lists = {
+        \ 'default'    : '',
+        \ 'perl'       : '~/.vim/dict/perl.dict'
+        \ }
+
+  imap <C-k> <Plug>(neocomplcache_snippets_expand)
+  smap <C-k> <Plug>(neocomplcache_snippets_expand)
 
   "" Vimfiler
   Bundle 'Shougo/vimfiler'
