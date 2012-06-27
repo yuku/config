@@ -10,7 +10,7 @@
 "" General {{{1
 
 set nocompatible            " use Vim in more useful way
-set clipboard=unnamed       " share clipboard with other systems
+"set clipboard=unnamed       " share clipboard with other systems
 
 "" Text Formatting {{{1
 

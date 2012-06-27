@@ -231,45 +231,6 @@ compdef _c c
 
 # Language specific configuration {{{1
 
-use () {
-  for i in $@ ; do
-    case $i in
-    python|py)
-      if [ -s /usr/local/bin/virtualenvwrapper.sh ] ; then
-        echo 'setup virtualenv'
-        source /usr/local/bin/virtualenvwrapper.sh
-      else
-        echo 'virtualenvwrapper not found'
-      fi
-      ;;
-    ruby|rb|rvm)
-      if [ -s "${HOME}/.rvm/scripts/rvm" ] ; then
-        echo 'setup rvm'
-        source $HOME/.rvm/scripts/rvm
-      else
-        echo 'rvm not found'
-      fi
-      ;;
-    perl|pl|perlbrew)
-      if [ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ] ; then
-        echo 'setup perlbrew'
-        source $HOME/.perl5/perlbrew/etc/bashrc
-      else
-        echo 'perlbrew not found'
-      fi
-      ;;
-    node|nvm)
-      if [ -s "${HOME}/.nvm/nvm.sh" ] ; then
-        echo 'setup nvm'
-        source $HOME/.nvm/nvm.sh
-      else
-        echo 'nvm not found'
-      fi
-      ;;
-    esac
-  done
-}
-
 ## Python
 #export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
