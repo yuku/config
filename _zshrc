@@ -235,16 +235,13 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 #export NOSE_REDNOSE=1
 export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 export PYTHONSTARTUP=$HOME/.pythonrc
-use python
 
 ## Ruby
 [ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
-use ruby
 
 ## Perl
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
 export PERL_BADLANG=0
-use perl
 
 # Extra zshrc files
 
