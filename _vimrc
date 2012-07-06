@@ -360,12 +360,14 @@ hi FoldColumn ctermfg=LightGrey
 "" vim-markdown
 Bundle 'tpope/vim-markdown'
 
-
 " tweetvim
 Bundle 'basyura/TweetVim'
 Bundle 'tyru/open-browser.vim'
 Bundle 'basyura/twibill.vim'
 Bundle 'basyura/bitly.vim'
+
+" zencoding-vim
+Bundle 'mattn/zencoding-vim'
 
 filetype plugin indent on
 
