@@ -2,7 +2,5 @@
 *.swp
 *.pyc
 *.pyo
-_vim/bundle
-_vim/.vim
-_vim/autoload
-_vim/plugin
+!/_vim/bundle/vundle
+/_vim/bundle
