@@ -4,3 +4,4 @@
 *.pyo
 !/_vim/bundle/vundle
 /_vim/bundle
+bin/gitolite
