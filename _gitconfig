@@ -39,3 +39,6 @@
 	rebase = true
 [grep]
 	lineNumbers = true
+[branch "master"]
+	mergeoptions = --no-ff
+	rebase = true
