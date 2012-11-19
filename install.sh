@@ -76,3 +76,7 @@ darwin*)
   homebrew git-flow
   ;;
 esac
+
+
+# python
+sudo easy_install flake8

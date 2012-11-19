@@ -238,6 +238,10 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 
 ## Ruby
 [ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
+if [ -d "${HOME}/.rbenv" ]; then
+  export PATH="${HOME}/.rbenv/bin:$PATH"
+  eval "$(rbenv init -)"
+fi
 
 ## Perl
 export PERLBREW_ROOT=$HOME/.perl5/perlbrew
