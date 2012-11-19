@@ -100,7 +100,7 @@ if v:version > 702
 
   "" neocomplcache
   Bundle 'Shougo/neocomplcache'
-  Bundle 'Shougo/neocomplcache-snippets-complete'
+  Bundle 'Shougo/neosnippet'
 
   " Use neocomplcache.
   let g:neocomplcache_enable_at_startup = 1

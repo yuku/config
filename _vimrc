@@ -142,6 +142,7 @@ autocmd BufRead,BufNewFile Capfile,Gemfile set filetype=ruby
 autocmd BufRead,BufNewFile *.json          set filetype=javascript
 autocmd BufRead,BufNewFile *.md            set filetype=markdown
 autocmd BufRead,BufNewFile *.psgi          set filetype=perl
+autocmd BufRead,BufNewFile *.t             set filetype=perl
 
 if filereadable(expand('~/.vimrc.plugins'))
   source ~/.vimrc.plugins
