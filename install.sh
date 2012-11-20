@@ -32,11 +32,31 @@ done
 link_file bin
 
 
-# vim
+# package install
 
-if [ ! -e _vim/bundle/vim-fugitive ] ; then
-  vim -c "BundleInstall!"
-fi
+homebrew() {
+  if [[ `brew info $1 | grep "^Not installed"` ]] ; then
+    echo "Install\t$1"
+    brew install $1
+  fi
+}
+
+case $OSTYPE in
+darwin*)
+  homebrew source-highlight
+  homebrew tmux
+  homebrew tig
+  homebrew wget
+  homebrew git-flow
+  ;;
+esac
+
+
+# python
+#sudo easy_install flake8
+
+
+# vim
 
 if [ -d _vim/bundle/vimproc ] ; then
   cd _vim/bundle/vimproc
@@ -61,26 +81,4 @@ if [ -d _vim/bundle/vimproc ] ; then
   cd $DOTFILES
 fi
 
-
-# package install
-
-homebrew() {
-  if [[ `brew info $1 | grep "^Not installed"` ]] ; then
-    echo "Install\t$1"
-    brew install $1
-  fi
-}
-
-case $OSTYPE in
-darwin*)
-  homebrew source-highlight
-  homebrew tmux
-  homebrew tig
-  homebrew wget
-  homebrew git-flow
-  ;;
-esac
-
-
-# python
-#sudo easy_install flake8
+vim -c "BundleInstall!"
