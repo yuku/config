@@ -2,7 +2,7 @@
 
 # submodules
 
-git submodule sync
+#git submodule sync
 git submodule init
 git submodule update
 
@@ -44,14 +44,18 @@ if [ -d _vim/bundle/vimproc ] ; then
   darwin*)
     if [ ! -e autoload/vimproc_mac.so ] ; then
       echo "Installing vimproc"
-      make -f make_mac.mak
+    else
+      echo "Reinstalling vimproc"
     fi
+    make -f make_mac.mak
     ;;
   linux*)
-    if [ ! -e autoload/vimproc_unix.so ] ; then
+    if [ $REINSTALL -o ! -e autoload/vimproc_unix.so ] ; then
       echo "Installing vimproc"
-      make -f make_unix.mak
+    else
+      echo "Reinstalling vimproc"
     fi
+    make -f make_unix.mak
     ;;
   esac
   cd $DOTFILES
@@ -79,4 +83,4 @@ esac
 
 
 # python
-sudo easy_install flake8
+#sudo easy_install flake8
