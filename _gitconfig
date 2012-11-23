@@ -42,3 +42,5 @@
 [branch "master"]
 	mergeoptions = --no-ff
 	rebase = true
+[github]
+	user = taka84u9
