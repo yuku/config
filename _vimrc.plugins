@@ -232,6 +232,9 @@ Bundle 'tpope/vim-markdown'
 " zencoding-vim
 Bundle 'mattn/zencoding-vim'
 
+" xslate-vim
+Bundle "motemen/xslate-vim"
+
 filetype plugin indent on
 
 " vim: set filetype=vim :
