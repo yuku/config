@@ -101,6 +101,7 @@ if v:version > 702
   "" neocomplcache
   Bundle 'Shougo/neocomplcache'
   Bundle 'Shougo/neosnippet'
+  Bundle 'honza/snipmate-snippets'
 
   " Use neocomplcache.
   let g:neocomplcache_enable_at_startup = 1
@@ -127,7 +128,7 @@ if v:version > 702
   endif
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-  let g:neocomplcache_snippets_dir = "~/.vim/snippets"
+  let g:neocomplcache_snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
   " Define dictionary.
   let g:neocomplcache_dictionary_filetype_lists = {
         \ 'default'    : '',
@@ -140,9 +141,19 @@ if v:version > 702
   endif
   let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 
-  " for snippets
-  imap <expr><C-k> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : "\<C-n>"
-  smap <C-k> <Plug>(neocomplcache_snippets_expand)
+  " Plugin key-mappings.
+  imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+  smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+  " SuperTab like snippets behavior.
+  imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+  smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+  " For snippet_complete marker.
+  if has('conceal')
+    set conceallevel=2 concealcursor=i
+  endif
+
 
   "" Vimfiler
   Bundle 'Shougo/vimfiler'
