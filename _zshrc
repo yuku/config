@@ -20,7 +20,7 @@ export OUTPUT_CHARSET=utf-8
 # Environment variables
 export DOTFILES=$HOME/code/dotfiles
 
-cdpath=(.. ~ ~/code)
+#cdpath=(.. ~ ~/code)
 
 # Backspace key {{{1
 bindkey "^?" backward-delete-char
@@ -28,6 +28,7 @@ bindkey "^?" backward-delete-char
 
 # Prompt configuration
 autoload -U colors
+REPORTTIME=3
 colors
 
 #
@@ -157,9 +158,9 @@ setopt notify               # immediately notify when backgroung job finishes
 e_normal=`echo -e "\033[0;30m"`
 e_RED=`echo -e "\033[1;31m"`
 e_BLUE=`echo -e "\033[1;36m"`
-make () {
-  LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-}
+#make () {
+#  LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
+#}
 
 # colorize less
 if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
