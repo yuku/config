@@ -154,6 +154,8 @@ if v:version > 702
     set conceallevel=2 concealcursor=i
   endif
 
+  let g:neosnippet#enable_snipmate_compatibility = 1
+
 
   "" Vimfiler
   Bundle 'Shougo/vimfiler'
