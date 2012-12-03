@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+#!perl
 
 =pod
     Original rc file is https://gist.github.com/3fb14d60757e29f8ef13.
@@ -34,7 +34,7 @@ $_REPL->fancy_prompt(sub {
 } );
 $_REPL->fancy_continuation_prompt(sub {
     my $self = shift;
-    "\ca" . color('blue')   . "\cb" 
+    "\ca" . color('blue')   . "\cb"
 . $self->current_package
   . "\ca" . color('yellow') . "\cb" . '(' . $self->line_depth . ')'
   . "\ca" . color('reset')  . "\cb" . '> ' . (' ' x ($self->line_depth * 2))
