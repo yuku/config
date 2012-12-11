@@ -28,6 +28,18 @@ if v:version > 702
 
   "" unite.vim
   Bundle 'Shougo/unite.vim'
+  " Unite Plugins
+    "" unite-git_grep
+    Bundle 'sgur/unite-git_grep'
+
+    "" unite-git
+    Bundle 'taka84u9/unite-git'
+
+    "" unite-outline
+    Bundle 'h1mesuke/unite-outline'
+
+    "" unite-help
+    Bundle 'tsukkee/unite-help'
 
   let g:unite_enable_split_vertically = 1
   let g:unite_winwidth = 50
@@ -40,7 +52,7 @@ if v:version > 702
   nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
   nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
   nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
-  nnoremap <silent> [unite]l :<C-u>Unite line<CR>
+  nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit -winwidth=30 -no-start-insert outline<CR>
   nnoremap <silent> [unite]t :<C-u>Unite -immediately -horizontal tab:no-current<CR>
   nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
 
@@ -75,19 +87,6 @@ if v:version > 702
     nmap <buffer><expr><C-i>  unite#do_action('left')
     imap <buffer><expr><C-i>  unite#do_action('left')
   endfunction
-
-  " Unite Plugins
-    "" unite-git_grep
-    Bundle 'sgur/unite-git_grep'
-
-    "" unite-git
-    Bundle 'taka84u9/unite-git'
-
-    "" unite-outline
-    Bundle 'h1mesuke/unite-outline'
-
-    "" unite-help
-    Bundle 'tsukkee/unite-help'
 
   "" vim-ref
   Bundle 'thinca/vim-ref'
@@ -228,7 +227,6 @@ let coffee_compile_vert = 1
 
 "" vim-powerline
 Bundle "Lokaltog/vim-powerline"
-"let g:Powerline_symbols = 'fancy'
 
 "" vim-less
 Bundle "groenewege/vim-less"
@@ -250,6 +248,8 @@ Bundle 'mattn/zencoding-vim'
 
 " xslate-vim
 Bundle "motemen/xslate-vim"
+
+Bundle "digitaltoad/vim-jade"
 
 filetype plugin indent on
 

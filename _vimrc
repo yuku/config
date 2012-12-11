@@ -39,9 +39,11 @@ endif
 
 let mapleader=','           " Lead with ,
 " Jump to vimrc
-nnoremap <space><space> :<C-u>edit $HOME/.vimrc<CR>
+nnoremap <space>v :<C-u>edit $HOME/.vimrc<CR>
+" Jump to vimrc.plugins
+nnoremap <space>p :<C-u>edit $HOME/.vimrc.plugins<CR>
 " Reload vimrc setting
-nnoremap <space>s       :<C-u>source $HOME/.vimrc<CR>
+nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
 " Create new tab
 cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <C-h> :<C-u>tabprevious<CR>
