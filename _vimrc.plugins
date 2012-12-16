@@ -19,7 +19,7 @@ if v:version > 702
 
     "" vimshell
     Bundle 'Shougo/vimshell'
-    function! LaunchVimShell
+    function! LaunchVimShell()
         if &filetype =~ 'python'
             VimShellInteractive python
         elseif &filetype =~ 'ruby'
@@ -30,7 +30,7 @@ if v:version > 702
             VimShell
         endif
     endfunction
-    nnoremap <silent> <leader>vs :<C-u>LaunchVimShell<CR>
+    nnoremap <silent> <leader>vs :<C-u>call LaunchVimShell()<CR>
     vmap     <silent> <leader>ss :VimShellSendString<CR>
     nnoremap <silent> <leader>ss :<C-u>VimShellSendString<CR>
 
@@ -41,7 +41,7 @@ if v:version > 702
     Bundle 'sgur/unite-git_grep'
 
     "" unite-git
-    Bundle 'yuku-t/unite-git'
+    Bundle 'taka84u9/unite-git'
 
     "" unite-outline
     Bundle 'h1mesuke/unite-outline'
@@ -112,7 +112,7 @@ if v:version > 702
 
     " vim-ref Plugins
     "" vim-ref-ri
-    Bundle 'yuku-t/vim-ref-ri'
+    Bundle 'taka84u9/vim-ref-ri'
 
     "" neocomplcache
     Bundle 'Shougo/neocomplcache'
