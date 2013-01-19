@@ -12,8 +12,8 @@
 #----------------------------------------------------------#
 
 # Locale settings {{{1
-export LC_ALL=ja_JP.UTF-8
-export LANG=ja_JP.UTF-8
+export LC_ALL=ja_JP.utf8
+export LANG=ja_JP.utf8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
@@ -51,8 +51,8 @@ BOLD_YELLOW="%{${fg_bold[yellow]}%}"
 BOLD_WHITE="%{${fg_bold[white]}%}"
 BOLD_GRAY="%{${fg_bold[gray]}%}"
 
-#RPROMPT="%T"
-#setopt transient_rprompt
+RPROMPT="%T"
+setopt transient_rprompt
 precmd () {
   PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} %T"
   st=`git status 2>/dev/null`
@@ -81,6 +81,7 @@ setopt nolistbeep
 
 # Use escape sequences
 setopt prompt_subst
+#export PS1=\`powerline-prompt\`
 
 # Ignore commands following # in cui
 setopt interactive_comments
