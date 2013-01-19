@@ -51,34 +51,6 @@ darwin*)
   ;;
 esac
 
-
-# python
-#sudo easy_install flake8
-
-
-# vim
-
-if [ -d _vim/bundle/vimproc ] ; then
-  cd _vim/bundle/vimproc
-  case $OSTYPE in
-  darwin*)
-    if [ ! -e autoload/vimproc_mac.so ] ; then
-      echo "Installing vimproc"
-    else
-      echo "Reinstalling vimproc"
-    fi
-    make -f make_mac.mak
-    ;;
-  linux*)
-    if [ $REINSTALL -o ! -e autoload/vimproc_unix.so ] ; then
-      echo "Installing vimproc"
-    else
-      echo "Reinstalling vimproc"
-    fi
-    make -f make_unix.mak
-    ;;
-  esac
-  cd $DOTFILES
+if [ ! -d $HOME/.vim/bundle/neobundle.vim ] ; then
+  git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 fi
-
-vim -c "BundleInstall!"
