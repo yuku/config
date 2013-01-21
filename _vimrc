@@ -10,7 +10,7 @@
 "" General
 
 set nocompatible            " use Vim in more useful way
-"set clipboard+=unnamed     " share clipboard with other systems
+set clipboard+=unnamed     " share clipboard with other systems
 
 "" Text Formatting
 
@@ -40,8 +40,6 @@ endif
 let mapleader=','           " Lead with ,
 " Jump to vimrc
 nnoremap <space>v :<C-u>edit $HOME/.vimrc<CR>
-" Jump to vimrc.plugins
-nnoremap <space>p :<C-u>edit $HOME/.vimrc.plugins<CR>
 " Reload vimrc setting
 nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
 " Create new tab
