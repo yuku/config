@@ -12,8 +12,8 @@
 #----------------------------------------------------------#
 
 # Locale settings {{{1
-export LC_ALL=ja_JP.utf8
-export LANG=ja_JP.utf8
+export LC_ALL=en_US.utf8
+export LANG=en_US.utf8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
