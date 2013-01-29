@@ -34,6 +34,12 @@ if v:version >= 703
   set colorcolumn=+1
 endif
 
+"" Persistent undo
+if has('persistent_undo')
+    set undodir=~/.vim/undo
+    set undofile
+endif
+
 
 "" Remapping
 
@@ -196,7 +202,6 @@ function! s:unite_my_settings()
     nmap <buffer><C-c>  <Plug>(unite_exit)
     "imap <buffer>jj     <Plug>(unite_insert_leave)
     imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
-
 
     " <C-l>: manual neocomplecache completion.
     inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
