@@ -105,7 +105,7 @@ matc WhitespaceEOL /\s\+$/
 "" Backup
 
 " backup current file, deleted afterwards
-set nobackup
+set backup
 set writebackup
 if !filewritable($HOME."/.vim-backup")
   call mkdir($HOME."/.vim-backup", "p")
@@ -137,14 +137,12 @@ set fileencodings=utf-8     " ..
 set fileformats=unix,mac,dos
 
 
-"" Source
-autocmd BufRead,BufNewFile Capfile,Gemfile set filetype=ruby
-autocmd BufRead,BufNewFile *.coffee        set filetype=coffee
-autocmd BufRead,BufNewFile *.json          set filetype=javascript
-autocmd BufRead,BufNewFile *.md            set filetype=markdown
-autocmd BufRead,BufNewFile *.psgi          set filetype=perl
-autocmd BufRead,BufNewFile *.t             set filetype=perl
-
+"" ftdetects
+autocmd BufRead,BufNewFile Capfile,Gemfile      set filetype=ruby
+autocmd BufRead,BufNewFile *.json               set filetype=javascript
+autocmd BufRead,BufNewFile *.md                 set filetype=markdown
+autocmd BufRead,BufNewFile *.psgi,*.t           set filetype=perl
+autocmd BufRead,BufNewFile .tmux.conf,tmux.conf set filetype=tmux
 
 filetype off
 if has('vim_starting')
@@ -223,7 +221,8 @@ let g:neocomplcache_enable_underbar_completion = 1
 " Set minimum syntax keyword length.
 let g:neocomplcache_min_syntax_length = 3
 let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-
+"
+let g:neocomplcache_max_list = 10
 " Use smartcase.
 let g:neocomplcache_enable_smart_case = 1
 " Use camel case completion.
@@ -299,26 +298,43 @@ let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['ruby', 'javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
 
+NeoBundle "goldfeld/vim-seek"
+
 NeoBundleLazy 'tpope/vim-markdown'
 autocmd FileType markdown NeoBundleSource vim-markdown
 
-NeoBundleLazy 'mattn/zencoding-vim'
-autocmd FileType html NeoBundleSource zencoding-vim
+"NeoBundleLazy 'mattn/zencoding-vim'
+"autocmd FileType html NeoBundleSource zencoding-vim
 
 NeoBundleLazy 'digitaltoad/vim-jade'
 autocmd FileType jade NeoBundleSource vim-jade
+autocmd BufRead,BufNewFile *.jade set filetype=jade
 
 NeoBundleLazy 'groenewege/vim-less'
 autocmd FileType less NeoBundleSource vim-less
+autocmd BufRead,BufNewFile *.less set filetype=less
 
 NeoBundleLazy 'petdance/vim-perl'
 autocmd FileType perl NeoBundleSource vim-perl
 
 NeoBundleLazy 'kchmck/vim-coffee-script'
 autocmd FileType coffee NeoBundleSource vim-coffee-script
+autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 
 NeoBundleLazy 'tpope/vim-rails'
-autocmd FileType ruby NeoBundleSource vim-rails
+"autocmd FileType ruby NeoBundleSource vim-rails
+
+NeoBundleLazy "motemen/xslate-vim"
+autocmd FileType xslate NeoBundleSource xslate-vim
+
+NeoBundleLazy "motemen/hatena-vim"
+autocmd FileType hatena NeoBundleSource hatena-vim
+autocmd BufRead,BufNewFile *.hatena set filetype=hatena
+
+NeoBundleLazy "HybridText"
+autocmd BufRead,BufNewFile *.txt set filetype=hybrid
+autocmd FileType hybrid NeoBundleSource HybridText
+
 
 filetype plugin indent on
 
