@@ -10,7 +10,7 @@
 "" General
 
 set nocompatible            " use Vim in more useful way
-set clipboard+=unnamed     " share clipboard with other systems
+set clipboard+=unnamed      " share clipboard with other systems
 
 "" Text Formatting
 
@@ -18,11 +18,10 @@ set autoindent              " automatic indent new lines
 set smartindent             " be smart about it
 inoremap # X<BS>#
 set wrap                    " wrap lines
-set sidescroll=5
 set softtabstop=2
 set shiftwidth=2
 set shiftround
-set tabstop=4
+set tabstop=8
 set expandtab               " expand tabs to spaces
 set nosmarttab              " fuck tabs
 set formatoptions+=n        " support for numbered/bullet lists
