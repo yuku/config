@@ -54,7 +54,7 @@ BOLD_GRAY="%{${fg_bold[gray]}%}"
 RPROMPT="%T"
 setopt transient_rprompt
 precmd () {
-  PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} %T"
+  PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
   st=`git status 2>/dev/null`
   if [ $? ] ; then
     if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
@@ -66,11 +66,7 @@ precmd () {
     else
       color=$RED
     fi
-    PROMPT+="
-$color$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
-  else
-    PROMPT+="
-"
+    PROMPT+="$color$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
   fi
 }
 
