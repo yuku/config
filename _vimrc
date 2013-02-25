@@ -332,13 +332,16 @@ NeoBundleLazy "motemen/xslate-vim"
 autocmd FileType xslate NeoBundleSource xslate-vim
 
 NeoBundleLazy "motemen/hatena-vim"
-autocmd FileType hatena NeoBundleSource hatena-vim
 autocmd BufRead,BufNewFile *.hatena set filetype=hatena
+autocmd FileType hatena NeoBundleSource hatena-vim
 
 NeoBundleLazy "HybridText"
 autocmd BufRead,BufNewFile *.txt set filetype=hybrid
 autocmd FileType hybrid NeoBundleSource HybridText
 
+NeoBundleLazy "rodjek/vim-puppet"
+autocmd BufRead,BufNewFile *.pp set filetype=puppet
+autocmd FileType puppet NeoBundleSource vim-puppet
 
 filetype plugin indent on
 

@@ -24,7 +24,7 @@ alias -g G='|grep'
 alias -g GI='|grep -i'
 
 
-alias tmux='tmux -u'
+#alias tmux='tmux -u'
 alias hg='hg --encoding=utf-8'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
