@@ -12,8 +12,8 @@
 #----------------------------------------------------------#
 
 # Locale settings {{{1
-export LC_ALL=en_US.utf8
-export LANG=en_US.utf8
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
@@ -273,6 +273,7 @@ source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
+[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
 
 typeset -U path cdpath fpath manpath
 
