@@ -2,10 +2,8 @@
 
 # submodules
 
-#git submodule sync
 git submodule init
 git submodule update
-
 
 # make symbolic links
 
@@ -31,25 +29,7 @@ do
 done
 link_file bin
 
-
 # package install
-
-#homebrew() {
-#  if [[ `brew info $1 | grep "^Not installed"` ]] ; then
-#    echo "Install\t$1"
-#    brew install $1
-#  fi
-#}
-#
-#case $OSTYPE in
-#darwin*)
-#  homebrew source-highlight
-#  homebrew tmux
-#  homebrew tig
-#  homebrew wget
-#  homebrew git-flow
-#  ;;
-#esac
 
 if [ ! -d $HOME/.vim/bundle/neobundle.vim ] ; then
   git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
