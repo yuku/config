@@ -18,9 +18,9 @@ export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 
 # Environment variables
-export DOTFILES=$HOME/code/dotfiles
+export DOTFILES=$HOME/src/dotfiles
 
-#cdpath=(.. ~ ~/code)
+#cdpath=(.. ~ ~/src)
 
 # Backspace key {{{1
 bindkey "^?" backward-delete-char
