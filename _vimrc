@@ -57,7 +57,7 @@ nnoremap <C-l> :<C-u>tabnext<CR>
 set ruler                   " show the cursor position all the time
 " highlight cursor line in current window
 augroup cch
-  autocmd! cch
+  autocmd!
   autocmd WinLeave * set nocursorline
   autocmd WinEnter,BufRead * set cursorline
 augroup END
@@ -143,11 +143,35 @@ set fileformats=unix,mac,dos
 
 
 "" ftdetects
-autocmd BufRead,BufNewFile Capfile,Gemfile      set filetype=ruby
-autocmd BufRead,BufNewFile *.json               set filetype=javascript
-autocmd BufRead,BufNewFile *.md                 set filetype=markdown
-autocmd BufRead,BufNewFile *.psgi,*.t           set filetype=perl
-autocmd BufRead,BufNewFile .tmux.conf,tmux.conf set filetype=tmux
+augroup FileTypeDetect
+    autocmd!
+    autocmd BufRead,BufNewFile Capfile,Gemfile      setf ruby
+    autocmd BufRead,BufNewFile *.json               setf javascript
+    autocmd BufRead,BufNewFile *.md                 setf markdown
+    autocmd BufRead,BufNewFile *.PL,*.psgi,*.t      setf perl
+    autocmd BufRead,BufNewFile .tmux.conf,tmux.conf setf tmux
+    autocmd BufRead,BufNewFile *.jade               setf jade
+    autocmd BufRead,BufNewFile *.less               setf less
+    autocmd BufRead,BufNewFile *.coffee             setf coffee
+    autocmd BufRead,BufNewFile *.hatena             setf hatena
+    autocmd BufRead,BufNewFile *.txt                setf hybrid
+augroup END
+
+augroup FileTypePlugin
+    autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
+    autocmd FileType int-gosh   setlocal nonu
+    autocmd FileType int-pry    setlocal nonu
+    autocmd FileType int-python setlocal nonu
+    autocmd FileType java       setlocal ts=4 sts=4 sw=4
+    autocmd FileType markdown   setlocal tw=0
+    autocmd FileType perl       setlocal ts=4 sts=4 sw=4
+    autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
+    autocmd FileType rst        setlocal tw=0
+    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
+    autocmd FileType vimfiler   setlocal nonu
+    autocmd FileType vimshell   setlocal nonu
+augroup END
+
 
 filetype off
 if has('vim_starting')
@@ -187,14 +211,19 @@ nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
 nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
 "nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
 
-autocmd FileType vim    nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit help<CR>
-autocmd FileType sh     nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
-autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
-autocmd FileType ruby   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
-autocmd FileType python nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
-autocmd FileType perl   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
 
-autocmd FileType unite call s:unite_my_settings()
+augroup UniteFileType
+    autocmd!
+    autocmd FileType vim    nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit help<CR>
+    autocmd FileType sh     nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
+    autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
+    autocmd FileType ruby   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
+    autocmd FileType python nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
+    autocmd FileType perl   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
+
+    autocmd FileType unite call s:unite_my_settings()
+augroup END
+
 function! s:unite_my_settings()
     " Overwrite settings
     nmap <buffer><ESC>  <Plug>(unite_exit)
@@ -234,10 +263,6 @@ let g:neocomplcache_enable_camel_case_completion = 1
 " Select with <TAB>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-let g:neocomplcache_ctags_arguments_list = {
-            \ 'perl' : '-R -h ".pm"'
-            \ }
-
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
     let g:neocomplcache_keyword_patterns = {}
@@ -247,8 +272,9 @@ let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
 let g:neocomplcache_snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default'    : '',
-            \ 'perl'       : $HOME . '/.vim/dict/perl.dict'
+            \ 'default'   : '',
+            \ 'perl'      : $HOME.'/.vim/dict/perl.dict',
+            \ 'javascrip' : $HOME.'/.vim/dict/javascript.dict'
             \ }
 
 " Define keywork.
@@ -305,39 +331,28 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 NeoBundle "goldfeld/vim-seek"
 
 NeoBundleLazy 'tpope/vim-markdown'
-autocmd FileType markdown NeoBundleSource vim-markdown
-
-"NeoBundleLazy 'mattn/zencoding-vim'
-"autocmd FileType html NeoBundleSource zencoding-vim
-
+NeoBundleLazy 'mattn/zencoding-vim'
 NeoBundleLazy 'digitaltoad/vim-jade'
-autocmd FileType jade NeoBundleSource vim-jade
-autocmd BufRead,BufNewFile *.jade set filetype=jade
-
 NeoBundleLazy 'groenewege/vim-less'
-autocmd FileType less NeoBundleSource vim-less
-autocmd BufRead,BufNewFile *.less set filetype=less
-
 NeoBundleLazy 'petdance/vim-perl'
-autocmd FileType perl NeoBundleSource vim-perl
-
 NeoBundleLazy 'kchmck/vim-coffee-script'
-autocmd FileType coffee NeoBundleSource vim-coffee-script
-autocmd BufRead,BufNewFile *.coffee set filetype=coffee
-
 NeoBundleLazy 'tpope/vim-rails'
-"autocmd FileType ruby NeoBundleSource vim-rails
-
 NeoBundleLazy "motemen/xslate-vim"
-autocmd FileType xslate NeoBundleSource xslate-vim
-
 NeoBundleLazy "motemen/hatena-vim"
-autocmd BufRead,BufNewFile *.hatena set filetype=hatena
-autocmd FileType hatena NeoBundleSource hatena-vim
-
 NeoBundleLazy "HybridText"
-autocmd BufRead,BufNewFile *.txt set filetype=hybrid
-autocmd FileType hybrid NeoBundleSource HybridText
+augroup LazyBundle
+    autocmd!
+    autocmd FileType markdown NeoBundleSource vim-markdown
+    "autocmd FileType html NeoBundleSource zencoding-vim
+    autocmd FileType jade NeoBundleSource vim-jade
+    autocmd FileType less NeoBundleSource vim-less
+    autocmd FileType perl NeoBundleSource vim-perl
+    autocmd FileType coffee NeoBundleSource vim-coffee-script
+    "autocmd FileType ruby NeoBundleSource vim-rails
+    autocmd FileType xslate NeoBundleSource xslate-vim
+    autocmd FileType hatena NeoBundleSource hatena-vim
+    autocmd FileType hybrid NeoBundleSource HybridText
+augroup END
 
 NeoBundleLazy "rodjek/vim-puppet"
 autocmd BufRead,BufNewFile *.pp set filetype=puppet
