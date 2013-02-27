@@ -273,8 +273,6 @@ source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 # local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-[ -f /opt/boxen/env.sh ] && source /opt/boxen/env.sh
-
 typeset -U path cdpath fpath manpath
 
 # vim: set filetype=zsh :

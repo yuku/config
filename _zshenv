@@ -7,17 +7,10 @@ path=(
 if [ -s /usr/local/bin/virtualenvwrapper.sh ] ; then
   source /usr/local/bin/virtualenvwrapper.sh
 fi
-[ -d "${HOME}/.rbenv" ] && export PATH="${HOME}.rbenv/shims:$PATH"
-#if [ -s "${HOME}/.rvm/scripts/rvm" ] ; then
-#  source $HOME/.rvm/scripts/rvm
-#fi
+
 if [ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ] ; then
   source $HOME/.perl5/perlbrew/etc/bashrc
 fi
-if [ -s "${HOME}/.nvm/nvm.sh" ] ; then
-  source $HOME/.nvm/nvm.sh
-fi
-
 
 case ${OSTYPE} in
 darwin*) # Mac OS X
