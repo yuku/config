@@ -11,45 +11,73 @@
 #                                                          #
 #----------------------------------------------------------#
 
-# Locale settings {{{1
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+# This file sets up cli environment.
+
+### Alias settings
+setopt complete_aliases     # expand aliases before completing
+## General
+alias ll='ls -lh'
+alias lla='ls -lhA'
+alias la='ls -A'
+alias lsd='ls -ld *(-/DN)'
+alias df='df -h'
+alias du='du -h'
+alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias grep=egrep
+alias h=history
+alias j=jobs
+alias gst='git status'
+## Global alias
+alias -g L='|less'
+alias -g H='|head'
+alias -g T='|tail'
+alias -g G='|grep'
+alias -g GI='|grep -i'
+#alias tmux='tmux -u'
+alias hg='hg --encoding=utf-8'
+alias javac='javac -J-Dfile.encoding=UTF-8'
+alias java='java -Dfile.encoding=UTF-8'
+alias gcc='gcc -Wall -lstdc++'
+## os depending alias settings
+case ${OSTYPE} in
+darwin*) # Mac OS X
+  alias ls='ls -GF'
+  ;;
+linux*)
+  alias ls='ls -F --color=auto'
+  ;;
+esac
+
+### misc. settings
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
-
-# Environment variables
-export DOTFILES=$HOME/src/dotfiles
-
-#cdpath=(.. ~ ~/src)
-
-# Backspace key {{{1
+umask 002            # default umask -> group writable
+bindkey -e           # emacs like keybinding
+# Backspace key
 bindkey "^?" backward-delete-char
 
-
-# Prompt configuration
+### Prompt configuration
 autoload -U colors
 REPORTTIME=3
 colors
 
-#
 # Color
-#
-DEFAULT=$'%{\e[1;0m%}'
-RESET="%{${reset_color}%}"
-GREEN="%{${fg[green]}%}"
-BLUE="%{${fg[blue]}%}"
-RED="%{${fg[red]}%}"
-CYAN="%{${fg[cyan]}%}"
-YELLOW="%{${fg[yellow]}%}"
-WHITE="%{${fg[white]}%}"
-GRAY="%{${fg[gray]}%}"
-BOLD_GREEN="%{${fg_bold[green]}%}"
-BOLD_BLUE="%{${fg_bold[blue]}%}"
-BOLD_RED="%{${fg_bold[red]}%}"
-BOLD_CYAN="%{${fg_bold[cyan]}%}"
-BOLD_YELLOW="%{${fg_bold[yellow]}%}"
-BOLD_WHITE="%{${fg_bold[white]}%}"
-BOLD_GRAY="%{${fg_bold[gray]}%}"
+local DEFAULT=$'%{\e[1;0m%}'
+local RESET="%{${reset_color}%}"
+local GREEN="%{${fg[green]}%}"
+local BLUE="%{${fg[blue]}%}"
+local RED="%{${fg[red]}%}"
+local CYAN="%{${fg[cyan]}%}"
+local YELLOW="%{${fg[yellow]}%}"
+local WHITE="%{${fg[white]}%}"
+local GRAY="%{${fg[gray]}%}"
+local BOLD_GREEN="%{${fg_bold[green]}%}"
+local BOLD_BLUE="%{${fg_bold[blue]}%}"
+local BOLD_RED="%{${fg_bold[red]}%}"
+local BOLD_CYAN="%{${fg_bold[cyan]}%}"
+local BOLD_YELLOW="%{${fg_bold[yellow]}%}"
+local BOLD_WHITE="%{${fg_bold[white]}%}"
+local BOLD_GRAY="%{${fg_bold[gray]}%}"
 
 RPROMPT="%T"
 setopt transient_rprompt
@@ -71,28 +99,17 @@ precmd () {
 }
 
 # No beep
-set bell-style none
-setopt nobeep
-setopt nolistbeep
+set bell-style none; setopt nobeep; setopt nolistbeep
 
-# Use escape sequences
-setopt prompt_subst
-#export PS1=\`powerline-prompt\`
-
-# Ignore commands following # in cui
-setopt interactive_comments
-
-# Disable C-s and C-q
-setopt no_flow_control
-
-# Enable Japanese file name
-setopt print_eight_bit
+setopt prompt_subst         # Use escape sequences
+setopt interactive_comments # Ignore commands following # in cui
+setopt no_flow_control      # Disable C-s and C-q
+setopt print_eight_bit      # Enable Japanese file name
 
 # C-w deletes the caractor next to the /
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
 
-# Show direcotry in water color
-export LS_COLORS='di=01;36'
+export LS_COLORS='di=01;36' # Show direcotry in water color
 
 # Automatically escape URL string
 autoload -Uz url-quote-magic; zle -N self-insert url-quote-magic
@@ -101,28 +118,14 @@ autoload -Uz url-quote-magic; zle -N self-insert url-quote-magic
 export ZLS_COLORS=$LS_COLORS
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 
-# Don't automatically remove / on the tail
-setopt noautoremoveslash
+setopt noautoremoveslash    # Don't automatically remove / on the tail
 
 
-#
 # MySQL
-#
 #export MYSQL_PS1='(^[[32m\u^[[00m@^[[33m\h^[[00m) ^[[34m[\d]^[[00m > '
 
 
-#----------------------------------------------------------
-# Move
-#----------------------------------------------------------
-# Change direcroty with it's name
-#
-setopt auto_cd
-# Execute pushd command when current directory is changed by cd command
-#
-setopt auto_pushd
-setopt pushd_ignore_dups
-
-# History {{{1
+### History settings
 HISTFILE=$HOME/.zsh-history # history file
 HISTSIZE=10000              # number of saved history on memory
 SAVEHIST=10000              # number of saved history
@@ -146,18 +149,7 @@ bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
 history-all () { history -E 1 }
 
-# Other
-setopt no_hup               # keep processs when logging out
-setopt checkjobs            # check background job when logging out
-setopt notify               # immediately notify when backgroung job finishes
-
-# colorize make error message
-e_normal=`echo -e "\033[0;30m"`
-e_RED=`echo -e "\033[1;31m"`
-e_BLUE=`echo -e "\033[1;36m"`
-#make () {
-#  LANG=C command make "$@" 2>&1 | sed -e "s@[Ee]rror:.*@$e_RED&$e_normal@g" -e "s@cannot\sfind.*@$e_RED&$e_normal@g" -e "s@[Ww]arning:.*@$e_BLUE&$e_normal@g"
-#}
+### misc. settings
 
 # colorize less
 if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
@@ -165,106 +157,50 @@ if [ -x "${HOME}/.source-highlight/src-hilite-lesspipe.sh" ]; then
   export LESSOPEN="| $HOME/.source-highlight/src-hilite-lesspipe.sh %s"
 fi
 
+setopt no_hup               # Keep processs when logging out
+setopt checkjobs            # Check background job when logging out
+setopt notify               # Immediately notify when backgroung job finishes
+setopt auto_cd              # Change direcroty with it's name
+setopt auto_pushd           # Execute pushd command when current directory is
+                            # changed by cd command
+setopt pushd_ignore_dups    # Make pushd command ignore duplicated directories
+
 export GREP_OPTIONS='--color=auto'
 
-# Completion
-
-# options
+### Completion settings
 # Use full complement functionality
-autoload -Uz compinit
-compinit
-# Toggle complement candidates using TAB
-setopt auto_menu
-# Show all candidates
-setopt auto_list
+autoload -Uz compinit; compinit
+setopt auto_menu            # Toggle complement candidates using TAB
+setopt auto_list            # Show all candidates
+setopt magic_equal_subst    # Even option args are complemented
+setopt auto_param_slash     # Insert / after a complemented directory name
+setopt list_packed          # Use compackt style candidates viewer mode
+setopt list_types           # Show kinds of file using marks
+setopt correct              # Do spell check
 # Can use Emacs style keybind to select candidates
 zstyle ':completion:*:default' menu select=1
-# Even option args are complemented
-setopt magic_equal_subst
-# Insert / after a complemented directory name
-setopt auto_param_slash
-# Use compackt style candidates viewer mode
-setopt list_packed
-# Show kinds of file using marks
-setopt list_types
-# Do spell check
-setopt correct
 # Complement process name with kill command
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31'
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 # Don't show current directory
 zstyle ':completion:*' ignore-parents parent pwd
 
-## custom
 
-## cake
-#_cake() {
-#  if [ -f Cakefile ]; then
-#    compadd `cake | grep '^cake ' | sed -e "s/cake \([^ ]*\) .*/\1/" | grep -v '^$'`
-#  fi
-#}
-#compdef _cake cake
-#
-## study
-#study() {
-#  cd ~/code/study/$1
-#}
-#_study() {
-#  local -a langs
-#  langs=( $( find ~/code/study/* -type d -maxdepth 0 -exec basename '{}' ';') )
-#  compadd $langs
-#  return 1;
-#}
-#compdef _study study
-#
-## code directory
-#c() {
-#  cd ~/code/$1
-#}
-#_c() {
-#  local -a projs
-#  projs=( $( find ~/code/* -type d -maxdepth 0 -exec basename '{}' ';') )
-#  compadd $projs
-#  return 1;
-#}
-#compdef _c c
-
-# Language specific configuration
-
-## Python
-#export NOSE_REDNOSE=1
-export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
+### Python settings
+export NOSE_REDNOSE=1
 export PYTHONSTARTUP=$HOME/.pythonrc
 
-## Ruby
-[ -s "${HOME}/.refe/refe" ] && export PATH=$PATH:$HOME/.refe
-if [ -d "${HOME}/.rbenv" ]; then
-  export PATH="${HOME}/.rbenv/bin:$PATH"
-  eval "$(rbenv init -)"
-fi
-
-## Perl
-export PERLBREW_ROOT=$HOME/.perl5/perlbrew
+### Perl settings
 export PERL_BADLANG=0
 
 # Extra zshrc files
 
-# os depending settings
-case ${OSTYPE} in
-darwin*) # Mac OS X
-  [ -f ~/.zshrc.osx ] && source ~/.zshrc.osx
-  ;;
-linux*)
-  [ -f ~/.zshrc.linux ] && source ~/.zshrc.linux
-  ;;
-esac
-
 [ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
 
 #fpath=($DOTFILES/modules/zsh-completions $fpath)
-source $DOTFILES/git-completion.bash
-source $DOTFILES/modules/zaw/zaw.zsh
-source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+[ -f $DOTFILES/git-completion.bash ] && source $DOTFILES/git-completion.bash
+[ -f $DOTFILES/modules/zaw/zaw.zsh ] && source $DOTFILES/modules/zaw/zaw.zsh
+[ -f $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #source $DOTFILES/modules/auto-fu.zsh/auto-fu.zsh
 #zle-line-init () {auto-fu-init;}; zle -N zle-line-init
 #zstyle ':completion:*' completer _oldlist _complete

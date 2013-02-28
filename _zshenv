@@ -1,24 +1,44 @@
-path=(
-  $HOME/bin
-  $path
+#                .__
+# ________  _____|  |__   ____   _______  __
+# \___   / /  ___/  |  \_/ __ \ /    \  \/ /
+#  /    /  \___ \|   Y  \  ___/|   |  \   /
+# /_____ \/____  >___|  /\___  >___|  /\_/
+#       \/     \/     \/     \/     \/
+#
+
+# This file sets up basic environment.
+
+### Environment variables
+export DOTFILES=$HOME/src/dotfiles
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+### PATH settings
+paths=(
+  ${HOME}/bin
+  ${HOME}/bin/osx
+  ${HOME}/bin/linux
 )
+for i in $paths
+do
+  [ -d $i ] && export PATH=$i:${PATH}
+done
 
+### load available source files
+sources=(
+  /usr/local/bin/virtualenvwrapper.sh
+  ${HOME}/.perl5/perlbrew/etc/bashrc
+  ${HOME}/.nvm/nvm.sh
+  # for Mac
+  /opt/boxen/env.sh
+  /opt/boxen/nvm/nvm.sh
+)
+for i in $sources
+do
+  [ -f $i ] && source $i
+done
 
-if [ -s /usr/local/bin/virtualenvwrapper.sh ] ; then
-  source /usr/local/bin/virtualenvwrapper.sh
-fi
+### Python settings
+[ -d $HOME/.pythonpath ] && export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
-if [ -s "${HOME}/.perl5/perlbrew/etc/bashrc" ] ; then
-  source $HOME/.perl5/perlbrew/etc/bashrc
-fi
-
-case ${OSTYPE} in
-darwin*) # Mac OS X
-  [ -f ~/.zshenv.osx ] && source ~/.zshenv.osx
-  ;;
-linux*)
-  [ -f ~/.zshenv.linux ] && source ~/.zshenv.linux
-  ;;
-esac
-
-# vim: set filetype=zsh :
+# vim: set ft=zsh :
