@@ -1,4 +1,0 @@
-[ -f "${HOME}/.nvm/nvm.sh" ] && source $HOME/.nvm/nvm.sh
-[ -d "${HOME}/.rbenv" ] && export PATH="${HOME}.rbenv/shims:$PATH"
-
-# vim: set filetype=zsh :
