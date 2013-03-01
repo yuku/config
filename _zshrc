@@ -42,11 +42,29 @@ alias gcc='gcc -Wall -lstdc++'
 case ${OSTYPE} in
 darwin*) # Mac OS X
   alias ls='ls -GF'
+  alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
   ;;
 linux*)
   alias ls='ls -F --color=auto'
   ;;
 esac
+function extract () {
+  case $1 in
+    *.tar.gz|*.tgz) tar xzvf $1;;
+    *.tar.xz) tar Jxvf $1;;
+    *.zip) unzip $1;;
+    *.lzh) lha e $1;;
+    *.tar.bz2|*.tbz) tar xjvf $1;;
+    *.tar.Z) tar zxvf $1;;
+    *.gz) gzip -dc $1;;
+    *.bz2) bzip2 -dc $1;;
+    *.Z) uncompress $1;;
+    *.tar) tar xvf $1;;
+    *.arj) unarj $1;;
+  esac
+}
+alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+
 
 ### misc. settings
 export LESSCHARSET=utf-8
@@ -81,7 +99,7 @@ local BOLD_GRAY="%{${fg_bold[gray]}%}"
 
 RPROMPT="%T"
 setopt transient_rprompt
-precmd () {
+function precmd () {
   PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
   st=`git status 2>/dev/null`
   if [ $? ] ; then
@@ -147,7 +165,7 @@ bindkey "^N" history-beginning-search-forward-end
 # incremental search
 bindkey "^R" history-incremental-search-backward
 bindkey "^S" history-incremental-search-forward
-history-all () { history -E 1 }
+function history-all () { history -E 1 }
 
 ### misc. settings
 
