@@ -15,6 +15,7 @@ export LANG=en_US.UTF-8
 
 ### PATH settings
 paths=(
+  /usr/local/bin
   ${HOME}/bin
   ${HOME}/bin/osx
   ${HOME}/bin/linux

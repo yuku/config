@@ -8,7 +8,7 @@
   grep = auto
 [core]
   editor = vim
-  excludesfile = $HOME/.gitignore
+  excludesfile = /opt/boxen/config/git/gitignore
 [user]
   name = Yuku Takahashi
   email = taka84u9@gmail.com
