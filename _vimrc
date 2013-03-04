@@ -339,7 +339,7 @@ NeoBundleLazy 'kchmck/vim-coffee-script'
 NeoBundleLazy 'tpope/vim-rails'
 NeoBundleLazy "motemen/xslate-vim"
 NeoBundleLazy "motemen/hatena-vim"
-NeoBundleLazy "HybridText"
+NeoBundle "HybridText"
 augroup LazyBundle
     autocmd!
     autocmd FileType markdown NeoBundleSource vim-markdown
@@ -351,7 +351,7 @@ augroup LazyBundle
     "autocmd FileType ruby NeoBundleSource vim-rails
     autocmd FileType xslate NeoBundleSource xslate-vim
     autocmd FileType hatena NeoBundleSource hatena-vim
-    autocmd FileType hybrid NeoBundleSource HybridText
+    " autocmd FileType hybrid NeoBundleSource HybridText
 augroup END
 
 NeoBundleLazy "rodjek/vim-puppet"
