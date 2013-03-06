@@ -312,6 +312,7 @@ let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
+"NeoBundle 'airblade/vim-gitgutter'
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 0 " read help txt
