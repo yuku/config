@@ -144,32 +144,33 @@ set fileformats=unix,mac,dos
 
 "" ftdetects
 augroup FileTypeDetect
-    autocmd!
-    autocmd BufRead,BufNewFile Capfile,Gemfile      setf ruby
-    autocmd BufRead,BufNewFile *.json               setf javascript
-    autocmd BufRead,BufNewFile *.md                 setf markdown
-    autocmd BufRead,BufNewFile *.PL,*.psgi,*.t      setf perl
-    autocmd BufRead,BufNewFile .tmux.conf,tmux.conf setf tmux
-    autocmd BufRead,BufNewFile *.jade               setf jade
-    autocmd BufRead,BufNewFile *.less               setf less
-    autocmd BufRead,BufNewFile *.coffee             setf coffee
-    autocmd BufRead,BufNewFile *.hatena             setf hatena
-    autocmd BufRead,BufNewFile *.txt                setf hybrid
+    au!
+    au BufRead,BufNewFile Capfile,Gemfile      setf ruby
+    au BufRead,BufNewFile *.json               setf javascript
+    au BufRead,BufNewFile *.md                 setf markdown
+    au BufRead,BufNewFile *.PL,*.psgi,*.t      setf perl
+    au BufRead,BufNewFile .tmux.conf,tmux.conf setf tmux
+    au BufRead,BufNewFile *.jade               setf jade
+    au BufRead,BufNewFile *.less               setf less
+    au BufRead,BufNewFile *.coffee             setf coffee
+    au BufRead,BufNewFile *.hatena             setf hatena
+    au BufRead,BufNewFile *.txt                setf hybrid
+    au BufRead,BufNewFile *.pp                 setf puppet
 augroup END
 
 augroup FileTypePlugin
-    autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
-    autocmd FileType int-gosh   setlocal nonu
-    autocmd FileType int-pry    setlocal nonu
-    autocmd FileType int-python setlocal nonu
-    autocmd FileType java       setlocal ts=4 sts=4 sw=4
-    autocmd FileType markdown   setlocal tw=0
-    autocmd FileType perl       setlocal ts=4 sts=4 sw=4
-    autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
-    autocmd FileType rst        setlocal tw=0
-    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
-    autocmd FileType vimfiler   setlocal nonu
-    autocmd FileType vimshell   setlocal nonu
+    au FileType htmldjango setlocal ts=4 sts=4 sw=4
+    au FileType int-gosh   setlocal nonu
+    au FileType int-pry    setlocal nonu
+    au FileType int-python setlocal nonu
+    au FileType java       setlocal ts=4 sts=4 sw=4
+    au FileType markdown   setlocal tw=0
+    au FileType perl       setlocal ts=4 sts=4 sw=4
+    au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
+    au FileType rst        setlocal tw=0
+    au FileType vim        setlocal ts=4 sts=4 sw=4
+    au FileType vimfiler   setlocal nonu
+    au FileType vimshell   setlocal nonu
 augroup END
 
 
@@ -182,12 +183,14 @@ call neobundle#rc(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc', { 'build': {
-    \     'cygwin' : 'make -f make_cygwin.mak',
-    \     'mac'    : 'make -f make_mac.mak',
-    \     'unix'   : 'make -f make_unix.mak',
-    \    },
-    \ }
+NeoBundle 'Shougo/vimproc', {
+            \'build': {
+            \     'windows' : 'make -f make_wingw32.mak',
+            \     'cygwin'  : 'make -f make_cygwin.mak',
+            \     'mac'     : 'make -f make_mac.mak',
+            \     'unix'    : 'make -f make_unix.mak',
+            \    },
+            \ }
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'taka84u9/unite-git'
@@ -298,7 +301,7 @@ endif
 
 let g:neosnippet#enable_snipmate_compatibility = 1
 
-NeoBundle 'Shougo/vimfiler'
+NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
 nnoremap <silent><space>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -toggle -no-quit<CR>
@@ -331,33 +334,18 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 
 NeoBundle "goldfeld/vim-seek"
 
-NeoBundleLazy 'tpope/vim-markdown'
-NeoBundleLazy 'mattn/zencoding-vim'
-NeoBundleLazy 'digitaltoad/vim-jade'
-NeoBundleLazy 'groenewege/vim-less'
-NeoBundleLazy 'petdance/vim-perl'
-NeoBundleLazy 'kchmck/vim-coffee-script'
-NeoBundleLazy 'tpope/vim-rails'
-NeoBundleLazy "motemen/xslate-vim"
-NeoBundleLazy "motemen/hatena-vim"
-NeoBundle "HybridText"
-augroup LazyBundle
-    autocmd!
-    autocmd FileType markdown NeoBundleSource vim-markdown
-    "autocmd FileType html NeoBundleSource zencoding-vim
-    autocmd FileType jade NeoBundleSource vim-jade
-    autocmd FileType less NeoBundleSource vim-less
-    autocmd FileType perl NeoBundleSource vim-perl
-    autocmd FileType coffee NeoBundleSource vim-coffee-script
-    "autocmd FileType ruby NeoBundleSource vim-rails
-    autocmd FileType xslate NeoBundleSource xslate-vim
-    autocmd FileType hatena NeoBundleSource hatena-vim
-    " autocmd FileType hybrid NeoBundleSource HybridText
-augroup END
-
-NeoBundleLazy "rodjek/vim-puppet"
-autocmd BufRead,BufNewFile *.pp set filetype=puppet
-autocmd FileType puppet NeoBundleSource vim-puppet
+NeoBundleLazy 'tpope/vim-markdown',       {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'mattn/zencoding-vim',      {'autoload': {'filetypes': ['html']}}
+NeoBundleLazy 'digitaltoad/vim-jade',     {'autoload': {'filetypes': ['jade']}}
+NeoBundleLazy 'groenewege/vim-less',      {'autoload': {'filetypes': ['less']}}
+NeoBundleLazy 'petdance/vim-perl',        {'autoload': {'filetypes': ['perl']}}
+NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
+NeoBundleLazy 'tpope/vim-rails',          {'autoload': {'filetypes': ['ruby']}}
+NeoBundleLazy "motemen/xslate-vim",       {'autoload': {'filetypes': ['xslate']}}
+NeoBundleLazy "motemen/hatena-vim",       {'autoload': {'filetypes': ['hatena']}}
+NeoBundleLazy "nginx.vim",                {'autoload': {'filetypes': ['nginx']}}
+NeoBundleLazy "HybridText",               {'autoload': {'filetypes': ['hybrid']}}
+NeoBundleLazy "rodjek/vim-puppet",        {'autoload': {'filetypes': ['puppet']}}
 
 filetype plugin indent on
 
