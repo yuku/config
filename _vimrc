@@ -144,6 +144,7 @@ set incsearch
 set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
+autocmd QuickFixCmdPost *grep* cwindow
 
 "" Character encoding
 
