@@ -27,6 +27,8 @@ set nosmarttab              " fuck tabs
 set formatoptions+=n        " support for numbered/bullet lists
 set wrapmargin=0
 set virtualedit=block       " allow virtual edit in visual block ..
+set listchars=tab:▸\ ,eol:¬
+set nolist
 
 set textwidth=79            " wrap at 79 chars by default
 if v:version >= 703
@@ -51,6 +53,16 @@ nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
 cnoremap <C-t> <C-u>tabnew<CR>
 nnoremap <C-h> :<C-u>tabprevious<CR>
 nnoremap <C-l> :<C-u>tabnext<CR>
+map <D-1> 1gt
+map <D-2> 2gt
+map <D-3> 3gt
+map <D-4> 4gt
+map <D-5> 5gt
+map <D-6> 6gt
+map <D-7> 7gt
+map <D-8> 8gt
+map <D-9> 9gt
+map <D-0> :tablast<CR>
 
 "" UI
 
@@ -131,7 +143,7 @@ set wrapscan                " Searches wrap around the end of the file
 set incsearch
 set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
-nmap <ESC><ESC> :nohlsearch<CR><ESC>
+nmap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 
 "" Character encoding
 
@@ -144,33 +156,33 @@ set fileformats=unix,mac,dos
 
 "" ftdetects
 augroup FileTypeDetect
-    au!
-    au BufRead,BufNewFile Capfile,Gemfile      setf ruby
-    au BufRead,BufNewFile *.json               setf javascript
-    au BufRead,BufNewFile *.md                 setf markdown
-    au BufRead,BufNewFile *.PL,*.psgi,*.t      setf perl
-    au BufRead,BufNewFile .tmux.conf,tmux.conf setf tmux
-    au BufRead,BufNewFile *.jade               setf jade
-    au BufRead,BufNewFile *.less               setf less
-    au BufRead,BufNewFile *.coffee             setf coffee
-    au BufRead,BufNewFile *.hatena             setf hatena
-    au BufRead,BufNewFile *.txt                setf hybrid
-    au BufRead,BufNewFile *.pp                 setf puppet
+    autocmd!
+    autocmd BufRead,BufNewFile Capfile,Gemfile      setfiletype ruby
+    autocmd BufRead,BufNewFile *.json               setfiletype javascript
+    autocmd BufRead,BufNewFile *.md                 setfiletype markdown
+    autocmd BufRead,BufNewFile *.PL,*.psgi,*.t      setfiletype perl
+    autocmd BufRead,BufNewFile .tmux.conf,tmux.conf setfiletype tmux
+    autocmd BufRead,BufNewFile *.jade               setfiletype jade
+    autocmd BufRead,BufNewFile *.less               setfiletype less
+    autocmd BufRead,BufNewFile *.coffee             setfiletype coffee
+    autocmd BufRead,BufNewFile *.hatena             setfiletype hatena
+    autocmd BufRead,BufNewFile *.txt                setfiletype hybrid
+    autocmd BufRead,BufNewFile *.pp                 setfiletype puppet
 augroup END
 
 augroup FileTypePlugin
-    au FileType htmldjango setlocal ts=4 sts=4 sw=4
-    au FileType int-gosh   setlocal nonu
-    au FileType int-pry    setlocal nonu
-    au FileType int-python setlocal nonu
-    au FileType java       setlocal ts=4 sts=4 sw=4
-    au FileType markdown   setlocal tw=0
-    au FileType perl       setlocal ts=4 sts=4 sw=4
-    au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
-    au FileType rst        setlocal tw=0
-    au FileType vim        setlocal ts=4 sts=4 sw=4
-    au FileType vimfiler   setlocal nonu
-    au FileType vimshell   setlocal nonu
+    autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
+    autocmd FileType int-gosh   setlocal nonu
+    autocmd FileType int-pry    setlocal nonu
+    autocmd FileType int-python setlocal nonu
+    autocmd FileType java       setlocal ts=4 sts=4 sw=4
+    autocmd FileType markdown   setlocal tw=0
+    autocmd FileType perl       setlocal ts=4 sts=4 sw=4
+    autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
+    autocmd FileType rst        setlocal tw=0
+    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
+    autocmd FileType vimfiler   setlocal nonu
+    autocmd FileType vimshell   setlocal nonu
 augroup END
 
 
@@ -247,6 +259,11 @@ function! s:unite_my_settings()
     imap <buffer><expr><C-i>  unite#do_action('left')
 endfunction
 
+let g:unite_source_grep_command = 'ag'
+let g:unite_source_grep_default_opts = '--nocolor --nogroup'
+let g:unite_source_grep_recursive_opt = ''
+let g:unite_source_grep_max_candidates = 200
+
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'honza/snipmate-snippets'
@@ -315,6 +332,7 @@ let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
 "NeoBundle 'airblade/vim-gitgutter'
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
