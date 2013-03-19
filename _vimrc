@@ -69,9 +69,9 @@ map <D-0> :tablast<CR>
 set ruler                   " show the cursor position all the time
 " highlight cursor line in current window
 augroup cch
-  autocmd!
-  autocmd WinLeave * set nocursorline
-  autocmd WinEnter,BufRead * set cursorline
+    autocmd!
+    autocmd WinLeave * set nocursorline
+    autocmd WinEnter,BufRead * set cursorline
 augroup END
 highlight clear CursorLine
 highlight CursorLine ctermbg=black
@@ -144,7 +144,10 @@ set incsearch
 set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
-autocmd QuickFixCmdPost *grep* cwindow
+augroup Search
+    autocmd!
+    autocmd QuickFixCmdPost *grep cwindow
+augroup END
 
 "" Character encoding
 
@@ -172,6 +175,7 @@ augroup FileTypeDetect
 augroup END
 
 augroup FileTypePlugin
+    autocmd!
     autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
     autocmd FileType int-gosh   setlocal nonu
     autocmd FileType int-pry    setlocal nonu
