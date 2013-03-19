@@ -10,3 +10,6 @@
 [submodule "modules/auto-fu.zsh"]
 	path = modules/auto-fu.zsh
 	url = git://github.com/hchbaw/auto-fu.zsh.git
+[submodule "modules/vimpager"]
+	path = modules/vimpager
+	url = git://github.com/rkitover/vimpager.git

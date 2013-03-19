@@ -38,6 +38,8 @@ alias hg='hg --encoding=utf-8'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 alias gcc='gcc -Wall -lstdc++'
+alias less=vimpager
+alias cat=vimcat
 ## os depending alias settings
 case ${OSTYPE} in
 darwin*) # Mac OS X
@@ -213,8 +215,6 @@ export PERL_BADLANG=0
 
 # Extra zshrc files
 
-[ -f ~/.zshrc.alias ] && source ~/.zshrc.alias
-
 #fpath=($DOTFILES/modules/zsh-completions $fpath)
 [ -f $DOTFILES/git-completion.bash ] && source $DOTFILES/git-completion.bash
 [ -f $DOTFILES/modules/zaw/zaw.zsh ] && source $DOTFILES/modules/zaw/zaw.zsh
@@ -230,3 +230,6 @@ export PERL_BADLANG=0
 typeset -U path cdpath fpath manpath
 
 # vim: set filetype=zsh :
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
