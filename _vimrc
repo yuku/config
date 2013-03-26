@@ -29,6 +29,7 @@ set wrapmargin=0
 set virtualedit=block       " allow virtual edit in visual block ..
 set listchars=tab:▸\ ,eol:¬
 set nolist
+set ambiwidth=double
 
 set textwidth=79            " wrap at 79 chars by default
 if v:version >= 703
@@ -221,12 +222,12 @@ nnoremap [unite] <Nop>
 nmap     <space>u [unite]
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -horizontal -buffer-name=files buffer file_mru<CR>
-nnoremap <silent> [unite]i :<C-u>Unite -buffer-name=files buffer_tab<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=files bookmark<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -buffer-name=register register<CR>
+nnoremap <silent> [unite]i :<C-u>Unite -horizontal -buffer-name=files buffer_tab<CR>
+nnoremap <silent> [unite]b :<C-u>Unite -horizontal -buffer-name=files bookmark<CR>
+nnoremap <silent> [unite]r :<C-u>Unite -horizontal -buffer-name=register register<CR>
 nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit -winwidth=30 -no-start-insert outline<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -immediately -horizontal tab:no-current<CR>
-nnoremap <silent> [unite]m :<C-u>Unite -no-empty git_modified<CR>
+nnoremap <silent> [unite]t :<C-u>Unite -horizontal -immediately -horizontal tab:no-current<CR>
+nnoremap <silent> [unite]m :<C-u>Unite -horizontal -no-empty git_modified<CR>
 
 nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
 "nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
@@ -364,11 +365,18 @@ NeoBundleLazy 'groenewege/vim-less',      {'autoload': {'filetypes': ['less']}}
 NeoBundleLazy 'petdance/vim-perl',        {'autoload': {'filetypes': ['perl']}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
 NeoBundleLazy 'tpope/vim-rails',          {'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy "motemen/xslate-vim",       {'autoload': {'filetypes': ['xslate']}}
-NeoBundleLazy "motemen/hatena-vim",       {'autoload': {'filetypes': ['hatena']}}
-NeoBundleLazy "nginx.vim",                {'autoload': {'filetypes': ['nginx']}}
-NeoBundleLazy "HybridText",               {'autoload': {'filetypes': ['hybrid']}}
-NeoBundleLazy "rodjek/vim-puppet",        {'autoload': {'filetypes': ['puppet']}}
+NeoBundleLazy 'motemen/xslate-vim',       {'autoload': {'filetypes': ['xslate']}}
+NeoBundleLazy 'motemen/hatena-vim',       {'autoload': {'filetypes': ['hatena']}}
+NeoBundleLazy 'nginx.vim',                {'autoload': {'filetypes': ['nginx']}}
+NeoBundleLazy 'HybridText',               {'autoload': {'filetypes': ['hybrid']}}
+NeoBundleLazy 'rodjek/vim-puppet',        {'autoload': {'filetypes': ['puppet']}}
+NeoBundleLazy 'pangloss/vim-javascript',  {'autoload': {'filetypes': ['javascript']}}
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+NeoBundleLazy 'briancollins/vim-jst',     {
+            \ 'autoload': {'filetypes': ['jst', 'ejs']},
+            \ 'depends': 'pangloss/vim-javascript' }
 
 filetype plugin indent on
 
