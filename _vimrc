@@ -106,12 +106,6 @@ if has("mouse") " Enable the use of the mouse in all modes
 endif
 
 syntax on
-"" Colorize
-
-" Keep this order!
-" solarized - http://ethanschoonover.com/solarized
-colorscheme solarized
-set background=dark
 
 " highlight whitespaces
 highlight WhitespaceEOL ctermbg=red
@@ -173,6 +167,7 @@ augroup FileTypeDetect
     autocmd BufRead,BufNewFile *.hatena             setfiletype hatena
     autocmd BufRead,BufNewFile *.txt                setfiletype hybrid
     autocmd BufRead,BufNewFile *.pp                 setfiletype puppet
+    autocmd BufRead,BufNewFile *.scss               setfiletype scss
 augroup END
 
 augroup FileTypePlugin
@@ -187,6 +182,8 @@ augroup FileTypePlugin
     autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
     autocmd FileType rst        setlocal tw=0
     autocmd FileType vim        setlocal ts=4 sts=4 sw=4
+    autocmd FileType scss       setlocal ts=4 sts=4 sw=4
+    autocmd FileType css        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
     autocmd FileType vimshell   setlocal nonu
 augroup END
@@ -331,10 +328,6 @@ nnoremap <silent><space>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -t
 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-localrc'
-NeoBundle 'thinca/vim-quickrun'
-nmap <Leader>r <plug>(quickrun)
-let g:quickrun_config = {}
-let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
@@ -358,29 +351,48 @@ let g:syntastic_mode_map = { 'mode': 'passive',
 
 NeoBundle "goldfeld/vim-seek"
 
-NeoBundleLazy 'tpope/vim-markdown',       {'autoload': {'filetypes': ['markdown']}}
-NeoBundleLazy 'mattn/zencoding-vim',      {'autoload': {'filetypes': ['html']}}
-NeoBundleLazy 'digitaltoad/vim-jade',     {'autoload': {'filetypes': ['jade']}}
-NeoBundleLazy 'groenewege/vim-less',      {'autoload': {'filetypes': ['less']}}
-NeoBundleLazy 'petdance/vim-perl',        {'autoload': {'filetypes': ['perl']}}
-NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
-NeoBundleLazy 'tpope/vim-rails',          {'autoload': {'filetypes': ['ruby']}}
-NeoBundleLazy 'motemen/xslate-vim',       {'autoload': {'filetypes': ['xslate']}}
-NeoBundleLazy 'motemen/hatena-vim',       {'autoload': {'filetypes': ['hatena']}}
-NeoBundleLazy 'nginx.vim',                {'autoload': {'filetypes': ['nginx']}}
-NeoBundleLazy 'HybridText',               {'autoload': {'filetypes': ['hybrid']}}
-NeoBundleLazy 'rodjek/vim-puppet',        {'autoload': {'filetypes': ['puppet']}}
-NeoBundleLazy 'pangloss/vim-javascript',  {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'tpope/vim-markdown',        {'autoload': {'filetypes': ['markdown']}}
+NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload': {'filetypes': ['scss']}}
+NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html']}}
+NeoBundleLazy 'digitaltoad/vim-jade',      {'autoload': {'filetypes': ['jade']}}
+NeoBundleLazy 'groenewege/vim-less',       {'autoload': {'filetypes': ['less']}}
+NeoBundleLazy 'petdance/vim-perl',         {'autoload': {'filetypes': ['perl']}}
+NeoBundleLazy 'kchmck/vim-coffee-script',  {'autoload': {'filetypes': ['coffee']}}
+NeoBundleLazy 'motemen/xslate-vim',        {'autoload': {'filetypes': ['xslate']}}
+NeoBundleLazy 'motemen/hatena-vim',        {'autoload': {'filetypes': ['hatena']}}
+NeoBundleLazy 'nginx.vim',                 {'autoload': {'filetypes': ['nginx']}}
+NeoBundleLazy 'HybridText',                {'autoload': {'filetypes': ['hybrid']}}
+NeoBundleLazy 'rodjek/vim-puppet',         {'autoload': {'filetypes': ['puppet']}}
+NeoBundleLazy 'vim-ruby/vim-ruby',         {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
+NeoBundleLazy 'skwp/vim-rspec',            {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
+NeoBundleLazy 'ruby-matchit',              {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
+NeoBundleLazy 'pangloss/vim-javascript',   {'autoload': {'filetypes': ['javascript']}}
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
+NeoBundleLazy 'thinca/vim-quickrun',      {'autoload': {'filetypes': ['ruby', 'python', 'perl', 'sh']}}
+nmap <Leader>r <plug>(quickrun)
+let g:quickrun_config = {}
+let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 NeoBundleLazy 'briancollins/vim-jst',     {
             \ 'autoload': {'filetypes': ['jst', 'ejs']},
             \ 'depends': 'pangloss/vim-javascript' }
+NeoBundleLazy 'taka84u9/vim-ref-ri', {
+            \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
+            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
+
+NeoBundle 'tpope/vim-rails'
+NeoBundle 'dbext.vim'
+
+"" Colorize
+NeoBundle 'chriskempson/base16-vim'
+colorscheme base16-default
 
 filetype plugin indent on
 
 " Installation check
 NeoBundleCheck
+
+
 
 " vim: set filetype=vim :

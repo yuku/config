@@ -26,7 +26,7 @@ alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
 alias grep=egrep
 alias h=history
 alias j=jobs
-alias gst='git status'
+alias gst='git status --short'
 ## Global alias
 alias -g L='|less'
 alias -g H='|head'
