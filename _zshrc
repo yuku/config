@@ -26,6 +26,11 @@ alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
 alias grep=egrep
 alias h=history
 alias j=jobs
+alias ggp='git grep -H --heading --break'
+alias glg='git log --graph --pretty="format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)"'
+alias gci='git commit -v'
+alias gun='git reset HEAD~'
+alias gco='git checkout'
 alias gst='git status --short'
 ## Global alias
 alias -g L='|less'
@@ -125,6 +130,10 @@ setopt prompt_subst         # Use escape sequences
 setopt interactive_comments # Ignore commands following # in cui
 setopt no_flow_control      # Disable C-s and C-q
 setopt print_eight_bit      # Enable Japanese file name
+
+# NOCLOBBER prevents accidentally overwriting an existing file.
+# To really clobber a file, use the >! operator.
+setopt noclobber
 
 # C-w deletes the caractor next to the /
 WORDCHARS='*?_-.[]~=&;!#$%^(){}<>'
