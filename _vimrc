@@ -165,7 +165,6 @@ augroup FileTypeDetect
     autocmd BufRead,BufNewFile *.less               setfiletype less
     autocmd BufRead,BufNewFile *.coffee             setfiletype coffee
     autocmd BufRead,BufNewFile *.hatena             setfiletype hatena
-    autocmd BufRead,BufNewFile *.txt                setfiletype hybrid
     autocmd BufRead,BufNewFile *.pp                 setfiletype puppet
     autocmd BufRead,BufNewFile *.scss               setfiletype scss
 augroup END
@@ -361,7 +360,6 @@ NeoBundleLazy 'kchmck/vim-coffee-script',  {'autoload': {'filetypes': ['coffee']
 NeoBundleLazy 'motemen/xslate-vim',        {'autoload': {'filetypes': ['xslate']}}
 NeoBundleLazy 'motemen/hatena-vim',        {'autoload': {'filetypes': ['hatena']}}
 NeoBundleLazy 'nginx.vim',                 {'autoload': {'filetypes': ['nginx']}}
-NeoBundleLazy 'HybridText',                {'autoload': {'filetypes': ['hybrid']}}
 NeoBundleLazy 'rodjek/vim-puppet',         {'autoload': {'filetypes': ['puppet']}}
 NeoBundleLazy 'vim-ruby/vim-ruby',         {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
 NeoBundleLazy 'skwp/vim-rspec',            {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}

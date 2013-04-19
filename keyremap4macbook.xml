@@ -5,9 +5,35 @@
       <name>Leave InsMode with EISUU(Terminal)</name>
       <identifier>private.app_terminal_esc_with_eisuu</identifier>
       <only>TERMINAL</only>
-      <autogen>--KeyToKey-- KeyCode::ESCAPE, KeyCode::ESCAPE, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::C, VK_CONTROL, KeyCode::C, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
-      <autogen>--KeyToKey-- KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::JIS_EISUU</autogen>
+      <autogen>
+        --KeyToKey--
+        KeyCode::ESCAPE,
+        KeyCode::ESCAPE, KeyCode::JIS_EISUU
+      </autogen>
+      <autogen>
+        --KeyToKey--
+        KeyCode::C, VK_CONTROL,
+        KeyCode::C, VK_CONTROL, KeyCode::JIS_EISUU
+      </autogen>
+      <autogen>
+        --KeyToKey--
+        KeyCode::BRACKET_LEFT, VK_CONTROL,
+        KeyCode::BRACKET_LEFT, VK_CONTROL, KeyCode::JIS_EISUU
+      </autogen>
+    </item>
+    <item>
+      <name>Swap Command+Tab and Option+Tab</name>
+      <identifier>private.use_witch</identifier>
+      <autogen>
+        __KeyToKey__
+        KeyCode::TAB, ModifierFlag::COMMAND_L,
+        KeyCode::TAB, ModifierFlag::OPTION_L
+      </autogen>
+      <autogen>
+        __KeyToKey__
+        KeyCode::TAB, ModifierFlag::OPTION_L,
+        KeyCode::TAB, ModifierFlag::COMMAND_L
+      </autogen>
     </item>
   </list>
 </root>
