@@ -15,6 +15,9 @@
 
 ### Alias settings
 setopt complete_aliases     # expand aliases before completing
+
+eval "$(hub alias -s)"
+
 ## General
 alias ll='ls -lh'
 alias lla='ls -lhA'

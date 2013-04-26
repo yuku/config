@@ -385,6 +385,7 @@ NeoBundle 'dbext.vim'
 "" Colorize
 NeoBundle 'chriskempson/base16-vim'
 colorscheme base16-default
+set background=dark
 
 filetype plugin indent on
 
