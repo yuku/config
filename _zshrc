@@ -53,6 +53,7 @@ case ${OSTYPE} in
 darwin*) # Mac OS X
   alias ls='ls -GF'
   alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
+  [ -d /Applications/MacVim.app ] && alias vim='open -a MacVim'
   ;;
 linux*)
   alias ls='ls -F --color=auto'
@@ -81,6 +82,7 @@ export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
 umask 002            # default umask -> group writable
 bindkey -e           # emacs like keybinding
+export EDITOR=vim
 # Backspace key
 bindkey "^?" backward-delete-char
 
