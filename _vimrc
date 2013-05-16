@@ -184,7 +184,7 @@ augroup FileTypePlugin
     autocmd FileType scss       setlocal ts=4 sts=4 sw=4
     autocmd FileType css        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
-    autocmd FileType vimshell   setlocal nonu
+    "autocmd FileType vimshell   setlocal nonu
 augroup END
 
 
