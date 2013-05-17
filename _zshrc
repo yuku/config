@@ -53,7 +53,6 @@ case ${OSTYPE} in
 darwin*) # Mac OS X
   alias ls='ls -GF'
   alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
-  [ -d /Applications/MacVim.app ] && alias vim='open -a MacVim'
   ;;
 linux*)
   alias ls='ls -F --color=auto'
