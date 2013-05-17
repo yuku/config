@@ -152,6 +152,12 @@ set fileencodings=utf-8     " ..
 " Automatic end-of-file format detection
 set fileformats=unix,mac,dos
 
+""
+augroup Redraw
+    autocmd!
+    autocmd FocusGained * redraw!
+augroup END
+
 
 "" ftdetects
 augroup FileTypeDetect
@@ -334,25 +340,26 @@ NeoBundle 'tpope/vim-unimpaired'
 "NeoBundle 'airblade/vim-gitgutter'
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
-let g:indent_guides_auto_colors = 0 " read help txt
+let g:indent_guides_auto_colors = 1 " read help txt
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent = 30
+let g:indent_guides_guide_size = 1
+let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 
 NeoBundle 'Lokaltog/vim-easymotion'
-let g:EasyMotion_leader_key = '<Space>j'
-
+"let g:EasyMotion_mapping_j = '<C-j>'
+"let g:EasyMotion_mapping_k = '<C-k>'
 NeoBundle 'Lokaltog/vim-powerline', 'develop'
 
-NeoBundle "scrooloose/syntastic"
+NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['ruby', 'javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
 
-NeoBundle "goldfeld/vim-seek"
+NeoBundle 'goldfeld/vim-seek'
 
 NeoBundleLazy 'tpope/vim-markdown',        {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload': {'filetypes': ['scss']}}
-NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html']}}
+NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html', 'erb']}}
 NeoBundleLazy 'digitaltoad/vim-jade',      {'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'groenewege/vim-less',       {'autoload': {'filetypes': ['less']}}
 NeoBundleLazy 'petdance/vim-perl',         {'autoload': {'filetypes': ['perl']}}
@@ -362,7 +369,7 @@ NeoBundleLazy 'motemen/hatena-vim',        {'autoload': {'filetypes': ['hatena']
 NeoBundleLazy 'nginx.vim',                 {'autoload': {'filetypes': ['nginx']}}
 NeoBundleLazy 'rodjek/vim-puppet',         {'autoload': {'filetypes': ['puppet']}}
 NeoBundleLazy 'vim-ruby/vim-ruby',         {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
-NeoBundleLazy 'skwp/vim-rspec',            {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
+NeoBundleLazy 'skwp/vim-rspec',            {'autoload': {'filetypes': ['ruby']}}
 NeoBundleLazy 'ruby-matchit',              {'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}}
 NeoBundleLazy 'pangloss/vim-javascript',   {'autoload': {'filetypes': ['javascript']}}
 let g:html_indent_inctags = "html,body,head,tbody"
