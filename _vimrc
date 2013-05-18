@@ -190,7 +190,7 @@ augroup FileTypePlugin
     autocmd FileType scss       setlocal ts=4 sts=4 sw=4
     autocmd FileType css        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
-    "autocmd FileType vimshell   setlocal nonu
+    autocmd FileType vimshell   setlocal nonu
 augroup END
 
 
@@ -337,17 +337,46 @@ NeoBundle 'thinca/vim-localrc'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-"NeoBundle 'airblade/vim-gitgutter'
+NeoBundle 'airblade/vim-gitgutter'
+let g:gitgutter_enabled = 0
+let g:gitgutter_eager = 0
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+NeoBundle 'gregsexton/gitv'
+augroup Gitv
+    autocmd!
+    autocmd FileType gitv call s:my_gitv_settings()
+    "autocmd FileType git setlocal nofoldenable foldlevel=0
+augroup END
+function! GitvGetCurrentHash()
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+endfunction
+function! ToggleGitFolding()
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
+endfunction
+function! s:my_gitv_settings()
+    setlocal iskeyword+=/,-,.
+    nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+    nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
+    nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
+    nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
+    nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
+    nnoremap <silent><buffer> t :<C-u>windo call ToggleGitFolding()<CR>1<C-w>w
+endfunction
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_auto_colors = 1 " read help txt
 let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
+"let g:indent_guides_start_level = 1
+let g:indent_guides_guide_size = 0
+let g:indent_guides_color_change_percent = 10
 let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 
 NeoBundle 'Lokaltog/vim-easymotion'
-"let g:EasyMotion_mapping_j = '<C-j>'
-"let g:EasyMotion_mapping_k = '<C-k>'
+let g:EasyMotion_mapping_j = '<C-j>'
+let g:EasyMotion_mapping_k = '<C-k>'
 NeoBundle 'Lokaltog/vim-powerline', 'develop'
 
 NeoBundle 'scrooloose/syntastic'
