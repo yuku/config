@@ -348,10 +348,10 @@ augroup Gitv
     autocmd FileType gitv call s:my_gitv_settings()
     "autocmd FileType git setlocal nofoldenable foldlevel=0
 augroup END
-function! GitvGetCurrentHash()
+function! s:gitv_get_current_hash()
   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
 endfunction
-function! ToggleGitFolding()
+function! s:toggle_gitv_folding()
   if &filetype ==# 'git'
     setlocal foldenable!
   endif
@@ -359,11 +359,11 @@ endfunction
 function! s:my_gitv_settings()
     setlocal iskeyword+=/,-,.
     nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-    nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=GitvGetCurrentHash()<CR><Space>
-    nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=GitvGetCurrentHash()<CR><CR>
-    nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=GitvGetCurrentHash()<CR><CR>
-    nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=GitvGetCurrentHash()<CR>
-    nnoremap <silent><buffer> t :<C-u>windo call ToggleGitFolding()<CR>1<C-w>w
+    nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=<SID>gitv_get_current_hash()<CR><Space>
+    nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+    nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+    nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=<SID>gitv_get_current_hash()<CR>
+    nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_gitv_folding()<CR>1<C-w>w
 endfunction
 
 NeoBundle 'nathanaelkane/vim-indent-guides'
@@ -394,6 +394,14 @@ NeoBundleLazy 'digitaltoad/vim-jade',      {'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'groenewege/vim-less',       {'autoload': {'filetypes': ['less']}}
 NeoBundleLazy 'petdance/vim-perl',         {'autoload': {'filetypes': ['perl']}}
 NeoBundleLazy 'kchmck/vim-coffee-script',  {'autoload': {'filetypes': ['coffee']}}
+augroup CoffeeScript
+    autocmd!
+    autocmd FileType coffee call s:my_coffee_settings()
+augroup END
+function! s:my_coffee_settings()
+    nnoremap <silent><buffer> <leader>c :<C-u>CoffeeCompile watch vertical<CR>
+    vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
+endfunction
 NeoBundleLazy 'motemen/xslate-vim',        {'autoload': {'filetypes': ['xslate']}}
 NeoBundleLazy 'motemen/hatena-vim',        {'autoload': {'filetypes': ['hatena']}}
 NeoBundleLazy 'nginx.vim',                 {'autoload': {'filetypes': ['nginx']}}
