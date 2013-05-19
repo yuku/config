@@ -385,6 +385,7 @@ let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'passive_filetypes': [] }
 
 NeoBundle 'goldfeld/vim-seek'
+NeoBundle "Align"
 
 NeoBundleLazy 'tpope/vim-markdown',        {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload': {'filetypes': ['scss']}}
