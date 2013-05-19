@@ -41,15 +41,15 @@
 [grep]
   lineNumbers = true
 [branch "master"]
-  #mergeoptions = --no-ff
-  #rebase = true
+  mergeoptions = --no-ff
+  rebase = true
 [github]
   user = taka84u9
-
 [hub]
   protocol = https
-
 [credential]
   helper = /opt/boxen/bin/boxen-git-credential
 [web]
-	browser = open
+  browser = open
+[browser "chrome"]
+  cmd = open -a 'Google Chrome.app'
