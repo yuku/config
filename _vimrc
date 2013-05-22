@@ -191,6 +191,7 @@ augroup FileTypePlugin
     autocmd FileType css        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
     autocmd FileType vimshell   setlocal nonu
+    autocmd FileType gitcommit  setlocal textwidth=69
 augroup END
 
 
@@ -383,6 +384,7 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['ruby', 'javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
+let g:syntastic_ruby_checkers = ['rubocop']
 
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle "Align"
