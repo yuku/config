@@ -16,7 +16,7 @@
 ### Alias settings
 setopt complete_aliases     # expand aliases before completing
 
-eval "$(hub alias -s)"
+eval "$(hub alias -s)"      # use hub
 
 ## General
 alias ll='ls -lh'
@@ -29,12 +29,12 @@ alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
 alias grep=egrep
 alias h=history
 alias j=jobs
-alias ggp='git grep -H --heading --break'
-alias glg='git log --graph --pretty="format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)"'
-alias gci='git commit -v'
-alias gun='git reset HEAD~'
-alias gco='git checkout'
-alias gst='git status --short'
+alias ggp='command git grep -H --heading --break'
+alias glg='command git log --graph --pretty="format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)"'
+alias gci='command git commit -v'
+alias gun='command git reset HEAD~'
+alias gco='command git checkout'
+alias gst='command git status --short'
 ## Global alias
 alias -g L='|less'
 alias -g H='|head'
@@ -122,7 +122,7 @@ RPROMPT="%T"
 setopt transient_rprompt
 function precmd () {
   PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
-  st=`git status 2>/dev/null`
+  st=`command git status 2>/dev/null`
   if [ $? ] ; then
     if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
       color=$CYAN
@@ -133,7 +133,7 @@ function precmd () {
     else
       color=$RED
     fi
-    PROMPT+="$color$(git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
+    PROMPT+="$color$(command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
   fi
 }
 
@@ -212,7 +212,8 @@ export GREP_OPTIONS='--color=auto'
 
 ### Completion settings
 # Use full complement functionality
-autoload -Uz compinit; compinit
+autoload -Uz compinit
+compinit -u
 setopt auto_menu            # Toggle complement candidates using TAB
 setopt auto_list            # Show all candidates
 setopt magic_equal_subst    # Even option args are complemented
@@ -238,10 +239,20 @@ export PERL_BADLANG=0
 
 # Extra zshrc files
 
-#fpath=($DOTFILES/modules/zsh-completions $fpath)
-[ -f $DOTFILES/git-completion.bash ] && source $DOTFILES/git-completion.bash
-[ -f $DOTFILES/modules/zaw/zaw.zsh ] && source $DOTFILES/modules/zaw/zaw.zsh
-[ -f $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ] && source $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [ -d $DOTFILES/modules/zsh-completions/src ]
+then
+  chmod -R 755 $DOTFILES/modules/zsh-completions/src
+  fpath=($DOTFILES/modules/zsh-completions/src $fpath)
+fi
+
+for i (
+  #$DOTFILES/modules/zaw/zaw.zsh
+  $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+)
+do
+  [ -f $i ] && source $i
+done
+
 #source $DOTFILES/modules/auto-fu.zsh/auto-fu.zsh
 #zle-line-init () {auto-fu-init;}; zle -N zle-line-init
 #zstyle ':completion:*' completer _oldlist _complete
@@ -253,6 +264,3 @@ export PERL_BADLANG=0
 typeset -U path cdpath fpath manpath
 
 # vim: set filetype=zsh :
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
