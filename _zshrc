@@ -121,7 +121,8 @@ local BOLD_GRAY="%{${fg_bold[gray]}%}"
 RPROMPT="%T"
 setopt transient_rprompt
 function precmd () {
-  PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
+  #PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
+  PROMPT="${YELLOW}%~${RESET} "
   st=`command git status 2>/dev/null`
   if [ $? ] ; then
     if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
