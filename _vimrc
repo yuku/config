@@ -30,6 +30,7 @@ set virtualedit=block       " allow virtual edit in visual block ..
 set listchars=tab:▸\ ,eol:¬
 set nolist
 set ambiwidth=double
+set autoread                " prevent W11 warning
 
 set textwidth=79            " wrap at 79 chars by default
 if v:version >= 703
@@ -217,22 +218,29 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'taka84u9/unite-git'
 NeoBundle 'h1mesuke/unite-outline'
 NeoBundle 'tsukkee/unite-help'
-let g:unite_enable_split_vertically = 1
+"let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
-nnoremap [unite] <Nop>
-nmap     <space>u [unite]
-nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
-nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -horizontal -buffer-name=files buffer file_mru<CR>
-nnoremap <silent> [unite]i :<C-u>Unite -horizontal -buffer-name=files buffer_tab<CR>
-nnoremap <silent> [unite]b :<C-u>Unite -horizontal -buffer-name=files bookmark<CR>
-nnoremap <silent> [unite]r :<C-u>Unite -horizontal -buffer-name=register register<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit -winwidth=30 -no-start-insert outline<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -horizontal -immediately -horizontal tab:no-current<CR>
-nnoremap <silent> [unite]m :<C-u>Unite -horizontal -no-empty git_modified<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async file_mru file<CR>
+nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
+nnoremap <silent> <space>y :<C-u>Unite history/yanks<CR>
+nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
+nnoremap <silent> <space>h :<C-u>Unite help<CR>
+nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
+nnoremap <silent> <space>o :<C-u>Unite -no-quit outline<CR>
+"nnoremap [unite] <Nop>
+"nmap     <space>u [unite]
+"nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
+"nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir -horizontal -buffer-name=files buffer file_mru<CR>
+"nnoremap <silent> [unite]i :<C-u>Unite -horizontal -buffer-name=files buffer_tab<CR>
+"nnoremap <silent> [unite]b :<C-u>Unite -horizontal -buffer-name=files bookmark<CR>
+"nnoremap <silent> [unite]r :<C-u>Unite -horizontal -buffer-name=register register<CR>
+"nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit -winwidth=30 -no-start-insert outline<CR>
+"nnoremap <silent> [unite]t :<C-u>Unite -horizontal -immediately -horizontal tab:no-current<CR>
+"nnoremap <silent> [unite]m :<C-u>Unite -horizontal -no-empty git_modified<CR>
 
-nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
+"nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
 "nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
 
 
@@ -347,7 +355,7 @@ NeoBundle 'gregsexton/gitv'
 augroup Gitv
     autocmd!
     autocmd FileType gitv call s:my_gitv_settings()
-    "autocmd FileType git setlocal nofoldenable foldlevel=0
+    autocmd FileType git setlocal nofoldenable foldlevel=0
 augroup END
 function! s:gitv_get_current_hash()
   return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
