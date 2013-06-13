@@ -241,15 +241,16 @@ export PERL_BADLANG=0
 
 # Extra zshrc files
 
-if [ -d $DOTFILES/modules/zsh-completions/src ]
+if [ -d $HOME/.zsh/zsh-completions/src ]
 then
-  chmod -R 755 $DOTFILES/modules/zsh-completions/src
-  fpath=($DOTFILES/modules/zsh-completions/src $fpath)
+  chmod -R 755 $HOME/.zsh/zsh-completions/src
+  fpath=($HOME/.zsh/zsh-completions/src $fpath)
 fi
 
 for i (
-  $DOTFILES/modules/zaw/zaw.zsh
-  $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  $HOME/.zsh/zaw/zaw.zsh
+  $HOME/.zsh/zaw-sources/git-recent-branches.zsh
+  $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 )
 do
   [ -f $i ] && source $i
