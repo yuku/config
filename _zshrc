@@ -35,6 +35,7 @@ alias gci='command git commit -v'
 alias gun='command git reset HEAD~'
 alias gco='command git checkout'
 alias gst='command git status --short'
+alias gbr='command git branch'
 ## Global alias
 alias -g L='|less'
 alias -g H='|head'
@@ -247,7 +248,7 @@ then
 fi
 
 for i (
-  #$DOTFILES/modules/zaw/zaw.zsh
+  $DOTFILES/modules/zaw/zaw.zsh
   $DOTFILES/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 )
 do
