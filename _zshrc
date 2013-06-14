@@ -190,8 +190,8 @@ zle -N history-beginning-search-forward-end history-search-end
 bindkey "^P" history-beginning-search-backward-end
 bindkey "^N" history-beginning-search-forward-end
 # incremental search
-bindkey "^R" history-incremental-search-backward
-bindkey "^S" history-incremental-search-forward
+#bindkey "^R" history-incremental-search-backward
+#bindkey "^S" history-incremental-search-forward
 function history-all () { history -E 1 }
 
 ### misc. settings
@@ -247,6 +247,13 @@ then
   fpath=($HOME/.zsh/zsh-completions/src $fpath)
 fi
 
+# Activate cdr command for zaw-cdr
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+zstyle ':chpwd:*' recent-dirs-max 5000
+zstyle ':chpwd:*' recent-dirs-default yes
+zstyle ':completion:*' recent-dirs-insert both
+
 for i (
   $HOME/.zsh/zaw/zaw.zsh
   $HOME/.zsh/zaw-sources/git-recent-branches.zsh
@@ -255,6 +262,13 @@ for i (
 do
   [ -f $i ] && source $i
 done
+
+# zaw keybinding
+bindkey '^I^R' zaw-git-recent-branches
+bindkey '^I^O' zaw-git-branches
+bindkey '^R' zaw-history
+zstyle ':filter-select' case-insensitive yes
+bindkey '^[' zaw-cdr
 
 #source $DOTFILES/modules/auto-fu.zsh/auto-fu.zsh
 #zle-line-init () {auto-fu-init;}; zle -N zle-line-init
