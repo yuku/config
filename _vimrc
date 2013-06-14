@@ -222,7 +222,8 @@ NeoBundle 'tsukkee/unite-help'
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
-nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async file_mru file<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_mru file_rec/async<CR>
+nnoremap <silent> <space>u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> <space>y :<C-u>Unite history/yanks<CR>
 nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
