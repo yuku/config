@@ -393,7 +393,8 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['ruby', 'javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_quiet_warnings = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
 NeoBundle 'goldfeld/vim-seek'

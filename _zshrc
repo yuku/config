@@ -264,8 +264,8 @@ do
 done
 
 # zaw keybinding
-bindkey '^I^R' zaw-git-recent-branches
-bindkey '^I^O' zaw-git-branches
+bindkey '^O^B' zaw-git-recent-branches
+bindkey '^O^R' zaw-git-branches
 bindkey '^R' zaw-history
 zstyle ':filter-select' case-insensitive yes
 bindkey '^[' zaw-cdr
