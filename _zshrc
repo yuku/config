@@ -253,10 +253,13 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-max 5000
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':completion:*' recent-dirs-insert both
+zstyle ':filter-select' case-insensitive yes
+zstyle ':filter-select' max-lines $(($LINES / 2))
 
 for i (
   $HOME/.zsh/zaw/zaw.zsh
   $HOME/.zsh/zaw-sources/git-recent-branches.zsh
+  $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
   $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 )
 do
@@ -267,8 +270,7 @@ done
 bindkey '^O^B' zaw-git-recent-branches
 bindkey '^O^R' zaw-git-branches
 bindkey '^R' zaw-history
-zstyle ':filter-select' case-insensitive yes
-bindkey '^[' zaw-cdr
+bindkey '^T' zaw-cdr
 
 #source $DOTFILES/modules/auto-fu.zsh/auto-fu.zsh
 #zle-line-init () {auto-fu-init;}; zle -N zle-line-init
