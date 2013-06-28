@@ -215,9 +215,9 @@ NeoBundle 'Shougo/vimproc', {
             \ }
 
 NeoBundle 'Shougo/unite.vim'
-NeoBundle 'taka84u9/unite-git'
+NeoBundle 'yuku-t/unite-git'
 NeoBundle 'Shougo/unite-outline'
-NeoBundle 'tsukkee/unite-help'
+NeoBundle 'Shougo/unite-help'
 "let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
@@ -286,7 +286,7 @@ let g:unite_source_grep_max_candidates = 200
 
 NeoBundle 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'honza/snipmate-snippets'
+NeoBundle 'honza/vim-snippets'
 " Use neocomplcache.
 let g:neocomplcache_enable_at_startup = 1
 " Use underbar completion.
@@ -341,7 +341,11 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
-nnoremap <silent><space>e :<C-u>VimFilerBufferDir -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent><space>e :<C-u>VimFilerCurrentDir -explorer -find -split -simple -winwidth=35 -toggle -no-quit<CR>
+augroup VimFiler
+    autocmd!
+    autocmd FileType vimfiler nnoremap <buffer><C-j> :<C-u>call EasyMotion#JK(0, 0)<CR>
+augroup END
 
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-localrc'
@@ -436,7 +440,7 @@ let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 NeoBundleLazy 'briancollins/vim-jst',     {
             \ 'autoload': {'filetypes': ['jst', 'ejs']},
             \ 'depends': 'pangloss/vim-javascript' }
-NeoBundleLazy 'taka84u9/vim-ref-ri', {
+NeoBundleLazy 'yuku-t/vim-ref-ri', {
             \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
             \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
 
