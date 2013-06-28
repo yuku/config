@@ -231,7 +231,7 @@ nnoremap <silent> <space>y :<C-u>Unite history/yank<CR>
 nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
 nnoremap <silent> <space>h :<C-u>Unite help<CR>
 nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
-nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit outline<CR>
+nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=botright -buffer-name=outline -winwidth=30 outline<CR>
 "nnoremap [unite] <Nop>
 "nmap     <space>u [unite]
 "nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
@@ -341,7 +341,7 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
 let g:vimfiler_as_default_explorer = 1
 let g:vimfiler_safe_mode_by_default = 0
-nnoremap <silent><space>e :<C-u>VimFilerCurrentDir -explorer -find -split -simple -winwidth=35 -toggle -no-quit<CR>
+nnoremap <silent><space>e :<C-u>VimFilerCurrentDir -explorer -find -split -simple -winwidth=30 -toggle -no-quit<CR>
 augroup VimFiler
     autocmd!
     autocmd FileType vimfiler nnoremap <buffer><C-j> :<C-u>call EasyMotion#JK(0, 0)<CR>
