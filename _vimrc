@@ -216,7 +216,7 @@ NeoBundle 'Shougo/vimproc', {
 
 NeoBundle 'Shougo/unite.vim'
 NeoBundle 'taka84u9/unite-git'
-NeoBundle 'h1mesuke/unite-outline'
+NeoBundle 'Shougo/unite-outline'
 NeoBundle 'tsukkee/unite-help'
 "let g:unite_enable_split_vertically = 1
 let g:unite_winwidth = 50
@@ -229,7 +229,7 @@ nnoremap <silent> <space>y :<C-u>Unite history/yanks<CR>
 nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
 nnoremap <silent> <space>h :<C-u>Unite help<CR>
 nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
-nnoremap <silent> <space>o :<C-u>Unite -no-quit outline<CR>
+nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit outline<CR>
 "nnoremap [unite] <Nop>
 "nmap     <space>u [unite]
 "nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
