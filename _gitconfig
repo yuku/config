@@ -29,10 +29,11 @@
   today = log --oneline --since='12 hour ago'
   gp = grep -H --heading --break
   uncommit = reset HEAD~
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 [gui]
   encoding = utf-8
 [push]
-  default = current
+	default = simple
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
@@ -43,8 +44,6 @@
 [branch "master"]
   mergeoptions = --no-ff
   rebase = true
-[github]
-  user = taka84u9
 [hub]
   protocol = https
 [credential]
