@@ -42,7 +42,4 @@ done
 ### Python settings
 [ -d $HOME/.pythonpath ] && export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
-### Rails
-export RAILS_ENV=development
-
 # vim: set ft=zsh :

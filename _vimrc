@@ -11,6 +11,7 @@
 
 set nocompatible            " use Vim in more useful way
 set clipboard+=unnamed      " share clipboard with other systems
+set helplang=ja,en          " search ja help docs if exists
 
 "" Text Formatting
 
@@ -88,7 +89,7 @@ set cmdheight=1             " command line height
 set whichwrap=b,s,h,l,<,>,[,]
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
-set shortmess=filtoOA       " shorten messages
+set shortmess=filtoO        " shorten messages
 set report=0                " tell us about changes
 set nostartofline           " don't jump to the start of line when scrolling
 set showmatch               " brackets/braces that is
@@ -110,7 +111,7 @@ syntax on
 
 " highlight whitespaces
 highlight WhitespaceEOL ctermbg=red
-matc WhitespaceEOL /\s\+$/
+match WhitespaceEOL /\s\+$/
 
 " highlight comments
 "highlight Comment ctermfg=DarkCyan
@@ -174,10 +175,13 @@ augroup FileTypeDetect
     autocmd BufRead,BufNewFile *.hatena             setfiletype hatena
     autocmd BufRead,BufNewFile *.pp                 setfiletype puppet
     autocmd BufRead,BufNewFile *.scss               setfiletype scss
+    autocmd BufRead,BufNewFile *.ts                 setfiletype typescript
 augroup END
 
 augroup FileTypePlugin
     autocmd!
+    autocmd FileType css        setlocal ts=4 sts=4 sw=4
+    autocmd FileType gitcommit  setlocal textwidth=69
     autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
     autocmd FileType int-gosh   setlocal nonu
     autocmd FileType int-pry    setlocal nonu
@@ -187,12 +191,12 @@ augroup FileTypePlugin
     autocmd FileType perl       setlocal ts=4 sts=4 sw=4
     autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
     autocmd FileType rst        setlocal tw=0
-    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
     autocmd FileType scss       setlocal ts=4 sts=4 sw=4
-    autocmd FileType css        setlocal ts=4 sts=4 sw=4
+    autocmd FileType typescript setlocal ts=4 sts=4 sw=4
+    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
     autocmd FileType vimshell   setlocal nonu
-    autocmd FileType gitcommit  setlocal textwidth=69
+    autocmd FileType zsh        setlocal ts=4 sts=4 sw=4
 augroup END
 
 
@@ -223,15 +227,15 @@ let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
 let g:unite_source_history_yank_enable = 1
-nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async<CR>
-nnoremap <silent> <space>i :<C-u>Unite file_mru<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_mru file_rec/async<CR>
 nnoremap <silent> <space>u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> <space>y :<C-u>Unite history/yank<CR>
 nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
 nnoremap <silent> <space>h :<C-u>Unite help<CR>
 nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
-nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=botright -buffer-name=outline -winwidth=30 outline<CR>
+nnoremap <silent> <space>a :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=topleft -buffer-name=async -winwidth=30 file_rec/async<CR>
+nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=botright -buffer-name=outline -winwidth=40 outline<CR>
 "nnoremap [unite] <Nop>
 "nmap     <space>u [unite]
 "nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
@@ -266,7 +270,7 @@ function! s:unite_my_settings()
     "imap <buffer>jj     <Plug>(unite_insert_leave)
     imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
 
-    " <C-l>: manual neocomplecache completion.
+    " <C-l>: manual neocomplete completion.
     inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
 
     nmap <buffer><expr><C-d>  unite#do_action('delete')
@@ -284,44 +288,49 @@ let g:unite_source_grep_default_opts = '--nocolor --nogroup'
 let g:unite_source_grep_recursive_opt = ''
 let g:unite_source_grep_max_candidates = 200
 
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete'
 NeoBundle 'Shougo/neosnippet'
-NeoBundle 'honza/vim-snippets'
-" Use neocomplcache.
-let g:neocomplcache_enable_at_startup = 1
-" Use underbar completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Set minimum syntax keyword length.
-let g:neocomplcache_min_syntax_length = 3
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
-"
-let g:neocomplcache_max_list = 10
+"NeoBundle 'honza/vim-snippets'
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#min_syntax_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+
+" Use underbar completion.
+let g:neocomplete#enable_underbar_completion = 1
+"
+let g:neocomplete#max_list = 10
 " Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplete#enable_camel_case_completion = 1
 " Select with <TAB>
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Define keyword.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
-endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
-
-let g:neocomplcache_snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
 " Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
+let g:neocomplete#dictionary_filetype_lists = {
             \ 'default'   : '',
             \ 'perl'      : $HOME.'/.vim/dict/perl.dict',
             \ 'javascrip' : $HOME.'/.vim/dict/javascript.dict'
             \ }
 
-" Define keywork.
-if !exists('g:neocomplcache_keyword_patterns')
-    let g:neocomplcache_keyword_patterns = {}
+" Define keyword.
+if !exists('g:neocomplete_keyword_patterns')
+    let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
+
+let g:neocomplete#snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
+
+" Recommended key-mappings.
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#smart_close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 
 " Plugin key-mappings.
 imap <C-k>     <Plug>(neosnippet_expand_or_jump)
@@ -443,6 +452,8 @@ NeoBundleLazy 'briancollins/vim-jst',     {
 NeoBundleLazy 'yuku-t/vim-ref-ri', {
             \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
             \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
+
+NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'dbext.vim'
