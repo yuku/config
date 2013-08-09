@@ -183,6 +183,7 @@ augroup FileTypePlugin
     autocmd FileType css        setlocal ts=4 sts=4 sw=4
     autocmd FileType gitcommit  setlocal textwidth=69
     autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
+    autocmd FileType html       setlocal ts=4 sts=4 sw=4
     autocmd FileType int-gosh   setlocal nonu
     autocmd FileType int-pry    setlocal nonu
     autocmd FileType int-python setlocal nonu
