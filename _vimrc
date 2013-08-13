@@ -224,11 +224,16 @@ NeoBundle 'yuku-t/unite-git'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
 "let g:unite_enable_split_vertically = 1
+if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+endif
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
 let g:unite_source_history_yank_enable = 1
-nnoremap <silent> <C-p>    :<C-u>Unite file_mru file_rec/async<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> <space>u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> <space>y :<C-u>Unite history/yank<CR>
@@ -250,7 +255,6 @@ nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -no-focus -no-start-in
 
 "nnoremap <silent> <C-g>    :<C-u>Unite vcs_grep/git<CR>
 "nnoremap <silent> <C-h>    :<C-u>Unite -start-insert help<CR>
-
 
 augroup UniteFileType
     autocmd!
