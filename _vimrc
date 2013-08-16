@@ -231,8 +231,9 @@ if executable('ag')
 endif
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
-let g:unite_source_file_mru_ignore_pattern = '.*\/$\|.*Application\ Data.*'
 let g:unite_source_history_yank_enable = 1
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
+call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Data.*')
 nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> <space>u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
@@ -241,7 +242,7 @@ nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
 nnoremap <silent> <space>h :<C-u>Unite help<CR>
 nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
 nnoremap <silent> <space>a :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=topleft -buffer-name=async -winwidth=30 file_rec/async<CR>
-nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=botright -buffer-name=outline -winwidth=40 outline<CR>
+nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -toggle -direction=botright -buffer-name=outline -winwidth=40 outline<CR>
 "nnoremap [unite] <Nop>
 "nmap     <space>u [unite]
 "nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -horizontal -buffer-name=files file file/new<CR>
@@ -288,69 +289,67 @@ function! s:unite_my_settings()
     imap <buffer><expr><C-i>  unite#do_action('left')
 endfunction
 
-let g:unite_source_grep_command = 'ag'
-let g:unite_source_grep_default_opts = '--nocolor --nogroup'
-let g:unite_source_grep_recursive_opt = ''
-let g:unite_source_grep_max_candidates = 200
+if has('lua')
+    NeoBundle 'Shougo/neocomplete'
+    NeoBundle 'Shougo/neosnippet'
+    " Use neocomplete.
+    let g:neocomplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:neocomplete#enable_smart_case = 1
+    " Set minimum syntax keyword length.
+    let g:neocomplete#min_syntax_length = 3
+    let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-NeoBundle 'Shougo/neocomplete'
-NeoBundle 'Shougo/neosnippet'
-"NeoBundle 'honza/vim-snippets'
-" Use neocomplete.
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase.
-let g:neocomplete#enable_smart_case = 1
-" Set minimum syntax keyword length.
-let g:neocomplete#min_syntax_length = 3
-let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
+    " Use underbar completion.
+    let g:neocomplete#enable_underbar_completion = 1
+    "
+    let g:neocomplete#max_list = 10
+    " Use camel case completion.
+    let g:neocomplete#enable_camel_case_completion = 1
+    " Select with <TAB>
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
-" Use underbar completion.
-let g:neocomplete#enable_underbar_completion = 1
-"
-let g:neocomplete#max_list = 10
-" Use camel case completion.
-let g:neocomplete#enable_camel_case_completion = 1
-" Select with <TAB>
-inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    " Define dictionary.
+    let g:neocomplete#dictionary_filetype_lists = {
+                \ 'default'   : '',
+                \ 'perl'      : $HOME.'/.vim/dict/perl.dict',
+                \ 'javascrip' : $HOME.'/.vim/dict/javascript.dict'
+                \ }
 
-" Define dictionary.
-let g:neocomplete#dictionary_filetype_lists = {
-            \ 'default'   : '',
-            \ 'perl'      : $HOME.'/.vim/dict/perl.dict',
-            \ 'javascrip' : $HOME.'/.vim/dict/javascript.dict'
-            \ }
+    " Define keyword.
+    if !exists('g:neocomplete_keyword_patterns')
+        let g:neocomplete#keyword_patterns = {}
+    endif
+    let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
-" Define keyword.
-if !exists('g:neocomplete_keyword_patterns')
-    let g:neocomplete#keyword_patterns = {}
+    let g:neocomplete#snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
+
+    " Recommended key-mappings.
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function()
+    return neocomplete#smart_close_popup() . "\<CR>"
+    " For no inserting <CR> key.
+    "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+    endfunction
+
+    " Plugin key-mappings.
+    imap <C-k>     <Plug>(neosnippet_expand_or_jump)
+    smap <C-k>     <Plug>(neosnippet_expand_or_jump)
+
+    " SuperTab like snippets behavior.
+    imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+    smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+    " For snippet_complete marker.
+    if has('conceal')
+        set conceallevel=2 concealcursor=i
+    endif
+
+    let g:neosnippet#enable_snipmate_compatibility = 1
+else
+    NeoBundle 'Shougo/neocompletcache'
 endif
-let g:neocomplete#keyword_patterns['default'] = '\h\w*'
-
-let g:neocomplete#snippets_dir = "~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets"
-
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#smart_close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-
-" Plugin key-mappings.
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-
-let g:neosnippet#enable_snipmate_compatibility = 1
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
 let g:vimfiler_as_default_explorer = 1
