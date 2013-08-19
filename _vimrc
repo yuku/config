@@ -453,9 +453,9 @@ let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 NeoBundleLazy 'briancollins/vim-jst',     {
             \ 'autoload': {'filetypes': ['jst', 'ejs']},
             \ 'depends': 'pangloss/vim-javascript' }
-NeoBundleLazy 'yuku-t/vim-ref-ri', {
-            \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
-            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
+"NeoBundleLazy 'yuku-t/vim-ref-ri', {
+"            \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
+"            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
 
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
