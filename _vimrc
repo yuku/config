@@ -348,7 +348,7 @@ if has('lua')
 
     let g:neosnippet#enable_snipmate_compatibility = 1
 else
-    NeoBundle 'Shougo/neocompletcache'
+    NeoBundle 'Shougo/neocomplcache'
 endif
 
 NeoBundle 'Shougo/vimfiler', {'depends': 'Shougo/unite.vim'}
