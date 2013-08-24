@@ -407,13 +407,24 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 NeoBundle 'Lokaltog/vim-easymotion'
 let g:EasyMotion_mapping_j = '<C-j>'
 let g:EasyMotion_mapping_k = '<C-k>'
-NeoBundle 'Lokaltog/vim-powerline', 'develop'
+
+NeoBundle 'bling/vim-airline'
+" powerline symbols
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline#extensions#branch#symbol = ' '
+let g:airline#extensions#readonly#symbol = ''
+let g:airline_linecolumn_prefix = ' '
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
 
 NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive',
-            \ 'active_filetypes': ['ruby', 'javascript', 'python', 'perl'],
+            \ 'active_filetypes': ['javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
-let g:syntastic_ruby_checkers = ['rubocop']
+"let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_quiet_warnings = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
