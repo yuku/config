@@ -86,6 +86,25 @@ function extract () {
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
+command grc >/dev/null 2>&1
+if [ $? = 0 ]
+then
+    alias mount='grc mount'
+    alias ifconfig='grc ifconfig'
+    alias dig='grc dig'
+    alias ldap='grc ldap'
+    alias netstat='grc netstat'
+    alias ping='grc ping'
+    alias ps='grc ps'
+    alias traceroute='grc traceroute'
+    alias gcc='grc gcc'
+fi
+command colordiff >/dev/null 2>&1
+if [ $? = 0 ]
+then
+    alias diff='colordiff'
+fi
+
 
 ### misc. settings
 export LESSCHARSET=utf-8
@@ -239,7 +258,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 ### Perl settings
 export PERL_BADLANG=0
 
-###
+### My Functions
 function do_enter() {
     if [ -n "$BUFFER" ]; then
         zle accept-line
@@ -259,6 +278,20 @@ function do_enter() {
 }
 zle -N do_enter
 bindkey '^O^I' do_enter
+
+function calc() { awk "BEGIN{ print $* }" ;}
+export MANPAGER='less -R'
+function man() {
+    env \
+        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
+        LESS_TERMCAP_md=$(printf "\e[1;31m") \
+        LESS_TERMCAP_me=$(printf "\e[0m") \
+        LESS_TERMCAP_se=$(printf "\e[0m") \
+        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
+        LESS_TERMCAP_ue=$(printf "\e[0m") \
+        LESS_TERMCAP_us=$(printf "\e[1;32m") \
+        man "$@"
+}
 
 # Extra zshrc files
 
