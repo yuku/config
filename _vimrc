@@ -111,7 +111,11 @@ syntax on
 
 " highlight whitespaces
 highlight WhitespaceEOL ctermbg=red
-match WhitespaceEOL /\s\+$/
+augroup whitespace
+    autocmd!
+    autocmd VimEnter,WinEnter * match WhitespaceEOL /\s\+$/
+augroup END
+
 
 " highlight comments
 "highlight Comment ctermfg=DarkCyan
@@ -306,6 +310,8 @@ if has('lua')
     let g:neocomplete#max_list = 10
     " Use camel case completion.
     let g:neocomplete#enable_camel_case_completion = 1
+
+    let g:neocomplete#force_overwrite_completefunc = 1
     " Select with <TAB>
     inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -483,6 +489,18 @@ filetype plugin indent on
 " Installation check
 NeoBundleCheck
 
+
+function! s:open_kobito(...)
+    if a:0 == 0
+        call system('open -a Kobito '.expand('%:p'))
+    else
+        call system('open -a Kobito '.join(a:000, ' '))
+    endif
+endfunction
+
+command! -nargs=* Kobito call s:open_kobito(<f-args>)
+command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
+command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
 
 
 " vim: set filetype=vim :
