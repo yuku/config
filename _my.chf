@@ -1,3 +1,10 @@
 [mysql]
 #safe-updates
 prompt=\\u@\\h:\\d>\\_
+
+[client]
+default-character-set = utf8mb4
+
+[mysqld]
+character-set-server = utf8mb4
+skip-character-set-client-handshake
