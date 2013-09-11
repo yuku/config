@@ -86,8 +86,7 @@ function extract () {
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
-command grc >/dev/null 2>&1
-if [ $? = 0 ]
+if [ -x $(where grc) ]
 then
     alias mount='grc mount'
     alias ifconfig='grc ifconfig'
@@ -99,8 +98,7 @@ then
     alias traceroute='grc traceroute'
     alias gcc='grc gcc'
 fi
-command colordiff >/dev/null 2>&1
-if [ $? = 0 ]
+if [ -x $(where colordiff) ]
 then
     alias diff='colordiff'
 fi
