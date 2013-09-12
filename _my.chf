@@ -8,3 +8,4 @@ default-character-set = utf8mb4
 [mysqld]
 character-set-server = utf8mb4
 skip-character-set-client-handshake
+socket = /var/run/mysql5/mysqld.sock
