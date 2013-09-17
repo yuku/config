@@ -35,3 +35,5 @@ if [ ! -d $HOME/.vim/bundle/neobundle.vim ]
 then
   git clone git://github.com/Shougo/neobundle.vim ~/.vim/bundle/neobundle.vim
 fi
+
+git update-index --assume-unchanged modules/zsh-completions
