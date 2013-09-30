@@ -27,9 +27,9 @@ done
 
 ### load available source files
 sources=(
-  /usr/local/bin/virtualenvwrapper.sh
-  ${HOME}/.perl5/perlbrew/etc/bashrc
-  ${HOME}/.nvm/nvm.sh
+  #/usr/local/bin/virtualenvwrapper.sh
+  #${HOME}/.perl5/perlbrew/etc/bashrc
+  #${HOME}/.nvm/nvm.sh
   # for Mac
   /opt/boxen/env.sh
   /opt/boxen/nvm/nvm.sh

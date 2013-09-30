@@ -226,20 +226,20 @@ setopt auto_cd              # Change direcroty with it's name
 setopt auto_pushd           # Execute pushd command when current directory is
                             # changed by cd command
 setopt pushd_ignore_dups    # Make pushd command ignore duplicated directories
+#setopt pushd_silent         # Do not print the directory stack after popd
 
 export GREP_OPTIONS='--color=auto'
 
 ### Completion settings
 # Use full complement functionality
-autoload -Uz compinit
-compinit -u
-setopt auto_menu            # Toggle complement candidates using TAB
+autoload -Uz compinit; compinit -u
 setopt auto_list            # Show all candidates
-setopt magic_equal_subst    # Even option args are complemented
+setopt auto_menu            # Toggle complement candidates using TAB
 setopt auto_param_slash     # Insert / after a complemented directory name
+setopt correct              # Do spell check
 setopt list_packed          # Use compackt style candidates viewer mode
 setopt list_types           # Show kinds of file using marks
-setopt correct              # Do spell check
+setopt magic_equal_subst    # Even option args are complemented
 # Can use Emacs style keybind to select candidates
 zstyle ':completion:*:default' menu select=1
 # Complement process name with kill command
@@ -289,6 +289,12 @@ function man() {
         LESS_TERMCAP_ue=$(printf "\e[0m") \
         LESS_TERMCAP_us=$(printf "\e[1;32m") \
         man "$@"
+}
+
+function psgrep () {
+    local PSRESULT="`ps aux`"
+    echo $PSRESULT | head -1
+    echo $PSRESULT | tail -n +2 | grep $*
 }
 
 # Extra zshrc files
