@@ -29,11 +29,11 @@
   today = log --oneline --since='12 hour ago'
   gp = grep -H --heading --break
   uncommit = reset HEAD~
-	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
 [gui]
   encoding = utf-8
 [push]
-	default = simple
+  default = simple
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line

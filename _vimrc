@@ -44,7 +44,6 @@ if has('persistent_undo')
     set undofile
 endif
 
-
 "" Remapping
 
 let mapleader=','           " Lead with ,
@@ -197,6 +196,7 @@ augroup FileTypePlugin
     autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
     autocmd FileType rst        setlocal tw=0
     autocmd FileType scss       setlocal ts=4 sts=4 sw=4
+    autocmd FileType javascript setlocal ts=2 sts=2 sw=2
     autocmd FileType typescript setlocal ts=4 sts=4 sw=4
     autocmd FileType vim        setlocal ts=4 sts=4 sw=4
     autocmd FileType vimfiler   setlocal nonu
@@ -204,6 +204,11 @@ augroup FileTypePlugin
     autocmd FileType zsh        setlocal ts=4 sts=4 sw=4
 augroup END
 
+"" Go lang
+if $GOROOT != ''
+    set runtimepath+=$GOROOT/misc/vim
+    "exe "set rtp+=".globpath($GOPATH, "src/github.com/nsf/gocode/vim")
+endif
 
 filetype off
 if has('vim_starting')
@@ -277,6 +282,7 @@ function! s:unite_my_settings()
     " Overwrite settings
     nmap <buffer><ESC>  <Plug>(unite_exit)
     nmap <buffer><C-c>  <Plug>(unite_exit)
+    nmap <buffer><C-x> <Plug>(unite_redraw)
     "imap <buffer>jj     <Plug>(unite_insert_leave)
     imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
 
@@ -430,7 +436,7 @@ NeoBundle 'scrooloose/syntastic'
 let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
-"let g:syntastic_ruby_checkers = ['rubocop']
+let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_quiet_warnings = 0
 let g:syntastic_javascript_checkers = ['jshint']
 
@@ -449,7 +455,7 @@ augroup CoffeeScript
     autocmd FileType coffee call s:my_coffee_settings()
 augroup END
 function! s:my_coffee_settings()
-    nnoremap <silent><buffer> <leader>c :<C-u>CoffeeCompile watch vertical<CR>
+    nnoremap <silent><buffer> <leader>c :<C-u>CoffeeWatch vertical<CR>
     vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
 endfunction
 NeoBundleLazy 'motemen/xslate-vim',        {'autoload': {'filetypes': ['xslate']}}
@@ -477,7 +483,15 @@ NeoBundleLazy 'briancollins/vim-jst',     {
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
 NeoBundle 'tpope/vim-rails'
-NeoBundle 'dbext.vim'
+"NeoBundle 'dbext.vim'
+
+NeoBundleLazy 'thoughtbot/vim-rspec', {
+            \ 'autoload' : { 'filetypes' : ['ruby'] },
+            \ 'depends'  : 'tpope/vim-dispatch' }
+let s:bundle = neobundle#get('vim-rspec')
+function! s:bundle.hooks.on_source(bundle)
+   let g:rspec_command = 'Dispatch rspec {spec}'
+endfunction
 
 "" Colorize
 NeoBundle 'chriskempson/base16-vim'

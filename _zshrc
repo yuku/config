@@ -48,7 +48,7 @@ alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 alias gcc='gcc -Wall -lstdc++'
 alias less=vimpager
-alias cat=vimcat
+#alias cat=vimcat
 ## os depending alias settings
 case ${OSTYPE} in
 darwin*) # Mac OS X
