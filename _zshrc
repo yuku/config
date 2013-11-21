@@ -324,6 +324,7 @@ do
   [ -f $i ] && source $i
 done
 
+
 # zaw keybinding
 bindkey '^O^B' zaw-git-recent-branches
 bindkey '^O^R' zaw-git-branches

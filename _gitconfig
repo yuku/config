@@ -19,7 +19,7 @@
   st = status
   ci = commit -v
   di = diff
-  br = branch -v -v
+  br = branch -vv
   puhs = push
   psuh = push
   pus = push
