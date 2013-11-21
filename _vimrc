@@ -232,6 +232,8 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'yuku-t/unite-git'
 NeoBundle 'Shougo/unite-outline'
 NeoBundle 'Shougo/unite-help'
+NeoBundle 'joker1007/unite-pull-request', {
+            \ 'depends': 'mattn/webapi-vim' }
 "let g:unite_enable_split_vertically = 1
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
@@ -446,6 +448,7 @@ NeoBundle "Align"
 NeoBundleLazy 'tpope/vim-markdown',        {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload': {'filetypes': ['scss']}}
 NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html', 'erb']}}
+NeoBundleLazy 'othree/html5.vim',          {'autoload': {'filetypes': ['html']}}
 NeoBundleLazy 'digitaltoad/vim-jade',      {'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'groenewege/vim-less',       {'autoload': {'filetypes': ['less']}}
 NeoBundleLazy 'petdance/vim-perl',         {'autoload': {'filetypes': ['perl']}}
@@ -516,5 +519,8 @@ command! -nargs=* Kobito call s:open_kobito(<f-args>)
 command! -nargs=0 KobitoClose call system("osascript -e 'tell application \"Kobito\" to quit'")
 command! -nargs=0 KobitoFocus call system("osascript -e 'tell application \"Kobito\" to activate'")
 
+if exists("$HOME/.vimrc.local")
+    source $HOME/.vimrc.local
+endif
 
 " vim: set filetype=vim :
