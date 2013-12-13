@@ -16,5 +16,7 @@ repo = if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)\.git}))
 exit 1 unless repo
 
 Octokit::Client.new(netrc: true).pull_requests(repo).each do |pr|
-  puts "#{pr['title']}\t#{pr['head']['ref']}"
+  puts pr
+  exit
+  #puts "#{pr['title']}\t#{pr['head']['ref']}"
 end
