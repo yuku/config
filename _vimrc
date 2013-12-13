@@ -245,12 +245,14 @@ let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
 call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
 call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Data.*')
-nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_mru file_rec/async:!<CR>
 nnoremap <silent> <space>u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> <space>/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> <space>y :<C-u>Unite history/yank<CR>
 nnoremap <silent> <space>b :<C-u>Unite -quick-match buffer<CR>
 nnoremap <silent> <space>h :<C-u>Unite help<CR>
+nnoremap <silent> <space>t :<C-u>Unite -no-start-insert tab:no-current<CR>
+nnoremap <silent> <space>w :<C-u>Unite -no-start-insert window:no-current<CR>
 nnoremap <silent> <space>m :<C-u>Unite git_modified<CR>
 nnoremap <silent> <space>a :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=topleft -buffer-name=async -winwidth=30 file_rec/async<CR>
 nnoremap <silent> <space>o :<C-u>Unite -vertical -no-quit -toggle -direction=botright -buffer-name=outline -winwidth=40 outline<CR>

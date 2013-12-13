@@ -52,37 +52,40 @@ alias less=vimpager
 ## os depending alias settings
 case ${OSTYPE} in
 darwin*) # Mac OS X
-  function macvim () {
-    if [ -d /Applications/MacVim.app ]
-    then
-      [ ! -f $1 ] && touch $1
-      open -a MacVim $1
-    else
-      vim $1
-    fi
-  }
-  #alias vim='macvim'
-  alias ls='ls -GF'
-  alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
-  ;;
+    function macvim () {
+        if [ -d /Applications/MacVim.app ] ; then
+            if [[ -n `ps aux | grep MacVim` ]] ; then
+                [ ! -f $1 ] && touch $1
+                open -a MacVim $1
+            else
+                gvim $1
+            fi
+        else
+            command vim $1
+        fi
+    }
+    alias vim='macvim'
+    alias ls='ls -GF'
+    alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
+    ;;
 linux*)
-  alias ls='ls -F --color=auto'
-  ;;
+    alias ls='ls -F --color=auto'
+    ;;
 esac
 function extract () {
-  case $1 in
-    *.tar.gz|*.tgz) tar xzvf $1;;
-    *.tar.xz) tar Jxvf $1;;
-    *.zip) unzip $1;;
-    *.lzh) lha e $1;;
-    *.tar.bz2|*.tbz) tar xjvf $1;;
-    *.tar.Z) tar zxvf $1;;
-    *.gz) gzip -dc $1;;
-    *.bz2) bzip2 -dc $1;;
-    *.Z) uncompress $1;;
-    *.tar) tar xvf $1;;
-    *.arj) unarj $1;;
-  esac
+    case $1 in
+        *.tar.gz|*.tgz) tar xzvf $1;;
+        *.tar.xz) tar Jxvf $1;;
+        *.zip) unzip $1;;
+        *.lzh) lha e $1;;
+        *.tar.bz2|*.tbz) tar xjvf $1;;
+        *.tar.Z) tar zxvf $1;;
+        *.gz) gzip -dc $1;;
+        *.bz2) bzip2 -dc $1;;
+        *.Z) uncompress $1;;
+        *.tar) tar xvf $1;;
+        *.arj) unarj $1;;
+    esac
 }
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
@@ -152,7 +155,7 @@ function precmd () {
     else
       color=$RED
     fi
-    PROMPT+="$color$(command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /')%b${RESET}"
+    PROMPT+="$color$(git_current_branch)%b${RESET}"
   fi
 }
 
@@ -257,26 +260,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 export PERL_BADLANG=0
 
 ### My Functions
-function do_enter() {
-    if [ -n "$BUFFER" ]; then
-        zle accept-line
-        return 0
-    fi
-    echo
-    ls
-    # ↓おすすめ
-    # ls_abbrev
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ]; then
-        echo
-        echo -e "\e[0;33m--- git status ---\e[0m"
-        git status -sb
-    fi
-    zle reset-prompt
-    return 0
-}
-zle -N do_enter
-bindkey '^O^I' do_enter
-
 function calc() { awk "BEGIN{ print $* }" ;}
 export MANPAGER='less -R'
 function man() {
@@ -340,5 +323,47 @@ bindkey '^T' zaw-cdr
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
 typeset -U path cdpath fpath manpath
+
+
+# Git Keybindings
+function is_git_repository() {
+    echo "$(git rev-parse --is-inside-work-tree 2> /dev/null)"
+}
+
+function git_current_branch() {
+    command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'
+}
+
+function git_status() {
+    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ] ; then
+        echo git status -sb
+        git status -sb
+    fi
+    zle reset-prompt
+}
+zle -N git_status
+bindkey '^G^S' git_status
+
+function git_pull_current_branch_from_origin() {
+    if [ "$(is_git_repository)" = 'true' ] ; then
+        local branch=$(git_current_branch)
+        echo git pull origin $branch
+        git pull origin $branch
+    fi
+    zle reset-prompt
+}
+zle -N git_pull_current_branch_from_origin
+bindkey '^G^P' git_pull_current_branch_from_origin
+
+function git_fetch() {
+    if [ "$(is_git_repository)" = 'true' ] ; then
+        echo git fetch
+        git fetch
+    fi
+    zle reset-prompt
+}
+zle -N git_fetch
+bindkey '^G^F' git_fetch
+
 
 # vim: set filetype=zsh :
