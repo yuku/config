@@ -260,6 +260,7 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 export PERL_BADLANG=0
 
 ### My Functions
+
 function calc() { awk "BEGIN{ print $* }" ;}
 export MANPAGER='less -R'
 function man() {
