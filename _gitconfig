@@ -30,10 +30,12 @@
   gp = grep -H --heading --break
   uncommit = reset HEAD~
   delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  current-branch = rev-parse --abbrev-ref HEAD
+  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 [gui]
   encoding = utf-8
 [push]
-  default = simple
+  default = current
 [tig "bind"]
   generic = g move-first-line
   generic = G move-last-line
@@ -54,3 +56,7 @@
   cmd = open -a 'Google Chrome.app'
 [github]
   user = yuku-t
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
