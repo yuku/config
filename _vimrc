@@ -166,42 +166,42 @@ augroup END
 
 "" ftdetects
 augroup FileTypeDetect
-    autocmd!
-    autocmd BufRead,BufNewFile Capfile,Gemfile      setfiletype ruby
-    autocmd BufRead,BufNewFile *.json               setfiletype javascript
-    autocmd BufRead,BufNewFile *.md                 setfiletype markdown
-    autocmd BufRead,BufNewFile *.PL,*.psgi,*.t      setfiletype perl
-    autocmd BufRead,BufNewFile .tmux.conf,tmux.conf setfiletype tmux
-    autocmd BufRead,BufNewFile *.jade               setfiletype jade
-    autocmd BufRead,BufNewFile *.less               setfiletype less
-    autocmd BufRead,BufNewFile *.coffee             setfiletype coffee
-    autocmd BufRead,BufNewFile *.hatena             setfiletype hatena
-    autocmd BufRead,BufNewFile *.pp                 setfiletype puppet
-    autocmd BufRead,BufNewFile *.scss               setfiletype scss
-    autocmd BufRead,BufNewFile *.ts                 setfiletype typescript
+    au!
+    au BufRead,BufNewFile Capfile,Gemfile,*.cap,*.god set filetype=ruby
+    au BufRead,BufNewFile *.json                set filetype=javascript
+    au BufRead,BufNewFile *.md                  set filetype=markdown
+    au BufRead,BufNewFile *.PL,*.psgi,*.t       set filetype=perl
+    au BufRead,BufNewFile .tmux.conf,tmux.conf  set filetype=tmux
+    au BufRead,BufNewFile *.jade                set filetype=jade
+    au BufRead,BufNewFile *.less                set filetype=less
+    au BufRead,BufNewFile *.coffee              set filetype=coffee
+    au BufRead,BufNewFile *.hatena              set filetype=hatena
+    au BufRead,BufNewFile *.pp                  set filetype=puppet
+    au BufRead,BufNewFile *.scss                set filetype=scss
+    au BufRead,BufNewFile *.ts                  set filetype=typescript
 augroup END
 
 augroup FileTypePlugin
-    autocmd!
-    autocmd FileType css        setlocal ts=4 sts=4 sw=4
-    autocmd FileType gitcommit  setlocal textwidth=69
-    autocmd FileType htmldjango setlocal ts=4 sts=4 sw=4
-    autocmd FileType html       setlocal ts=4 sts=4 sw=4
-    autocmd FileType int-gosh   setlocal nonu
-    autocmd FileType int-pry    setlocal nonu
-    autocmd FileType int-python setlocal nonu
-    autocmd FileType java       setlocal ts=4 sts=4 sw=4
-    autocmd FileType markdown   setlocal tw=0
-    autocmd FileType perl       setlocal ts=4 sts=4 sw=4
-    autocmd FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
-    autocmd FileType rst        setlocal tw=0
-    autocmd FileType scss       setlocal ts=4 sts=4 sw=4
-    autocmd FileType javascript setlocal ts=2 sts=2 sw=2
-    autocmd FileType typescript setlocal ts=4 sts=4 sw=4
-    autocmd FileType vim        setlocal ts=4 sts=4 sw=4
-    autocmd FileType vimfiler   setlocal nonu
-    autocmd FileType vimshell   setlocal nonu
-    autocmd FileType zsh        setlocal ts=4 sts=4 sw=4
+    au!
+    au FileType css        setlocal ts=4 sts=4 sw=4
+    au FileType gitcommit  setlocal ts=4 sts=4 sw=4 textwidth=69
+    au FileType htmldjango setlocal ts=4 sts=4 sw=4
+    au FileType html       setlocal ts=4 sts=4 sw=4
+    au FileType int-gosh   setlocal nonu
+    au FileType int-pry    setlocal nonu
+    au FileType int-python setlocal nonu
+    au FileType java       setlocal ts=4 sts=4 sw=4
+    au FileType markdown   setlocal ts=4 sts=4 sw=4
+    au FileType perl       setlocal ts=4 sts=4 sw=4
+    au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
+    au FileType rst        setlocal tw=0
+    au FileType scss       setlocal ts=4 sts=4 sw=4
+    au FileType javascript setlocal ts=2 sts=2 sw=2
+    au FileType typescript setlocal ts=4 sts=4 sw=4
+    au FileType vim        setlocal ts=4 sts=4 sw=4
+    au FileType vimfiler   setlocal nonu
+    au FileType vimshell   setlocal nonu
+    au FileType zsh        setlocal ts=4 sts=4 sw=4
 augroup END
 
 "" Go lang
@@ -379,9 +379,6 @@ augroup END
 NeoBundle 'thinca/vim-ref'
 NeoBundle 'thinca/vim-localrc'
 
-NeoBundle 'tpope/vim-fugitive'
-NeoBundle 'tpope/vim-surround'
-NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'airblade/vim-gitgutter'
 let g:gitgutter_enabled = 0
 let g:gitgutter_eager = 0
@@ -449,7 +446,7 @@ NeoBundle "Align"
 
 NeoBundleLazy 'tpope/vim-markdown',        {'autoload': {'filetypes': ['markdown']}}
 NeoBundleLazy 'cakebaker/scss-syntax.vim', {'autoload': {'filetypes': ['scss']}}
-NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html', 'erb']}}
+NeoBundleLazy 'mattn/zencoding-vim',       {'autoload': {'filetypes': ['html', 'eruby']}}
 NeoBundleLazy 'othree/html5.vim',          {'autoload': {'filetypes': ['html']}}
 NeoBundleLazy 'digitaltoad/vim-jade',      {'autoload': {'filetypes': ['jade']}}
 NeoBundleLazy 'groenewege/vim-less',       {'autoload': {'filetypes': ['less']}}
@@ -487,8 +484,11 @@ NeoBundleLazy 'briancollins/vim-jst',     {
 
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
+NeoBundle 'tpope/vim-fugitive'
+NeoBundle 'tpope/vim-surround'
+NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-rails'
-"NeoBundle 'dbext.vim'
+NeoBundle 'dbext.vim'
 
 NeoBundleLazy 'thoughtbot/vim-rspec', {
             \ 'autoload' : { 'filetypes' : ['ruby'] },

@@ -67,6 +67,7 @@ darwin*) # Mac OS X
     alias vim='macvim'
     alias ls='ls -GF'
     alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
+    alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'
     ;;
 linux*)
     alias ls='ls -F --color=auto'
@@ -142,21 +143,25 @@ local BOLD_GRAY="%{${fg_bold[gray]}%}"
 RPROMPT="%T"
 setopt transient_rprompt
 function precmd () {
-  #PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
-  PROMPT="${YELLOW}%~${RESET} "
-  st=`command git status 2>/dev/null`
-  if [ $? ] ; then
-    if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
-      color=$CYAN
-    elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
-      color=$BLUE
-    elif [[ -n `echo "$st" | grep "^# Untracked"` ]] ; then
-      color=$BOLD_RED
-    else
-      color=$RED
+    local color
+    #PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
+    PROMPT="${YELLOW}%~${RESET} "
+    st=`command git status 2>/dev/null`
+    if [ $? ] ; then
+        if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
+            color=$CYAN
+        elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
+            color=$BLUE
+        elif [[ -n `echo "$st" | grep "^# Untracked"` ]] ; then
+            color=$BOLD_RED
+        else
+            color=$RED
+        fi
+        branch=$(git_current_branch)
+        if [ $branch ] ; then
+            PROMPT+="$color$branch%b${RESET} "
+        fi
     fi
-    PROMPT+="$color$(git_current_branch)%b${RESET}"
-  fi
 }
 
 # No beep
@@ -332,7 +337,7 @@ function is_git_repository() {
 }
 
 function git_current_branch() {
-    command git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1 /'
+    git symbolic-ref --short HEAD 2> /dev/null
 }
 
 function git_status() {
@@ -365,6 +370,12 @@ function git_fetch() {
 }
 zle -N git_fetch
 bindkey '^G^F' git_fetch
+
+function ssh() {
+    local window_name=$(tmux display -p '#{window_name}')
+    command ssh $@
+    tmux rename-window $window_name
+}
 
 
 # vim: set filetype=zsh :
