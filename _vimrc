@@ -438,7 +438,7 @@ let g:syntastic_mode_map = { 'mode': 'passive',
             \ 'active_filetypes': ['javascript', 'python', 'perl'],
             \ 'passive_filetypes': [] }
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_quiet_warnings = 0
+let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['jshint']
 
 NeoBundle 'goldfeld/vim-seek'
@@ -483,6 +483,8 @@ NeoBundleLazy 'briancollins/vim-jst',     {
 "            \ 'autoload': { 'filetypes': ['ruby', 'eruby', 'haml'] } }
 
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
+
+NeoBundleLazy 'slim-template/vim-slim', {'autoload': {'filetypes': ['slim']}}
 
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
