@@ -19,3 +19,6 @@
 [submodule "modules/hub"]
 	path = modules/hub
 	url = git://github.com/defunkt/hub.git
+[submodule "modules/zsh-notify"]
+	path = modules/zsh-notify
+	url = https://github.com/marzocchi/zsh-notify.git
