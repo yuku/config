@@ -377,5 +377,12 @@ function ssh() {
     tmux rename-window $window_name
 }
 
+case ${OSTYPE} in
+darwin*) # Mac OS X
+    source ~/.zsh/zsh-notify/notify.plugin.zsh
+    export SYS_NOTIFIER=$(which terminal-notifier)
+    export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
+    ;;
+esac
 
 # vim: set filetype=zsh :
