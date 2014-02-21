@@ -64,7 +64,7 @@ darwin*) # Mac OS X
             command vim $1
         fi
     }
-    alias vim='macvim'
+    #alias vim='macvim'
     alias ls='ls -GF'
     alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
     alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'
@@ -260,6 +260,7 @@ zstyle ':completion:*' ignore-parents parent pwd
 ### Python settings
 export NOSE_REDNOSE=1
 export PYTHONSTARTUP=$HOME/.pythonrc
+[ -f $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
 
 ### Perl settings
 export PERL_BADLANG=0
