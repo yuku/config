@@ -11,6 +11,7 @@ set laststatus=2            " The last window always have status line
 set showmatch               " brackets/braces that is
 set matchtime=3             " duration to show matching brace (1/10 sec)
 set ruler                   " show the cursor position all the time
+set foldmethod=marker
 
 if v:version >= 703
   set colorcolumn=+1
