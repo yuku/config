@@ -28,7 +28,7 @@ endif
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\(png\|gif\|jpeg\|jpg\)$')
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\v/doc/|/cache/|\.(png|gif|jpeg|jpg)$')
 call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Data.*')
 
 " The prefix key.
@@ -350,7 +350,10 @@ let g:lightline = {
             \ 'colorscheme': 'wombat',
             \ 'mode_map': {'c': 'NORMAL'},
             \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ]
+            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+            \   'right': [ [ 'syntastic', 'lineinfo'],
+            \              [ 'percent' ],
+            \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
             \ },
             \ 'component_function': {
             \   'modified': 'MyModified',
@@ -360,7 +363,13 @@ let g:lightline = {
             \   'fileformat': 'MyFileformat',
             \   'filetype': 'MyFiletype',
             \   'fileencoding': 'MyFileencoding',
-            \   'mode': 'MyMode'
+            \   'mode': 'MyMode',
+            \ },
+            \ 'component_expand': {
+            \   'syntastic': 'SyntasticStatuslineFlag'
+            \ },
+            \ 'component_type': {
+            \   'syntastic': 'error'
             \ }
             \ }
 
@@ -405,6 +414,15 @@ endfunction
 
 function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
+endfunction
+
+augroup AutoSyntastic
+    au!
+    au BufWritePost *.rb,*.js call s:syntastic()
+augroup END
+function! s:syntastic()
+    SyntasticCheck
+    call lightline#update()
 endfunction
 " }}}
 
