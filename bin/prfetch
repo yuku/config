@@ -1,5 +1,5 @@
 #!/usr/bin/env ruby
-# prfetch|percol|cut -f2|xargs git checkout
+# prfetch|percol|cut -f3|xargs git checkout
 
 require 'git'
 require 'octokit'
@@ -16,7 +16,5 @@ repo = if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)\.git}))
 exit 1 unless repo
 
 Octokit::Client.new(netrc: true).pull_requests(repo).each do |pr|
-  puts pr
-  exit
-  #puts "#{pr['title']}\t#{pr['head']['ref']}"
+  puts "#{pr['number']}\t#{pr['title']}\t#{pr['head']['ref']}"
 end
