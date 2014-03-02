@@ -16,7 +16,8 @@
 ### Alias settings
 setopt complete_aliases     # expand aliases before completing
 
-eval "$(hub alias -s)"      # use hub
+[ -x "$(which hub)" ]    && eval "$(hub alias -s)"     # use hub
+[ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"  # use direnv
 
 ## General
 alias ll='ls -lh'
