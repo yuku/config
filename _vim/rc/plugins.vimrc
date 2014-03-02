@@ -35,7 +35,7 @@ call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Da
 nnoremap [unite]  <Nop>
 nmap     <space>  [unite]
 
-nnoremap <silent> <C-p>    :<C-u>Unite file_mru file_rec/async:!<CR>
+nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir file file/new<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
