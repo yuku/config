@@ -28,7 +28,7 @@ endif
 let g:unite_winwidth = 50
 let g:unite_enable_start_insert = 1
 let g:unite_source_history_yank_enable = 1
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\v/doc/|/cache/|\.(png|gif|jpeg|jpg)$')
+call unite#custom#source('file_rec/async', 'ignore_pattern', '\v/doc/|\.git/|/cache/|\.(png|gif|jpeg|jpg)$')
 call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Data.*')
 
 " The prefix key.
@@ -139,7 +139,7 @@ if has('lua')
         autocmd!
         autocmd FileType css
               \ setlocal omnifunc=csscomplete#CompleteCSS
-        autocmd FileType html,markdown
+        autocmd FileType html,markdown,slim
               \ setlocal omnifunc=htmlcomplete#CompleteTags
         autocmd FileType javascript
               \ setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -250,7 +250,7 @@ let g:syntastic_mode_map = {
             \ 'passive_filetypes': []
             \ }
 let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_quiet_messages = {'level': 'warnings'}
+"let g:syntastic_quiet_messages = {'level': 'warnings'}
 let g:syntastic_javascript_checkers = ['jshint']
 
 "NeoBundle 'goldfeld/vim-seek'

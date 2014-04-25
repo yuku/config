@@ -54,7 +54,7 @@ alias gcc='gcc -Wall -lstdc++'
 case ${OSTYPE} in
 darwin*) # Mac OS X
     function macvim () {
-        if [ -d /Applications/MacVim.app ] ; then
+        if [ -d ~/Applications/MacVim.app ] ; then
             if [[ -n `ps aux | grep MacVim` ]] ; then
                 [ ! -f $1 ] && touch $1
                 open -a MacVim $1
@@ -69,6 +69,7 @@ darwin*) # Mac OS X
     alias ls='ls -GF'
     alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
     alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'
+    export PATH="/usr/local/sbin:$PATH"
     ;;
 linux*)
     alias ls='ls -F --color=auto'
@@ -386,5 +387,7 @@ darwin*) # Mac OS X
     export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
     ;;
 esac
+
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi 
 
 # vim: set filetype=zsh :

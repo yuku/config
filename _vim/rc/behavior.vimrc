@@ -8,7 +8,7 @@ set nosmarttab              " fuck tabs
 set formatoptions+=n        " support for numbered/bullet lists
 set tabstop=8
 set wrapmargin=0
-set textwidth=79            " wrap at 79 chars by default
+set textwidth=99            " wrap at 99 chars by default
 " Enable all keys to move the cursor left/right to the previous/next line
 set whichwrap=b,s,h,l,<,>,[,]
 " Allow backspacing over everything in insert mode
@@ -34,7 +34,7 @@ augroup FileTypePlugin
     au FileType int-pry    setlocal nonu
     au FileType int-python setlocal nonu
     au FileType java       setlocal ts=4 sts=4 sw=4
-    au FileType markdown   setlocal ts=4 sts=4 sw=4
+    au FileType markdown   setlocal ts=4 sts=4 sw=4 textwidth=0
     au FileType perl       setlocal ts=4 sts=4 sw=4
     au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
     au FileType rst        setlocal tw=0
