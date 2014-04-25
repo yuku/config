@@ -49,7 +49,6 @@
 [hub]
   protocol = https
 [credential]
-  helper = /opt/boxen/bin/boxen-git-credential
 [web]
   browser = open
 [browser "chrome"]
