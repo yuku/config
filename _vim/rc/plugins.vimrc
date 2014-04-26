@@ -1,8 +1,11 @@
 filetype off
+filetype plugin indent off
+
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-call neobundle#rc(expand('~/.vim/bundle/'))
+let s:neobundle_dir = expand('~/.vim/bundle/')
+call neobundle#rc(s:neobundle_dir)
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -36,7 +39,7 @@ nnoremap [unite]  <Nop>
 nmap     <space>  [unite]
 
 nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
-nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir file file/new<CR>
+nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -start-insert file file/new<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -quick-match buffer<CR>
@@ -325,9 +328,18 @@ let s:bundle = neobundle#get('vim-rspec')
 function! s:bundle.hooks.on_source(bundle)
    let g:rspec_command = 'Dispatch rspec {spec}'
 endfunction
-"NeoBundleLazy 'thinca/vim-quickrun',      {'autoload': {'filetypes': ['ruby', 'python', 'perl', 'sh']}}
-"nmap <Leader>r <plug>(quickrun)
-"let g:quickrun_config = {}
+NeoBundleLazy 'thinca/vim-quickrun',      {
+      \   'autoload': {
+      \     'filetypes': ['ruby', 'python', 'perl', 'sh', 'go']
+      \   }
+      \ }
+nmap <Leader>r <plug>(quickrun)
+let g:quickrun_config = {
+            \ 'go': {
+            \   'command': 'go',
+            \   'exec': ['%c run %s']
+            \ }
+            \}
 "let g:quickrun_config.perl = {'command': 'perl', 'cmdopt': '-MProject::Libs'}
 ""NeoBundleLazy 'yuku-t/vim-ref-ri', {
 ""            \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
@@ -426,7 +438,19 @@ function! s:syntastic()
 endfunction
 " }}}
 
+
+" golang
+if has('vim_starting') && $GOROOT != ''
+    " gocode
+    set runtimepath+=$GOROOT/misc/vim
+    " golint
+    exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
+endif
+
+NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
+
 filetype plugin indent on
+syntax on
 
 " Installation check
 NeoBundleCheck

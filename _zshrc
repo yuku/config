@@ -54,7 +54,7 @@ alias gcc='gcc -Wall -lstdc++'
 case ${OSTYPE} in
 darwin*) # Mac OS X
     function macvim () {
-        if [ -d ~/Applications/MacVim.app ] ; then
+        if [ -d /Applications/MacVim.app ] ; then
             if [[ -n `ps aux | grep MacVim` ]] ; then
                 [ ! -f $1 ] && touch $1
                 open -a MacVim $1
