@@ -16,6 +16,7 @@ set backspace=indent,eol,start
 set nostartofline           " don't jump to the start of line when scrolling
 set wildmenu                " turn on wild menu
 set wildmode=list:longest,full
+set completeopt=menu,menuone
 
 " Treat octal and hexadecimal number as decimal number
 " octal  Numbers that start with a zero will be considered to be octal
@@ -40,6 +41,7 @@ augroup FileTypePlugin
     au FileType rst        setlocal tw=0
     au FileType scss       setlocal ts=4 sts=4 sw=4
     au FileType javascript setlocal ts=2 sts=2 sw=2
+    au FileType go         setlocal ts=2 sts=2 sw=2
     au FileType typescript setlocal ts=4 sts=4 sw=4
     au FileType vim        setlocal ts=4 sts=4 sw=4
     au FileType vimfiler   setlocal nonu
