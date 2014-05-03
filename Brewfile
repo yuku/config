@@ -18,6 +18,7 @@ install zsh --disble-etcdir
 
 install brew-cask
 cask install alfred
+cask install android-file-transfer
 cask install colors
 cask install dash
 cask install dropbox
