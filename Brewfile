@@ -3,6 +3,8 @@ update
 tap homebrew/binary
 tap phinze/homebrew-cask
 
+install boot2docker
+install docker
 install dnsmasq
 install git
 install go --cross-compile-common
@@ -17,6 +19,7 @@ install tmux
 install zsh --disble-etcdir
 
 install brew-cask
+# cask update
 cask install alfred
 cask install android-file-transfer
 cask install colors

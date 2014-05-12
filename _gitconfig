@@ -10,7 +10,7 @@
   editor = vim
   excludesfile = /opt/boxen/config/git/gitignore
 [user]
-  name = Yuku Takahashi
+  name = Yuku TAKAHASHI
   email = taka84u9@gmail.com
 [http]
   sslVerify = false
