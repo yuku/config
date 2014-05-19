@@ -43,6 +43,7 @@ cask install sequel-pro
 cask install skitch
 cask install slack
 cask install spectacle
+cask install sqwiggle
 cask install vagrant
 cask install virtualbox
 cask install witch
