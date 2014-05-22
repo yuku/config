@@ -374,16 +374,6 @@ function git_fetch() {
 zle -N git_fetch
 bindkey '^G^F' git_fetch
 
-function git_commit() {
-    if [ "$(is_git_repository)" = 'true' ] ; then
-        echo git commit -v
-        git commit -v
-    fi
-    zle reset-prompt
-}
-zle -N git_commit
-bindkey '^G^V' git_commit
-
 function ssh() {
     local window_name=$(tmux display -p '#{window_name}')
     command ssh $@
