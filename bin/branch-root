@@ -1,3 +1,0 @@
-#!/bin/zsh
-
-echo $(git rev-list ${1:-master}..HEAD | tail -n 1)

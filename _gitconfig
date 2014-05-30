@@ -16,23 +16,20 @@
 [http]
   sslVerify = false
 [alias]
+  amend = commit --amend -C HEAD
+  branch-root = merge-base master HEAD
+  current-branch = rev-parse --abbrev-ref HEAD
+  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+  uncommit = reset HEAD~
+  today = log --oneline --since='12 hour ago'
+  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+  sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
   co = checkout
   st = status
   ci = commit -v
-  di = diff
   br = branch -vv
-  puhs = push
-  psuh = push
-  pus = push
-  puh = push
-  pl = !git pull && git submodule update --init
   lg = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
-  today = log --oneline --since='12 hour ago'
   gp = grep -H --heading --break
-  uncommit = reset HEAD~
-  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-  current-branch = rev-parse --abbrev-ref HEAD
-  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
 [gui]
   encoding = utf-8
 [push]
@@ -60,3 +57,12 @@
   log = diff-highlight | less
   show = diff-highlight | less
   diff = diff-highlight | less
+[help]
+	autocorrect = 1
+[rerere]
+	enabled = 1
+[url "git@github.com:yuku-t/"]
+    insteadof = gh:
+#[url "git@github.com:"]
+#    pushinsteadof = "https://github.com/"
+#    pushinsteadof = "git://github.com/"
