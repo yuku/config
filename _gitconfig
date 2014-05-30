@@ -16,14 +16,14 @@
 [http]
   sslVerify = false
 [alias]
-  amend = commit --amend -C HEAD
-  branch-root = merge-base master HEAD
+  amend          = commit --amend -C HEAD
+  branch-root    = merge-base master HEAD
   current-branch = rev-parse --abbrev-ref HEAD
   delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-  uncommit = reset HEAD~
-  today = log --oneline --since='12 hour ago'
-  pull-dry-run  = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
-  sync = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
+  uncommit       = reset HEAD~
+  today          = log --oneline --since='12 hour ago'
+  pull-dry-run   = !git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}
+  sync           = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
   co = checkout
   st = status
   ci = commit -v
@@ -34,9 +34,6 @@
   encoding = utf-8
 [push]
   default = current
-[tig "bind"]
-  generic = g move-first-line
-  generic = G move-last-line
 [pull]
   rebase = true
 [grep]
@@ -63,6 +60,8 @@
 	enabled = 1
 [url "git@github.com:yuku-t/"]
     insteadof = gh:
-#[url "git@github.com:"]
-#    pushinsteadof = "https://github.com/"
-#    pushinsteadof = "git://github.com/"
+[url "git@github.com:"]
+    pushinsteadof = "https://github.com/"
+    pushinsteadof = "git://github.com/"
+[diff "json"]
+  textconv = "jq -M ."

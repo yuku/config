@@ -1,14 +1,21 @@
 # vi: set ft=conf :
 
+# General
+# =======
+
 set mouse = yes
 set refresh-mode = auto
+set line-graphics = ascii
 bind generic S :source ~/.tigrc
+bind generic g move-first-line
+bind generic G move-last-line
 
 # main view
 # =========
 
 set main-view = id date:short author:abbreviated commit-title:graph=yes,refs=yes
-bind main G !@hub browse -- commit/%(commit)
+bind main B @hub browse -- commit/%(commit)
+bind main f ?!zsh -c 'git commit -m "fixup! $(git show %(commit) -s --format=%s)"'
 
 # status view
 # ===========
@@ -18,9 +25,27 @@ bind status C !git commit -v
 # diff view
 # =========
 
-bind diff G !@hub browse -- commit/%(commit)
+bind diff B @hub browse -- commit/%(commit)
+set diff-options = -m --first-parent
+set ignore-space = at-eol
 
 # blame view
 # ==========
 
 set blame-view = id:yes,color date:short author:abbreviated line-number:yes,interval=1 text
+
+# tree view
+# =========
+
+bind tree B @hub browse -- tree/%(commit)/%(directory)
+
+# blob view
+# =========
+
+bind blob B @hub browse -- tree/%(commit)/%(file)
+
+# stage view
+# ==========
+
+bind stage <Ctrl-n> :/^@@
+bind stage <Ctrl-p> :?^@@
