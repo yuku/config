@@ -1,2 +1,26 @@
+# vi: set ft=conf :
+
+set mouse = yes
+set refresh-mode = auto
+bind generic S :source ~/.tigrc
+
+# main view
+# =========
+
+set main-view = id date:short author:abbreviated commit-title:graph=yes,refs=yes
 bind main G !@hub browse -- commit/%(commit)
+
+# status view
+# ===========
+
+bind status C !git commit -v
+
+# diff view
+# =========
+
 bind diff G !@hub browse -- commit/%(commit)
+
+# blame view
+# ==========
+
+set blame-view = id:yes,color date:short author:abbreviated line-number:yes,interval=1 text
