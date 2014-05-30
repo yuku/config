@@ -5,6 +5,7 @@
 *.html   diff=html
 *.html.* diff=html
 *.java   diff=java
+*.json   diff=json
 *.m      diff=objc
 *.php    diff=php
 *.pl     diff=perl
