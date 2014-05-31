@@ -6,6 +6,7 @@ tap phinze/homebrew-cask
 install boot2docker
 install dnsmasq
 install docker
+install direnv
 install git
 install gnupg
 install go --cross-compile-common
@@ -15,6 +16,7 @@ install node
 install packer
 install rbenv
 install ruby-build
+install source-highlight
 install terminal-notifier
 install tmux
 install zsh --disble-etcdir

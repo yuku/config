@@ -8,7 +8,7 @@
   grep = auto
 [core]
   editor = vim
-  excludesfile = /opt/boxen/config/git/gitignore
+  excludesfile = ~/.gitignore
   attributesfile = ~/.gitattributes
 [user]
   name = Yuku TAKAHASHI
@@ -43,7 +43,6 @@
   rebase = true
 [hub]
   protocol = https
-[credential]
 [web]
   browser = open
 [browser "chrome"]
@@ -64,4 +63,11 @@
     pushinsteadof = "https://github.com/"
     pushinsteadof = "git://github.com/"
 [diff "json"]
-  textconv = "jq -M ."
+#  textconv = "jq -M ."
+  textconv = "python -mjson.tool"
+[merge]
+	tool = gvimdiff
+[include]
+	path = ~/.gitconfig.local
+[rebase]
+	autosquash = true

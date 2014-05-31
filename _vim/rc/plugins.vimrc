@@ -195,9 +195,9 @@ augroup VimFilerSettings
     autocmd FileType vimfiler nmap <buffer> <2-LeftMouse>
           \ <Plug>(vimfiler_edit_file)
     " Starts VimFiler automatically if no files were specified.
-    if !argc()
-        autocmd VimEnter * VimFiler -status
-    endif
+    "if !argc()
+    "    autocmd VimEnter * VimFiler -status
+    "endif
 augroup END
 " }}}
 
