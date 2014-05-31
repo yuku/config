@@ -3,6 +3,7 @@
 *.pyo
 *.swo
 *.swp
+*.orig
 .DS_Store
 .DS_Store?
 .Spotlight-V100
