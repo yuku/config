@@ -16,7 +16,7 @@ bind generic G move-last-line
 set main-view = id date:short author:abbreviated commit-title:graph=yes,refs=yes
 bind main B @hub browse -- commit/%(commit)
 bind main f !git commit --fixup %(commit)
-bind main s !git commit --squash %(commit)
+bind main S !git commit --squash %(commit)
 
 # status view
 # ===========

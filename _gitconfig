@@ -21,12 +21,12 @@
   branch-root    = merge-base master HEAD
   current-branch = rev-parse --abbrev-ref HEAD
   delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-  uncommit       = reset HEAD~
+  pull-dry-run   = !"git fetch origin; B=$(git current-branch); git diff --stat --summary ${B}..origin/${B}"
+  review         = !git rev-list $(git branch-root)..HEAD | tig --stdin --no-walk --reverse -w
+  sync           = !git checkout master && git pull origin master && git fetch -p origin && git delete-merged-branches
   today          = log --oneline --since='12 hour ago'
-  pull-dry-run   = !git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}
-  sync           = !git checkout master && git pull origin master && git fetch -p origin && git branch -d $(git branch --merged | grep -v master | grep -v '*')
+  uncommit       = reset HEAD~
   co = checkout
-  st = status
   ci = commit -v
   br = branch -vv
   lg = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
