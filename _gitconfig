@@ -16,6 +16,7 @@
 [http]
   sslVerify = false
 [alias]
+  review = !git rev-list $(git branch-root)..HEAD | tig --stdin --no-walk --reverse -w
   amend          = commit --amend -C HEAD
   branch-root    = merge-base master HEAD
   current-branch = rev-parse --abbrev-ref HEAD

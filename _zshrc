@@ -142,7 +142,7 @@ local BOLD_YELLOW="%{${fg_bold[yellow]}%}"
 local BOLD_WHITE="%{${fg_bold[white]}%}"
 local BOLD_GRAY="%{${fg_bold[gray]}%}"
 
-RPROMPT="%T"
+#RPROMPT="%T"
 setopt transient_rprompt
 function precmd () {
     local color
