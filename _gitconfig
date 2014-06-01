@@ -16,16 +16,16 @@
 [http]
   sslVerify = false
 [alias]
-  review = !git rev-list $(git branch-root)..HEAD | tig --stdin --no-walk --reverse -w
   amend          = commit --amend -C HEAD
   branch-root    = merge-base master HEAD
   current-branch = rev-parse --abbrev-ref HEAD
   delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
   pull-dry-run   = !"git fetch origin; B=$(git current-branch); git diff --stat --summary ${B}..origin/${B}"
-  review         = !git rev-list $(git branch-root)..HEAD | tig --stdin --no-walk --reverse -w
+  review         = !tig --no-walk --reverse -w $(git branch-root)..HEAD
   sync           = !git checkout master && git pull origin master && git fetch -p origin && git delete-merged-branches
   today          = log --oneline --since='12 hour ago'
   uncommit       = reset HEAD~
+  mergelog       = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
   co = checkout
   ci = commit -v
   br = branch -vv
