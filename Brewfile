@@ -4,12 +4,13 @@ tap homebrew/binary
 tap phinze/homebrew-cask
 
 install boot2docker
+install direnv
 install dnsmasq
 install docker
-install direnv
 install git
 install gnupg
 install go --cross-compile-common
+install grc
 install jq
 install macvim --with-lua --with-luajit
 install node

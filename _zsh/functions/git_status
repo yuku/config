@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if [ "$(is_git_repository)" = 'true' ] ; then
+    echo git status -sb
+    git status -sb
+fi
+zle reset-prompt

@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+local PSRESULT="`ps aux`"
+echo $PSRESULT | head -1
+echo $PSRESULT | tail -n +2 | grep $*
