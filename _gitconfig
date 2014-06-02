@@ -51,7 +51,7 @@
 [github]
   user = yuku-t
 [pager]
-  log = diff-highlight | less
+  log  = diff-highlight | less
   show = diff-highlight | less
   diff = diff-highlight | less
 [help]
@@ -64,11 +64,14 @@
     pushinsteadof = "https://github.com/"
     pushinsteadof = "git://github.com/"
 [diff "json"]
-#  textconv = "jq -M ."
-  textconv = "python -mjson.tool"
+  textconv = "jq -M ."
 [merge]
 	tool = gvimdiff
+	conflictstyle = diff3
 [include]
 	path = ~/.gitconfig.local
 [rebase]
 	autosquash = true
+[ghq]
+    root = ~/.ghq
+    root = ~/.go/src

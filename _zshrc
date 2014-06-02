@@ -13,7 +13,28 @@
 
 # This file sets up cli environment.
 
-### Alias settings
+# Declaration
+# ===========
+
+# Environment Variables
+# ---------------------
+
+
+# Variables
+# ---------
+
+# Unique array
+typeset -Ua path cdpath fpath manpath
+
+# Functions
+# ---------
+
+fpath=($HOME/.zsh/functions(N-/) $fpath)
+for i in $(ls $HOME/.zsh/functions) ; do autoload -U $i ; done
+
+# Alias Settings
+# ==============
+
 setopt complete_aliases     # expand aliases before completing
 
 [ -x "$(which hub)" ]    && eval "$(hub alias -s)"     # use hub
@@ -75,27 +96,12 @@ linux*)
     alias ls='ls -F --color=auto'
     ;;
 esac
-function extract () {
-    case $1 in
-        *.tar.gz|*.tgz) tar xzvf $1;;
-        *.tar.xz) tar Jxvf $1;;
-        *.zip) unzip $1;;
-        *.lzh) lha e $1;;
-        *.tar.bz2|*.tbz) tar xjvf $1;;
-        *.tar.Z) tar zxvf $1;;
-        *.gz) gzip -dc $1;;
-        *.bz2) bzip2 -dc $1;;
-        *.Z) uncompress $1;;
-        *.tar) tar xvf $1;;
-        *.arj) unarj $1;;
-    esac
-}
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 
 if [ -x "$(where grc)" ]
 then
     alias mount='grc mount'
-    alias ifconfig='grc ifconfig'
+    #alias ifconfig='grc ifconfig'
     alias dig='grc dig'
     alias ldap='grc ldap'
     alias netstat='grc netstat'
@@ -113,9 +119,10 @@ fi
 ### misc. settings
 export LESSCHARSET=utf-8
 export OUTPUT_CHARSET=utf-8
-umask 002            # default umask -> group writable
+umask 022            # default umask
 bindkey -e           # emacs like keybinding
 export EDITOR=vim
+export MANPAGER='less -R'
 # Backspace key
 bindkey "^?" backward-delete-char
 
@@ -145,23 +152,25 @@ local BOLD_GRAY="%{${fg_bold[gray]}%}"
 #RPROMPT="%T"
 setopt transient_rprompt
 function precmd () {
-    local color
+    local color branch
     #PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
     PROMPT="${YELLOW}%~${RESET} "
-    st=`command git status 2>/dev/null`
-    if [ $? ] ; then
-        if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
-            color=$CYAN
-        elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
-            color=$BLUE
-        elif [[ -n `echo "$st" | grep "^# Untracked"` ]] ; then
-            color=$BOLD_RED
-        else
-            color=$RED
-        fi
-        branch=$(git_current_branch)
-        if [ $branch ] ; then
-            PROMPT+="$color$branch%b${RESET} "
+    if [ "$(is_git_repository)" = 'true' ] ; then
+        st=`command git status 2>/dev/null`
+        if [ $? ] ; then
+            if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
+                color=$CYAN
+            elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
+                color=$BLUE
+            elif [[ -n `echo "$st" | grep "^# Untracked"` ]] ; then
+                color=$BOLD_RED
+            else
+                color=$RED
+            fi
+            branch=$(git current-branch)
+            if [ $branch ] ; then
+                PROMPT+="$color$branch%b${RESET} "
+            fi
         fi
     fi
 }
@@ -219,7 +228,7 @@ bindkey "^N" history-beginning-search-forward-end
 # incremental search
 #bindkey "^R" history-incremental-search-backward
 #bindkey "^S" history-incremental-search-forward
-function history-all () { history -E 1 }
+#function history-all () { history -E 1 }
 
 ### misc. settings
 
@@ -267,28 +276,6 @@ export PYTHONSTARTUP=$HOME/.pythonrc
 ### Perl settings
 export PERL_BADLANG=0
 
-### My Functions
-
-function calc() { awk "BEGIN{ print $* }" ;}
-export MANPAGER='less -R'
-function man() {
-    env \
-        LESS_TERMCAP_mb=$(printf "\e[1;31m") \
-        LESS_TERMCAP_md=$(printf "\e[1;31m") \
-        LESS_TERMCAP_me=$(printf "\e[0m") \
-        LESS_TERMCAP_se=$(printf "\e[0m") \
-        LESS_TERMCAP_so=$(printf "\e[1;44;33m") \
-        LESS_TERMCAP_ue=$(printf "\e[0m") \
-        LESS_TERMCAP_us=$(printf "\e[1;32m") \
-        man "$@"
-}
-
-function psgrep () {
-    local PSRESULT="`ps aux`"
-    echo $PSRESULT | head -1
-    echo $PSRESULT | tail -n +2 | grep $*
-}
-
 # Extra zshrc files
 
 if [ -d $HOME/.zsh/zsh-completions/src ]
@@ -331,54 +318,22 @@ bindkey '^T' zaw-cdr
 # local settings
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
 
-typeset -U path cdpath fpath manpath
 
 
 # Git Keybindings
-function is_git_repository() {
-    echo "$(git rev-parse --is-inside-work-tree 2> /dev/null)"
-}
+# ---------------
 
-function git_current_branch() {
-    git symbolic-ref --short HEAD 2> /dev/null
-}
-
-function git_status() {
-    if [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ] ; then
-        echo git status -sb
-        git status -sb
-    fi
-    zle reset-prompt
-}
 zle -N git_status
 bindkey '^G^S' git_status
 
-function git_pull_current_branch_from_origin() {
-    if [ "$(is_git_repository)" = 'true' ] ; then
-        local branch=$(git_current_branch)
-        echo git pull origin $branch
-        git pull origin $branch
-    fi
-    zle reset-prompt
-}
 zle -N git_pull_current_branch_from_origin
-bindkey '^G^P' git_pull_current_branch_from_origin
+bindkey '^G^P' git_pull_current-branch_from_origin
 
-function git_fetch() {
-    if [ "$(is_git_repository)" = 'true' ] ; then
-        echo git fetch
-        git fetch
-    fi
-    zle reset-prompt
-}
 zle -N git_fetch
 bindkey '^G^F' git_fetch
 
-function ssh() {
-    local window_name=$(tmux display -p '#{window_name}')
-    command ssh $@
-    tmux rename-window $window_name
-}
+zle -N percol-src
+bindkey '^S' percol-src
 
 case ${OSTYPE} in
 darwin*) # Mac OS X

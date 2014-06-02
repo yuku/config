@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if [ "$(is_git_repository)" = 'true' ] ; then
+    echo git fetch
+    git fetch
+fi
+zle reset-prompt

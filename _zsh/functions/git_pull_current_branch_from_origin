@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+if [ "$(is_git_repository)" = 'true' ] ; then
+    local branch=$(git current-branch)
+    echo git pull origin $branch
+    git pull origin $branch
+fi
+zle reset-prompt
