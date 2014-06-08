@@ -45,6 +45,7 @@ cask install opera
 cask install pckeyboardhack
 cask install sequel-pro
 cask install skitch
+cask install skype
 cask install slack
 cask install spectacle
 cask install sqwiggle

@@ -1,0 +1,1 @@
+NeoBundle 'goldfeld/vim-seek'

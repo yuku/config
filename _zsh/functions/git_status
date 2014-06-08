@@ -1,7 +1,6 @@
 #!/bin/zsh
 
 if [ "$(is_git_repository)" = 'true' ] ; then
-    echo git status -sb
-    git status -sb
+    BUFFER='git status -sb'
+    zle accept-line
 fi
-zle reset-prompt
