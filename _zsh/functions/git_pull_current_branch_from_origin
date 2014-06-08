@@ -1,8 +1,6 @@
 #!/bin/zsh
 
 if [ "$(is_git_repository)" = 'true' ] ; then
-    local branch=$(git current-branch)
-    echo git pull origin $branch
-    git pull origin $branch
+    BUFFER="git pull origin $(git current-branch)"
+    zle accept-line
 fi
-zle reset-prompt

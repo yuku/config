@@ -327,7 +327,7 @@ zle -N git_status
 bindkey '^G^S' git_status
 
 zle -N git_pull_current_branch_from_origin
-bindkey '^G^P' git_pull_current-branch_from_origin
+bindkey '^G^P' git_pull_current_branch_from_origin
 
 zle -N git_fetch
 bindkey '^G^F' git_fetch
