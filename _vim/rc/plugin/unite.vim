@@ -3,6 +3,7 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 "NeoBundle 'Shougo/unite-help'
 "NeoBundle 'joker1007/unite-pull-request', { 'depends': 'mattn/webapi-vim' }
+NeoBundle 'basyura/unite-rails'
 "let g:unite_enable_split_vertically = 1
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
