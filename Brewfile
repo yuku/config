@@ -16,6 +16,7 @@ install macvim --with-lua --with-luajit
 install node
 install packer
 install rbenv
+install rbenv-default-gems
 install ruby-build
 install source-highlight
 install terminal-notifier
