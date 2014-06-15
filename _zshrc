@@ -69,6 +69,7 @@ alias hg='hg --encoding=utf-8'
 alias javac='javac -J-Dfile.encoding=UTF-8'
 alias java='java -Dfile.encoding=UTF-8'
 alias gcc='gcc -Wall -lstdc++'
+alias inflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
 #alias less=vimpager
 #alias cat=vimcat
 ## os depending alias settings
@@ -251,7 +252,17 @@ export GREP_OPTIONS='--color=auto'
 
 ### Completion settings
 # Use full complement functionality
-autoload -Uz compinit; compinit -u
+autoload -Uz compinit
+# Update fpath
+for i (
+    $HOME/.zsh/zsh-completions/src
+    $HOME/.go/src/github.com/motemen/ghq/zsh
+)
+do
+    [ -d $i ] && fpath=($i $fpath)
+done
+
+compinit -u
 setopt auto_list            # Show all candidates
 setopt auto_menu            # Toggle complement candidates using TAB
 setopt auto_param_slash     # Insert / after a complemented directory name
@@ -266,7 +277,10 @@ zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([%0-9]#)*=0=01;31
 zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/sbin /usr/bin /sbin/bin
 # Don't show current directory
 zstyle ':completion:*' ignore-parents parent pwd
-
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' format '%B%d%b'
+zstyle ':completion:*:warnings' format 'No matches for: %d'
+zstyle ':completion:*' group-name ''
 
 ### Python settings
 export NOSE_REDNOSE=1
@@ -278,11 +292,6 @@ export PERL_BADLANG=0
 
 # Extra zshrc files
 
-if [ -d $HOME/.zsh/zsh-completions/src ]
-then
-  chmod -R 755 $HOME/.zsh/zsh-completions/src
-  fpath=($HOME/.zsh/zsh-completions/src $fpath)
-fi
 
 # Activate cdr command for zaw-cdr
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook

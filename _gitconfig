@@ -21,7 +21,7 @@
   current-branch = rev-parse --abbrev-ref HEAD
   delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
   pull-dry-run   = !"git fetch origin; B=$(git current-branch); git diff --stat --summary ${B}..origin/${B}"
-  review         = !tig --no-walk --reverse -w $(git branch-root)..HEAD
+  review         = !tig --no-walk -w $(git branch-root)..HEAD
   sync           = !git checkout master && git pull origin master && git fetch -p origin && git delete-merged-branches
   today          = log --oneline --since='12 hour ago'
   uncommit       = reset HEAD~
