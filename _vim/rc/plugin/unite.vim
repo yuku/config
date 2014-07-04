@@ -3,35 +3,74 @@ NeoBundle 'Shougo/unite.vim'
 NeoBundle 'Shougo/unite-outline'
 "NeoBundle 'Shougo/unite-help'
 "NeoBundle 'joker1007/unite-pull-request', { 'depends': 'mattn/webapi-vim' }
-NeoBundle 'basyura/unite-rails'
 "let g:unite_enable_split_vertically = 1
+"
 if executable('ag')
     let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
     let g:unite_source_grep_recursive_opt = ''
 endif
-let g:unite_winwidth = 50
-let g:unite_enable_start_insert = 1
-let g:unite_source_history_yank_enable = 1
-call unite#custom#source('file_rec/async', 'ignore_pattern', '\v/doc/|\.git/|/cache/|\.(png|gif|jpeg|jpg)$')
-call unite#custom#source('file_mru', 'ignore_pattern', '.*\/$\|.*Application\ Data.*')
+
+" default profile
+" ---------------
+call unite#custom#profile('default', 'context', {
+      \ 'winwidth': 50,
+      \ 'start_insert': 1
+      \ })
 
 " The prefix key.
 nnoremap [unite]  <Nop>
 nmap     <space>  [unite]
 
-nnoremap <silent> <C-p>    :<C-u>Unite file_rec/async:!<CR>
-nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir -start-insert file file/new<CR>
+" ctrlp.vim like behavior
+" -----------------------
+call unite#custom#profile('ctrlp', 'context', {
+      \ 'start_insert': 1,
+      \ 'winheight': 20,
+      \ 'direction': 'botright',
+      \ 'buffer_name': 'async'
+      \ })
+call unite#custom#source('file_rec/async,file_rec/git', 'ignore_pattern',
+      \ '\v\/doc\/|.vagrant|.git\/|\/cache\/|.(png|gif|jpeg|jpg)$'
+      \ )
+function! DispatchUniteFileRecAsyncOrGit()
+  if isdirectory(getcwd()."/.git")
+    " If current dir is root git directory.
+    Unite -profile-name=ctrlp file_rec/git
+  else
+    Unite -profile-name=ctrlp file_rec/async:!
+  endif
+endfunction
+nnoremap <silent> <C-p> :<C-u>call DispatchUniteFileRecAsyncOrGit()<CR>
+
+" unite/rails settings
+" --------------------
+NeoBundle 'basyura/unite-rails'
+nnoremap <silent> [unite]p :<C-u>Unite -profile-name=ctrlp source<CR>rails/
+
+" neomru
+" ------
+NeoBundle 'Shougo/neomru.vim'
+"call unite#custom#source('file_mru', 'matchers', '.*\/$\|.*Application\ Data.*')
+nnoremap <silent> [unite]m :<C-u>Unite -quick-match -profile-name=ctrlp neomru/file<CR>
+
+nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir
+            \ -buffer-name=files buffer bookmark file file/new<CR>
+nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
+            \ -buffer-name=files -prompt=%\ buffer bookmark file file/new<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>
+let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -quick-match buffer<CR>
 "nnoremap <silent> [unite]h :<C-u>Unite help<CR>
-nnoremap <silent> [unite]t :<C-u>Unite -no-start-insert tab:no-current<CR>
-nnoremap <silent> [unite]w :<C-u>Unite -no-start-insert window:no-current<CR>
-"nnoremap <silent> [unite]m :<C-u>Unite git_modified<CR>
-nnoremap <silent> [unite]a :<C-u>Unite -vertical -no-quit -no-focus -no-start-insert -toggle -direction=topleft -buffer-name=async -winwidth=30 file_rec/async<CR>
-nnoremap <silent> [unite]o :<C-u>Unite -vertical -no-quit -toggle -direction=botright -buffer-name=outline -winwidth=40 outline<CR>
-"
+nnoremap <silent> [unite]t :<C-u>Unite
+            \ -no-start-insert -immediately tab:no-current<CR>
+nnoremap <silent> [unite]w :<C-u>Unite
+            \ -no-start-insert -immediately window:no-current<CR>
+nnoremap <silent> [unite]o :<C-u>Unite
+            \ -vertical -no-quit -toggle -direction=botright
+            \ -buffer-name=outline -winwidth=40 outline<CR>
+
 augroup UniteFileType
     autocmd!
 "    autocmd FileType vim    nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit help<CR>
