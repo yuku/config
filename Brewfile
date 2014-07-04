@@ -3,6 +3,7 @@ update
 tap homebrew/binary
 tap phinze/homebrew-cask
 
+install ag
 install boot2docker
 install direnv
 install dnsmasq
@@ -21,6 +22,7 @@ install ruby-build
 install source-highlight
 install terminal-notifier
 install tmux
+install ttyrec
 install zsh --disble-etcdir
 
 install brew-cask
@@ -28,7 +30,7 @@ install brew-cask
 cask install alfred
 cask install android-file-transfer
 cask install colors
-cask install dash
+# cask install dash
 cask install dropbox
 cask install evernote
 cask install firefox
