@@ -55,7 +55,7 @@ NeoBundle 'Shougo/neomru.vim'
 nnoremap <silent> [unite]m :<C-u>Unite -quick-match -profile-name=ctrlp neomru/file<CR>
 
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir
-            \ -buffer-name=files buffer bookmark file file/new<CR>
+            \ -buffer-name=files file file/new<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
             \ -buffer-name=files -prompt=%\ buffer bookmark file file/new<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>

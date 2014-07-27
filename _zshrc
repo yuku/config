@@ -303,10 +303,11 @@ zstyle ':filter-select' case-insensitive yes
 zstyle ':filter-select' max-lines $(($LINES / 2))
 
 for i (
-  $HOME/.zsh/zaw/zaw.zsh
-  $HOME/.zsh/zaw-sources/git-recent-branches.zsh
-  $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
-  $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    $HOME/.zsh/zaw/zaw.zsh
+    $HOME/.zsh/zaw-sources/git-recent-branches.zsh
+    $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
+    $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    $HOME/.tmuxinator/scripts/tmuxinator
 )
 do
   [ -f $i ] && source $i
@@ -354,5 +355,21 @@ esac
 
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi 
 if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+
+
+_orig_bundle=$(which bundle)
+function bundle() {
+    if [ "$1" = "cd" ]; then
+        local gem
+        if [ "$2" ]; then
+            gem=$2
+        else
+            gem=$($_orig_bundle list | awk '{ print $2 }' | percol)
+        fi
+        cd $($_orig_bundle show $gem)
+    else
+        $_orig_bundle $*
+    fi
+}
 
 # vim: set filetype=zsh :

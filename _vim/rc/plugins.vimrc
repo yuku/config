@@ -20,7 +20,6 @@ else
     source $HOME/.vim/rc/plugin/neocomplcache.vim
 endif
 
-"NeoBundle 'thinca/vim-ref'
 source $HOME/.vim/rc/plugin/vimfiler.vim
 source $HOME/.vim/rc/plugin/vim-gitgutter.vim
 source $HOME/.vim/rc/plugin/vim-indent-guides.vim
@@ -37,13 +36,14 @@ NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-rails'
 NeoBundle 'vim-scripts/AnsiEsc.vim'
 "NeoBundle 'dbext.vim'
+NeoBundle 'rhysd/committia.vim'
 
 source $HOME/.vim/rc/plugin/base16-vim.vim
 source $HOME/.vim/rc/plugin/lightline.vim
 source $HOME/.vim/rc/plugin/vim-gocode.vim
 
 source $HOME/.vim/rc/plugin/vim-quickrun.vim
-source $HOME/.vim/rc/plugin/vim-ref-ri.vim
+" source $HOME/.vim/rc/plugin/vim-ref-ri.vim
 
 " filetype plugins
 source $HOME/.vim/rc/plugin/vim-coffee-script.vim

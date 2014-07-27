@@ -29,19 +29,20 @@ augroup FileTypePlugin
     au!
     au FileType css        setlocal ts=4 sts=4 sw=4
     au FileType gitcommit  setlocal ts=4 sts=4 sw=4 textwidth=69
-    au FileType htmldjango setlocal ts=4 sts=4 sw=4
+    au FileType go         setlocal ts=2 sts=2 sw=2
     au FileType html       setlocal ts=4 sts=4 sw=4
+    au FileType htmldjango setlocal ts=4 sts=4 sw=4
     au FileType int-gosh   setlocal nonu
     au FileType int-pry    setlocal nonu
     au FileType int-python setlocal nonu
     au FileType java       setlocal ts=4 sts=4 sw=4
+    au FileType javascript setlocal ts=2 sts=2 sw=2
     au FileType markdown   setlocal ts=4 sts=4 sw=4 textwidth=0
     au FileType perl       setlocal ts=4 sts=4 sw=4
     au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
     au FileType rst        setlocal tw=0
     au FileType scss       setlocal ts=4 sts=4 sw=4
-    au FileType javascript setlocal ts=2 sts=2 sw=2
-    au FileType go         setlocal ts=2 sts=2 sw=2
+    au FileType slim       setlocal ts=2 sts=2 sw=2 textwidth=0
     au FileType typescript setlocal ts=4 sts=4 sw=4
     au FileType vim        setlocal ts=4 sts=4 sw=4
     au FileType vimfiler   setlocal nonu
