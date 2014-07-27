@@ -1,0 +1,2 @@
+#!/bin/bash
+echo "cd $1" | zsh -i -s
