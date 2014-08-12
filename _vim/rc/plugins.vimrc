@@ -28,6 +28,7 @@ source $HOME/.vim/rc/plugin/syntastic.vim
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'goldfeld/vim-seek'
 NeoBundle 'Align'
+NeoBundle 'rhysd/clever-f.vim'
 
 NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-fugitive'
