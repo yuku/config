@@ -45,6 +45,7 @@ cask install keepassx
 cask install keyremap4macbook
 cask install kobito
 cask install macs-fan-control
+cask install onepassword
 cask install opera
 cask install pckeyboardhack
 cask install sequel-pro
