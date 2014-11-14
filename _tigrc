@@ -6,6 +6,8 @@
 set mouse = yes
 set refresh-mode = auto
 set line-graphics = ascii
+set vertical-split = no
+set split-view-height = 80%
 bind generic S :source ~/.tigrc
 bind generic g move-first-line
 bind generic G move-last-line
