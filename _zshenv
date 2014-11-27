@@ -25,14 +25,16 @@ do
   [ -d $i ] && export PATH=$i:${PATH}
 done
 
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi 
+if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+
 ### load available source files
 sources=(
   #/usr/local/bin/virtualenvwrapper.sh
   #${HOME}/.perl5/perlbrew/etc/bashrc
   #${HOME}/.nvm/nvm.sh
   # for Mac
-  /opt/boxen/env.sh
-  /opt/boxen/nvm/nvm.sh
+  ${HOME}/.zshenv.local
 )
 for i in $sources
 do

@@ -307,7 +307,6 @@ for i (
     $HOME/.zsh/zaw-sources/git-recent-branches.zsh
     $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
     $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    $HOME/.tmuxinator/scripts/tmuxinator
 )
 do
   [ -f $i ] && source $i
@@ -352,10 +351,6 @@ darwin*) # Mac OS X
     export NOTIFY_COMMAND_COMPLETE_TIMEOUT=10
     ;;
 esac
-
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi 
-if which plenv > /dev/null; then eval "$(plenv init -)"; fi
-
 
 _orig_bundle=$(which bundle)
 function bundle() {
