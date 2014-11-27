@@ -4,6 +4,10 @@
     <appname>MACVIM</appname>
     <equal>org.vim.MacVim</equal>
   </appdef>
+  <appdef>
+    <appname>SEQUEL PRO</appname>
+    <equal>com.sequelpro.SequelPro</equal>
+  </appdef>
   <list>
     <item>
       <name>Leave InsMode with EISUU(Terminal)</name>
@@ -57,6 +61,16 @@
         __KeyToKey__
         KeyCode::TAB, ModifierFlag::OPTION_L,
         KeyCode::TAB, ModifierFlag::COMMAND_L
+      </autogen>
+    </item>
+    <item>
+      <name>Ctrl-h to Backspace on Sequel Pro</name>
+      <identifier>private.sequelpro_ctrl_h</identifier>
+      <only>SEQUEL PRO</only>
+      <autogen>
+        --KeyToKey--
+        KeyCode::H, ModifierFlag::CONTROL_L,
+        KeyCode::DELETE
       </autogen>
     </item>
   </list>
