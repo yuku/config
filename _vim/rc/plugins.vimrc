@@ -4,8 +4,7 @@ filetype plugin indent off
 if has('vim_starting')
     set runtimepath+=~/.vim/bundle/neobundle.vim/
 endif
-let s:neobundle_dir = expand('~/.vim/bundle/')
-call neobundle#rc(s:neobundle_dir)
+call neobundle#begin(expand('~/.vim/bundle/'))
 
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
@@ -82,6 +81,8 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
 NeoBundleLazy 'tpope/vim-endwise', {
             \ 'autoload': {'filetypes': ['ruby']}
             \ }
+
+call neobundle#end()
 
 filetype plugin indent on
 syntax on
