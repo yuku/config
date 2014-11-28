@@ -1,3 +1,4 @@
+colorscheme base16-default
 augroup whitespace
     autocmd!
     autocmd VimEnter,WinEnter ruby,javascript,coffee match WhitespaceEOL /\s\+$/
