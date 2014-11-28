@@ -78,11 +78,9 @@ darwin*) # Mac OS X
     function macvim () {
         if [ -d /Applications/MacVim.app ] ; then
             if [[ -n `ps aux | grep MacVim` ]] ; then
-                [ ! -f $1 ] && touch $1
-                open -a MacVim $1
-            else
-                gvim $1
+                open -a MacVim
             fi
+            gvim -c "cd $(pwd)" $1
         else
             command vim $1
         fi
