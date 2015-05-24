@@ -40,6 +40,7 @@ NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-rails'
+NeoBundle 'tpope/vim-abolish'
 NeoBundle 'vim-scripts/AnsiEsc.vim'
 "NeoBundle 'dbext.vim'
 NeoBundle 'rhysd/committia.vim'
@@ -86,6 +87,14 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
             \ }
 NeoBundleLazy 'tpope/vim-endwise', {
             \ 'autoload': {'filetypes': ['ruby']}
+            \ }
+NeoBundleLazy 'noprompt/vim-yardoc', {
+            \ 'autoload': {'filetypes': ['ruby']}
+            \ }
+
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundleLazy 'clausreinke/typescript-tools', {
+            \ 'autoload': {'filetypes': ['typescript']}
             \ }
 
 call neobundle#end()

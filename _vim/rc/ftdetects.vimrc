@@ -13,6 +13,7 @@ augroup MyFileTypeDetect
     au BufRead,BufNewFile *.pp                  set filetype=puppet
     au BufRead,BufNewFile *.scss                set filetype=scss
     au BufRead,BufNewFile *.ts                  set filetype=typescript
+    au BufRead,BufNewFile *.rb                  set syntax=yard
 augroup END
 
 
