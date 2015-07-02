@@ -40,6 +40,7 @@ augroup FileTypePlugin
     au FileType markdown   setlocal ts=4 sts=4 sw=4 textwidth=0
     au FileType perl       setlocal ts=4 sts=4 sw=4
     au FileType python     setlocal ts=4 sts=4 sw=4 si cinw=if,elif,else,for,while,try,except,finally,def,class
+    au FileType quickrun   setlocal nonu
     au FileType rst        setlocal tw=0
     au FileType scss       setlocal ts=4 sts=4 sw=4
     au FileType slim       setlocal ts=2 sts=2 sw=2 textwidth=0

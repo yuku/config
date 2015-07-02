@@ -96,6 +96,9 @@ NeoBundle 'leafgarland/typescript-vim'
 NeoBundleLazy 'clausreinke/typescript-tools', {
             \ 'autoload': {'filetypes': ['typescript']}
             \ }
+NeoBundleLazy 'alunny/pegjs-vim', {
+            \ 'autoload': {'filetypes': ['pegjs']}
+            \ }
 
 call neobundle#end()
 

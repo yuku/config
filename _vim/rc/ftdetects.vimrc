@@ -13,6 +13,7 @@ augroup MyFileTypeDetect
     au BufRead,BufNewFile *.pp                  set filetype=puppet
     au BufRead,BufNewFile *.scss                set filetype=scss
     au BufRead,BufNewFile *.ts                  set filetype=typescript
+    au BufRead,BufNewFile *.peg                 set filetype=pegjs
     au BufRead,BufNewFile *.rb                  set syntax=yard
 augroup END
 
@@ -38,9 +39,9 @@ function! s:gofiletype_post()
   let &g:fileencodings = s:current_fileencodings
 endfunction
 
-augroup MyGolangConfig
-    au!
-    au BufNewFile *.go setlocal filetype=go fileencoding=utf-8 fileformat=unix
-    au BufRead *.go call s:gofiletype_pre()
-    au BufReadPost *.go call s:gofiletype_post()
-augroup END
+" augroup MyGolangConfig
+"     au!
+"     au BufNewFile *.go setlocal filetype=go fileencoding=utf-8 fileformat=unix
+"     au BufRead *.go call s:gofiletype_pre()
+"     au BufReadPost *.go call s:gofiletype_post()
+" augroup END

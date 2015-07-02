@@ -1,4 +1,5 @@
 NeoBundle 'Shougo/neosnippet'
+NeoBundle 'Shougo/neosnippet-snippets'
 let g:neosnippet#snippets_directory =
         \ '~/.vim/snippets,~/.vim/bundle/snipmate-snippets/snippets'
 
