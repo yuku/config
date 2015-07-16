@@ -9,7 +9,7 @@ git submodule update
 
 link_file() {
   source="${PWD}/$1"
-  target="${HOME}/${1/_/.}"
+  target="${HOME}/$1"
 
   if [ -e $target ] ; then
     if [ ! -d $target ] ; then
@@ -23,7 +23,7 @@ link_file() {
   fi
 }
 
-for i in _*
+for i in .*
 do
   link_file $i
 done
