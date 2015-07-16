@@ -5,4 +5,4 @@ if has('vim_starting') && $GOROOT != ''
     exe "set rtp+=" . globpath($GOPATH, "src/github.com/golang/lint/misc/vim")
 endif
 
-NeoBundle 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}
+NeoBundleLazy 'Blackrush/vim-gocode', {"autoload": {"filetypes": ['go']}}

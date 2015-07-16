@@ -1,8 +1,8 @@
 NeoBundle 'airblade/vim-gitgutter'
-let g:gitgutter_enabled = 1
-let g:gitgutter_eager = 1
-" nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
-" nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
+let g:gitgutter_enabled = 0
+let g:gitgutter_eager = 0
+nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
+nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 NeoBundle 'gregsexton/gitv'
 augroup Gitv
     autocmd!

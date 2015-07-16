@@ -39,9 +39,9 @@ NeoBundle 'tomtom/tcomment_vim'
 NeoBundle 'tpope/vim-fugitive'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
-NeoBundle 'tpope/vim-rails'
+NeoBundleLazy 'tpope/vim-rails'
 NeoBundle 'tpope/vim-abolish'
-NeoBundle 'vim-scripts/AnsiEsc.vim'
+NeoBundle 'powerman/vim-plugin-AnsiEsc'
 "NeoBundle 'dbext.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
@@ -49,13 +49,35 @@ NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 
 source $HOME/.vim/rc/plugin/base16-vim.vim
 source $HOME/.vim/rc/plugin/lightline.vim
-source $HOME/.vim/rc/plugin/vim-gocode.vim
+"source $HOME/.vim/rc/plugin/vim-gocode.vim
 
 source $HOME/.vim/rc/plugin/vim-quickrun.vim
 " source $HOME/.vim/rc/plugin/vim-ref-ri.vim
 
 " filetype plugins
-source $HOME/.vim/rc/plugin/vim-coffee-script.vim
+
+" CoffeeScript
+NeoBundleLazy 'kchmck/vim-coffee-script'
+augroup CoffeeScript
+    autocmd!
+    autocmd FileType coffee call s:my_coffee_settings()
+augroup END
+function! s:my_coffee_settings()
+    nnoremap <silent><buffer> <leader>c :<C-u>CoffeeWatch vertical<CR>
+    vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
+endfunction
+
+" Ruby
+
+
+
+
+
+
+
+
+
+
 source $HOME/.vim/rc/plugin/vim-rspec.vim
 source $HOME/.vim/rc/plugin/vim-slim.vim
 NeoBundle 'cakebaker/scss-syntax.vim'
