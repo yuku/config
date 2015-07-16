@@ -45,6 +45,7 @@ NeoBundle 'vim-scripts/AnsiEsc.vim'
 "NeoBundle 'dbext.vim'
 NeoBundle 'rhysd/committia.vim'
 NeoBundle 'editorconfig/editorconfig-vim'
+NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 
 source $HOME/.vim/rc/plugin/base16-vim.vim
 source $HOME/.vim/rc/plugin/lightline.vim
