@@ -87,7 +87,7 @@ darwin*) # Mac OS X
             command vim $1
         fi
     }
-    alias vim='macvim'
+    # alias vim='macvim'
     alias ls='ls -GF'
     alias -s {png,jpg,bmp,PNG,JPG,BMP}='open -a Preview'
     alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'

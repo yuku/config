@@ -58,26 +58,22 @@ source $HOME/.vim/rc/plugin/vim-quickrun.vim
 source $HOME/.vim/rc/plugin/vim-coffee-script.vim
 source $HOME/.vim/rc/plugin/vim-rspec.vim
 source $HOME/.vim/rc/plugin/vim-slim.vim
+NeoBundle 'cakebaker/scss-syntax.vim'
+NeoBundle 'leafgarland/typescript-vim'
+NeoBundle 'nginx.vim'
+NeoBundle 'noprompt/vim-yardoc'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'tmux-plugins/vim-tmux'
+NeoBundle 'tpope/vim-markdown'
+
 NeoBundleLazy 'othree/html5.vim', {
             \ 'autoload': {'filetypes': ['html']}
             \ }
-NeoBundleLazy 'digitaltoad/vim-jade', {
-            \ 'autoload': {'filetypes': ['jade']}
-            \ }
-NeoBundleLazy 'tpope/vim-markdown', {
-            \ 'autoload': {'filetypes': ['markdown']}
-            \ }
-NeoBundleLazy 'nginx.vim', {
-            \ 'autoload': {'filetypes': ['nginx']}
-            \ }
+" NeoBundleLazy 'digitaltoad/vim-jade', {
+"             \ 'autoload': {'filetypes': ['jade']}
+"             \ }
 NeoBundleLazy 'ruby-matchit', {
             \ 'autoload': {'filetypes': ['ruby', 'eruby', 'haml']}
-            \ }
-NeoBundleLazy 'cakebaker/scss-syntax.vim', {
-            \ 'autoload': {'filetypes': ['scss']}
-            \ }
-NeoBundleLazy 'pangloss/vim-javascript', {
-            \ 'autoload': {'filetypes': ['javascript']}
             \ }
 NeoBundleLazy 'briancollins/vim-jst', {
             \ 'autoload': {'filetypes': ['jst', 'ejs']},
@@ -89,11 +85,7 @@ NeoBundleLazy 'vim-ruby/vim-ruby', {
 NeoBundleLazy 'tpope/vim-endwise', {
             \ 'autoload': {'filetypes': ['ruby']}
             \ }
-NeoBundleLazy 'noprompt/vim-yardoc', {
-            \ 'autoload': {'filetypes': ['ruby']}
-            \ }
 
-NeoBundle 'leafgarland/typescript-vim'
 NeoBundleLazy 'clausreinke/typescript-tools', {
             \ 'autoload': {'filetypes': ['typescript']}
             \ }
@@ -152,12 +144,12 @@ nnoremap <silent> [unite]p :<C-u>Unite -profile-name=ctrlp source<CR>rails/
 " neomru
 " ------
 "call unite#custom#source('file_mru', 'matchers', '.*\/$\|.*Application\ Data.*')
-nnoremap <silent> [unite]m :<C-u>Unite -quick-match -profile-name=ctrlp neomru/file<CR>
+nnoremap <silent> [unite]m :<C-u>Unite -profile-name=ctrlp neomru/file<CR>
 
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir
             \ -buffer-name=files file file/new<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
-            \ -buffer-name=files -prompt=%\ buffer bookmark file file/new<CR>
+            \ -buffer-name=files buffer bookmark<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>

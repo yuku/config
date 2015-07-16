@@ -1,5 +1,4 @@
-NeoBundleLazy 'kchmck/vim-coffee-script',
-            \ {'autoload': {'filetypes': ['coffee']}}
+NeoBundle 'kchmck/vim-coffee-script'
 augroup CoffeeScript
     autocmd!
     autocmd FileType coffee call s:my_coffee_settings()

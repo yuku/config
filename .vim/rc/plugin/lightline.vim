@@ -18,13 +18,14 @@ let g:lightline = {
             \   'fileencoding': 'MyFileencoding',
             \   'mode': 'MyMode',
             \ },
-            \ 'component_expand': {
-            \   'syntastic': 'SyntasticStatuslineFlag'
-            \ },
             \ 'component_type': {
             \   'syntastic': 'error'
             \ }
             \ }
+
+"            \ 'component_expand': {
+"            \   'syntastic': 'SyntasticStatuslineFlag'
+"            \ },
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -69,11 +70,11 @@ function! MyMode()
   return winwidth(0) > 60 ? lightline#mode() : ''
 endfunction
 
-augroup AutoSyntastic
-    au!
-    au BufWritePost *.rb,*.js call s:syntastic()
-augroup END
-function! s:syntastic()
-    SyntasticCheck
-    call lightline#update()
-endfunction
+" augroup AutoSyntastic
+"     au!
+"     au BufWritePost *.rb,*.js call s:syntastic()
+" augroup END
+" function! s:syntastic()
+"     SyntasticCheck
+"     call lightline#update()
+" endfunction
