@@ -55,18 +55,15 @@ NeoBundleLazy 'yuku-t/vim-ref-ri', {
       \ }
 NeoBundle 'tpope/vim-endwise'
 
-NeoBundle 'szw/vim-tags'
 NeoBundle 'scrooloose/syntastic'
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
 NeoBundle 'tpope/vim-abolish'
-NeoBundle 'powerman/vim-plugin-AnsiEsc'
+"NeoBundle 'powerman/vim-plugin-AnsiEsc'
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'rhysd/clever-f.vim'
-
-NeoBundleLazy 'tpope/vim-rails'
 
 " Style
 NeoBundle 'chriskempson/base16-vim'
@@ -110,6 +107,9 @@ NeoBundleLazy 'vim-scripts/applescript.vim', {
 NeoBundleLazy 'leafgarland/typescript-vim', {
       \ 'autoload': {'filetypes': ['typescript']}
       \ }
+
+" Call NeoBundleSource in project's .local.vimrc
+NeoBundleLazy 'tpope/vim-rails'
 
 call neobundle#end()
 filetype plugin indent on
