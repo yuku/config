@@ -24,12 +24,14 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-NeoBundle 'Shougo/vimproc', { 'build': {
-                \ 'windows' : 'make -f make_wingw32.mak',
-                \ 'cygwin'  : 'make -f make_cygwin.mak',
-                \ 'mac'     : 'make -f make_mac.mak',
-                \ 'unix'    : 'make -f make_unix.mak'
-            \ } }
+NeoBundle 'Shougo/vimproc', {
+      \ 'build': {
+      \ 'windows' : 'make -f make_wingw32.mak',
+      \ 'cygwin'  : 'make -f make_cygwin.mak',
+      \ 'mac'     : 'make -f make_mac.mak',
+      \ 'unix'    : 'make -f make_unix.mak'
+      \ }
+      \ }
 
 " Autocomplete
 NeoBundle 'Shougo/neocomplete.vim'
@@ -42,19 +44,19 @@ NeoBundle 'gregsexton/gitv'
 " Ruby
 NeoBundleLazy 'marcus/rsense'
 NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
-            \ 'autoload': { 'filetypes': ['ruby'] },
-            \ 'depends': 'marcus/rsense'
-            \ }
-NeoBundle 'szw/vim-tags'
-NeoBundle 'thinca/vim-ref'
+      \ 'insert': 1,
+      \ 'autoload': { 'filetypes': ['ruby'] },
+      \ 'depends': 'marcus/rsense'
+      \ }
+NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'yuku-t/vim-ref-ri', {
-            \ 'autoload': { 'filetypes': ['ruby'] },
-            \ 'depends': 'thinca/vim-ref',
-            \ }
+      \ 'autoload': { 'filetypes': ['ruby'] },
+      \ 'depends': 'thinca/vim-ref',
+      \ }
 NeoBundle 'tpope/vim-endwise'
 
+NeoBundle 'szw/vim-tags'
 NeoBundle 'scrooloose/syntastic'
-
 NeoBundle 'thinca/vim-localrc'
 NeoBundle 'tpope/vim-surround'
 NeoBundle 'tpope/vim-unimpaired'
@@ -78,9 +80,36 @@ NeoBundle 'basyura/unite-rails'
 NeoBundle 'Shougo/neomru.vim'
 
 " Type scripts
-NeoBundle 'noprompt/vim-yardoc'
-NeoBundle 'pangloss/vim-javascript'
-NeoBundle 'tpope/vim-markdown'
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+      \ 'autoload': {'filetypes': ['ruby']}
+      \ }
+NeoBundleLazy 'noprompt/vim-yardoc', {
+      \ 'autoload': {'filetypes': ['ruby']}
+      \ }
+NeoBundleLazy 'pangloss/vim-javascript', {
+      \ 'autoload': {'filetypes': ['javascript']}
+      \ }
+NeoBundleLazy 'tpope/vim-markdown', {
+      \ 'autoload': {'filetypes': ['markdown']}
+      \ }
+NeoBundleLazy 'slim-template/vim-slim', {
+      \ 'autoload': {'filetypes': ['slim']}
+      \ }
+NeoBundleLazy 'kchmck/vim-coffee-script', {
+      \ 'autoload': {'filetypes': ['coffee']}
+      \ }
+NeoBundleLazy 'elixir-lang/vim-elixir', {
+      \ 'autoload': {'filetypes': ['elixir']}
+      \ }
+NeoBundleLazy 'othree/html5.vim', {
+      \ 'autoload': {'filetypes': ['html']}
+      \ }
+NeoBundleLazy 'vim-scripts/applescript.vim', {
+      \ 'autoload': {'filetypes': ['applescript']}
+      \ }
+NeoBundleLazy 'leafgarland/typescript-vim', {
+      \ 'autoload': {'filetypes': ['typescript']}
+      \ }
 
 call neobundle#end()
 filetype plugin indent on
@@ -92,7 +121,7 @@ NeoBundleCheck
 " Rsense {{{
 " ------------------------------
 " Set g:rsenseHome in ~/.vimrc.local
-let g:rsenseUseOmniFunc = 1
+"let g:rsenseUseOmniFunc = 1
 " }}}
 
 " ------------------------------
@@ -114,10 +143,10 @@ let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
 let g:syntastic_style_warning_symbol = '⚠'
 let g:syntastic_mode_map = {
-            \ 'mode': 'passive',
-            \ 'active_filetypes': ['javascript', 'scss', 'coffee'],
-            \ 'passive_filetypes': ['ruby']
-            \ }
+      \ 'mode': 'passive',
+      \ 'active_filetypes': ['javascript', 'scss', 'coffee'],
+      \ 'passive_filetypes': ['ruby']
+      \ }
 let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_scss_checkers = ['scss_lint']
@@ -146,32 +175,32 @@ let g:indent_guides_exclude_filetypes = ['help', 'nerdtree']
 " lightline {{{
 " ------------------------------
 let g:lightline = {
-            \ 'colorscheme': 'wombat',
-            \ 'mode_map': {'c': 'NORMAL'},
-            \ 'active': {
-            \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-            \   'right': [ [ 'syntastic', 'lineinfo'],
-            \              [ 'percent' ],
-            \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
-            \ },
-            \ 'component_function': {
-            \   'modified': 'MyModified',
-            \   'readonly': 'MyReadonly',
-            \   'fugitive': 'MyFugitive',
-            \   'filename': 'MyFilename',
-            \   'fileformat': 'MyFileformat',
-            \   'filetype': 'MyFiletype',
-            \   'fileencoding': 'MyFileencoding',
-            \   'mode': 'MyMode',
-            \ },
-            \ 'component_type': {
-            \   'syntastic': 'error'
-            \ }
-            \ }
+      \ 'colorscheme': 'wombat',
+      \ 'mode_map': {'c': 'NORMAL'},
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
+      \   'right': [ [ 'syntastic', 'lineinfo'],
+      \              [ 'percent' ],
+      \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
+      \ },
+      \ 'component_function': {
+      \   'modified': 'MyModified',
+      \   'readonly': 'MyReadonly',
+      \   'fugitive': 'MyFugitive',
+      \   'filename': 'MyFilename',
+      \   'fileformat': 'MyFileformat',
+      \   'filetype': 'MyFiletype',
+      \   'fileencoding': 'MyFileencoding',
+      \   'mode': 'MyMode',
+      \ },
+      \ 'component_type': {
+      \   'syntastic': 'error'
+      \ }
+      \ }
 
-"            \ 'component_expand': {
-"            \   'syntastic': 'SyntasticStatuslineFlag'
-"            \ },
+"     \ 'component_expand': {
+"     \   'syntastic': 'SyntasticStatuslineFlag'
+"     \ },
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -225,7 +254,7 @@ endfunction
 "     call lightline#update()
 " endfunction
 " }}}
-"
+
 " ------------------------------
 " unite {{{
 " ------------------------------
@@ -234,7 +263,9 @@ call unite#custom#profile('default', 'context', {
       \ 'winwidth': 50,
       \ 'start_insert': 1
       \ })
+
 " ctrlp.vim like behavior
+" -----------------------
 call unite#custom#profile('ctrlp', 'context', {
       \ 'start_insert': 1,
       \ 'winheight': 20,
@@ -254,19 +285,17 @@ function! DispatchUniteFileRecAsyncOrGit()
 endfunction
 nnoremap <silent> <C-p> :<C-u>call DispatchUniteFileRecAsyncOrGit()<CR>
 
-if executable('ag')
-    let g:unite_source_grep_command = 'ag'
-    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
-    let g:unite_source_grep_recursive_opt = ''
-endif
-
 " The prefix key.
 nnoremap [unite]  <Nop>
 nmap     <space>  [unite]
 
 " unite/rails settings
 " --------------------
-nnoremap <silent> [unite]p :<C-u>Unite -profile-name=ctrlp source<CR>rails/
+nnoremap <silent> [unite]rm :<C-u>Unite -profile-name=ctrlp rails/model<CR>
+nnoremap <silent> [unite]rv :<C-u>Unite -profile-name=ctrlp rails/view<CR>
+nnoremap <silent> [unite]rc :<C-u>Unite -profile-name=ctrlp rails/controller<CR>
+nnoremap <silent> [unite]rj :<C-u>Unite -profile-name=ctrlp rails/javascript<CR>
+nnoremap <silent> [unite]rs :<C-u>Unite -profile-name=ctrlp rails/stylesheet<CR>
 
 " neomru
 " ------
@@ -274,54 +303,76 @@ nnoremap <silent> [unite]p :<C-u>Unite -profile-name=ctrlp source<CR>rails/
 nnoremap <silent> [unite]m :<C-u>Unite -profile-name=ctrlp neomru/file<CR>
 
 nnoremap <silent> [unite]u :<C-u>UniteWithBufferDir
-            \ -buffer-name=files file file/new<CR>
+      \ -buffer-name=files file file/new<CR>
 nnoremap <silent> [unite]c :<C-u>UniteWithCurrentDir
-            \ -buffer-name=files buffer bookmark<CR>
+      \ -buffer-name=files buffer bookmark<CR>
 nnoremap <silent> [unite]/ :<C-u>Unite grep:.<CR>
 let g:unite_source_history_yank_enable = 1
 nnoremap <silent> [unite]y :<C-u>Unite history/yank<CR>
 nnoremap <silent> [unite]b :<C-u>Unite -quick-match buffer<CR>
 "nnoremap <silent> [unite]h :<C-u>Unite help<CR>
 nnoremap <silent> [unite]t :<C-u>Unite
-            \ -no-start-insert -immediately tab:no-current<CR>
+      \ -no-start-insert -immediately tab:no-current<CR>
 nnoremap <silent> [unite]w :<C-u>Unite
-            \ -no-start-insert -immediately window:no-current<CR>
+      \ -no-start-insert -immediately window:no-current<CR>
 nnoremap <silent> [unite]o :<C-u>Unite
-            \ -vertical -no-quit -toggle -direction=botright
-            \ -buffer-name=outline -winwidth=40 outline<CR>
+      \ -vertical -no-quit -toggle -direction=botright
+      \ -buffer-name=outline -winwidth=40 outline<CR>
 
 augroup UniteFileType
-    autocmd!
-"    autocmd FileType vim    nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit help<CR>
-"    autocmd FileType sh     nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
-"    autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
-"    autocmd FileType ruby   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
-"    autocmd FileType python nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
-"    autocmd FileType perl   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
-"
-    autocmd FileType unite call s:unite_my_settings()
+  autocmd!
+"  autocmd FileType vim    nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit help<CR>
+"  autocmd FileType sh     nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/man<CR>
+"  autocmd FileType erlang nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/erlang<CR>
+"  autocmd FileType ruby   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/ri<CR>
+"  autocmd FileType python nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/pydoc<CR>
+"  autocmd FileType perl   nnoremap <silent><buffer> K :<C-u>Unite -start-insert -default-action=vsplit ref/perldoc<CR>
+  autocmd FileType unite call s:unite_my_settings()
 augroup END
 
 function! s:unite_my_settings()
-    " Overwrite settings
-    nmap <buffer><ESC>  <Plug>(unite_exit)
-    nmap <buffer><C-c>  <Plug>(unite_exit)
-    nmap <buffer><C-x>  <Plug>(unite_redraw)
-    "imap <buffer>jj     <Plug>(unite_insert_leave)
-    imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
+  " Overwrite settings
+  nmap <buffer><ESC>  <Plug>(unite_exit)
+  nmap <buffer><C-c>  <Plug>(unite_exit)
+  nmap <buffer><C-x>  <Plug>(unite_redraw)
+  "imap <buffer>jj     <Plug>(unite_insert_leave)
+  imap <buffer><C-w>  <Plug>(unite_delete_backward_path)
 
-    " <C-l>: manual neocomplete completion.
-    "inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
+  " <C-l>: manual neocomplete completion.
+  "inoremap <buffer><C-l>  <C-x><C-u><C-p><Down>
 
-    nmap <buffer><expr><C-d>  unite#do_action('delete')
-    imap <buffer><expr><C-d>  unite#do_action('delete')
-    nmap <buffer><expr><C-b>  unite#do_action('bookmark')
-    imap <buffer><expr><C-b>  unite#do_action('bookmark')
-    nmap <buffer><expr><C-k>  unite#do_action('above')
-    imap <buffer><expr><C-k>  unite#do_action('above')
-    nmap <buffer><expr><C-i>  unite#do_action('left')
-    imap <buffer><expr><C-i>  unite#do_action('left')
+  nmap <buffer><expr><C-d>  unite#do_action('delete')
+  imap <buffer><expr><C-d>  unite#do_action('delete')
+  nmap <buffer><expr><C-b>  unite#do_action('bookmark')
+  imap <buffer><expr><C-b>  unite#do_action('bookmark')
+  nmap <buffer><expr><C-k>  unite#do_action('above')
+  imap <buffer><expr><C-k>  unite#do_action('above')
+  nmap <buffer><expr><C-i>  unite#do_action('left')
+  imap <buffer><expr><C-i>  unite#do_action('left')
 endfunction
+
+let g:unite_source_grep_max_candidates = 200
+
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+  \ '-i --line-numbers --nocolor --nogroup --hidden --ignore ' .
+  \ '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('pt')
+  " Use pt in unite grep source.
+  " https://github.com/monochromegane/the_platinum_searcher
+  let g:unite_source_grep_command = 'pt'
+  let g:unite_source_grep_default_opts = '--nogroup --nocolor'
+  let g:unite_source_grep_recursive_opt = ''
+elseif executable('ack-grep')
+  " Use ack in unite grep source.
+  let g:unite_source_grep_command = 'ack-grep'
+  let g:unite_source_grep_default_opts = '-i --no-heading --no-color -k -H'
+  let g:unite_source_grep_recursive_opt = ''
+endif
+
 " }}}
 
 " ------------------------------
@@ -337,27 +388,48 @@ nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
 " gitv {{{
 " ------------------------------
 augroup Gitv
-    autocmd!
-    autocmd FileType gitv call s:my_gitv_settings()
-    autocmd FileType git setlocal nofoldenable foldlevel=0
+  autocmd!
+  autocmd FileType gitv call s:my_gitv_settings()
+  autocmd FileType git setlocal nofoldenable foldlevel=0
 augroup END
 function! s:gitv_get_current_hash()
-    return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
+  return matchstr(getline('.'), '\[\zs.\{7\}\ze\]$')
 endfunction
 function! s:toggle_gitv_folding()
-    if &filetype ==# 'git'
-        setlocal foldenable!
-    endif
+  if &filetype ==# 'git'
+    setlocal foldenable!
+  endif
 endfunction
 function! s:my_gitv_settings()
-    setlocal iskeyword+=/,-,.
-    nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
-    nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=<SID>gitv_get_current_hash()<CR><Space>
-    nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=<SID>gitv_get_current_hash()<CR><CR>
-    nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=<SID>gitv_get_current_hash()<CR><CR>
-    nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=<SID>gitv_get_current_hash()<CR>
-    nnoremap <buffer> G :<C-u>Gbrowse <C-r>=<SID>gitv_get_current_hash()<CR><CR>
-    nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_gitv_folding()<CR>1<C-w>w
+  setlocal iskeyword+=/,-,.
+  nnoremap <silent><buffer> C :<C-u>Git checkout <C-r><C-w><CR>
+  nnoremap <buffer> <Space>rb :<C-u>Git rebase <C-r>=<SID>gitv_get_current_hash()<CR><Space>
+  nnoremap <buffer> <Space>R :<C-u>Git revert <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+  nnoremap <buffer> <Space>h :<C-u>Git cherry-pick <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+  nnoremap <buffer> <Space>rh :<C-u>Git reset --hard <C-r>=<SID>gitv_get_current_hash()<CR>
+  nnoremap <buffer> G :<C-u>Gbrowse <C-r>=<SID>gitv_get_current_hash()<CR><CR>
+  nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_gitv_folding()<CR>1<C-w>w
+endfunction
+" }}}
+
+" ------------------------------
+" vim-slim {{{
+" ------------------------------
+let g:html_indent_inctags = "html,body,head,tbody"
+let g:html_indent_script1 = "inc"
+let g:html_indent_style1 = "inc"
+" }}}
+
+" ------------------------------
+" vim-coffee-script {{{
+" ------------------------------
+augroup CoffeeScript
+  autocmd!
+  autocmd FileType coffee call s:my_coffee_settings()
+augroup END
+function! s:my_coffee_settings()
+  nnoremap <silent><buffer> <leader>c :<C-u>CoffeeWatch vertical<CR>
+  vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
 endfunction
 " }}}
 
@@ -395,16 +467,16 @@ set directory=$HOME/.vim-swap
 
 "" Persistent undo
 if has('persistent_undo')
-    set undodir=~/.vim/undo
-    set undofile
+  set undodir=~/.vim/undo
+  set undofile
 endif
 
-if !has('gui')
-    augroup Redraw
-        au!
-        au WinEnter,BufRead,FocusGained * redraw!
-    augroup END
-endif
+" if !has('gui')
+"   augroup Redraw
+"     au!
+"     au WinEnter,BufRead,FocusGained * redraw!
+"   augroup END
+" endif
 " }}}
 
 " ------------------------------
@@ -458,7 +530,7 @@ nnoremap <C-l> :<C-u>tabnext<CR>
 " ------------------------------
 syntax on
 set background=dark
-colorscheme base16-default
+colorscheme base16-$ITERM_PROFILE
 
 set listchars=tab:▸\ ,eol:¬
 set list
@@ -483,16 +555,16 @@ endif
 
 " highlight cursor line in current window
 augroup cch
-    autocmd!
-    autocmd WinLeave * set nocursorline
-    autocmd WinEnter,BufRead * set cursorline
+  autocmd!
+  autocmd WinLeave * set nocursorline
+  autocmd WinEnter,BufRead * set cursorline
 augroup END
 highlight clear CursorLine
 highlight CursorLine ctermbg=black
 
 augroup whitespace
-    autocmd!
-    autocmd VimEnter,WinEnter ruby,javascript,coffee match WhitespaceEOL /\s\+$/
+  autocmd!
+  autocmd VimEnter,WinEnter ruby,javascript,coffee match WhitespaceEOL /\s\+$/
 augroup END
 highlight WhitespaceEOL ctermbg=red guibg=red
 highlight CursorLineNr ctermfg=DarkYellow guifg=DarkYellow
@@ -511,26 +583,38 @@ set hlsearch                " highlighting matches
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
 augroup Search
-    autocmd!
-    autocmd QuickFixCmdPost *grep cwindow
+  autocmd!
+  autocmd QuickFixCmdPost *grep cwindow
 augroup END
 " }}}
 
-" source $HOME/.vim/rc/general.vimrc
-" source $HOME/.vim/rc/behavior.vimrc
-" source $HOME/.vim/rc/mapping.vimrc
-" source $HOME/.vim/rc/ui.vimrc
-" source $HOME/.vim/rc/search.vimrc
-" source $HOME/.vim/rc/ftdetects.vimrc
-" source $HOME/.vim/rc/plugins.vimrc
-" source $HOME/.vim/rc/highlight.vimrc
+" ------------------------------
+" Ftdetect {{{
+" ------------------------------
+augroup MyFileTypeDetect
+  au!
+  au BufRead,BufNewFile Capfile,Gemfile,*.cap,*.god set filetype=ruby
+  au BufRead,BufNewFile *.json                set filetype=javascript
+  au BufRead,BufNewFile *.md                  set filetype=markdown
+  au BufRead,BufNewFile *.PL,*.psgi,*.t       set filetype=perl
+  au BufRead,BufNewFile .tmux.conf,tmux.conf  set filetype=tmux
+  au BufRead,BufNewFile *.jade                set filetype=jade
+  au BufRead,BufNewFile *.less                set filetype=less
+  au BufRead,BufNewFile *.coffee              set filetype=coffee
+  au BufRead,BufNewFile *.scss                set filetype=scss
+  au BufRead,BufNewFile *.ts                  set filetype=typescript
+  au BufRead,BufNewFile *.peg                 set filetype=pegjs
+  au BufRead,BufNewFile *.slim                set filetype=slim
+  au BufRead,BufNewFile *.ex,*.exs            set filetype=elixir
+augroup END
+" }}}
 
 if has('mac')
-    source $HOME/.vim/rc/mac.vimrc
+  source $HOME/.vim/rc/mac.vimrc
 endif
 
 if exists("$HOME/.vimrc.local")
-    source $HOME/.vimrc.local
+  source $HOME/.vimrc.local
 endif
 
 " vim: set filetype=vim :
