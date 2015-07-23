@@ -64,6 +64,7 @@ NeoBundle 'tpope/vim-abolish'
 NeoBundle 'tmux-plugins/vim-tmux-focus-events'
 NeoBundle 'Lokaltog/vim-easymotion'
 NeoBundle 'rhysd/clever-f.vim'
+NeoBundle 'junegunn/vim-easy-align'
 
 " Style
 NeoBundle 'chriskempson/base16-vim'
@@ -431,6 +432,13 @@ function! s:my_coffee_settings()
   nnoremap <silent><buffer> <leader>c :<C-u>CoffeeWatch vertical<CR>
   vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
 endfunction
+" }}}
+
+" ------------------------------
+" vim-easy-align {{{
+" ------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
+vmap <Enter> <Plug>(EasyAlign)
 " }}}
 
 " ------------------------------
