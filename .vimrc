@@ -108,6 +108,9 @@ NeoBundleLazy 'vim-scripts/applescript.vim', {
 NeoBundleLazy 'leafgarland/typescript-vim', {
       \ 'autoload': {'filetypes': ['typescript']}
       \ }
+NeoBundleLazy 'cespare/vim-toml', {
+      \ 'autoload': {'filetypes': ['toml']}
+      \ }
 
 " Call NeoBundleSource in project's .local.vimrc
 NeoBundleLazy 'tpope/vim-rails'
@@ -596,20 +599,21 @@ augroup END
 " Ftdetect {{{
 " ------------------------------
 augroup MyFileTypeDetect
-  au!
-  au BufRead,BufNewFile Capfile,Gemfile,*.cap,*.god set filetype=ruby
-  au BufRead,BufNewFile *.json                set filetype=javascript
-  au BufRead,BufNewFile *.md                  set filetype=markdown
-  au BufRead,BufNewFile *.PL,*.psgi,*.t       set filetype=perl
-  au BufRead,BufNewFile .tmux.conf,tmux.conf  set filetype=tmux
-  au BufRead,BufNewFile *.jade                set filetype=jade
-  au BufRead,BufNewFile *.less                set filetype=less
-  au BufRead,BufNewFile *.coffee              set filetype=coffee
-  au BufRead,BufNewFile *.scss                set filetype=scss
-  au BufRead,BufNewFile *.ts                  set filetype=typescript
-  au BufRead,BufNewFile *.peg                 set filetype=pegjs
-  au BufRead,BufNewFile *.slim                set filetype=slim
-  au BufRead,BufNewFile *.ex,*.exs            set filetype=elixir
+  autocmd!
+  autocmd BufRead,BufNewFile Capfile,Gemfile,*.cap,*.god set filetype=ruby
+  autocmd BufRead,BufNewFile *.json                set filetype=javascript
+  autocmd BufRead,BufNewFile *.md                  set filetype=markdown
+  autocmd BufRead,BufNewFile *.PL,*.psgi,*.t       set filetype=perl
+  autocmd BufRead,BufNewFile .tmux.conf,tmux.conf  set filetype=tmux
+  autocmd BufRead,BufNewFile *.jade                set filetype=jade
+  autocmd BufRead,BufNewFile *.less                set filetype=less
+  autocmd BufRead,BufNewFile *.coffee              set filetype=coffee
+  autocmd BufRead,BufNewFile *.scss                set filetype=scss
+  autocmd BufRead,BufNewFile *.ts                  set filetype=typescript
+  autocmd BufRead,BufNewFile *.peg                 set filetype=pegjs
+  autocmd BufRead,BufNewFile *.slim                set filetype=slim
+  autocmd BufRead,BufNewFile *.ex,*.exs            set filetype=elixir
+  autocmd BufNewFile,BufRead *.toml                set filetype=toml
 augroup END
 " }}}
 
