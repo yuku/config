@@ -42,11 +42,11 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'gregsexton/gitv'
 
 " Ruby
-NeoBundleLazy 'marcus/rsense'
+NeoBundleLazy 'NigoroJr/rsense'
 NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
       \ 'insert': 1,
       \ 'autoload': { 'filetypes': ['ruby'] },
-      \ 'depends': 'marcus/rsense'
+      \ 'depends': 'NigoroJr/rsense'
       \ }
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'yuku-t/vim-ref-ri', {
@@ -121,7 +121,7 @@ NeoBundleCheck
 " Rsense {{{
 " ------------------------------
 " Set g:rsenseHome in ~/.vimrc.local
-"let g:rsenseUseOmniFunc = 1
+let g:rsenseUseOmniFunc = 1
 " }}}
 
 " ------------------------------
