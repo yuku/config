@@ -1,85 +1,84 @@
-# vim: set ft=conf :
+# vim: set ft=toml noexpandtab :
 [color]
-  ui = auto
-  diff = auto
-  status = auto
-  branch = auto
-  interactive = auto
-  grep = auto
+	branch      = auto
+	diff        = auto
+	grep        = auto
+	interactive = auto
+	status      = auto
+	ui          = auto
 [core]
-  editor = vim
-  excludesfile = ~/.gitignore
-  attributesfile = ~/.gitattributes
+	editor         = vim
+	excludesfile   = ~/.gitignore
+	attributesfile = ~/.gitattributes
+[init]
+	templatedir = ~/.gittemplate
 [user]
-  name = Yuku TAKAHASHI
-  email = taka84u9@gmail.com
+	name  = Yuku TAKAHASHI
+	email = taka84u9@gmail.com
 [http]
-  sslVerify = false
+	sslVerify = false
 [alias]
-  amend          = commit --amend -C HEAD
-  branch-root    = merge-base master HEAD
-  current-branch = rev-parse --abbrev-ref HEAD
-  delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
-  pull-dry-run   = !"git fetch origin; B=$(git current-branch); git diff --stat --summary ${B}..origin/${B}"
-  review         = !tig --no-walk -w $(git branch-root)..HEAD
-  sync           = !git checkout master && git pull origin master && git fetch -p origin && git delete-merged-branches
-  today          = log --oneline --since='12 hour ago'
-  uncommit       = reset HEAD~
-  mergelog       = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
-  co = checkout
-  ci = commit -v
-  br = branch -vv
-  lg = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
-  gp = grep -H --heading --break
-	ctags = !.git/hooks/ctags
-[gui]
-  encoding = utf-8
+	amend          = commit --amend -C HEAD
+	branch-root    = merge-base master HEAD
+	current-branch = rev-parse --abbrev-ref HEAD
+	delete-merged-branches = !git branch --merged | grep -v \\* | xargs -I % git branch -d %
+	review         = !tig --no-walk -w $(git branch-root)..HEAD
+	sync           = !git checkout master && git pull origin master && git fetch -p origin && git delete-merged-branches
+	today          = log --oneline --since='12 hour ago'
+	uncommit       = reset HEAD~
+	mergelog       = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
+	ci             = commit -v
+	br             = branch -vv
+	lg             = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
+	gp             = grep -H --heading --break
+	pull-dry-run   = !"git fetch origin; B=$(git current-branch); git diff --stat --summary ${B}..origin/${B}"
+	ctags          = !.git/hooks/ctags
 [push]
-  default = current
+	default = current
 [pull]
-  rebase = true
+	rebase = true
 [grep]
-  lineNumbers = true
+	lineNumbers = true
 [branch "master"]
-  mergeoptions = --no-ff
-  rebase = true
+	mergeoptions = --no-ff
+	rebase       = true
+[gui]
+	encoding = utf-8
 [hub]
-  protocol = https
+	protocol = https
 [web]
-  browser = open
+	browser = open
 [browser "chrome"]
-  cmd = open -a 'Google Chrome.app'
+	cmd = open -a 'Google Chrome.app'
 [github]
-  user = yuku-t
+	user = yuku-t
 [pager]
-  log  = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
+	log  = diff-highlight | less
+	show = diff-highlight | less
+	diff = diff-highlight | less
 [help]
 	autocorrect = 1
 [rerere]
 	enabled = 1
 [url "git@github.com:yuku-t/"]
-    insteadof = gh:
+	insteadof = gh:
 [url "git@github.com:"]
-    pushinsteadof = "https://github.com/"
-    pushinsteadof = "git://github.com/"
+	pushinsteadof = "https://github.com/"
+	pushinsteadof = "git://github.com/"
 [diff "json"]
-  textconv = "jq -M ."
+	textconv = "jq -M ."
 [merge]
-	tool = gvimdiff
+	tool          = gvimdiff
 	conflictstyle = diff3
 [include]
 	path = ~/.gitconfig.local
 [rebase]
 	autosquash = true
 [ghq]
-    root = ~/.ghq
-    root = ~/.go/src
+	root = ~/.ghq
+	root = ~/.go/src
 [filter "media"]
-	clean = git-media-clean %f
+	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
 [ghi]
 	token = !security find-internet-password -a yuku-t -s github.com -l 'ghi token' -w
-[init]
-	templatedir = ~/.gittemplate
