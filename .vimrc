@@ -7,9 +7,68 @@
 "                                                                           "
 "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
 
-" ------------------------------
-" Plugins {{{
-" ------------------------------
+" General {{{1
+" ============
+set clipboard+=unnamed       " share clipboard with other systems
+set helplang=en,ja           " search en help docs if exists
+
+inoremap # X<BS>#
+set shiftround
+set virtualedit=block        " allow virtual edit in visual block ..
+set ambiwidth=double
+set autoread                 " prevent W11 warning
+set visualbell t_vb=         " No beep sound
+set nolazyredraw             " don't redraw while executing macros
+set report=0                 " tell us about changes
+
+set encoding=utf-8           " Use utf-8
+set termencoding=utf-8       " ..
+set fileencodings=utf-8      " ..
+set fileformats=unix,mac,dos " Automatic end-of-file format detection
+
+" backup current file, deleted afterwards
+set backup
+set writebackup
+if !filewritable($HOME."/.vim-backup")
+  call mkdir($HOME."/.vim-backup", "p")
+endif
+set backupdir=$HOME/.vim-backup
+if !filewritable($HOME."/.vim-swap")
+  call mkdir($HOME."/.vim-swap", "p")
+endif
+set directory=$HOME/.vim-swap
+
+"" Persistent undo
+if has('persistent_undo')
+  set undodir=~/.vim/undo
+  set undofile
+endif
+
+" if !has('gui')
+"   augroup Redraw
+"     au!
+"     au WinEnter,BufRead,FocusGained * redraw!
+"   augroup END
+" endif
+
+" Mapping {{{1
+" ============
+let mapleader=','           " Lead with ,
+
+" Jump to vimrc
+nnoremap <space>v :<C-u>edit $HOME/.vimrc<CR>
+" Reload vimrc setting
+nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
+" Create new tab
+cnoremap <C-t> <C-u>tabnew<CR>
+nnoremap <C-h> :<C-u>tabprevious<CR>
+nnoremap <C-l> :<C-u>tabnext<CR>
+
+" Plugins {{{1
+" ============
+
+" NeoBundle {{{2
+" --------------
 if has('vim_starting')
   if &compatible
     set nocompatible
@@ -69,7 +128,7 @@ NeoBundle 'junegunn/vim-easy-align'
 " Style
 NeoBundle 'chriskempson/base16-vim'
 NeoBundle 'itchyny/lightline.vim'
-NeoBundle 'Yggdroot/indentLine'
+"NeoBundle 'Yggdroot/indentLine'
 
 " Unite
 NeoBundle 'Shougo/unite.vim'
@@ -115,33 +174,32 @@ NeoBundleLazy 'cespare/vim-toml', {
 " Call NeoBundleSource in project's .local.vimrc
 NeoBundleLazy 'tpope/vim-rails'
 
+NeoBundle 'thinca/vim-quickrun'
+" NeoBundleLazy 'thinca/vim-quickrun', {
+"       \ 'autoload': {'filtypes': ['ruby', 'elixir']}
+"       \ }
+
 call neobundle#end()
 filetype plugin indent on
 syntax on
 NeoBundleCheck
-" }}}
 
-" ------------------------------
-" Rsense {{{
-" ------------------------------
+" Rsense {{{2
+" -----------
 " Set g:rsenseHome in ~/.vimrc.local
 let g:rsenseUseOmniFunc = 1
-" }}}
 
-" ------------------------------
-" neocomplete.vim {{{
-" ------------------------------
+" neocomplete.vim {{{2
+" --------------------
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
 if !exists('g:neocomplete#force_omni_input_patterns')
   let g:neocomplete#force_omni_input_patterns = {}
 endif
 let g:neocomplete#force_omni_input_patterns.ruby = '[^.*\t]\.\w*\|\h\w*::'
-" }}}
 
-" ------------------------------
-" rubocop {{{
-" ------------------------------
+" rubocop {{{2
+" ------------
 let g:syntastic_error_symbol = '✗'
 let g:syntastic_style_error_symbol = '✗'
 let g:syntastic_warning_symbol = '⚠'
@@ -155,25 +213,19 @@ let g:syntastic_ruby_checkers = ['rubocop']
 let g:syntastic_javascript_checkers = ['jshint']
 let g:syntastic_scss_checkers = ['scss_lint']
 let g:syntastic_coffee_checkers = ['coffeelint']
-" }}}
 
-" ------------------------------
-" vim-easymotion {{{
-" ------------------------------
+" vim-easymotion {{{2
+" -------------------
 let g:EasyMotion_mapping_j = '<C-j>'
 let g:EasyMotion_mapping_k = '<C-k>'
-" }}}
 
-" ------------------------------
-" indentLine {{{
-" ------------------------------
+" indentLine {{{2
+" ---------------
 let g:indentLine_faster = 1
 nmap <silent><Leader>i :<C-u>IndentLinesToggle<CR>
-" }}}
 
-" ------------------------------
-" lightline {{{
-" ------------------------------
+" lightline {{{2
+" --------------
 let g:lightline = {
       \ 'colorscheme': 'wombat',
       \ 'mode_map': {'c': 'NORMAL'},
@@ -253,11 +305,9 @@ endfunction
 "     SyntasticCheck
 "     call lightline#update()
 " endfunction
-" }}}
 
-" ------------------------------
-" unite {{{
-" ------------------------------
+" unite {{{2
+" ----------
 " default profile
 call unite#custom#profile('default', 'context', {
       \ 'winwidth': 50,
@@ -265,7 +315,6 @@ call unite#custom#profile('default', 'context', {
       \ })
 
 " ctrlp.vim like behavior
-" -----------------------
 call unite#custom#profile('ctrlp', 'context', {
       \ 'start_insert': 1,
       \ 'winheight': 20,
@@ -290,7 +339,6 @@ nnoremap [unite]  <Nop>
 nmap     <space>  [unite]
 
 " unite/rails settings
-" --------------------
 nnoremap <silent> [unite]rm :<C-u>Unite -profile-name=ctrlp rails/model<CR>
 nnoremap <silent> [unite]rv :<C-u>Unite -profile-name=ctrlp rails/view<CR>
 nnoremap <silent> [unite]rc :<C-u>Unite -profile-name=ctrlp rails/controller<CR>
@@ -298,7 +346,6 @@ nnoremap <silent> [unite]rj :<C-u>Unite -profile-name=ctrlp rails/javascript<CR>
 nnoremap <silent> [unite]rs :<C-u>Unite -profile-name=ctrlp rails/stylesheet<CR>
 
 " neomru
-" ------
 "call unite#custom#source('file_mru', 'matchers', '.*\/$\|.*Application\ Data.*')
 nnoremap <silent> [unite]m :<C-u>Unite -profile-name=ctrlp neomru/file<CR>
 
@@ -373,20 +420,15 @@ elseif executable('ack-grep')
   let g:unite_source_grep_recursive_opt = ''
 endif
 
-" }}}
-
-" ------------------------------
-" gitgutter {{{
-" ------------------------------
+" gitgutter {{{2
+" --------------
 let g:gitgutter_enabled = 0
 let g:gitgutter_eager = 0
 nnoremap <silent> ,gg :<C-u>GitGutterToggle<CR>
 nnoremap <silent> ,gh :<C-u>GitGutterLineHighlightsToggle<CR>
-" }}}
 
-" ------------------------------
-" gitv {{{
-" ------------------------------
+" gitv {{{2
+" ---------
 augroup Gitv
   autocmd!
   autocmd FileType gitv call s:my_gitv_settings()
@@ -410,19 +452,15 @@ function! s:my_gitv_settings()
   nnoremap <buffer> G :<C-u>Gbrowse <C-r>=<SID>gitv_get_current_hash()<CR><CR>
   nnoremap <silent><buffer> t :<C-u>windo call <SID>toggle_gitv_folding()<CR>1<C-w>w
 endfunction
-" }}}
 
-" ------------------------------
-" vim-slim {{{
-" ------------------------------
+" vim-slim {{{2
+" -------------
 let g:html_indent_inctags = "html,body,head,tbody"
 let g:html_indent_script1 = "inc"
 let g:html_indent_style1 = "inc"
-" }}}
 
-" ------------------------------
-" vim-coffee-script {{{
-" ------------------------------
+" vim-coffee-script {{{2
+" ----------------------
 augroup CoffeeScript
   autocmd!
   autocmd FileType coffee call s:my_coffee_settings()
@@ -431,64 +469,27 @@ function! s:my_coffee_settings()
   nnoremap <silent><buffer> <leader>c :<C-u>CoffeeWatch vertical<CR>
   vnoremap <silent><buffer> <leader>c :<C-u>'<,'>CoffeeCompile vertical<CR>
 endfunction
-" }}}
 
-" ------------------------------
-" vim-easy-align {{{
-" ------------------------------
+" vim-easy-align {{{2
+" -------------------
 " Start interactive EasyAlign in visual mode (e.g. vip<Enter>)
 vmap <Enter> <Plug>(EasyAlign)
-" }}}
 
-" ------------------------------
-" General {{{
-" ------------------------------
-set clipboard+=unnamed       " share clipboard with other systems
-set helplang=en,ja           " search en help docs if exists
+" vim-quickrun {{{2
+" -----------------
+nmap <silent><leader>r <plug>(quickrun)
+let g:quickrun_config = {
+\   "_": {
+\     "runner": "vimproc",
+\     "runner/vimproc/updatetime": 60,
+\     "runner/vimproc/sleep": 10,
+\     "outputter/buffer/split": "5"
+\   }
+\ }
+set splitbelow
 
-inoremap # X<BS>#
-set shiftround
-set virtualedit=block        " allow virtual edit in visual block ..
-set ambiwidth=double
-set autoread                 " prevent W11 warning
-set visualbell t_vb=         " No beep sound
-set nolazyredraw             " don't redraw while executing macros
-set report=0                 " tell us about changes
-
-set encoding=utf-8           " Use utf-8
-set termencoding=utf-8       " ..
-set fileencodings=utf-8      " ..
-set fileformats=unix,mac,dos " Automatic end-of-file format detection
-
-" backup current file, deleted afterwards
-set backup
-set writebackup
-if !filewritable($HOME."/.vim-backup")
-  call mkdir($HOME."/.vim-backup", "p")
-endif
-set backupdir=$HOME/.vim-backup
-if !filewritable($HOME."/.vim-swap")
-  call mkdir($HOME."/.vim-swap", "p")
-endif
-set directory=$HOME/.vim-swap
-
-"" Persistent undo
-if has('persistent_undo')
-  set undodir=~/.vim/undo
-  set undofile
-endif
-
-" if !has('gui')
-"   augroup Redraw
-"     au!
-"     au WinEnter,BufRead,FocusGained * redraw!
-"   augroup END
-" endif
-" }}}
-
-" ------------------------------
-" Behavior {{{
-" ------------------------------
+" Behavior {{{1
+" =============
 set autoindent              " automatic indent new lines
 set smartindent             " be smart about it
 set wrap                    " wrap lines
@@ -515,26 +516,9 @@ set completeopt=menu,menuone
 " hex    Numbers starting with "0x" or "0X" will be considered to be hexadecimal
 "        Example: Using CTRL-X on "0x100" results in "0x0ff"
 set nrformats+=octal,hex
-" }}}
 
-" ------------------------------
-" Mapping {{{
-" ------------------------------
-let mapleader=','           " Lead with ,
-
-" Jump to vimrc
-nnoremap <space>v :<C-u>edit $HOME/.vimrc<CR>
-" Reload vimrc setting
-nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
-" Create new tab
-cnoremap <C-t> <C-u>tabnew<CR>
-nnoremap <C-h> :<C-u>tabprevious<CR>
-nnoremap <C-l> :<C-u>tabnext<CR>
-" }}}
-
-" ------------------------------
-" Style {{{
-" ------------------------------
+" Style {{{1
+" ==========
 syntax on
 set background=dark
 colorscheme base16-$ITERM_PROFILE
@@ -575,11 +559,9 @@ augroup whitespace
 augroup END
 highlight WhitespaceEOL ctermbg=red guibg=red
 highlight CursorLineNr ctermfg=DarkYellow guifg=DarkYellow
-" }}}
 
-" ------------------------------
-" Search {{{
-" ------------------------------
+" Search {{{1
+" ===========
 set history=100             " keep 100 lines of command line histories
 set ignorecase
 set smartcase
@@ -593,11 +575,9 @@ augroup Search
   autocmd!
   autocmd QuickFixCmdPost *grep cwindow
 augroup END
-" }}}
 
-" ------------------------------
-" Ftdetect {{{
-" ------------------------------
+" Ftdetect {{{1
+" =============
 augroup MyFileTypeDetect
   autocmd!
   autocmd BufRead,BufNewFile Capfile,Gemfile,*.cap,*.god set filetype=ruby
@@ -613,10 +593,11 @@ augroup MyFileTypeDetect
   autocmd BufRead,BufNewFile *.peg                 set filetype=pegjs
   autocmd BufRead,BufNewFile *.slim                set filetype=slim
   autocmd BufRead,BufNewFile *.ex,*.exs            set filetype=elixir
-  autocmd BufNewFile,BufRead *.toml                set filetype=toml
+  autocmd BufRead,BufNewFile *.toml                set filetype=toml
 augroup END
-" }}}
 
+" Local {{{1
+" ==========
 if has('mac')
   source $HOME/.vim/rc/mac.vimrc
 endif
@@ -625,4 +606,4 @@ if exists("$HOME/.vimrc.local")
   source $HOME/.vimrc.local
 endif
 
-" vim: set filetype=vim :
+" vim: set filetype=vim foldmethod=marker :

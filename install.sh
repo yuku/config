@@ -25,7 +25,9 @@ link_file() {
 
 for i in .*
 do
-  link_file $i
+  if [ "${i}" != ".git" ] ; then
+    link_file $i
+  fi
 done
 link_file bin
 

@@ -36,6 +36,11 @@ sources=(
   # for Mac
   ${HOME}/.zshenv.local
 )
+# .zshenv.local should export:
+#     AWS_ACCESS_KEY_ID
+#     AWS_SECRET_ACCESS_KEY
+#     AWS_REGION
+
 for i in $sources
 do
   [ -f $i ] && source $i
