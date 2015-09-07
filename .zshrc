@@ -283,14 +283,6 @@ zstyle ':completion:*' format '%B%d%b'
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':completion:*' group-name ''
 
-### Python settings
-export NOSE_REDNOSE=1
-export PYTHONSTARTUP=${HOME}/.pythonrc
-[ -f $(which virtualenvwrapper.sh 2> /dev/null) ] && source $(which virtualenvwrapper.sh)
-
-### Perl settings
-export PERL_BADLANG=0
-
 # Extra zshrc files
 
 
