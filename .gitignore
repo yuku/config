@@ -15,3 +15,5 @@ Icon?
 Thumbs.db
 \#*
 ehthumbs.db
+Gemfile.lock
+.vim/.netrwhist

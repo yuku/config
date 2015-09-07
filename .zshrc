@@ -37,8 +37,8 @@ for i in $(ls $HOME/.zsh/functions) ; do autoload -U $i ; done
 
 setopt complete_aliases     # expand aliases before completing
 
-[ -x "$(which hub)" ]    && eval "$(hub alias -s)"     # use hub
-[ -x "$(which direnv)" ] && eval "$(direnv hook zsh)"  # use direnv
+[ -x "$(which hub 2> /dev/null)" ]    && eval "$(hub alias -s)"     # use hub
+[ -x "$(which direnv 2> /dev/null)" ] && eval "$(direnv hook zsh)"  # use direnv
 
 ## General
 alias ll='ls -lh'
@@ -255,6 +255,7 @@ export GREP_OPTIONS='--color=auto'
 autoload -Uz compinit
 # Update fpath
 for i (
+    $HOME/.zsh/completions
     $HOME/.zsh/zsh-completions/src
     $HOME/.go/src/github.com/motemen/ghq/zsh
 )
@@ -284,8 +285,8 @@ zstyle ':completion:*' group-name ''
 
 ### Python settings
 export NOSE_REDNOSE=1
-export PYTHONSTARTUP=$HOME/.pythonrc
-[ -f $(which virtualenvwrapper.sh) ] && source $(which virtualenvwrapper.sh)
+export PYTHONSTARTUP=${HOME}/.pythonrc
+[ -f $(which virtualenvwrapper.sh 2> /dev/null) ] && source $(which virtualenvwrapper.sh)
 
 ### Perl settings
 export PERL_BADLANG=0
@@ -352,7 +353,7 @@ darwin*) # Mac OS X
     ;;
 esac
 
-_orig_bundle=$(which bundle)
+_orig_bundle=$(which bundle 2> /dev/null)
 function bundle() {
     if [ "$1" = "cd" ]; then
         local gem

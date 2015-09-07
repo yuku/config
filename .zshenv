@@ -49,9 +49,4 @@ done
 ### Python settings
 [ -d $HOME/.pythonpath ] && export PYTHONPATH=$HOME/.pythonpath:$PYTHONPATH
 
-### Node
-
-export NVM_DIR=~/.nvm
-source $(brew --prefix nvm)/nvm.sh
-
 # vim: set ft=zsh :
