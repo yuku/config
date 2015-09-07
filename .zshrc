@@ -154,8 +154,8 @@ local BOLD_GRAY="%{${fg_bold[gray]}%}"
 setopt transient_rprompt
 function precmd () {
     local color branch
-    #PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
-    PROMPT="${YELLOW}%~${RESET} "
+    PROMPT="${GREEN}%n${RESET}@${BLUE}%m${YELLOW} %~${RESET} "
+    # PROMPT="${YELLOW}%~${RESET} "
     if [ "$(is_git_repository)" = 'true' ] ; then
         st=`command git status 2>/dev/null`
         if [ $? ] ; then
