@@ -84,12 +84,13 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 NeoBundleFetch 'Shougo/neobundle.vim'
 
 NeoBundle 'Shougo/vimproc', {
-      \ 'build': {
-      \ 'windows' : 'make -f make_wingw32.mak',
-      \ 'cygwin'  : 'make -f make_cygwin.mak',
-      \ 'mac'     : 'make -f make_mac.mak',
-      \ 'unix'    : 'make -f make_unix.mak'
-      \ }
+      \   'build': {
+      \     'windows' : 'tools\\update-dll-mingw',
+      \     'cygwin'  : 'make -f make_cygwin.mak',
+      \     'mac'     : 'make -f make_mac.mak',
+      \     'linux'   : 'make',
+      \     'unix'    : 'gmake',
+      \   },
       \ }
 
 " Autocomplete
@@ -101,12 +102,12 @@ NeoBundle 'airblade/vim-gitgutter'
 NeoBundle 'gregsexton/gitv'
 
 " Ruby
-NeoBundleLazy 'NigoroJr/rsense'
-NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
-      \ 'insert': 1,
-      \ 'autoload': { 'filetypes': ['ruby'] },
-      \ 'depends': 'NigoroJr/rsense'
-      \ }
+" NeoBundleLazy 'NigoroJr/rsense'
+" NeoBundleLazy 'supermomonga/neocomplete-rsense.vim', {
+"       \ 'insert': 1,
+"       \ 'autoload': { 'filetypes': ['ruby'] },
+"       \ 'depends': 'NigoroJr/rsense'
+"       \ }
 NeoBundleLazy 'thinca/vim-ref'
 NeoBundleLazy 'yuku-t/vim-ref-ri', {
       \ 'autoload': { 'filetypes': ['ruby'] },
@@ -172,7 +173,16 @@ NeoBundleLazy 'cespare/vim-toml', {
       \ }
 
 " Call NeoBundleSource in project's .local.vimrc
-NeoBundleLazy 'tpope/vim-rails'
+NeoBundle 'tpope/vim-rails'
+
+NeoBundleLazy 'alpaca-tc/neorspec.vim', {
+      \ 'depends' : 'tpope/vim-rails',
+      \ 'autoload' : {
+      \   'commands' : ['RSpecAll', 'RSpecNearest', 'RSpecRetry', 'RSpecCurrent', 'RSpec']
+      \ }}
+NeoBundleLazy 'tpope/vim-dispatch', { 'autoload' : {
+      \ 'commands' : ['Dispatch', 'FocusDispatch', 'Start']
+      \ }}
 
 NeoBundle 'thinca/vim-quickrun'
 " NeoBundleLazy 'thinca/vim-quickrun', {
@@ -321,9 +331,8 @@ call unite#custom#profile('ctrlp', 'context', {
       \ 'direction': 'botright',
       \ 'buffer_name': 'async'
       \ })
-call unite#custom#source('file_rec/async,file_rec/git', 'ignore_pattern',
-      \ '\v\/doc\/|.vagrant|.git\/|\/cache\/|.(png|gif|jpeg|jpg)$'
-      \ )
+let s:unite_ignore_patterns = '\.\(gif\|jpe\?g\|png\|webp\)$'
+call unite#custom#source('file_rec/git', 'ignore_pattern', s:unite_ignore_patterns)
 function! DispatchUniteFileRecAsyncOrGit()
   if isdirectory(getcwd()."/.git")
     " If current dir is root git directory.
@@ -487,6 +496,20 @@ let g:quickrun_config = {
 \   }
 \ }
 set splitbelow
+
+" neorspec.vim {{{2
+" -----------------
+function! s:load_rspec_settings()
+  nnoremap <silent><buffer> <leader>c  :<C-U>RSpecCurrent<CR>
+  nnoremap <silent><buffer> <leader>n  :<C-U>RSpecNearest<CR>
+  nnoremap <silent><buffer> <leader>l  :<C-U>RSpecRetry<CR>
+  nnoremap <silent><buffer> <leader>a  :<C-U>RSpecAll<CR>
+  nnoremap <silent><buffer> <leader>r   :<C-U>RSpec<Space>
+endfunction
+augroup RSpecSetting
+  autocmd!
+  autocmd BufEnter *_spec.rb call s:load_rspec_settings()
+augroup END
 
 " Behavior {{{1
 " =============

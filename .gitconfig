@@ -81,4 +81,4 @@
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
 [ghi]
-	token = !security find-internet-password -a yuku-t -s github.com -l 'ghi token' -w
+	token = c91e59691a510c1cf459c749fe786eb1dce4465b
