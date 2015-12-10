@@ -68,7 +68,6 @@
 [diff "json"]
 	textconv = "jq -M ."
 [merge]
-	tool          = gvimdiff
 	conflictstyle = diff3
 [include]
 	path = ~/.gitconfig.local
@@ -76,9 +75,31 @@
 	autosquash = true
 [ghq]
 	root = ~/.ghq
-	root = ~/.go/src
 [filter "media"]
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
-[ghi]
-	token = c91e59691a510c1cf459c749fe786eb1dce4465b
+[tig]
+	blame-view = id:yes,color date:short author:abbreviated line-number:yes,interval=1 text
+	diff-options = -m --first-parent
+	ignore-space = at-eol
+	line-graphics = ascii
+	main-view = id date:short author:abbreviated commit-title:graph=yes,refs=yes
+	mouse = yes
+	refresh-mode = auto
+	split-view-height = 80%
+	vertical-split = no
+[tig "bind"]
+	# @-prefix means that the console output will not be shown.
+	blob = B @hub browse -- tree/%(commit)/%(file)
+	diff = <Ctrl-n> :/^@@
+	diff = <Ctrl-p> :?^@@
+	diff = B @hub browse -- commit/%(commit)
+	log = <Ctrl-n> :/^commit
+	log = <Ctrl-p> :?^commit
+	main = F ?!git commit --fixup %(commit)
+	main = S ?!git commit --squash %(commit)
+	main = U ?!git uncommit
+	stage = <Ctrl-n> :/^@@
+	stage = <Ctrl-p> :?^@@
+	status = C !git commit -v
+	tree = B @hub browse -- tree/%(commit)/%(directory)

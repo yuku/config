@@ -544,7 +544,7 @@ set nrformats+=octal,hex
 " ==========
 syntax on
 set background=dark
-colorscheme base16-$ITERM_PROFILE
+colorscheme base16-default
 
 set listchars=tab:▸\ ,eol:¬
 set list

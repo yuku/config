@@ -32,7 +32,6 @@ if which plenv > /dev/null; then eval "$(plenv init -)"; fi
 sources=(
   #/usr/local/bin/virtualenvwrapper.sh
   #${HOME}/.perl5/perlbrew/etc/bashrc
-  #${HOME}/.nvm/nvm.sh
   # for Mac
   ${HOME}/.zshenv.local
 )
