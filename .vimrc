@@ -137,16 +137,36 @@ NeoBundle 'Shougo/unite-outline'
 NeoBundle 'basyura/unite-rails'
 NeoBundle 'Shougo/neomru.vim'
 
+" Call NeoBundleSource in project's .local.vimrc
+NeoBundle 'tpope/vim-rails'
+
+NeoBundleLazy 'alpaca-tc/neorspec.vim', {
+      \ 'depends' : 'tpope/vim-rails',
+      \ 'autoload' : {
+      \   'commands' : ['RSpecAll', 'RSpecNearest', 'RSpecRetry', 'RSpecCurrent', 'RSpec']
+      \ }}
+NeoBundleLazy 'tpope/vim-dispatch', { 'autoload' : {
+      \ 'commands' : ['Dispatch', 'FocusDispatch', 'Start']
+      \ }}
+
+NeoBundle 'thinca/vim-quickrun'
+" NeoBundleLazy 'thinca/vim-quickrun', {
+"       \ 'autoload': {'filtypes': ['ruby', 'elixir']}
+"       \ }
+
 " Type scripts
-NeoBundleLazy 'vim-ruby/vim-ruby', {
-      \ 'autoload': {'filetypes': ['ruby']}
-      \ }
-NeoBundleLazy 'noprompt/vim-yardoc', {
-      \ 'autoload': {'filetypes': ['ruby']}
-      \ }
-NeoBundleLazy 'pangloss/vim-javascript', {
+"NeoBundleLazy 'vim-ruby/vim-ruby', {
+"      \ 'autoload': {'filetypes': ['ruby']}
+"      \ }
+"NeoBundleLazy 'noprompt/vim-yardoc', {
+"      \ 'autoload': {'filetypes': ['ruby']}
+"      \ }
+NeoBundleLazy 'othree/yajs.vim', {
       \ 'autoload': {'filetypes': ['javascript']}
       \ }
+" NeoBundleLazy 'pangloss/vim-javascript', {
+"       \ 'autoload': {'filetypes': ['javascript']}
+"       \ }
 NeoBundleLazy 'tpope/vim-markdown', {
       \ 'autoload': {'filetypes': ['markdown']}
       \ }
@@ -171,23 +191,9 @@ NeoBundleLazy 'leafgarland/typescript-vim', {
 NeoBundleLazy 'cespare/vim-toml', {
       \ 'autoload': {'filetypes': ['toml']}
       \ }
-
-" Call NeoBundleSource in project's .local.vimrc
-NeoBundle 'tpope/vim-rails'
-
-NeoBundleLazy 'alpaca-tc/neorspec.vim', {
-      \ 'depends' : 'tpope/vim-rails',
-      \ 'autoload' : {
-      \   'commands' : ['RSpecAll', 'RSpecNearest', 'RSpecRetry', 'RSpecCurrent', 'RSpec']
-      \ }}
-NeoBundleLazy 'tpope/vim-dispatch', { 'autoload' : {
-      \ 'commands' : ['Dispatch', 'FocusDispatch', 'Start']
-      \ }}
-
-NeoBundle 'thinca/vim-quickrun'
-" NeoBundleLazy 'thinca/vim-quickrun', {
-"       \ 'autoload': {'filtypes': ['ruby', 'elixir']}
-"       \ }
+NeoBundleLazy 'digitaltoad/vim-jade', {
+      \ 'autoload': {'filetypes': ['jade']}
+      \ }
 
 call neobundle#end()
 filetype plugin indent on
