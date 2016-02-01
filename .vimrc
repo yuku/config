@@ -154,13 +154,15 @@ NeoBundle 'thinca/vim-quickrun'
 "       \ 'autoload': {'filtypes': ['ruby', 'elixir']}
 "       \ }
 
+NeoBundle 'editorconfig/editorconfig-vim'
+
 " Type scripts
-"NeoBundleLazy 'vim-ruby/vim-ruby', {
-"      \ 'autoload': {'filetypes': ['ruby']}
-"      \ }
-"NeoBundleLazy 'noprompt/vim-yardoc', {
-"      \ 'autoload': {'filetypes': ['ruby']}
-"      \ }
+NeoBundleLazy 'vim-ruby/vim-ruby', {
+      \ 'autoload': {'filetypes': ['ruby']}
+      \ }
+NeoBundleLazy 'noprompt/vim-yardoc', {
+      \ 'autoload': {'filetypes': ['ruby']}
+      \ }
 NeoBundleLazy 'othree/yajs.vim', {
       \ 'autoload': {'filetypes': ['javascript']}
       \ }
@@ -194,6 +196,17 @@ NeoBundleLazy 'cespare/vim-toml', {
 NeoBundleLazy 'digitaltoad/vim-jade', {
       \ 'autoload': {'filetypes': ['jade']}
       \ }
+NeoBundleLazy 'lambdalisue/vim-gista', {
+      \ 'on_cmd': ['Gista'],
+      \ 'on_func': 'gista#'
+      \}
+NeoBundle 'lambdalisue/vim-gista-unite', {
+      \ 'depends': [
+      \   'lambdalisue/vim-gista',
+      \   'Shougo/unite.vim',
+      \ ],
+      \ 'on_unite': ['gista', 'gista/file', 'gista/commit'],
+      \}
 
 call neobundle#end()
 filetype plugin indent on

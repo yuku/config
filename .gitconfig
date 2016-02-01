@@ -91,11 +91,13 @@
 [tig "bind"]
 	# @-prefix means that the console output will not be shown.
 	blob = B @hub browse -- tree/%(commit)/%(file)
-	diff = <Ctrl-n> :/^@@
-	diff = <Ctrl-p> :?^@@
+	diff = g move-first-line
+	diff = G move-last-line
+	diff = <Ctrl-d> move-half-page-down
+	diff = <Ctrl-f> move-page-down
+	diff = <Ctrl-u> move-half-page-up
+	diff = <Ctrl-b> move-page-up
 	diff = B @hub browse -- commit/%(commit)
-	log = <Ctrl-n> :/^commit
-	log = <Ctrl-p> :?^commit
 	main = F ?!git commit --fixup %(commit)
 	main = S ?!git commit --squash %(commit)
 	main = U ?!git uncommit
