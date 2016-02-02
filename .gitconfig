@@ -98,6 +98,8 @@
 	diff = <Ctrl-u> move-half-page-up
 	diff = <Ctrl-b> move-page-up
 	diff = B @hub browse -- commit/%(commit)
+	diff = F ?!git commit --fixup %(commit)
+	diff = S ?!git commit --squash %(commit)
 	main = F ?!git commit --fixup %(commit)
 	main = S ?!git commit --squash %(commit)
 	main = U ?!git uncommit
