@@ -168,7 +168,7 @@ function precmd () {
             else
                 color=$RED
             fi
-            branch=$(git current-branch)
+            branch=$(git current-branch 2> /dev/null)
             if [ $branch ] ; then
                 PROMPT+="$color$branch%b${RESET} "
             fi
