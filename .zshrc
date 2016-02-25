@@ -248,3 +248,5 @@ zstyle ':filter-select' max-lines $(($LINES / 2))
 
 # Local settings {{{1
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
