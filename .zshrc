@@ -34,21 +34,6 @@ autoload -Uz compinit
 autoload -Uz url-quote-magic
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook # Activate cdr command for zaw-cdr
 
-# Third Parties {{{2
-# ==================
-
-for i (
-  $HOME/.zsh/zaw/zaw.zsh
-  $HOME/.zsh/zaw-sources/git-recent-branches.zsh
-  $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
-  $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-)
-do
-  [ -f $i ] && source $i
-done
-
-add-zsh-hook chpwd chpwd_recent_dirs
-
 # General Settings {{{1
 # ==========================
 
@@ -245,6 +230,22 @@ zstyle ':completion:*:sudo:*' command-path /usr/local/sbin /usr/local/bin /usr/s
 zstyle ':completion:*:warnings' format 'No matches for: %d'
 zstyle ':filter-select' case-insensitive yes
 zstyle ':filter-select' max-lines $(($LINES / 2))
+
+
+# Third Parties {{{1
+# ==================
+
+for i (
+  $HOME/.zsh/zaw/zaw.zsh
+  $HOME/.zsh/zaw-sources/git-recent-branches.zsh
+  $HOME/.zsh/zaw-sources/zaw-git-show-branch.zsh
+  $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+)
+do
+  [ -f $i ] && source $i
+done
+
+add-zsh-hook chpwd chpwd_recent_dirs
 
 # Local settings {{{1
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
