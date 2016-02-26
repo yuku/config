@@ -13,6 +13,7 @@ install grc
 install jq
 install rbenv
 install rbenv-default-gems
+install reattach-to-user-namespace
 install ruby-build
 install source-highlight
 install terminal-notifier

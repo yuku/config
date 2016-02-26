@@ -29,7 +29,6 @@ for i (.zsh/completions .zsh/zsh-completions/src .go/src/github.com/motemen/ghq/
 done
 
 autoload -U colors
-autoload -U history-search-end
 autoload -Uz compinit
 autoload -Uz url-quote-magic
 autoload -Uz chpwd_recent_dirs cdr add-zsh-hook # Activate cdr command for zaw-cdr
@@ -90,6 +89,7 @@ umask 022                   # Default umask
 # Widgets {{{1
 # ============
 
+autoload history-search-end
 zle -N git_fetch
 zle -N git_pull_current_branch_from_origin
 zle -N git_status
@@ -157,9 +157,17 @@ fi
 # Keybindings {{{1
 # ================
 
+bindkey -e # emacs like keybinding. Must call before following bindkey settings.
+
+bindkey '^G^F' git_fetch
+bindkey '^G^P' git_pull_current_branch_from_origin
+bindkey '^G^S' git_status
 bindkey '^N'   history-beginning-search-forward-end
+bindkey '^O^B' zaw-git-recent-branches
+bindkey '^O^R' zaw-git-branches
 bindkey '^P'   history-beginning-search-backward-end
-bindkey -e # emacs like keybinding
+bindkey '^R'   zaw-history
+bindkey '^T'   zaw-cdr
 
 # Prompt {{{1
 # ===========
@@ -239,14 +247,6 @@ do
 done
 
 add-zsh-hook chpwd chpwd_recent_dirs
-
-bindkey '^G^F' git_fetch
-bindkey '^G^P' git_pull_current_branch_from_origin
-bindkey '^G^S' git_status
-bindkey '^O^B' zaw-git-recent-branches
-bindkey '^O^R' zaw-git-branches
-bindkey '^R'   zaw-history
-bindkey '^T'   zaw-cdr
 
 # Local settings {{{1
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
