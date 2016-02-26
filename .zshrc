@@ -157,15 +157,8 @@ fi
 # Keybindings {{{1
 # ================
 
-bindkey '^G^F' git_fetch
-bindkey '^G^P' git_pull_current_branch_from_origin
-bindkey '^G^S' git_status
 bindkey '^N'   history-beginning-search-forward-end
-bindkey '^O^B' zaw-git-recent-branches
-bindkey '^O^R' zaw-git-branches
 bindkey '^P'   history-beginning-search-backward-end
-bindkey '^R'   zaw-history
-bindkey '^T'   zaw-cdr
 bindkey -e # emacs like keybinding
 
 # Prompt {{{1
@@ -246,6 +239,14 @@ do
 done
 
 add-zsh-hook chpwd chpwd_recent_dirs
+
+bindkey '^G^F' git_fetch
+bindkey '^G^P' git_pull_current_branch_from_origin
+bindkey '^G^S' git_status
+bindkey '^O^B' zaw-git-recent-branches
+bindkey '^O^R' zaw-git-branches
+bindkey '^R'   zaw-history
+bindkey '^T'   zaw-cdr
 
 # Local settings {{{1
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
