@@ -40,7 +40,7 @@ export EDITOR=vim
 export GREP_OPTIONS='--color=auto'
 export LANG=ja_JP.UTF-8
 export LESSCHARSET=utf-8
-export MYSQL_PS1='(^[[32m\u^[[00m@^[[33m\h^[[00m) ^[[34m[\d]^[[00m > '
+# export MYSQL_PS1='(^[[32m\u^[[00m@^[[33m\h^[[00m) ^[[34m[\d]^[[00m > '
 export OUTPUT_CHARSET=utf-8
 
 # zshparam
