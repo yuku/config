@@ -42,7 +42,6 @@ cask install slack
 cask install spectacle
 cask install vagrant
 cask install virtualbox
-cask install witch
 cask alfred link
 
 linkapps

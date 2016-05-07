@@ -207,6 +207,7 @@ NeoBundle 'lambdalisue/vim-gista-unite', {
       \ ],
       \ 'on_unite': ['gista', 'gista/file', 'gista/commit'],
       \}
+NeoBundle 'rust-lang/rust.vim'
 
 call neobundle#end()
 filetype plugin indent on
@@ -636,6 +637,19 @@ augroup MyFileTypeDetect
   autocmd BufRead,BufNewFile *.slim                set filetype=slim
   autocmd BufRead,BufNewFile *.ex,*.exs            set filetype=elixir
   autocmd BufRead,BufNewFile *.toml                set filetype=toml
+augroup END
+
+" Binary mode {{{1
+" ==========
+augroup Binary
+  au!
+  au BufReadPre  *.bin let &bin=1
+  au BufReadPost *.bin if &bin | %!xxd
+  au BufReadPost *.bin set ft=xxd | endif
+  au BufWritePre *.bin if &bin | %!xxd -r
+  au BufWritePre *.bin endif
+  au BufWritePost *.bin if &bin | %!xxd
+  au BufWritePost *.bin set nomod | endif
 augroup END
 
 " Local {{{1

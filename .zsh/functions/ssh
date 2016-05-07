@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-local window_name=$(tmux display -p '#{window_name}' 2> /dev/null)
-if [ "$window_name" != "" ] ; then
-  command ssh $@
-  tmux rename-window $window_name
-fi
