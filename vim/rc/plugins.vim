@@ -31,6 +31,6 @@ Plug 'tpope/vim-rails'
 call plug#end()
 
 " Load all plugin settings
-for file in split(glob($DOTFILES_DIR . "/vim/rc/plugins/*.vim"), "\n")
+for file in split(glob($DOTFILES_ROOT . "/vim/rc/plugins/*.vim"), "\n")
   execute "source " . file
 endfor

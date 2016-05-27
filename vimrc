@@ -1,4 +1,4 @@
-for file in split(glob($DOTFILES_DIR."/vim/rc/*.vim"), "\n")
+for file in split(glob($DOTFILES_ROOT . "/vim/rc/*.vim"), "\n")
   execute "source " . file
 endfor
 

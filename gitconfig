@@ -1,4 +1,3 @@
-# vim: set ft=toml noexpandtab :
 [color]
 	branch      = auto
 	diff        = auto
@@ -15,8 +14,6 @@
 [user]
 	name  = Yuku TAKAHASHI
 	email = taka84u9@gmail.com
-[http]
-	sslVerify = false
 [alias]
 	amend          = commit --amend -C HEAD
 	branch-root    = merge-base master HEAD
@@ -69,12 +66,10 @@
 	textconv = "jq -M ."
 [merge]
 	conflictstyle = diff3
-[include]
-	path = ~/.gitconfig.local
 [rebase]
 	autosquash = true
 [ghq]
-	root = ~/.ghq
+	root = ~/src
 [filter "media"]
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
@@ -107,3 +102,4 @@
 	stage = <Ctrl-p> :?^@@
 	status = C !git commit -v
 	tree = B @hub browse -- tree/%(commit)/%(directory)
+# vim: set ft=toml noexpandtab :
