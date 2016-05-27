@@ -1,1 +1,0 @@
-../modules/auto-fu.zsh
