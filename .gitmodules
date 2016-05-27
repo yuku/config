@@ -22,3 +22,6 @@
 [submodule "modules/zsh-notify"]
 	path = modules/zsh-notify
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "modules/vim-plug"]
+	path = modules/vim-plug
+	url = https://github.com/junegunn/vim-plug.git

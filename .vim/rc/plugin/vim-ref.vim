@@ -1,1 +1,0 @@
-NeoBundle 'thinca/vim-ref'
