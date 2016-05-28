@@ -28,4 +28,6 @@ git clone --recursive https://github.com/yuku-t/dotfiles.git "$installation_path
 
 "$installation_path/bin/dotfiles-sync"
 
+vim -c 'PlugInstall | qall'
+
 echo "Done."
