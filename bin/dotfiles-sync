@@ -24,14 +24,22 @@ cd "$(dirname "$BASH_SOURCE")/.."
 git pull origin master || exit 1
 git submodule update --init --recursive || exit 1
 
-# Sync all files except README.md
+# Sync all files except $except
+except=(
+  Brewfile
+  README.md
+  bin
+  fonts
+  keyremap4macbook.xml
+  modules
+  script
+  zfunctions
+  zshenv.d
+  zshrc.d
+)
 for file in *; do
-  [[ -f $file ]] || continue
   filename="$(basename "$file")"
-  [[ $filename == 'READMD.md' ]] && continue
-  create_symlink $filename
-done
-
-for dirname in vim source-highlight; do
-  create_symlink $dirname
+  if [[ ! " ${except[@]} " =~ " ${filename} " ]] ; then
+    create_symlink $filename
+  fi
 done
