@@ -4,3 +4,7 @@ endfor
 
 set background=dark
 colorscheme base16-default
+
+if exists("$HOME/.vimrc.local")
+  source $HOME/.vimrc.local
+endif
