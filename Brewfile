@@ -1,49 +1,36 @@
-update
+cask_args appdir: '/Applications'
 
-tap homebrew/binary
-tap phinze/homebrew-cask
+brew 'ag'
+brew 'direnv'
+brew 'git'
+brew 'gpg2'
+brew 'grc'
+brew 'jq'
+brew 'rbenv'
+brew 'rbenv-default-gems'
+brew 'reattach-to-user-namespace'
+brew 'ruby-build'
+brew 'source-highlight'
+brew 'tmux'
+brew 'zsh', args: ['disble-etcdir']
+brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
 
-install ag
-install boot2docker
-install direnv
-install docker
-install git
-install gpg2
-install grc
-install jq
-install rbenv
-install rbenv-default-gems
-install reattach-to-user-namespace
-install ruby-build
-install source-highlight
-install terminal-notifier
-install tmux
-install zsh --disble-etcdir
+tap 'caskroom/cask'
 
-install brew-cask
 # cask update
-cask install alfred
-cask install android-file-transfer
-cask install colors
-cask install dash
-cask install dropbox
-cask install firefox
-cask install flux
-cask install google-chrome
-cask install google-japanese-ime
-cask install iterm2
-cask install karabiner
-cask install onepassword
-cask install opera
-cask install seil
-cask install sequel-pro
-cask install skitch
-cask install slack
-cask install spectacle
-cask install vagrant
-cask install virtualbox
-cask alfred link
+cask 'alfred'
+cask 'dash'
+cask 'dropbox'
+cask 'google-chrome'
+cask 'google-japanese-ime'
+cask 'iterm2'
+cask 'karabiner'
+cask 'onepassword'
+cask 'seil'
+cask 'sequel-pro'
+cask 'slack'
+cask 'spectacle'
+cask 'vagrant'
+cask 'virtualbox'
 
-linkapps
-
-cleanup
+# vim: filetype=ruby

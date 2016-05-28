@@ -1,13 +1,9 @@
 # dotfiles
 
-## Requirements
-
-- [ghq](https://github.com/motemen/ghq)
-
 ## Installation
 
 ```bash
-$ curl -L https://raw.github.com/yuku-t/dotfiles/master/script/install.sh | bash
+$ curl -fsSL https://raw.github.com/yuku-t/dotfiles/master/script/install.sh | bash
 ```
 
 ## Sync

@@ -14,19 +14,30 @@ if [[ -d "$installation_path" ]]; then
   exit
 fi
 
-if ! command_exist ghq; then
-  echo "Installing ghq..."
+if ! command_exist git; then
+  echo "Installing git..."
   if command_exist brew; then
-    brew install ghq
+    brew install git
   else
-    echo "Cannot install ghq. Aborting."
+    echo "Cannot install git. Aborting."
     exit 1
   fi
 fi
 
 git clone --recursive https://github.com/yuku-t/dotfiles.git "$installation_path"
 
-"$installation_path/bin/dotfiles-sync"
+cd $installation_path
+
+case $OSTYPE in
+darwin*)
+  ./script/setup_osx.sh
+  ;;
+linux*)
+  ./script/setup_linux.sh
+  ;;
+esac
+
+./bin/dotfiles-sync
 
 vim -c 'PlugInstall | qall'
 
