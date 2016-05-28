@@ -1,0 +1,37 @@
+#!/bin/bash
+
+warning() {
+  printf "\e[33m$1\e[0m\n"
+}
+
+create_symlink() {
+  file_in_dotfiles="$PWD/$1"
+  file_in_home="$HOME/.$1"
+
+  if [[ -e $file_in_home ]]; then
+    if [[ ! -L $file_in_home ]]; then
+      warning "$file_in_home exists but is not a symlink."
+    fi
+  else
+    echo "Creating symlink at $file_in_home"
+    ln -s "$file_in_dotfiles" "$file_in_home"
+  fi
+}
+
+# Move to dotfiles root
+cd "$(dirname "$BASH_SOURCE")/.."
+
+git pull origin master || exit 1
+git submodule update --init --recursive || exit 1
+
+# Sync all files except README.md
+for file in *; do
+  [[ -f $file ]] || continue
+  filename="$(basename "$file")"
+  [[ $filename == 'READMD.md' ]] && continue
+  create_symlink $filename
+done
+
+for dirname in vim source-highlight; do
+  create_symlink $dirname
+done
