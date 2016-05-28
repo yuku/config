@@ -30,6 +30,7 @@ except=(
   README.md
   bin
   fonts
+  grc
   keyremap4macbook.xml
   modules
   script
