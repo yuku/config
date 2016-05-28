@@ -1,1 +1,3 @@
-vim/plugged
+/vim/plugged
+/rbenv
+!/rbenv/default-gems
