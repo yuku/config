@@ -1,4 +1,5 @@
 bundler
 ec2ssh
+powder
 pry
 tmuxinator
