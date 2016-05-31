@@ -1,5 +1,6 @@
 bundler
 ec2ssh
+gem-ctags
 powder
 pry
 tmuxinator

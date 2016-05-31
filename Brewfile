@@ -1,19 +1,21 @@
 cask_args appdir: '/Applications'
 
 brew 'ag'
+brew 'ctags'
 brew 'direnv'
 brew 'git'
 brew 'gpg2'
 brew 'grc'
 brew 'jq'
 brew 'rbenv'
+brew 'rbenv-ctags'
 brew 'rbenv-default-gems'
 brew 'reattach-to-user-namespace'
 brew 'ruby-build'
 brew 'source-highlight'
 brew 'tmux'
-brew 'zsh', args: ['disble-etcdir']
 brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
+brew 'zsh', args: ['disble-etcdir']
 
 tap 'caskroom/cask'
 
