@@ -10,3 +10,5 @@ check_run() {
 # Example usage
 [ -f Gemfile.lock ] && check_run Gemfile.lock "bundle install"
 [ -f package.json ] && check_run package.json "npm install"
+
+.git/hooks/ctags >/dev/null 2>&1 &
