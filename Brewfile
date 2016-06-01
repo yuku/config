@@ -1,11 +1,13 @@
 cask_args appdir: '/Applications'
 
-brew 'ag'
+tap 'tkengo/highway'
+
 brew 'ctags'
 brew 'direnv'
 brew 'git'
 brew 'gpg2'
 brew 'grc'
+brew 'highway'
 brew 'jq'
 brew 'rbenv'
 brew 'rbenv-ctags'
