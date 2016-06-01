@@ -3,12 +3,12 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'Lokaltog/vim-easymotion'
-Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell'
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
