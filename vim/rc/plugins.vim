@@ -8,6 +8,7 @@ Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
@@ -26,9 +27,6 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-
-" Plugins for snippets
-Plug 'honza/vim-snippets' | Plug 'Shougo/neosnippet'
 
 " Plugins for Rails projects
 Plug 'tpope/vim-bundler'
