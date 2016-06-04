@@ -10,3 +10,6 @@
 [submodule "modules/vim-plug"]
 	path = modules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git
+[submodule "modules/eclim"]
+	path = modules/eclim
+	url = https://github.com/ervandew/eclim.git

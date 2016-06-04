@@ -1,5 +1,7 @@
 /vim/backup
+/vim/eclim
 /vim/plugged
+/vim/plugin/eclim.vim
 /vim/swap
 /rbenv
 !/rbenv/default-gems
