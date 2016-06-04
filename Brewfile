@@ -2,6 +2,7 @@ cask_args appdir: '/Applications'
 
 tap 'tkengo/highway'
 
+brew 'ant'  # For build eclim
 brew 'ctags'
 brew 'direnv'
 brew 'git'
@@ -24,18 +25,14 @@ tap 'caskroom/cask'
 
 # cask update
 cask 'alfred'
-cask 'dash'
 cask 'dropbox'
+cask 'eclipse-java'  # For eclim
 cask 'google-chrome'
 cask 'google-japanese-ime'
 cask 'iterm2'
 cask 'karabiner'
-cask 'onepassword'
 cask 'seil'
 cask 'sequel-pro'
-cask 'slack'
 cask 'spectacle'
-cask 'vagrant'
-cask 'virtualbox'
 
 # vim: filetype=ruby
