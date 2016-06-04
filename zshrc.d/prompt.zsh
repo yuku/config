@@ -1,8 +1,12 @@
 autoload -U colors
 colors
 
+function squashed_pwd() {
+    echo "$(ruby -e "puts '$PWD'.gsub(%r{^$HOME}, '~')" | ruby -pe "gsub(%r{([^/]+)/}) { \"#{\$1[0]}/\" }")"
+}
+
 function precmd () {
-    local color branch
+    local color branch st
     local default=$'%{\e[1;0m%}'
     local reset="%{${reset_color}%}"
     local green="%{${fg[green]}%}"
@@ -20,24 +24,20 @@ function precmd () {
     local bold_white="%{${fg_bold[white]}%}"
     local bold_gray="%{${fg_bold[gray]}%}"
 
-    PROMPT="${green}%n${reset}@${blue}%m${yellow} %~${reset} "
+    PROMPT="${green}%n${reset}@${blue}%m${yellow} $(squashed_pwd)${reset} "
     # PROMPT="${YELLOW}%~${RESET} "
-    if [ "$(is_git_repository)" = 'true' ] ; then
+    branch="$(command git current-branch 2> /dev/null)"
+    if [ $branch ] ; then
         st=`command git status 2>/dev/null`
-        if [ $? ] ; then
-            if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
-                color=$cyan
-            elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
-                color=$blue
-            elif [[ -n `echo "$st" | grep "^# untracked"` ]] ; then
-                color=$bold_red
-            else
-                color=$red
-            fi
-            branch=$(git current-branch 2> /dev/null)
-            if [ $branch ] ; then
-                PROMPT+="${color}${branch}%b${reset} "
-            fi
+        if [[ -n `echo "$st" | grep "^nothing to"` ]] ; then
+            color=$cyan
+        elif [[ -n `echo "$st" | grep "^nothing added"` ]] ; then
+            color=$blue
+        elif [[ -n `echo "$st" | grep "^# untracked"` ]] ; then
+            color=$bold_red
+        else
+            color=$red
         fi
+        PROMPT+="${color}${branch}%b${reset} "
     fi
 }
