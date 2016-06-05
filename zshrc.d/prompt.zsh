@@ -2,7 +2,8 @@ autoload -U colors
 colors
 
 function squashed_pwd() {
-    echo "$(ruby -e "puts '$PWD'.gsub(%r{^$HOME}, '~')" | ruby -pe "gsub(%r{([^/]+)/}) { \"#{\$1[0]}/\" }")"
+
+    echo "$(pwd | sed -e "s:^$HOME:~:" | ruby -pe "gsub(%r{([^/]+)/}) { \"#{\$1[0]}/\" }")"
 }
 
 function precmd () {
