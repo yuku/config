@@ -4,11 +4,13 @@
 changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
 
 check_run() {
-  echo "$changed_files" | grep --quiet "$1" && eval "$2"
+  if [ -f $1 ] ; then
+    echo "$changed_files" | grep --quiet "$1" && eval "$2"
+  fi
 }
 
-# Example usage
-[ -f Gemfile.lock ] && check_run Gemfile.lock "bundle install"
-[ -f package.json ] && check_run package.json "npm install"
-
 .git/hooks/ctags >/dev/null 2>&1 &
+
+check_run .gitmodules  "git submodule init && git submodule update"
+check_run Gemfile.lock "bundle install"
+check_run package.json "npm install"
