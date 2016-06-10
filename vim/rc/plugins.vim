@@ -3,13 +3,14 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 Plug 'Lokaltog/vim-easymotion'
+Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
@@ -19,18 +20,15 @@ Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rhysd/clever-f.vim'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-abolish'
-Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+" Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown', { 'for': 'markdown' }
+Plug 'tpope/vim-rails'
 Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
-
-" Plugins for Rails projects
-Plug 'tpope/vim-bundler'
-Plug 'tpope/vim-rails'
+Plug 'vim-ruby/vim-ruby'
 
 " Add plugins to &runtimepath
 call plug#end()

@@ -1,4 +1,7 @@
 set nocompatible            " Use Vim in more useful way
+filetype on                 " Enable filetype detection
+filetype indent on          " Enable filetype-specific indenting
+filetype plugin on          " Enable filetype-specific plugins
 set clipboard+=unnamed      " share clipboard with other systems
 set helplang=ja,en          " search ja help docs if exists
 
