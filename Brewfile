@@ -2,7 +2,6 @@ cask_args appdir: '/Applications'
 
 tap 'tkengo/highway'
 
-brew 'ant'  # For build eclim
 brew 'ctags'
 brew 'direnv'
 brew 'git'
@@ -26,7 +25,6 @@ tap 'caskroom/cask'
 # cask update
 cask 'alfred'
 cask 'dropbox'
-cask 'eclipse-java'  # For eclim
 cask 'google-chrome'
 cask 'google-japanese-ime'
 cask 'iterm2'
