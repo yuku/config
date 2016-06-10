@@ -87,15 +87,16 @@
 [tig "bind"]
 	# @-prefix means that the console output will not be shown.
 	blob = B @hub browse -- tree/%(commit)/%(file)
-	diff = g move-first-line
-	diff = G move-last-line
+	diff = <Ctrl-b> move-page-up
 	diff = <Ctrl-d> move-half-page-down
 	diff = <Ctrl-f> move-page-down
 	diff = <Ctrl-u> move-half-page-up
-	diff = <Ctrl-b> move-page-up
 	diff = B @hub browse -- commit/%(commit)
 	diff = F ?!git commit --fixup %(commit)
+	diff = G move-last-line
+	diff = R ?!git revert %(commit)
 	diff = S ?!git commit --squash %(commit)
+	diff = g move-first-line
 	main = F ?!git commit --fixup %(commit)
 	main = S ?!git commit --squash %(commit)
 	main = U ?!git uncommit
@@ -103,4 +104,3 @@
 	stage = <Ctrl-p> :?^@@
 	status = C !git commit -v
 	tree = B @hub browse -- tree/%(commit)/%(directory)
-# vim: set ft=toml noexpandtab :
