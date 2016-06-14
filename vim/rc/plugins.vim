@@ -18,6 +18,7 @@ Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'rhysd/clever-f.vim'
+Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-abolish'
 " Plug 'tpope/vim-bundler', { 'for': 'ruby' }

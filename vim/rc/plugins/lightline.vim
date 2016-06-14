@@ -19,12 +19,11 @@ let g:lightline = {
       \ },
       \ 'component_type': {
       \   'syntastic': 'error'
+      \ },
+      \ 'component_expand': {
+      \   'syntastic': 'SyntasticStatuslineFlag'
+      \ },
       \ }
-      \ }
-
-"     \ 'component_expand': {
-"     \   'syntastic': 'SyntasticStatuslineFlag'
-"     \ },
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
