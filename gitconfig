@@ -17,9 +17,10 @@
 [alias]
 	ci             = commit -v
 	br             = branch -vv
-	lg             = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)'
+	lg             = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)' --all
 	gp             = grep -H --heading --break
 
+	aliases        = config --get-regexp alias
 	amend          = commit --amend -C HEAD
 	branch-root    = merge-base master HEAD
 	ctags          = !.git/hooks/ctags
