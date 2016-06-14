@@ -1,10 +1,19 @@
 bindkey -e # emacs like keybinding. Must call before following bindkey settings.
 
-bindkey '^G^F' git_fetch
-bindkey '^G^P' git_pull_current_branch_from_origin
-bindkey '^G^S' git_status
-bindkey '^N'   history-beginning-search-forward-end
-bindkey '^P'   history-beginning-search-backward-end
+zle -N git-fetch
+bindkey '^G^F' git-fetch
+
+zle -N git-pull-current-branch
+bindkey '^G^P' git-pull-current-branch
+
+zle -N git-status
+bindkey '^G^S' git-status
 
 zle -N peco-src
 bindkey '^[' peco-src
+
+zle -N history-beginning-search-backward-end history-search-end
+bindkey '^N'   history-beginning-search-forward-end
+
+zle -N history-beginning-search-forward-end history-search-end
+bindkey '^P'   history-beginning-search-backward-end
