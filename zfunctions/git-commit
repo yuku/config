@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+if [ "$(is_git_repository)" = 'true' ] ; then
+    BUFFER='git commit -v'
+    zle accept-line
+fi

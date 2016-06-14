@@ -15,7 +15,6 @@
 	name  = Yuku TAKAHASHI
 	email = taka84u9@gmail.com
 [alias]
-	ci             = commit -v
 	br             = branch -vv
 	lg             = log --graph --pretty='format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)' --all
 	gp             = grep -H --heading --break
