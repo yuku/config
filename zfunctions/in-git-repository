@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+if [ -d .git ] ; then
+    return 0
+elif [ "$(git rev-parse --is-inside-work-tree 2> /dev/null)" = 'true' ] ; then
+    return 0
+else
+    return 1
+fi
