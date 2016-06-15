@@ -6,9 +6,6 @@ bindkey '^G^F' git-fetch
 zle -N git-pull-current-branch
 bindkey '^G^P' git-pull-current-branch
 
-zle -N git-commit
-bindkey '^G^V' git-commit
-
 zle -N git-status
 bindkey '^G^S' git-status
 

@@ -1,6 +1,0 @@
-#!/bin/zsh
-
-if in-git-repository ; then
-    BUFFER='git commit -v'
-    zle accept-line
-fi
