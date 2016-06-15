@@ -1,7 +1,7 @@
 # Enable zsh version conditional branch.
 autoload -Uz is-at-least
 
-for file in ${DOTFILES_ROOT}/zshrc.d/*; do
+for file in ${DOTFILES_ROOT}/zsh/zshrc/*; do
     source "$file"
 done
 

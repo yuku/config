@@ -1,10 +1,10 @@
 # Load all functions in zfunctions directory lazily
-fpath=(${DOTFILES_ROOT}/zfunctions(N-/) $fpath)
-for i in $(ls ${DOTFILES_ROOT}/zfunctions) ; do
+fpath=(${DOTFILES_ROOT}/zsh/functions $fpath)
+for i in $(ls ${DOTFILES_ROOT}/zsh/functions) ; do
     autoload -U $i
 done
 
-for file in ${DOTFILES_ROOT}/zprofile.d/*; do
+for file in ${DOTFILES_ROOT}/zsh/zprofile/*; do
     source "$file"
 done
 

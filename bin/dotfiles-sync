@@ -34,10 +34,7 @@ except=(
   keyremap4macbook.xml
   modules
   script
-  zfunctions
-  zprofile.d
-  zshenv.d
-  zshrc.d
+  zsh
 )
 for file in *; do
   filename="$(basename "$file")"
