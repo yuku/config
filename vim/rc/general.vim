@@ -37,8 +37,3 @@ if has('persistent_undo')
   set undodir=~/.vim/undo
   set undofile
 endif
-
-augroup Redraa
-  au!
-  au WinEnter,BufRead,FocusGained * redraw!
-augroup END
