@@ -104,3 +104,5 @@
 	stage = <Ctrl-p> :?^@@
 	status = C !git commit -v
 	tree = B @hub browse -- tree/%(commit)/%(directory)
+[diff]
+	compactionHeuristic = true
