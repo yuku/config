@@ -97,6 +97,7 @@
 	diff = S ?!git commit --squash %(commit)
 	diff = g move-first-line
 	main = F ?!git commit --fixup %(commit)
+	main = R ?!git revert %(commit)
 	main = S ?!git commit --squash %(commit)
 	main = U ?!git uncommit
 	stage = <Ctrl-n> :/^@@
