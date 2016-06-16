@@ -9,7 +9,7 @@ add-zsh-hook chpwd chpwd_recent_dirs
 zstyle ':chpwd:*' recent-dirs-default yes
 zstyle ':chpwd:*' recent-dirs-max 5000
 
-bindkey '^G^B' zaw-git-recent-branches
-bindkey '^G^R' zaw-git-branches
+bindkey '^O^B' zaw-git-recent-branches
+bindkey '^O^R' zaw-git-branches
 bindkey '^R'   zaw-history
 bindkey '^T'   zaw-cdr
