@@ -1,0 +1,11 @@
+#!/bin/bash
+
+remote=`git remote -v | grep origin | awk '/\(push\)$/ {print $2}'`
+email=taka84u9@gmail.com # default
+
+if [[ $remote == *increments/* ]]; then
+  email=yuku@qiita.com
+fi
+
+echo "Configuring user.email as $email"
+git config user.email $email
