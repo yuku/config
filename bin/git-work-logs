@@ -7,9 +7,9 @@ require 'octokit'
 remote_name = ARGV[1] || 'origin'
 
 git = Git.open('./')
-remote = git.remotes.select { |r| r.name == remote_name }.first
+remote = git.remotes.first { |r| r.name == remote_name }
 repo =
-  if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)\.git}))
+  if (match = remote.url.match(%r{^git@[^:]+:(?<repo>.+)(\.git)?}))
     match['repo']
   elsif (match = remote.url.match(%r{^https://[^/]+/(?<repo>.+)\.git}))
     match['repo']
@@ -18,7 +18,7 @@ exit 1 unless repo
 
 url_to_detail = {}
 
-Octokit::Client.new(netrc: true).user_events('yuku-t').each do |_|
+Octokit::Client.new(netrc: true).user_events(`git config github.user`.chomp).each do |_|
   break unless _.created_at.getlocal.to_date == Time.now.to_date
   case _.type
   when 'IssuesEvent'
