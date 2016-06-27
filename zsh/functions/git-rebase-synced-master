@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+if in-git-repository; then
+    if git diff --quiet; then
+        :
+    else
+        echo Please commit your changes or stash them
+        exit 1
+    fi
+
+    local current_branch="$(git current-branch)"
+    if [ $current_branch = "master" ] ; then
+        git pull origin master
+    else
+        git sync
+        git checkout $current_branch
+        git rebase master
+    fi
+fi
