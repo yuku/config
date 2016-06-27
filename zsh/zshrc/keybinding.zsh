@@ -9,6 +9,9 @@ bindkey '^G^P' git-pull-current-branch
 zle -N git-status
 bindkey '^G^S' git-status
 
+zle -N git-checkout-pull-request
+bindkey '^O^E' git-checkout-pull-request
+
 zle -N peco-src
 bindkey '^[' peco-src
 

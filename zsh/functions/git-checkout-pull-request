@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+if in-git-repository; then
+    BUFFER="prf | peco | cut -f2 | xargs git checkout"
+    zle accept-line
+fi
+zle clear-screen
