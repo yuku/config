@@ -1,5 +1,7 @@
 # dotfiles
 
+[![Analytics](https://ga-beacon.appspot.com/UA-4932407-14/dotfiles/readme)](https://github.com/igrigorik/ga-beacon)
+
 ## Installation
 
 ```bash
