@@ -15,6 +15,6 @@ nnoremap <silent> [unite]e :<C-u>VimFilerExplorer -no-focus -toggle -buffer-name
 augroup MyVimFilerSettings
     autocmd!
     autocmd FileType vimfiler call s:vimfiler_my_settings()
-    autocmd VimEnter * if index(s:blacklist, &ft) < 0 && winwidth(0) >= s:min_width | execute "normal [unite]e" | endif
-    autocmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
+    "autocmd VimEnter * if index(s:blacklist, &ft) < 0 && winwidth(0) >= s:min_width | execute "normal [unite]e" | endif
+    "autocmd BufEnter * if (winnr('$') == 1 && &filetype ==# 'vimfiler') | q | endif
 augroup END
