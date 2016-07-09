@@ -82,4 +82,8 @@ if defined?(PryDebugger)
   Pry.commands.alias_command 'f', 'finish'
 end
 
+if defined?(FactoryGirl)
+  include FactoryGirl::Syntax::Methods
+end
+
 # vim: set filetype=ruby :
