@@ -14,6 +14,7 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'itchyny/lightline.vim'
+Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-indent'
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
