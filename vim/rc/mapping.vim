@@ -11,6 +11,8 @@ nnoremap <C-l> :<C-u>tabnext<CR>
 " Recall command-line from history, whose beginning matches the current command-line.
 cnoremap <C-p> <UP>
 cnoremap <C-n> <DOWN>
+" Expand %% as %:h
+cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 
 " Move to n-th tab by Cmd-n
 map <D-1> 1gt
