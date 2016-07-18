@@ -1,7 +1,7 @@
 let mapleader=','           " Lead with ,
 
 " Jump to vimrc
-nnoremap <space>v :<C-u>edit $HOME/.vimrc<CR>
+nnoremap <space>v :<C-u>edit $DOTFILES_ROOT/vimrc<CR>
 " Reload vimrc setting
 nnoremap <space>s :<C-u>source $HOME/.vimrc<CR>
 " Create new tab
