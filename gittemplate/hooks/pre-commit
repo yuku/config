@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Redirect output to stderr.
+exec 1>&2
+
+check_run() {
+  if hash "$1" 2>/dev/null; then
+    local files=$(git diff-index --cached --name-only --diff-filter=AM HEAD -- "$2")
+    if [[ $files != '' ]]; then
+      $1 $files || exit 1
+    fi
+  fi
+}
+
+check_run eslint '*.js'
+check_run rubocop '*.rb'
+check_run scss-lint '*.scss'
+check_run slim-lint '*.slim'
