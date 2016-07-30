@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 if in-git-repository ; then
     BUFFER="git pull origin $(git current-branch)"

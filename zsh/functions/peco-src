@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
 if [ -n "$selected_dir" ] ; then

@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 
 if in-git-repository; then
     if git diff --quiet; then
