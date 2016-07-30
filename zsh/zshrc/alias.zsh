@@ -47,6 +47,6 @@ if [ -x "$(which grc 2> /dev/null)" ] ; then
     alias gcc='grc gcc'
 fi
 
-if command_exist colordiff; then
+if (( $+commands[colordiff] )); then
     alias diff='colordiff'
 fi

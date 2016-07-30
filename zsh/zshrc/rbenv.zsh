@@ -1,3 +1,3 @@
-if command_exist rbenv; then
+if (( $+commands[rbenv] )); then
     eval "$(rbenv init -)"
 fi

@@ -1,3 +1,3 @@
-if command_exist direnv; then
+if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
 fi

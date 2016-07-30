@@ -1,3 +1,3 @@
-if command_exist hub; then
+if (( $+commands[hub] )); then
     eval "$(hub alias -s)"
 fi
