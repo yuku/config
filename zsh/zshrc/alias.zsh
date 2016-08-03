@@ -4,6 +4,7 @@ alias -g H='|head'
 alias -g L='|less'
 alias -g T='|tail'
 alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
+alias strip-color="perl -MTerm::ANSIColor=colorstrip -ne 'print colorstrip(\$_)'"
 alias df='df -h'
 alias du='du -h'
 alias gbr='command git branch'
