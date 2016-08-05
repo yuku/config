@@ -7,14 +7,7 @@ alias -s {gz,tgz,zip,lzh,bz2,tbz,Z,tar,arj,xz}=extract
 alias strip-color="perl -MTerm::ANSIColor=colorstrip -ne 'print colorstrip(\$_)'"
 alias df='df -h'
 alias du='du -h'
-alias gbr='command git branch'
-alias gcc='gcc -Wall -lstdc++'
-alias gci='command git commit -v'
-alias gco='command git checkout'
-alias ggp='command git grep -H --heading --break'
 alias glg='command git log --graph --pretty="format:%C(yellow)%h%C(blue)%d%C(reset) %s %C(cyan)%an, %ar%C(reset)"'
-alias gst='command git status --short'
-alias gun='command git reset HEAD~'
 alias hg='hg --encoding=utf-8'
 alias inflate="perl -MCompress::Zlib -e 'undef $/; print uncompress(<>)'"
 alias java='java -Dfile.encoding=UTF-8'
