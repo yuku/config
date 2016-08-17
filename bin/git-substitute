@@ -1,0 +1,8 @@
+#!/usr/bin/env zsh
+# Usage: git substitute Foo Bar
+
+# Escape '/' as '\/'
+before="$(echo $1 | ruby -pe "gsub('/', '\\/')")"
+after="$(echo $2 | ruby -pe "gsub('/', '\\/')")"
+
+git grep -l $1 | xargs sed -i '' -e "s/${before}/${after}/g"
