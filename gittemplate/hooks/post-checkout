@@ -1,6 +1,5 @@
-#!/bin/bash
-.git/hooks/ctags >/dev/null 2>&1 &
+#!/bin/zsh
 
-if [[ $1 == 00000000000* ]]; then
-  git-email-guess
+if (( $+commands[git-post-checkout] )) ; then
+  git-post-checkout $@
 fi

@@ -1,2 +1,5 @@
-#!/bin/sh
-.git/hooks/ctags >/dev/null 2>&1 &
+#!/bin/zsh
+
+if (( $+commands[git-post-commit] )) ; then
+  git-post-commit $@
+fi
