@@ -33,6 +33,7 @@
 	today          = log --oneline --since='12 hour ago'
 	uncommit       = reset HEAD~
 	update         = !git fetch --prune && git update-ref refs/heads/master origin/master && git delete-merged-branches
+	sync-hooks     = !cp $DOTFILES_ROOT/gittemplate/hooks/* .git/hooks
 [push]
 	default = current
 [pull]
