@@ -14,5 +14,5 @@ check_run() {
 
 check_run eslint '*.js'
 check_run rubocop '*.rb' 'rubocop --force-exclusion'
-check_run scss-lint '*.scss'
+check_run stylelint '*.scss'
 check_run slim-lint '*.slim'
