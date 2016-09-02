@@ -4,4 +4,4 @@
 git diff-tree --no-commit-id --name-only -r --diff-filter=AM HEAD \
   | xargs git grep -l $1 \
   | xargs sed -i '' -e "s/${1}/${2}/g"
-git commit -a --amend -C HEAD
+git commit -a --amend -C HEAD --no-verify
