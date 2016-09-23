@@ -17,6 +17,7 @@ Plug 'fatih/vim-go'
 Plug 'itchyny/lightline.vim'
 " Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user' | Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
+Plug 'leafgarland/typescript-vim'
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
