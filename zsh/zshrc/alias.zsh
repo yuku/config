@@ -23,6 +23,7 @@ darwin*)
     alias ls='ls -GF'
     alias -s {png,jpg,jpeg,bmp,PNG,JPG,JPEG,BMP}='open -a Preview'
     alias pong='perl -nle '\''print "display notification \"$_\" with title \"Terminal\""'\'' | osascript'
+    alias -g P='|pbcopy'
     export PATH="/usr/local/sbin:$PATH"
     ;;
 linux*)
