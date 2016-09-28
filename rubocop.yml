@@ -1,0 +1,9 @@
+Style/Documentation:
+  Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 20
+
+Metrics/LineLength:
+  Max: 125
