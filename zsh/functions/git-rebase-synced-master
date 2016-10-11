@@ -12,7 +12,8 @@ if in-git-repository; then
     if [ $current_branch = "master" ] ; then
         git pull origin master
     else
-        git sync
+        git checkout master
+        git pull origin master
         git checkout $current_branch
         git rebase master
     fi
