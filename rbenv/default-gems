@@ -1,8 +1,8 @@
 bundler
 ec2ssh
 #gem-ctags
-powder
+#powder
 pry
-specific_install
+#specific_install
 tmuxinator
-tunnels
+#tunnels
