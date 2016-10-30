@@ -12,6 +12,7 @@ Plug 'Shougo/vimshell'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --tern-completer' }
 Plug 'airblade/vim-gitgutter'
+Plug 'briancollins/vim-jst', { 'for': 'jst' }
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'

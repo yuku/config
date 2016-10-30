@@ -15,6 +15,11 @@ augroup MyFileTypeDetect
     " au BufRead,BufNewFile *.ts                  set filetype=typescript
     au BufRead,BufNewFile *.peg                 set filetype=pegjs
     " au BufRead,BufNewFile *.rb                  set syntax=yard
+    au BufNewFile,BufRead *.ejs                 set filetype=jst
+    au BufNewFile,BufRead *.jst                 set filetype=jst
+    au BufNewFile,BufRead *.djs                 set filetype=jst
+    au BufNewFile,BufRead *.hamljs              set filetype=jst
+    au BufNewFile,BufRead *.ect                 set filetype=jst
 augroup END
 
 
