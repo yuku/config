@@ -28,6 +28,7 @@ tap 'caskroom/cask'
 
 # cask update
 cask 'alfred'
+cask 'dash'
 cask 'dropbox'
 cask 'google-chrome'
 cask 'google-japanese-ime'
