@@ -1,7 +1,5 @@
 cask_args appdir: '/Applications'
 
-tap 'tkengo/highway'
-
 brew 'ctags'
 brew 'direnv'
 brew 'fzf'
@@ -9,7 +7,6 @@ brew 'gist'
 brew 'git'
 brew 'gpg2'
 brew 'grc'
-brew 'highway'
 brew 'jq'
 brew 'nodebrew'
 brew 'peco'
@@ -27,15 +24,20 @@ brew 'zsh', args: ['disble-etcdir']
 tap 'caskroom/cask'
 
 # cask update
+cask '1password'
 cask 'alfred'
 cask 'dash'
 cask 'dropbox'
+cask 'docker'
 cask 'google-chrome'
 cask 'google-japanese-ime'
+cask 'gyazo'
 cask 'iterm2'
 cask 'karabiner'
+cask 'kitematic'
 cask 'seil'
 cask 'sequel-pro'
+cask 'slack'
 cask 'spectacle'
 
 # vim: filetype=ruby
