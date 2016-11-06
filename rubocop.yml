@@ -1,6 +1,10 @@
 Style/Documentation:
   Enabled: false
 
+Style/FileName:
+  Exclude:
+    - Brewfile
+
 Metrics/MethodLength:
   CountComments: false  # count full line comments?
   Max: 20
