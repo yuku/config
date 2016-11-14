@@ -26,6 +26,7 @@ tap 'caskroom/cask'
 # cask update
 cask '1password'
 cask 'alfred'
+cask 'android-file-transfer'
 cask 'blisk'
 cask 'dash'
 cask 'docker'
