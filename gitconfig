@@ -109,4 +109,6 @@
 	tree = B @hub browse -- tree/%(commit)/%(directory)
 [diff]
 	compactionHeuristic = true
+[include]
+	path = ~/.gitconfig.local
 # vim: ft=gitconfig
