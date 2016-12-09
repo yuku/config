@@ -2,6 +2,8 @@
 
 set -e
 
+export DOTFILES_ROOT=~/src/github.com/yuku-t/dotfiles
+
 command_exist() {
   command -v "$1" > /dev/null 2>&1
   return $?
