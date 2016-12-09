@@ -32,6 +32,7 @@ except=(
   fonts
   grc
   keyremap4macbook.xml
+  iterm2
   modules
   script
   zsh
@@ -42,3 +43,9 @@ for file in *; do
     create_symlink $filename
   fi
 done
+
+case $OSTYPE in
+darwin*)
+  ln -s $DOTFILES_ROOT/iterm2/profile.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/profile.json
+  ;;
+esac
