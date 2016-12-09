@@ -7,6 +7,6 @@ if !$WITHOUT_COLORSCHEME
   colorscheme base16-default-dark
 endif
 
-if exists("$HOME/.vimrc.local")
+if filereadable("$HOME/.vimrc.local")
   source $HOME/.vimrc.local
 endif
