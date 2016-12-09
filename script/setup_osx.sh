@@ -10,4 +10,4 @@ if [[ "$(brew tap | grep -c homebrew/bundle)" -eq 0 ]] ; then
   brew tap Homebrew/bundle
 fi
 
-brew bundle
+brew bundle --verbose
