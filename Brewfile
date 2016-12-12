@@ -18,6 +18,7 @@ brew 'rbenv-ctags'
 brew 'rbenv-default-gems'
 brew 'reattach-to-user-namespace'
 brew 'ruby-build'
+brew 'tig', args: ['with-docs']
 brew 'tmux'
 brew 'vim', args: ['with-lua', 'with-luajit', 'with-python3']
 brew 'zsh', args: ['disble-etcdir']
