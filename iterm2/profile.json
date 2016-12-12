@@ -1,7 +1,7 @@
 {
   "Profiles": [
     {
-      "Name" : "Example",
+      "Name" : "base16-default",
       "Guid" : "E2CDE61A-2923-4F2D-B08B-72D355E0B37F",
       "Ansi 0 Color" : {
         "Green Component" : 0.08235294,
@@ -125,7 +125,6 @@
         "Red Component" : 0.8156863,
         "Blue Component" : 0.8156863
       },
-      "ASCII Anti Aliased" : true,
       "Non Ascii Font" : "migmix-1m-regular 15"
     }
   ]
