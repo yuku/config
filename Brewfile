@@ -41,7 +41,6 @@ cask 'gyazo'
 cask 'iterm2'
 cask 'kitematic'
 cask 'sequel-pro'
-cask 'slack'
 cask 'spectacle'
 
 # vim: filetype=ruby
