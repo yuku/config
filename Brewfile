@@ -40,6 +40,7 @@ cask 'google-japanese-ime'
 cask 'gyazo'
 cask 'iterm2'
 cask 'kitematic'
+cask 'keybase'
 cask 'sequel-pro'
 cask 'spectacle'
 
