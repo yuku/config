@@ -1,5 +1,6 @@
 cask_args appdir: '/Applications'
 
+brew 'awscli'
 brew 'ctags'
 brew 'direnv'
 brew 'fzf'
