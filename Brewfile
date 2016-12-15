@@ -39,10 +39,10 @@ cask 'dropbox'
 cask 'google-chrome'
 cask 'google-japanese-ime'
 cask 'gyazo'
+cask 'hammerspoon'
 cask 'iterm2'
-cask 'kitematic'
 cask 'keybase'
+cask 'kitematic'
 cask 'sequel-pro'
-cask 'spectacle'
 
 # vim: filetype=ruby
