@@ -77,11 +77,20 @@
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
 [tig]
-	blame-view = id:yes,color date:short author:abbreviated line-number:yes,interval=1 text
+	blame-view = id date author line-number text
+	blame-view-author = abbreviated
+	blame-view-date = custom
+	blame-view-date-format = "%Y-%m-%d"
+	blame-view-id=yes,color
+	blame-view-line-number = yes,interval=1
 	diff-options = -m --first-parent
 	ignore-space = at-eol
 	line-graphics = ascii
-	main-view = id date:short author:abbreviated commit-title:graph=yes,refs=yes
+	main-view = id date author commit-title
+	main-view-author = abbreviated
+	main-view-commit-title = graph=yes,refs=yes
+	main-view-date = custom
+	main-view-date-format = "%Y-%m-%d"
 	mouse = yes
 	refresh-mode = auto
 	split-view-height = 80%
