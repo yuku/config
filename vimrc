@@ -2,9 +2,9 @@ for file in split(glob($DOTFILES_ROOT . "/vim/rc/*.vim"), "\n")
   execute "source " . file
 endfor
 
-set background=dark
-if !$WITHOUT_COLORSCHEME
-  colorscheme base16-default-dark
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
 endif
 
 if filereadable("$HOME/.vimrc.local")

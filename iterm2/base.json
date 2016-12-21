@@ -1,0 +1,21 @@
+{
+  "Profiles": [
+    {
+      "Name": "base",
+      "Guid": "15422432-E0B6-4A99-B940-C8E7E9D591B8",
+      "Triggers": [
+        {
+          "regex": "Internal Server Error",
+          "action": "HighlightTrigger",
+          "parameter": 0
+        },
+        {
+          "regex": "EventLogger",
+          "action": "HighlightTrigger",
+          "parameter": 0
+        }
+      ],
+      "Non Ascii Font": "migmix-1m-regular 15"
+    }
+  ]
+}
