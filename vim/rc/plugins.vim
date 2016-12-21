@@ -16,6 +16,7 @@ Plug 'briancollins/vim-jst', { 'for': 'jst' }
 Plug 'chriskempson/base16-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'
+Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'itchyny/lightline.vim'
 " Plug 'kana/vim-textobj-user' | Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-user' | Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
