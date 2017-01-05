@@ -1,5 +1,3 @@
-cask_args appdir: '/Applications'
-
 brew 'awscli'
 brew 'ctags'
 brew 'direnv'
@@ -28,6 +26,8 @@ brew 'zsh', args: ['disble-etcdir']
 
 tap 'caskroom/cask'
 
+cask_args appdir: '/Applications'
+
 # cask update
 cask '1password'
 cask 'alfred'
@@ -44,6 +44,7 @@ cask 'hammerspoon'
 cask 'iterm2'
 cask 'keybase'
 cask 'kitematic'
+cask 'pomodone'
 cask 'sequel-pro'
 
 # vim: filetype=ruby
