@@ -22,6 +22,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'kana/vim-textobj-user' | Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 Plug 'kchmck/vim-coffee-script', { 'for': 'coffee' }
 Plug 'leafgarland/typescript-vim'
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
