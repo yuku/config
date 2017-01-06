@@ -65,8 +65,8 @@
 	enabled = true
 [url "git@github.com:"]
 	pushinsteadof = "https://github.com/"
-[diff "json"]
-	textconv = "jq -M ."
+# [diff "json"]
+# 	textconv = "jq -M ."
 [merge]
 	conflictstyle = diff3
 [rebase]
