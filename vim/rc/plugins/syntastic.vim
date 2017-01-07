@@ -9,17 +9,3 @@ let g:syntastic_scss_checkers = ['stylelint']
 let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
 
 let g:syntastic_mode_map = { 'mode': 'active', 'passive_filetypes': ['go', 'html'] }
-
-augroup SyntasticConfig
-  au!
-  au FileType javascript.jsx call s:syntastic_javascript_settings()
-augroup END
-
-function! s:syntastic_javascript_settings()
-  if executable('npm')
-    let bin_path = systemlist('npm bin')[0] . '/eslint'
-    if executable(bin_path)
-      let b:syntastic_javascript_eslint_exec = bin_path
-    endif
-  endif
-endfunction
