@@ -64,6 +64,12 @@ Pry.config.commands.command(/^$/, "repeat last command") do
   _pry_.run_command Pry.history.to_a.last
 end
 
+begin
+  require "factory_girl_rails"
+rescue LoadError
+  nil
+end
+
 if defined?(FactoryGirl)
   include FactoryGirl::Syntax::Methods
 end
