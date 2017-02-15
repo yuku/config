@@ -1,8 +1,16 @@
 #!/usr/bin/env zsh
-# Usage: git substitute Foo Bar
+# Usage: git substitute Foo Bar -- app/models
+
+set -e
 
 # Escape '/' as '\/'
 before="$(echo $1 | ruby -pe "gsub('/', '\\/')")"
 after="$(echo $2 | ruby -pe "gsub('/', '\\/')")"
 
-git grep -l $1 | xargs sed -i '' -e "s/${before}/${after}/g"
+if [[ "$3" = "--" ]] ; then
+    filter="${@[4,-1]}"
+else
+    filter=""
+fi
+
+git grep -l $1 -- $filter | xargs sed -i '' -e "s/${before}/${after}/g"
