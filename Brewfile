@@ -48,5 +48,6 @@ cask 'kindle'
 cask 'kitematic'
 cask 'pomodone'
 cask 'sequel-pro'
+cask 'skitch'
 
 # vim: filetype=ruby
