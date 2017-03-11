@@ -1,3 +1,4 @@
+brew 'ack'
 brew 'awscli'
 brew 'ctags'
 brew 'direnv'
