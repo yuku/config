@@ -3,6 +3,7 @@
     {
       "Name": "base",
       "Guid": "15422432-E0B6-4A99-B940-C8E7E9D591B8",
+      "Normal Font" : "Monaco 10",
       "Triggers": [
         {
           "regex": "Internal Server Error",
