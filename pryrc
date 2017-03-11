@@ -66,6 +66,7 @@ end
 
 begin
   require "factory_girl_rails"
+  require "ffaker"
 rescue LoadError
   nil
 end
