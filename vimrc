@@ -175,12 +175,12 @@ function! s:gofiletype_post()
   let &g:fileencodings = s:current_fileencodings
 endfunction
 
-" augroup MyGolangConfig
-"     au!
-"     au BufNewFile *.go setlocal filetype=go fileencoding=utf-8 fileformat=unix
-"     au BufRead *.go call s:gofiletype_pre()
-"     au BufReadPost *.go call s:gofiletype_post()
-" augroup END
+augroup MyGolangConfig
+    au!
+    au BufNewFile *.go setlocal filetype=go fileencoding=utf-8 fileformat=unix
+    au BufRead *.go call s:gofiletype_pre()
+    au BufReadPost *.go call s:gofiletype_post()
+augroup END
 
 " {{{1 Highlight
 augroup whitespace
@@ -467,6 +467,7 @@ let g:EasyMotion_mapping_k = '<C-k>'
 " {{{2 vim-flow
 let g:flow#autoclose = 1
 let g:flow#enable = 1
+let g:flow#timeout = 4
 
 " {{{2 vim-fugitive
 nnoremap <silent>gs :<C-u>Gstatus<CR>
