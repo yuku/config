@@ -238,6 +238,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'briancollins/vim-jst', { 'for': 'jst' }
 Plug 'chriskempson/base16-vim'
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+Plug 'digitaltoad/vim-pug'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'fatih/vim-go'
 Plug 'flowtype/vim-flow', { 'for': 'javascript.jsx' }
