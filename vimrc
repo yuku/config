@@ -101,6 +101,8 @@ ab organiztion organization
 ab Organizaiton Organization
 ab Organiztion Organization
 ab calss class
+ab reosurce resource
+ab Reosurce Resource
 
 " {{{1 Behavior
 set autoindent              " automatic indent new lines
