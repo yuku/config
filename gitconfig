@@ -7,7 +7,6 @@
 	ui          = auto
 [core]
 	editor         = vim
-	excludesFile   = ~/.gitignore
 	attributesFile = ~/.gitattributes
 [init]
 	templateDir = ~/.gittemplate
