@@ -33,6 +33,7 @@ cask_args appdir: '/Applications'
 # cask update
 cask '1password'
 cask 'alfred'
+cask 'amazon-music'
 cask 'android-file-transfer'
 cask 'blisk'
 cask 'cmd-eikana'
