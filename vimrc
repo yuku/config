@@ -254,7 +254,6 @@ Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 " Plug 'rhysd/clever-f.vim'
-Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-abolish'
 " Plug 'tpope/vim-bundler', { 'for': 'ruby' }
@@ -267,6 +266,7 @@ Plug 'tpope/vim-sensible'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby'
+Plug 'w0rp/ale'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -280,7 +280,7 @@ let g:lightline = {
       \ 'mode_map': {'c': 'NORMAL'},
       \ 'active': {
       \   'left': [ [ 'mode', 'paste' ], [ 'fugitive', 'filename' ] ],
-      \   'right': [ [ 'syntastic', 'lineinfo'],
+      \   'right': [ [ 'ale', 'lineinfo'],
       \              [ 'percent' ],
       \              [ 'fileformat', 'fileencoding', 'filetype' ] ]
       \ },
@@ -293,14 +293,13 @@ let g:lightline = {
       \   'filetype': 'MyFiletype',
       \   'fileencoding': 'MyFileencoding',
       \   'mode': 'MyMode',
-      \ },
-      \ 'component_type': {
-      \   'syntastic': 'error'
-      \ },
-      \ 'component_expand': {
-      \   'syntastic': 'SyntasticStatuslineFlag'
+      \   'ale': 'MyLintStatus',
       \ },
       \ }
+
+function! MyLintStatus()
+  return ALEGetStatusLine()
+endfunction
 
 function! MyModified()
   return &ft =~ 'help\|vimfiler\|gundo' ? '' : &modified ? '+' : &modifiable ? '' : '-'
@@ -348,20 +347,6 @@ endfunction
 " {{{2 neocomplete
 let g:neocomplete#enable_at_startup = 1
 let g:neocomplete#enable_smart_case = 1
-
-" {{{2 syntastic
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['rubocop']
-let g:syntastic_scss_checkers = ['stylelint']
-let g:syntastic_go_checkers = ['golint', 'govet', 'errcheck']
-
-let g:syntastic_mode_map = { 'mode': 'active',
-      \ 'passive_filetypes': ['go', 'html', 'python'] }
 
 " {{{2 ultisnips
 let g:UltiSnipsExpandTrigger = '<c-e>'
@@ -544,6 +529,19 @@ augroup MyVimShellSettings
     autocmd!
     autocmd FileType vimshell setlocal nonumber
 augroup END
+
+" {{{2 ale
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \   'ruby': ['rubocop'],
+      \ }
+let g:ale_echo_msg_error_str = 'E'
+let g:ale_echo_msg_warning_str = 'W'
+let g:ale_echo_msg_format = '[%linter%] %severity%: %s'
+let g:ale_lint_on_text_changed = 'never'
+
+nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+nmap <silent> <C-j> <Plug>(ale_next_wrap)
 
 " {{{1
 if filereadable(expand("~/.vimrc_background"))
