@@ -227,7 +227,7 @@ call plug#begin('~/.vim/plugged')
 
 " Make sure you use single quotes
 
-Plug 'Lokaltog/vim-easymotion'
+Plug 'easymotion/vim-easymotion'
 Plug 'Shougo/neocomplete.vim'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
@@ -464,8 +464,25 @@ elseif executable('ag')
 endif
 
 " {{{2 vim-easymotion
-let g:EasyMotion_mapping_j = '<C-j>'
-let g:EasyMotion_mapping_k = '<C-k>'
+
+" Disable default mapping
+let g:EasyMotion_do_mapping = 0
+
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+vmap s <Plug>(easymotion-bd-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 " {{{2 vim-flow
 let g:flow#autoclose = 1
