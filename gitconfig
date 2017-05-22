@@ -28,10 +28,8 @@
 	mergelog       = log --merges --pretty=format:'%C(yellow)%h %Cgreen%ci %Cblue%cn%Cred%d %Creset%s %C(cyan)%b'
 	pull-dry-run   = !git fetch origin && B=$(git current-branch) && git diff --stat --summary ${B}..origin/${B}
 	review         = !tig --no-walk -w $(git branch-root)..HEAD
-	sync           = !git checkout master && git pull origin master && git update
 	today          = log --oneline --since='12 hour ago'
 	uncommit       = reset HEAD~
-	update         = !git fetch --prune && git update-ref refs/heads/master origin/master && git delete-merged-branches
 	sync-hooks     = !cp $DOTFILES_ROOT/gittemplate/hooks/* .git/hooks
 [push]
 	default = current
