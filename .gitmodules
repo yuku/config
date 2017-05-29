@@ -1,12 +1,3 @@
-[submodule "modules/zsh-syntax-highlighting"]
-	path = modules/zsh-syntax-highlighting
-	url = git://github.com/zsh-users/zsh-syntax-highlighting.git
-[submodule "modules/zsh-completions"]
-	path = modules/zsh-completions
-	url = git://github.com/zsh-users/zsh-completions.git
-[submodule "modules/zaw"]
-	path = modules/zaw
-	url = git://github.com/zsh-users/zaw.git
 [submodule "modules/vim-plug"]
 	path = modules/vim-plug
 	url = https://github.com/junegunn/vim-plug.git

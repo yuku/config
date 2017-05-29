@@ -83,7 +83,6 @@ if (( $+commands[colordiff] )); then
 fi
 
 # {{{1 Completion
-fpath=($DOTFILES_ROOT/modules/zsh-completions/src $fpath)
 autoload -Uz compinit; compinit -u
 
 setopt auto_list            # Show all candidates
@@ -215,12 +214,32 @@ fi
 autoload history-search-end
 zle -N self-insert url-quote-magic # Automatically escape URL string
 
-# {{{1 Zaw
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook # Activate cdr command for zaw-cdr
+# {{{1 Plugins
+source $ZPLUG_HOME/init.zsh
 
-source $DOTFILES_ROOT/modules/zaw/zaw.zsh
-source $DOTFILES_ROOT/modules/zaw/sources/git-recent-branches.zsh
-source $DOTFILES_ROOT/modules/zaw/sources/git-branches.zsh
+# Set the priority when loading
+# e.g., zsh-syntax-highlighting must be loaded
+# after executing compinit command and sourcing other plugins
+# (If the defer tag is given 2 or above, run after compinit command)
+zplug "zsh-users/zsh-syntax-highlighting", defer:2
+
+zplug "zsh-users/zsh-completions"
+
+zplug "zsh-users/zaw"
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load
+
+# {{{2 Zaw
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook # Activate cdr command for zaw-cdr
 
 add-zsh-hook chpwd chpwd_recent_dirs
 
@@ -267,10 +286,5 @@ fi
 
 # {{{2 travis
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
-# {{{1 zsh-syntax-highlighting
-
-# syntax-highlighting.zsh must be sourced at the end of the .zshrc
-source ${DOTFILES_ROOT}/modules/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
