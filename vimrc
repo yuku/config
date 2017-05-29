@@ -298,7 +298,10 @@ let g:lightline = {
       \ }
 
 function! MyLintStatus()
-  return ALEGetStatusLine()
+  if exists('ALEGetStatusLine')
+    return ALEGetStatusLine()
+  endif
+  return ''
 endfunction
 
 function! MyModified()
