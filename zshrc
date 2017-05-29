@@ -120,30 +120,6 @@ setopt hist_verify          # Can edit history before execute it
 setopt inc_append_history
 setopt share_history        # Share history across multi processes
 
-# {{{1 Keybinding
-bindkey -e # emacs like keybinding. Must call before following bindkey settings.
-
-zle -N git-fetch
-bindkey '^G^F' git-fetch
-
-zle -N git-pull-current-branch
-bindkey '^G^P' git-pull-current-branch
-
-zle -N git-status
-bindkey '^G^S' git-status
-
-zle -N git-checkout-pull-request
-bindkey '^O^E' git-checkout-pull-request
-
-zle -N peco-src
-bindkey '^[' peco-src
-
-zle -N history-beginning-search-backward-end history-search-end
-bindkey '^N'   history-beginning-search-forward-end
-
-zle -N history-beginning-search-forward-end history-search-end
-bindkey '^P'   history-beginning-search-backward-end
-
 # {{{1 Style
 # {{{2 Prompt
 autoload -U colors
@@ -235,16 +211,40 @@ if ! zplug check --verbose; then
     fi
 fi
 
+# Activate cdr command. Must came before `zplug load`
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+if is-at-least 4.3.10; then
+    add-zsh-hook chpwd chpwd_recent_dirs
+    zstyle ':chpwd:*' recent-dirs-default yes
+    zstyle ':chpwd:*' recent-dirs-max 5000
+fi
+
 # Then, source plugins and add commands to $PATH
 zplug load
 
-# {{{2 Zaw
-autoload -Uz chpwd_recent_dirs cdr add-zsh-hook # Activate cdr command for zaw-cdr
+# {{{1 Keybinding
+bindkey -e # emacs like keybinding. Must call before following bindkey settings.
 
-add-zsh-hook chpwd chpwd_recent_dirs
+zle -N git-fetch
+bindkey '^G^F' git-fetch
 
-zstyle ':chpwd:*' recent-dirs-default yes
-zstyle ':chpwd:*' recent-dirs-max 5000
+zle -N git-pull-current-branch
+bindkey '^G^P' git-pull-current-branch
+
+zle -N git-status
+bindkey '^G^S' git-status
+
+zle -N git-checkout-pull-request
+bindkey '^O^E' git-checkout-pull-request
+
+zle -N peco-src
+bindkey '^[' peco-src
+
+zle -N history-beginning-search-backward-end history-search-end
+bindkey '^N'   history-beginning-search-forward-end
+
+zle -N history-beginning-search-forward-end history-search-end
+bindkey '^P'   history-beginning-search-backward-end
 
 bindkey '^O^B' zaw-git-recent-branches
 bindkey '^O^R' zaw-git-branches
