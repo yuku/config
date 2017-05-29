@@ -4,4 +4,5 @@
 /vim/plugged
 /vim/swap
 /rbenv
+/tmux/plugins
 !/rbenv/default-gems

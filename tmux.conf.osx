@@ -1,8 +1,0 @@
-set -g default-command "reattach-to-user-namespace -l zsh"
-# clipboard -> buffer
-unbind v ; bind v run "tmux save-buffer - | reattach-to-user-namespace pbcopy"
-# buffer -> clipboard
-unbind p ; bind p run "reattach-to-user-namespace pbpaste | tmux load-buffer - && tmux paste-buffer"
-
-# For tmux-plugins/vim-tmux-focus-events
-set -g focus-events on
