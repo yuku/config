@@ -1,6 +1,9 @@
 # Enable zsh version conditional branch.
 autoload -Uz is-at-least
 
+# {{{1 variables
+export ZPLUG_HOME=${HOME}/.zplug
+
 # {{{1 General
 export EDITOR=vim
 export GREP_OPTIONS='--color=auto'
