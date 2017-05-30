@@ -6,3 +6,5 @@ require("app_launcher")
 require("global_keymap")
 require("windows_manipulation")
 require("config_reloading")
+
+hs.alert.show("Config loaded")
