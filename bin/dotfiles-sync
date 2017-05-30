@@ -49,5 +49,6 @@ darwin*)
   if [[ ! -e ~/Library/Application\ Support/iTerm2/DynamicProfiles/profile.json ]] ; then
     ln -s $DOTFILES_ROOT/iterm2/profile.json ~/Library/Application\ Support/iTerm2/DynamicProfiles/profile.json
   fi
+  brew bundle -v --path="${DOTFILES_ROOT}/Brewfile"
   ;;
 esac
