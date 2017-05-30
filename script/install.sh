@@ -30,6 +30,8 @@ git clone --recursive https://github.com/yuku-t/dotfiles.git "$installation_path
 
 cd $installation_path
 
+./script/setup_zsh.sh
+
 case $OSTYPE in
 darwin*)
   ./script/setup_osx.sh
