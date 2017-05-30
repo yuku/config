@@ -44,6 +44,9 @@ for file in *; do
   fi
 done
 
+~/.tmux/plugins/tpm/bin/clean_plugins # Remove plugins not on the plugin list
+~/.tmux/plugins/tpm/bin/install_plugins
+
 case $OSTYPE in
 darwin*)
   if [[ ! -e ~/Library/Application\ Support/iTerm2/DynamicProfiles/profile.json ]] ; then
