@@ -6,3 +6,9 @@
 /rbenv
 /tmux/plugins
 !/rbenv/default-gems
+
+# Neovim
+/local/share/*
+!/local/share/nvim
+/local/share/nvim/*
+!/local/share/nvim/site

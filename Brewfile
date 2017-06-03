@@ -26,6 +26,9 @@ brew 'tmux'
 brew 'vim', args: ['with-luajit', 'with-python3']
 brew 'zsh', args: ['disble-etcdir']
 
+tap 'neovim/neovim'
+brew 'neovim'
+
 tap 'caskroom/cask'
 
 cask_args appdir: '/Applications'

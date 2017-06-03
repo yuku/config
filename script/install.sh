@@ -42,7 +42,6 @@ linux*)
 esac
 
 ./bin/dotfiles-sync
-
-WITHOUT_COLORSCHEME=1 vim -c 'PlugInstall | qall'
+./script/setup_vim.sh
 
 echo "Done."
