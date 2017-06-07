@@ -20,6 +20,7 @@ set showcmd                  " display incomplete commands
 set ruler                    " show the cursor position all the time
 set foldmethod=marker
 set clipboard+=unnamed       " share clipboard with other systems
+set completeopt-=preview
 
 set colorcolumn=125
 execute "set colorcolumn=" . join(range(126, 999), ',')
