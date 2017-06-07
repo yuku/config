@@ -76,7 +76,8 @@ Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
+Plug 'Shougo/neco-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'briancollins/vim-jst', { 'for': 'jst' }
 Plug 'chriskempson/base16-vim'
@@ -105,6 +106,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline' | Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'w0rp/ale'
+Plug 'wokalski/autocomplete-flow'
 Plug 'zchee/deoplete-go', { 'do': 'make', 'for': 'go' }
 
 " Add plugins to &runtimepath
@@ -118,11 +120,17 @@ colorscheme base16-default-dark
 " {{{2 deoplate.nvim
 let g:deoplete#enable_at_startup = 1
 
-" {{{2 ultisnips
-let g:UltiSnipsExpandTrigger = '<c-e>'
-" let g:UltiSnipsListSnippets = '<c-l>'
-let g:UltiSnipsJumpForwardTrigger = '<c-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
+" {{{2 neosnippet
+let g:neosnippet#enable_completed_snippet = 1
+
+imap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <C-e> <Plug>(neosnippet_expand_or_jump)
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+xmap <C-e> <Plug>(neosnippet_expand_jump)
+
+if has("conceal")
+  set conceallevel=2 concealcursor=niv
+endif
 
 " {{{2 unite
 " The prefix key.
