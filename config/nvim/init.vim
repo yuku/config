@@ -25,7 +25,8 @@ set completeopt-=preview
 set colorcolumn=125
 execute "set colorcolumn=" . join(range(126, 999), ',')
 
-" {{{ Key mappings
+let mapleader=','            " Lead with ,
+
 nnoremap <C-h> :<C-u>tabprevious<CR>
 nnoremap <C-l> :<C-u>tabnext<CR>
 " Recall command-line from history, whose beginning matches the current command-line.
@@ -35,8 +36,6 @@ cnoremap <C-n> <DOWN>
 cnoremap <expr> %% getcmdtype() == ':' ? expand('%:h').'/' : '%%'
 " turn off highlight by Esc x 2
 nmap <ESC><ESC> :<C-u>nohlsearch<CR><ESC>
-
-" {{{1 UI
 
 set listchars=tab:▸\ ,eol:¬
 
@@ -48,7 +47,6 @@ augroup cch
 augroup END
 highlight clear CursorLine
 highlight CursorLine ctermbg=black
-
 
 " {{{1 health check
 "" Python 2 provider
