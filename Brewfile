@@ -24,6 +24,7 @@ brew 'ruby-build'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
 brew 'vim', args: ['with-luajit', 'with-python3']
+brew 'yarn'
 brew 'zsh', args: ['disble-etcdir']
 
 tap 'neovim/neovim'
