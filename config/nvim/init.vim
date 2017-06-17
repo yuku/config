@@ -20,7 +20,27 @@ set showcmd                  " display incomplete commands
 set ruler                    " show the cursor position all the time
 set foldmethod=marker
 set clipboard+=unnamed       " share clipboard with other systems
-set completeopt-=preview
+
+" Behavior
+set autoindent              " automatic indent new lines
+set smartindent             " be smart about it
+set wrap                    " wrap lines
+set softtabstop=2
+set shiftwidth=2
+set expandtab               " expand tabs to spaces
+set nosmarttab              " fuck tabs
+set formatoptions+=n        " support for numbered/bullet lists
+set tabstop=8
+set wrapmargin=0
+set textwidth=99            " wrap at 99 chars by default
+" Enable all keys to move the cursor left/right to the previous/next line
+set whichwrap=b,s,h,l,<,>,[,]
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+set nostartofline           " don't jump to the start of line when scrolling
+set wildmenu                " turn on wild menu
+set wildmode=list:longest,full
+set completeopt=menu,menuone
 
 set colorcolumn=125
 execute "set colorcolumn=" . join(range(126, 999), ',')
