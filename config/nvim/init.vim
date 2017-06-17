@@ -95,13 +95,13 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Shougo/neco-vim'
+Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
 Plug 'Shougo/neoyank.vim'
 Plug 'Shougo/unite.vim' | Plug 'Shougo/neomru.vim' | Plug 'Shougo/unite-outline'
 Plug 'Shougo/vimfiler'
 Plug 'Shougo/vimproc.vim', { 'do': 'make' }
 Plug 'Shougo/vimshell'
-Plug 'Shougo/neosnippet' | Plug 'Shougo/neosnippet-snippets'
-Plug 'Shougo/neco-vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'briancollins/vim-jst', { 'for': 'jst' }
 Plug 'chriskempson/base16-vim'
@@ -109,6 +109,7 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
+Plug 'elzr/vim-json', { 'for': 'json' }
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'flowtype/vim-flow', { 'for': 'javascript' }
 Plug 'kana/vim-textobj-user' | Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
@@ -331,6 +332,9 @@ augroup END
 
 " {{{2 vim-javascript
 let g:javascript_plugin_flow = 1
+
+" {{{2 vim-json
+let g:vim_json_syntax_conceal = 0
 
 " {{{2 vim-jsx
 let g:jsx_ext_required = 0
