@@ -68,6 +68,12 @@ augroup END
 highlight clear CursorLine
 highlight CursorLine ctermbg=black
 
+" Key mappings
+" Jump to init.vim
+nnoremap <space>v :<C-u>edit $DOTFILES_ROOT/config/nvim/init.vim<CR>
+" Reload init.vim setting
+nnoremap <space>s :<C-u>source $HOME/.config/nvim/init.vim<CR>
+
 " {{{1 health check
 "" Python 2 provider
 let s:python_executable=$HOME.'/.pyenv/versions/neovim2/bin/python'
