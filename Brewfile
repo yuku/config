@@ -1,4 +1,5 @@
 brew 'ack'
+brew 'app-engine-go-64'
 brew 'awscli'
 brew 'ctags'
 brew 'direnv'
