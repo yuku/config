@@ -6,7 +6,7 @@
 	status      = auto
 	ui          = auto
 [core]
-	editor         = vim
+	editor         = nvim
 	attributesFile = ~/.gitattributes
 [init]
 	templateDir = ~/.gittemplate
