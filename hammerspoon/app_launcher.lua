@@ -1,6 +1,6 @@
 local app_map = {}
 
-local mash = {"alt", "shift", "ctrl"}
+local mash = {"cmd", "ctrl"}
 
 local function registerAppLauncer(modifier, app)
   table.insert(app_map, string.lower(modifier) .. " - " .. app)

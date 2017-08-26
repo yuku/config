@@ -1,6 +1,6 @@
 -- Configuration reloading
 -- See http://www.hammerspoon.org/go/#simple-configuration-reloading
-hs.hotkey.bind({"alt", "shift", "cmd", "ctrl"}, "R", function ()
+hs.hotkey.bind({"cmd", "ctrl"}, "R", function ()
   hs.reload()
 end)
 
