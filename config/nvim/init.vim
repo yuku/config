@@ -176,8 +176,14 @@ call unite#custom#profile('ctrlp', 'context', {
       \ 'buffer_name': 'async'
       \ })
 
+let s:unite_ignore_file_rec_patterns =
+      \ ''
+      \ .'vendor/bundle\|.bundle/\|\.sass-cache/\|'
+      \ .'node_modules/\|bower_components/\|devtools/\|'
+      \ .'\.\(bmp\|gif\|jpe\?g\|png\|webp\|ai\|psd\)"\?$'
+
 call unite#custom#source('file_rec/git,file_rec/async',
-      \ 'ignore_pattern', '\.\(gif\|jpeg\?\|png\|webp\)$')
+      \ 'ignore_pattern', s:unite_ignore_file_rec_patterns)
 
 call unite#custom#source('neomru/file', 'matchers', ['matcher_project_files', 'matcher_fuzzy'])
 
