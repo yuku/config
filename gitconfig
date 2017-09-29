@@ -102,10 +102,12 @@
 	diff = B @hub browse -- commit/%(commit)
 	diff = F ?!git commit --fixup %(commit) --no-verify
 	diff = G move-last-line
+	diff = I ?!git rebase -i %(commit)
 	diff = R ?!git revert %(commit)
 	diff = S ?!git commit --squash %(commit) --no-verify
 	diff = g move-first-line
 	main = F ?!git commit --fixup %(commit) --no-verify
+	main = I ?!git rebase -i %(commit)
 	main = R ?!git revert %(commit)
 	main = S ?!git commit --squash %(commit) --no-verify
 	main = U ?!git uncommit
