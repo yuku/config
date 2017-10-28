@@ -1,7 +1,7 @@
 Style/Documentation:
   Enabled: false
 
-Style/FileName:
+Naming/FileName:
   Exclude:
     - Brewfile
 
