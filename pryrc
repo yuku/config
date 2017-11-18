@@ -65,14 +65,14 @@ Pry.config.commands.command(/^$/, "repeat last command") do
 end
 
 begin
-  require "factory_girl_rails"
+  require "factory_bot_rails"
   require "ffaker"
 rescue LoadError
   nil
 end
 
-if defined?(FactoryGirl)
-  include FactoryGirl::Syntax::Methods
+if defined?(FactoryBot)
+  include FactoryBot::Syntax::Methods
 end
 
 # vim: set filetype=ruby :
