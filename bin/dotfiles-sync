@@ -31,9 +31,10 @@ except=(
   bin
   fonts
   grc
-  keyremap4macbook.xml
   iterm2
+  keyremap4macbook.xml
   modules
+  rbenv
   script
   zsh
 )
