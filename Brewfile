@@ -21,6 +21,7 @@ brew 'rbenv'
 brew 'rbenv-ctags'
 brew 'rbenv-default-gems'
 brew 'reattach-to-user-namespace'
+brew 'ripgrep'
 brew 'ruby-build'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
