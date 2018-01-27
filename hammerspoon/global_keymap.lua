@@ -7,7 +7,7 @@ local function keyCode(key, modifiers)
   end
 end
 
--- Global hotkeys except for iTerm2
+-- Global hotkeys except for iTerm2 and VSCode
 local hotkeys = {}
 table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "M", keyCode("Return")))
 --table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "H", keyCode("Delete")))
@@ -28,7 +28,7 @@ end
 
 local function applicationWatcher(name, event, app)
   if event == hs.application.watcher.activated then
-    if name == "iTerm2" then
+    if name == "iTerm2" or name == "Code" then
       disableHotKeys()
     else
       enableHotKeys()
