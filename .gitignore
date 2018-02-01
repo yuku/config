@@ -12,3 +12,4 @@
 !/local/share/nvim
 /local/share/nvim/*
 !/local/share/nvim/site
+config/nvim/.netrwhist
