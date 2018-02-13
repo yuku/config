@@ -13,3 +13,4 @@
 /local/share/nvim/*
 !/local/share/nvim/site
 config/nvim/.netrwhist
+config/gocode/config.json
