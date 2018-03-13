@@ -13,4 +13,5 @@ else
     filter=""
 fi
 
-git grep -l $1 -- $filter | xargs sed -i '' -e "s/${before}/${after}/g"
+# See 13.3.1 Parameter Expansion Flags
+git grep -l $1 -- ${(z)filter} | xargs sed -i '' -e "s/${before}/${after}/g"
