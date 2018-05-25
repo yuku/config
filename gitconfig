@@ -111,8 +111,8 @@
 	main = R ?!git revert %(commit)
 	main = S ?!git commit --squash %(commit) --no-verify
 	main = U ?!git uncommit
-	stage = <Ctrl-n> :/^@@
-	stage = <Ctrl-p> :?^@@
+	# stage = <Ctrl-n> :/^@@
+	# stage = <Ctrl-p> :?^@@
 	status = C !git commit -v
 	tree = B @hub browse -- tree/%(commit)/%(directory)
 [diff]
