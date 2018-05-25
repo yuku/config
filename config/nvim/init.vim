@@ -95,6 +95,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'chriskempson/base16-vim'
 Plug 'digitaltoad/vim-pug', { 'for': 'pug' }
@@ -108,6 +109,7 @@ Plug 'kana/vim-textobj-user' | Plug 'rhysd/vim-textobj-ruby', { 'for': 'ruby' }
 Plug 'noprompt/vim-yardoc', { 'for': 'ruby' }
 Plug 'othree/html5.vim', { 'for': 'html' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' } | Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
+Plug 'scrooloose/nerdtree'
 Plug 'slim-template/vim-slim', { 'for': 'slim' }
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
