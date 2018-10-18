@@ -11,7 +11,7 @@ end
 
 registerAppLauncer("I", "iterm")
 registerAppLauncer("C", "Google Chrome")
-registerAppLauncer("E", "PomoDoneApp")
+registerAppLauncer("V", "Visual Studio Code")
 
 -- Show help message for application launcher
 hs.hotkey.bind(mash, "/", function ()
