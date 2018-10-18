@@ -80,7 +80,7 @@ let s:python_executable=$HOME.'/.pyenv/versions/neovim2/bin/python'
 if executable(s:python_executable)
   let g:python_host_prog=s:python_executable
 else
-  echoe 'g:python_host_prog is not set. Make neovim2 virtualenv with neovim package'
+  " echoe 'g:python_host_prog is not set. Make neovim2 virtualenv with neovim package'
 endif
 
 "" Python 3 provider
@@ -88,7 +88,7 @@ let s:python3_executable=$HOME.'/.pyenv/versions/neovim3/bin/python'
 if executable(s:python3_executable)
   let g:python3_host_prog=s:python3_executable
 else
-  echoe 'g:python3_host_prog is not set. Make neovim3 virtualenv with neovim package'
+  " echoe 'g:python3_host_prog is not set. Make neovim3 virtualenv with neovim package'
 endif
 
 " {{{1 Plugins
