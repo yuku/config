@@ -1,5 +1,5 @@
 # Copy-paste integration
-set-option -g default-command "reattach-to-user-namespace -l zsh"
+set-option -g default-command "reattach-to-user-namespace -l fish"
 
 # Setup 'y' to yank selection as in Vim
 unbind -T copy-mode-vi y ; bind -T copy-mode-vi y send -X copy-pipe-and-cancel "reattach-to-user-namespace pbcopy"

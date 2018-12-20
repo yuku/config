@@ -1,16 +1,16 @@
-/config/gcloud
-/config/yarn
-/vim/backup
-/vim/plugged
-/vim/swap
-/rbenv
-/tmux/plugins
-!/rbenv/default-gems
+/.config/gcloud
+/.config/yarn
+/.vim/backup
+/.vim/plugged
+/.vim/swap
+/.rbenv
+/.tmux/plugins
+!/.rbenv/default-gems
 
 # Neovim
-/local/share/*
-!/local/share/nvim
-/local/share/nvim/*
-!/local/share/nvim/site
-config/nvim/.netrwhist
-config/gocode/config.json
+/.local/share/*
+!/.local/share/nvim
+/.local/share/nvim/*
+!/.local/share/nvim/site
+.config/nvim/.netrwhist
+.config/gocode/config.json
