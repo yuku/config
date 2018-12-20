@@ -7,6 +7,10 @@
 /.tmux/plugins
 !/.rbenv/default-gems
 
+# Fish
+.config/fisher
+.config/fish/fishd.*
+
 # Neovim
 /.local/share/*
 !/.local/share/nvim
