@@ -1,27 +1,26 @@
 brew 'awscli'
 brew 'direnv'
+brew 'fish'
 brew 'ghq'
 brew 'git'
 brew 'hub'
 brew 'jq'
+brew 'nodebrew'
 brew 'peco'
 brew 'reattach-to-user-namespace'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
+brew 'yarn', args: ['without-node']
 brew 'vim', args: ['with-luajit', 'with-python3']
-brew 'fish'
 
 tap 'neovim/neovim'
 brew 'neovim'
 
-tap 'caskroom/cask'
 cask_args appdir: '/Applications'
-
-# cask update
+tap 'homebrew/cask'
 
 cask '1password'
 cask 'alfred'
-cask 'amazon-music'
 cask 'cmd-eikana'
 cask 'dash'
 cask 'docker'
@@ -34,5 +33,7 @@ cask 'hammerspoon'
 cask 'iterm2'
 cask 'skitch'
 cask 'visual-studio-code'
+
+mas "Quiver", id: 866773894
 
 # vim: filetype=ruby

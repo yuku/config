@@ -6,3 +6,6 @@ if status --is-interactive
     base16-default-dark
   end
 end
+
+# nodebrew
+set PATH $HOME/.nodebrew/current/bin $PATH
