@@ -5,6 +5,9 @@ if status --is-interactive
   if not test -e ~/.base16_theme
     base16-default-dark
   end
+
+  # rbenv
+  source (rbenv init -|psub)
 end
 
 # nodebrew

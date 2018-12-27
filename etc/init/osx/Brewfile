@@ -7,6 +7,7 @@ brew 'hub'
 brew 'jq'
 brew 'nodebrew'
 brew 'peco'
+brew 'rbenv'
 brew 'reattach-to-user-namespace'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
