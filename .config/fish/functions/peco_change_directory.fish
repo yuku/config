@@ -16,4 +16,5 @@ function peco_change_directory
     z -l | awk '{ print $2 }'
     ghq list -p
   end | sed -e 's/\/$//' | awk '!a[$0]++' | _peco_change_directory $argv
+  commandline -f repaint
 end
