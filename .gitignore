@@ -20,3 +20,4 @@
 .config/nvim/.netrwhist
 .config/gocode/config.json
 .config/configstore/update-notifier-npm.json
+.config/fish/fish_variables

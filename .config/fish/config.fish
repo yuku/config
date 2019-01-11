@@ -1,3 +1,5 @@
+set DOTFILES_ROOT (ghq root)/github.com/yuku/dotfiles
+
 if status --is-interactive
   set BASE16_SHELL "$DOTFILES_ROOT/modules/base16-shell"
   source "$BASE16_SHELL/profile_helper.fish"

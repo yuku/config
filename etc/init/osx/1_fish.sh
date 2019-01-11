@@ -1,4 +1,4 @@
-#!/usr/local/bin/fish
+#!/usr/bin/env fish
 
 set fishpath /usr/local/bin/fish
 
@@ -9,5 +9,3 @@ end
 if [ "$SHELL" = $fishpath ]
   chsh -s $fishpath
 end
-
-set -U DOTFILES_ROOT $DOTFILES_ROOT
