@@ -3,7 +3,7 @@
 case "$(uname)" in
 Darwin*)
   for file in "$DOTFILES_ROOT/etc/init/osx/*.sh"; do
-    echo $file
+    bash $file
   done
   ;;
 esac

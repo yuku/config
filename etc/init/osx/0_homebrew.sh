@@ -9,4 +9,4 @@ if ! is_exists "brew"; then
   /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
-brew bundle --verbose --file $DOTFILES_ROOT/etc/init/osx/Brewfile
+brew bundle --verbose --file="$DOTFILES_ROOT/etc/init/osx/Brewfile"
