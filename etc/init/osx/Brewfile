@@ -11,8 +11,9 @@ brew 'rbenv'
 brew 'reattach-to-user-namespace'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
-brew 'yarn', args: ['without-node']
+brew 'tree'
 brew 'vim', args: ['with-luajit', 'with-python3']
+brew 'yarn', args: ['without-node']
 
 tap 'neovim/neovim'
 brew 'neovim'
