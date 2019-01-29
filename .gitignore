@@ -19,6 +19,6 @@
 !/.local/share/nvim/site
 .config/nvim/.netrwhist
 .config/gocode/config.json
-.config/configstore/update-notifier-npm.json
+.config/configstore
 .config/fish/fish_variables
 .config/direnv
