@@ -8,9 +8,9 @@ if status --is-interactive
     base16-default-dark
   end
 
-  # rbenv
-  source (rbenv init -|psub)
+  eval (direnv hook fish)
 end
 
-# nodebrew
-set PATH $HOME/.nodebrew/current/bin $PATH
+if test -e ~/.local/share/fish/config.fish
+  source ~/.local/share/fish/config.fish
+end
