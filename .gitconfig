@@ -69,7 +69,7 @@
 [rebase]
 	autosquash = true
 [ghq]
-	root = ~/src
+	root = ~/dev/src
 [filter "media"]
 	clean  = git-media-clean %f
 	smudge = git-media-smudge %f
