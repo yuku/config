@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-if (( $+commands[git-pre-push] )) ; then
-  git-pre-push $@
-fi
