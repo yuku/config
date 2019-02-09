@@ -1,9 +1,5 @@
 function git_is_touched -d "Test if there are any changes in the working tree"
-    if not git_is_repo
-        return 1
-    end
-
-    command git status --porcelain 2>/dev/null | command awk '
+    git_is_repo; and command git status --porcelain 2>/dev/null | command awk '
         // {
             z++
             exit 0
