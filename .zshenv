@@ -4,7 +4,7 @@ export DOTFILES_ROOT=~/src/github.com/yuku-t/dotfiles
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export OUTPUT_CHARSET=utf-8
-export GOPATH=$HOME
+export GOPATH=$HOME/dev
 export GOBIN=$GOPATH/bin
 
 typeset -U path
