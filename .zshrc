@@ -2,7 +2,7 @@
 autoload -Uz is-at-least
 
 # {{{1 variables
-export ZPLUG_HOME=${HOME}/.zplug
+export ZPLUG_HOME=${DOTFILES_ROOT}/modules/zplug
 
 # {{{1 General
 export EDITOR=vim

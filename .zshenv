@@ -1,4 +1,4 @@
-export DOTFILES_ROOT=~/src/github.com/yuku-t/dotfiles
+export DOTFILES_ROOT=~/dev/src/github.com/yuku/dotfiles
 
 # {{{1 variables
 export LC_ALL=en_US.UTF-8

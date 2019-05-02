@@ -1,6 +1,6 @@
 # Load all functions in zfunctions directory lazily
-fpath=(${DOTFILES_ROOT}/zsh/functions $fpath)
-for i in $(ls ${DOTFILES_ROOT}/zsh/functions) ; do
+fpath=(${DOTFILES_ROOT}/.zsh/functions $fpath)
+for i in $(ls ${DOTFILES_ROOT}/.zsh/functions) ; do
     autoload -U $i
 done
 
