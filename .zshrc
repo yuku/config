@@ -265,9 +265,10 @@ if (( $+commands[rbenv] )); then
     eval "$(rbenv init -)"
 fi
 
-# {{{2 nodebrew
-: ${NODEBREW_ROOT:=$HOME/.nodebrew}
-export PATH=$NODEBREW_ROOT/current/bin:$PATH
+# {{{2 nodenv
+if (( $+commands[nodenv] )); then
+    eval "$(nodenv init -)"
+fi
 
 # {{{2 direnv
 if (( $+commands[direnv] )); then
