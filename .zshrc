@@ -260,16 +260,6 @@ if (( $+commands[hub] )); then
     eval "$(hub alias -s)"
 fi
 
-# {{{2 rbenv
-if (( $+commands[rbenv] )); then
-    eval "$(rbenv init -)"
-fi
-
-# {{{2 nodenv
-if (( $+commands[nodenv] )); then
-    eval "$(nodenv init -)"
-fi
-
 # {{{2 direnv
 if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
