@@ -10,6 +10,7 @@
 	attributesFile = ~/.gitattributes
 [init]
 	templateDir = ~/.gittemplate
+	defaultBranch = main
 [user]
 	name  = Yuku Takahashi
 	email = taka84u9@gmail.com
