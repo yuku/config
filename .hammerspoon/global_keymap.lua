@@ -28,7 +28,7 @@ end
 
 local function applicationWatcher(name, event, app)
   if event == hs.application.watcher.activated then
-    if name == "iTerm2" or name == "Code" then
+    if name == "iTerm2" then
       disableHotKeys()
     else
       enableHotKeys()
