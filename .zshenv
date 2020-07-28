@@ -1,6 +1,5 @@
 export DOTFILES_ROOT=~/dev/src/github.com/yuku/dotfiles
 
-# {{{1 variables
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export OUTPUT_CHARSET=utf-8
