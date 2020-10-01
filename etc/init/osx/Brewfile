@@ -12,7 +12,7 @@ brew 'reattach-to-user-namespace'
 brew 'tig', args: ['with-docs']
 brew 'tmux'
 brew 'tree'
-brew 'vim', args: ['with-luajit', 'with-python3']
+brew 'vim'
 brew 'yarn', args: ['without-node']
 
 tap 'neovim/neovim'
@@ -36,6 +36,6 @@ tap 'homebrew/cask'
 # cask 'skitch'
 # cask 'visual-studio-code'
 
-mas "Quiver", id: 866773894
+# mas "Quiver", id: 866773894
 
 # vim: filetype=ruby
