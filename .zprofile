@@ -6,7 +6,6 @@ for i in $(ls ${DOTFILES_ROOT}/.zsh/functions) ; do
     autoload -U $i
 done
 
-# {{{1 Variables
 export PAGER=less
 export LESS='-g -i -M -R -S -W -z-4 -x4'
 
@@ -23,4 +22,8 @@ if (( $+commands[pyenv] )); then
 fi
 if (( $+commands[nodenv] )); then
     eval "$(nodenv init -)"
+fi
+
+if [ -f "~/.zprofile.local" ] ; then
+    source ~/.zprofile.local
 fi
