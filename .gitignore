@@ -23,3 +23,4 @@
 .config/fish/fish_variables
 .config/direnv
 .vscode
+.config/gh
