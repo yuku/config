@@ -11,8 +11,8 @@ end
 local hotkeys = {}
 table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "M", keyCode("Return")))
 --table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "H", keyCode("Delete")))
-table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "N", keyCode("Down")))
-table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "P", keyCode("Up")))
+--table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "N", keyCode("Down")))
+--table.insert(hotkeys, hs.hotkey.bind({"ctrl"}, "P", keyCode("Up")))
 
 local function enableHotKeys()
   for k, v in pairs(hotkeys) do
