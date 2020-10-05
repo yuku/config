@@ -24,6 +24,6 @@ if (( $+commands[nodenv] )); then
     eval "$(nodenv init -)"
 fi
 
-if [ -f "~/.zprofile.local" ] ; then
+if [ -f ~/.zprofile.local ] ; then
     source ~/.zprofile.local
 fi
