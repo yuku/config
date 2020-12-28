@@ -1,7 +1,7 @@
 DOTFILES_ROOT := $(realpath ./)
-CANDIDATES    := $(wildcard .??*)
+CANDIDATES    := $(wildcard home/.??*)
 EXCLUSIONS    := .DS_Store .git .gitmodules
-DOTFILES      := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), home/$(val);), $(CANDIDATES))
 INSTALLED     := $(shell find $(HOME) -type l -maxdepth 1 -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(DOTFILES_ROOT) | cut -d: -f2)
 
 .DEFAULT_GOAL := help
@@ -10,7 +10,7 @@ list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
 deploy: ## Create symlinks to home directory
-	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(notdir $(val));)
 
 clean: ## Remove symlinks from home directory
 	@$(foreach val, $(INSTALLED), rm $(val);)
