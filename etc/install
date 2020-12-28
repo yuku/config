@@ -163,7 +163,7 @@ dotfiles_install() {
 if [ -z "${DOTFILES_ROOT:-}" ]; then
   DOTFILES_ROOT="$HOME/src/github.com/yuku/dotfiles"; export DOTFILES_ROOT
 fi
-DOTFILES_GITHUB="https://github.com/yuku/dotfiles.git"; export DOTFILES_GITHUB
+DOTFILES_GITHUB="git@github.com:yuku/dotfiles.git"; export DOTFILES_GITHUB
 
 main() {
   dotfiles_install

@@ -1,1 +1,0 @@
-source (rbenv init -|psub)

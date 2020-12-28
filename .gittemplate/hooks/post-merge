@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-if (( $+commands[git-post-merge] )) ; then
-  git-post-merge $@
-fi

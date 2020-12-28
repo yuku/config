@@ -1,26 +1,6 @@
-/.config/gcloud
-/.config/yarn
-/.config/hub
-/.vim/backup
-/.vim/plugged
-/.vim/swap
-/.rbenv
-/.tmux/plugins
-!/.rbenv/default-gems
+/home/.config/*
+!/home/.config/git
+!/home/.config/nvim
 
-# Fish
-.config/fisher
-.config/fish/fishd.*
-
-# Neovim
-/.local/share/*
-!/.local/share/nvim
-/.local/share/nvim/*
-!/.local/share/nvim/site
-.config/nvim/.netrwhist
-.config/gocode/config.json
-.config/configstore
-.config/fish/fish_variables
-.config/direnv
-.vscode
-.config/gh
+/home/.tmux/plugins/*
+!/home/.tmux/plugins/tpm

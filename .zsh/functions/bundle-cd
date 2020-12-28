@@ -1,4 +1,0 @@
-#!/usr/bin/env zsh
-
-bundle_path=$(which bundle)
-cd $($bundle_path show $($bundle_path list | awk '{ print $2 }' | percol))

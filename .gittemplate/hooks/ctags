@@ -1,7 +1,0 @@
-#!/bin/sh
-# See http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-set -e
-dir="`git rev-parse --git-dir`"
-trap 'rm -f "$dir/$$.tags"' EXIT
-git ls-files | ctags --tag-relative -L - -f"$dir/$$.tags" --languages=ruby --fields=+l
-mv "$dir/$$.tags" "$dir/tags"

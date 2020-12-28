@@ -1,15 +1,19 @@
 DOTFILES_ROOT := $(realpath ./)
-CANDIDATES    := $(wildcard .??*) bin
+CANDIDATES    := $(wildcard home/.??*)
 EXCLUSIONS    := .DS_Store .git .gitmodules
-DOTFILES      := $(filter-out $(EXCLUSIONS), $(CANDIDATES))
+DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), home/$(val);), $(CANDIDATES))
+INSTALLED     := $(shell find $(HOME) -type l -maxdepth 1 -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(DOTFILES_ROOT) | cut -d: -f2)
 
 .DEFAULT_GOAL := help
 
 list: ## Show dot files in this repo
 	@$(foreach val, $(DOTFILES), /bin/ls -dF $(val);)
 
-deploy: ## Create symlink to home directory
-	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(val);)
+deploy: ## Create symlinks to home directory
+	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(notdir $(val));)
+
+clean: ## Remove symlinks from home directory
+	@$(foreach val, $(INSTALLED), rm $(val);)
 
 init: ## Setup environment settings
 	@$(foreach val, $(wildcard ./etc/init/*.sh), DOTFILES_ROOT=$(DOTFILES_ROOT) bash $(DOTFILES_ROOT)/$(val);)
@@ -20,10 +24,12 @@ update: ## Fetch changes for this repo
 	git submodule update
 	git submodule foreach git pull origin master
 
-install: update deploy init ## Run make update, deploy, init
+install: clean update deploy init ## Run make clean, update, deploy, init
 	@exec $$SHELL
 
 help: ## Show this help message
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| sort \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+.PHONY: list deploy clean init update install help

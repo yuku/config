@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-if (( $+commands[git-post-rewrite] )) ; then
-  git-post-rewrite $@
-fi
