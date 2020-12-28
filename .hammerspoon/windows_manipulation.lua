@@ -2,8 +2,6 @@
 
 local function winresize(how)
    local win = hs.window.focusedWindow()
-   local app = win:application():name()
-   local windowLayout
    local newrect
 
    if how == "left" then
