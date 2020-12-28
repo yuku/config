@@ -5,7 +5,7 @@ autoload -Uz is-at-least
 export ZPLUG_HOME=${DOTFILES_ROOT}/modules/zplug
 
 # {{{1 General
-export EDITOR=vim
+export EDITOR=nvim
 export GREP_OPTIONS='--color=auto'
 export LESSCHARSET=utf-8
 REPORTTIME=3                       # Output statistics of slow command

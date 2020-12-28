@@ -1,5 +1,0 @@
-#!/bin/zsh
-
-if (( $+commands[git-pre-commit] )) ; then
-  git-pre-commit $@
-fi
