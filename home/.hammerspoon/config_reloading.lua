@@ -5,15 +5,17 @@ hs.hotkey.bind({"cmd", "ctrl"}, "R", function ()
 end)
 
 -- Fancy configuration reloading
-function reloadConfig(files)
+configReloadingWatcher = hs.pathwatcher.new(
+  os.getenv("HOME") .. "/.hammerspoon/",
+  function (files)
     doReload = false
     for _,file in pairs(files) do
-        if file:sub(-4) == ".lua" then
-            doReload = true
-        end
+      if file:sub(-4) == ".lua" then
+          doReload = true
+      end
     end
     if doReload then
-        hs.reload()
+      hs.reload()
     end
-end
-myWatcher = hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
+  end
+):start()

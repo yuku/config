@@ -26,15 +26,15 @@ local function disableHotKeys()
   end
 end
 
-local function applicationWatcher(name, event, app)
-  if event == hs.application.watcher.activated then
-    if name == "iTerm2" then
-      disableHotKeys()
-    else
-      enableHotKeys()
+appWatcher = hs.application.watcher.new(
+  function (name, event, app)
+    if event == hs.application.watcher.activated then
+      if name == "iTerm2" then
+        disableHotKeys()
+      else
+        enableHotKeys()
+      end
     end
   end
-end
-
-local appWatcher = hs.application.watcher.new(applicationWatcher):start()
+):start()
 appWatcher:start()
