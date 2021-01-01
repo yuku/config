@@ -94,15 +94,15 @@ e_done() {
 # }}}
 
 dotfiles_download() {
-  if [ -d "$DOTFILES_ROOT" ]; then
-    log_fail "$DOTFILES_ROOT: already exists"
+  if [ -d "$CONFIG_ROOT" ]; then
+    log_fail "$CONFIG_ROOT: already exists"
     exit 1
   fi
 
   e_newline && e_header "Downloading dotfiles..."
 
   if is_exists "git"; then
-    git clone --recursive "$DOTFILES_GITHUB" "$DOTFILES_ROOT"
+    git clone --recursive "$DOTFILES_GITHUB" "$CONFIG_ROOT"
   elif is_exists "curl" || is_exists "wget"; then
     local tarball="https://github.com/yuku/dotfiles/archive/master.tar.gz"
     if is_exists "curl"; then
@@ -114,7 +114,7 @@ dotfiles_download() {
       log_fail "dotfiles-master: not found"
       exit 1
     fi
-    command mv -f dotfiles-master "$DOTFILES_ROOT"
+    command mv -f dotfiles-master "$CONFIG_ROOT"
   else
     log_fail "git, curl or wget required"
     exit 1
@@ -126,12 +126,12 @@ dotfiles_download() {
 dotfiles_deploy() {
   e_newline && e_header "Deploying dotfiles..."
 
-  if [ ! -d $DOTFILES_ROOT ]; then
-    log_fail "$DOTFILES_ROOT: not found"
+  if [ ! -d $CONFIG_ROOT ]; then
+    log_fail "$CONFIG_ROOT: not found"
     exit 1
   fi
 
-  cd "$DOTFILES_ROOT"
+  cd "$CONFIG_ROOT"
   make deploy &&
   e_newline && e_done "Deploy"
 }
@@ -150,7 +150,7 @@ dotfiles_initialize() {
 }
 
 dotfiles_install() {
-  # 1. Download yuku/dotfiles repository to $DOTFILES_ROOT.
+  # 1. Download yuku/dotfiles repository to $CONFIG_ROOT.
   dotfiles_download
 
   # 2. Deploy dotfiles to my home directory.
@@ -160,10 +160,10 @@ dotfiles_install() {
   dotfiles_initialize
 }
 
-if [ -z "${DOTFILES_ROOT:-}" ]; then
-  DOTFILES_ROOT="$HOME/src/github.com/yuku/dotfiles"; export DOTFILES_ROOT
+if [ -z "${CONFIG_ROOT:-}" ]; then
+  CONFIG_ROOT="$HOME/src/github.com/yuku/config"; export CONFIG_ROOT
 fi
-DOTFILES_GITHUB="git@github.com:yuku/dotfiles.git"; export DOTFILES_GITHUB
+DOTFILES_GITHUB="git@github.com:yuku/config.git"; export DOTFILES_GITHUB
 
 main() {
   dotfiles_install

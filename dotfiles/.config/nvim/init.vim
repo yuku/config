@@ -70,7 +70,7 @@ highlight CursorLine ctermbg=black
 
 " Key mappings
 " Jump to init.vim
-nnoremap <space>v :<C-u>edit $DOTFILES_ROOT/config/nvim/init.vim<CR>
+nnoremap <space>v :<C-u>edit $CONFIG_ROOT/config/nvim/init.vim<CR>
 " Reload init.vim setting
 nnoremap <space>s :<C-u>source $HOME/.config/nvim/init.vim<CR>
 

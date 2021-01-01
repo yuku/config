@@ -1,8 +1,8 @@
-DOTFILES_ROOT := $(realpath ./)
-CANDIDATES    := $(wildcard home/.??*)
+CONFIG_ROOT := $(realpath ./)
+CANDIDATES    := $(wildcard dotfiles/.??*)
 EXCLUSIONS    := .DS_Store .git .gitmodules
-DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), home/$(val);), $(CANDIDATES))
-INSTALLED     := $(shell find $(HOME) -type l -maxdepth 1 -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(DOTFILES_ROOT) | cut -d: -f2)
+DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), dotfiles/$(val);), $(CANDIDATES))
+INSTALLED     := $(shell find $(HOME) -type l -maxdepth 1 -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(CONFIG_ROOT) | cut -d: -f2)
 
 .DEFAULT_GOAL := help
 
@@ -16,7 +16,7 @@ clean: ## Remove symlinks from home directory
 	@$(foreach val, $(INSTALLED), rm $(val);)
 
 init: ## Setup environment settings
-	@$(foreach val, $(wildcard ./etc/init/*.sh), DOTFILES_ROOT=$(DOTFILES_ROOT) bash $(DOTFILES_ROOT)/$(val);)
+	@$(foreach val, $(wildcard ./etc/init/*.sh), CONFIG_ROOT=$(CONFIG_ROOT) bash $(CONFIG_ROOT)/$(val);)
 
 update: ## Fetch changes for this repo
 	git pull origin master

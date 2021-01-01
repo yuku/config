@@ -5,10 +5,10 @@ brew 'git'
 brew 'jq'
 brew 'peco'
 brew 'reattach-to-user-namespace'
-brew 'tig', args: ['with-docs']
+brew 'tig'
 brew 'tmux'
 brew 'tree'
-brew 'yarn', args: ['without-node']
+brew 'yarn'
 
 brew 'nodenv'
 brew 'rbenv'

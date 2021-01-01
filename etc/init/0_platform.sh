@@ -2,7 +2,7 @@
 
 case "$(uname)" in
 Darwin*)
-  for file in "$DOTFILES_ROOT/etc/init/osx/*.sh"; do
+  for file in "$CONFIG_ROOT/etc/init/osx/*.sh"; do
     bash $file
   done
   ;;

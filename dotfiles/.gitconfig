@@ -31,7 +31,7 @@
 	review         = !tig --no-walk -w $(git branch-root)..HEAD
 	today          = log --oneline --since='12 hour ago'
 	uncommit       = reset HEAD~
-	sync-hooks     = !cp $DOTFILES_ROOT/gittemplate/hooks/* .git/hooks
+	sync-hooks     = !cp $CONFIG_ROOT/gittemplate/hooks/* .git/hooks
 [push]
 	default = current
 [pull]

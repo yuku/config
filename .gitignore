@@ -1,6 +1,6 @@
-/home/.config/*
-!/home/.config/git
-!/home/.config/nvim
+/dotfiles/.config/*
+!/dotfiles/.config/git
+!/dotfiles/.config/nvim
 
-/home/.tmux/plugins/*
-!/home/.tmux/plugins/tpm
+/dotfiles/.tmux/plugins/*
+!/dotfiles/.tmux/plugins/tpm
