@@ -1,7 +1,7 @@
 CONFIG_ROOT := $(realpath ./)
-CANDIDATES    := $(wildcard home/.??*)
+CANDIDATES    := $(wildcard dotfiles/.??*)
 EXCLUSIONS    := .DS_Store .git .gitmodules
-DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), home/$(val);), $(CANDIDATES))
+DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), dotfiles/$(val);), $(CANDIDATES))
 INSTALLED     := $(shell find $(HOME) -type l -maxdepth 1 -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(CONFIG_ROOT) | cut -d: -f2)
 
 .DEFAULT_GOAL := help
