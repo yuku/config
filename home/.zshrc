@@ -2,7 +2,7 @@
 autoload -Uz is-at-least
 
 # {{{1 variables
-export ZPLUG_HOME=${DOTFILES_ROOT}/modules/zplug
+export ZPLUG_HOME=${CONFIG_ROOT}/modules/zplug
 
 # {{{1 General
 export EDITOR=nvim
@@ -168,7 +168,7 @@ function precmd () {
 }
 
 # {{{2 Base16
-BASE16_SHELL=$DOTFILES_ROOT/modules/base16-shell
+BASE16_SHELL=$CONFIG_ROOT/modules/base16-shell
 [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
 base16_default-dark
 
