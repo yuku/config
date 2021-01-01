@@ -1,8 +1,8 @@
 # vim: filetype=zsh
 
 # Load all functions in zfunctions directory lazily
-fpath=(${CONFIG_ROOT}/home/.zsh/functions $fpath)
-for i in $(ls ${CONFIG_ROOT}/home/.zsh/functions) ; do
+fpath=(${CONFIG_ROOT}/dotfiles/.zsh/functions $fpath)
+for i in $(ls ${CONFIG_ROOT}/dotfiles/.zsh/functions) ; do
     autoload -U $i
 done
 
