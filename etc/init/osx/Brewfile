@@ -7,6 +7,7 @@ brew 'peco'
 brew 'tig'
 brew 'tmux'
 brew 'tree'
+brew 'asdf'
 
 tap 'neovim/neovim'
 brew 'neovim'
