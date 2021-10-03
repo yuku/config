@@ -7,11 +7,6 @@ brew 'peco'
 brew 'tig'
 brew 'tmux'
 brew 'tree'
-brew 'yarn'
-
-brew 'nodenv'
-brew 'rbenv'
-brew 'pyenv'
 
 tap 'neovim/neovim'
 brew 'neovim'

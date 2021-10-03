@@ -14,15 +14,6 @@ if (( $+commands[lesspipe.sh] )); then
 fi
 
 # Tools
-if (( $+commands[rbenv] )); then
-    eval "$(rbenv init -)"
-fi
-if (( $+commands[pyenv] )); then
-    eval "$(pyenv init -)"
-fi
-if (( $+commands[nodenv] )); then
-    eval "$(nodenv init -)"
-fi
 
 if [ -f ~/.zprofile.local ] ; then
     source ~/.zprofile.local
