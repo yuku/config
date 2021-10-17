@@ -15,7 +15,6 @@ brew 'neovim'
 cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 
-cask '1password'
 cask 'alfred'
 cask 'caffeine'
 cask 'dash'
