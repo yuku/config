@@ -9,6 +9,12 @@ brew 'tmux'
 brew 'tree'
 brew 'asdf'
 
+# For asdf-golang
+brew 'coreutils'
+# For asdf-nodejs
+brew 'gpg'
+brew 'gawk'
+
 tap 'neovim/neovim'
 brew 'neovim'
 
