@@ -265,6 +265,11 @@ if (( $+commands[direnv] )); then
     eval "$(direnv hook zsh)"
 fi
 
+# {{{2 asdf
+if (( $+commands[asdf] )); then
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+fi
+
 # {{{2 travis
 [ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
 
