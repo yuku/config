@@ -488,7 +488,7 @@
         "revision": "e587b5c90456a895a11bc5ae81e5cfdde6b23dd4"
       },
       "homebrew/cask": {
-        "revision": "c5c52004d67b618b8fbb66ca0088615cd451b3df"
+        "revision": "31623650a70f41af9dd47ae1a60d8fe6a97c8d96"
       }
     },
     "cask": {
@@ -608,6 +608,15 @@
             "appdir": "/Applications"
           }
         }
+      },
+      "slack": {
+        "version": "4.20.0",
+        "options": {
+          "full_name": "slack",
+          "args": {
+            "appdir": "/Applications"
+          }
+        }
       }
     }
   },
@@ -624,9 +633,9 @@
       "big_sur": {
         "HOMEBREW_VERSION": "3.2.16",
         "HOMEBREW_PREFIX": "/opt/homebrew",
-        "Homebrew/homebrew-core": "5d99fe5baa2e0fb3f245e5a86d2d49ad7515d7a9",
-        "CLT": "12.5.1.0.1.1623191612",
-        "Xcode": "12.5.1",
+        "Homebrew/homebrew-core": "b8f3840957d316ccd7231a36012801782ed4db81",
+        "CLT": "13.0.0.0.1.1630607135",
+        "Xcode": "13.0",
         "macOS": "11.6"
       }
     }
