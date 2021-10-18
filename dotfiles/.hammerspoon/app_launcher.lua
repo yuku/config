@@ -9,7 +9,7 @@ local function registerAppLauncer(modifier, app)
   end)
 end
 
-registerAppLauncer("I", "iterm")
+registerAppLauncer("I", "Terminal")
 registerAppLauncer("C", "Google Chrome")
 registerAppLauncer("V", "Visual Studio Code")
 
