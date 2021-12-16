@@ -3,8 +3,8 @@
 remote=`git remote -v | grep origin | awk '/\(push\)$/ {print $2}'`
 email=taka84u9@gmail.com # default
 
-if [[ $remote == *flywheel-jp/* ]]; then
-  email=yuku@flywheel.jp
+if [[ $remote == *hq-jp/* ]]; then
+  email=yuku.takahashi@hq-hq.co.jp
 fi
 
 echo "Configuring user.email as $email"
