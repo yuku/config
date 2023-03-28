@@ -6,7 +6,9 @@
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/yuku/config/master/etc/install)"
 ```
 
-### Mac
+## Setup
+
+### Touch ID in Terminal.app
 
 To use touch ID from terminal.app, `sudo vim /etc/pam.d/sudo` then insert following lines:
 
@@ -20,6 +22,19 @@ To use touch ID from terminal.app, `sudo vim /etc/pam.d/sudo` then insert follow
   password   required       pam_deny.so
   session    required       pam_permit.so
 ```
+
+### Unlock SSH key
+
+Do `ssh-keygen`, configure github, add following lines to `~/.ssh/config`:
+
+```
+Host *
+   AddKeysToAgent yes
+   UseKeychain yes
+   IdentityFile ~/.ssh/id_rsa
+```
+
+then execute `ssh-add --apple-use-keychain ~/.ssh/id_rsa`.
 
 ## Trouble shooting
 
