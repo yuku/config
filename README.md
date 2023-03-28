@@ -23,18 +23,12 @@ To use touch ID from terminal.app, `sudo vim /etc/pam.d/sudo` then insert follow
   session    required       pam_permit.so
 ```
 
-### Unlock SSH key
-
-Do `ssh-keygen`, configure github, add following lines to `~/.ssh/config`:
+### SSH key
 
 ```
-Host *
-   AddKeysToAgent yes
-   UseKeychain yes
-   IdentityFile ~/.ssh/id_rsa
+ssh-keygen -t ed25519
+ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 ```
-
-then execute `ssh-add --apple-use-keychain ~/.ssh/id_rsa`.
 
 ## Trouble shooting
 

@@ -18,6 +18,9 @@ brew 'gawk'
 
 brew 'neovim'
 
+tap 'microsoft/git'
+cask 'git-credential-manager-core'
+
 cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 
