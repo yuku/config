@@ -270,7 +270,4 @@ if (( $+commands[asdf] )); then
   . "$(brew --prefix asdf)/libexec/asdf.sh"
 fi
 
-# {{{2 travis
-[ -f $HOME/.travis/travis.sh ] && source $HOME/.travis/travis.sh
-
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
