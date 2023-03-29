@@ -219,8 +219,12 @@ if is-at-least 4.3.10; then
     zstyle ':chpwd:*' recent-dirs-max 5000
 fi
 
+zplug chriskempson/base16-shell, from:github
+
 # Then, source plugins and add commands to $PATH
 zplug load
+
+base16_materia
 
 # {{{1 Keybinding
 bindkey -e # emacs like keybinding. Must call before following bindkey settings.
