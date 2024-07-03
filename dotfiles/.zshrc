@@ -126,8 +126,7 @@ autoload -U colors
 colors
 
 function squashed_pwd() {
-
-    echo "$(pwd | sed -e "s:^$HOME:~:" | ruby -pe "gsub(%r{([^/]+)/}) { \"#{\$1[0]}/\" }")"
+    echo "$(pwd | sed -e "s:^$HOME:~:" | awk -F'/' '{ for(i=1; i<NF; i++) printf("%s/", substr($i, 1, 1)); print $(NF) }')"
 }
 
 function precmd () {
