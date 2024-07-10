@@ -96,6 +96,7 @@ e_done() {
 dotfiles_download() {
   if [ -d "$CONFIG_ROOT" ]; then
     log_fail "$CONFIG_ROOT: already exists"
+    git submodule update --init --recursive
     return
   fi
 
