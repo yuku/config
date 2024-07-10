@@ -3,7 +3,7 @@
 ## Installation
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/yuku/config/master/etc/install)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/yuku/config/master/install.sh)"
 ```
 
 ## Setup
@@ -48,3 +48,11 @@ chmod 755 /usr/local/share/zsh
 ### `E185: Cannot find color scheme 'base16-default-dark'`
 
 Run `:PlugInstall` to install neovim plugins including `base16-default-dark`.
+
+### VSCode devcontainer settings
+
+Setting                   | Value
+--------------------------|-----
+Dotfiles: Install Command | *empty*
+Dotfiles: Repository      | yuku/config
+Dotfiles: Target Path     | ~/dev/src/github.com/yuku/config
