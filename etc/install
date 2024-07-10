@@ -96,7 +96,7 @@ e_done() {
 dotfiles_download() {
   if [ -d "$CONFIG_ROOT" ]; then
     log_fail "$CONFIG_ROOT: already exists"
-    exit 1
+    return
   fi
 
   e_newline && e_header "Downloading dotfiles..."
