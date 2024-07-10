@@ -5,6 +5,7 @@ is_exists() {
   return $?
 }
 
+export ZPLUG_HOME="${CONFIG_ROOT}/modules/zplug"
 curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
 
 ~/.tmux/plugins/tpm/bin/clean_plugins
