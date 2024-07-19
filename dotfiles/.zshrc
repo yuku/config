@@ -166,11 +166,6 @@ function precmd () {
     fi
 }
 
-# {{{2 Base16
-BASE16_SHELL=$CONFIG_ROOT/modules/base16-shell
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
-base16_default-dark
-
 # {{{1 SSH agent
 # http://qiita.com/sonots/items/2d7950a68da0a02ba7e4
 agent="$HOME/.ssh/agent"
@@ -223,7 +218,14 @@ zplug chriskempson/base16-shell, from:github
 # Then, source plugins and add commands to $PATH
 zplug load
 
-base16_materia
+if (( $+commands[base16_materia] )); then
+  base16_materia
+  
+  # {{{2 Base16
+  BASE16_SHELL=$CONFIG_ROOT/modules/base16-shell
+  [ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+  base16_default-dark
+fi
 
 # {{{1 Keybinding
 bindkey -e # emacs like keybinding. Must call before following bindkey settings.
@@ -270,7 +272,11 @@ fi
 
 # {{{2 asdf
 if (( $+commands[asdf] )); then
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
+  if (( $+commands[brew] )); then
+    . "$(brew --prefix asdf)/libexec/asdf.sh"
+  elif [ -d $HOME/.asdf ]; then
+    . $HOME/.asdf/asdf.sh
+  fi
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -4,4 +4,7 @@ unbind -T copy-mode-vi y ; bind -T copy-mode-vi y send -X copy-pipe-and-cancel "
 # Bind ']' to use pbpaste
 bind ] run "pbpaste | tmux load-buffer - && tmux paste-buffer"
 
+# For base16
+set -g allow-passthrough 1
+
 # vim:ft=tmux
