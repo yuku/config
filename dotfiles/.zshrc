@@ -271,12 +271,10 @@ if (( $+commands[direnv] )); then
 fi
 
 # {{{2 asdf
-if (( $+commands[asdf] )); then
-  if (( $+commands[brew] )); then
-    . "$(brew --prefix asdf)/libexec/asdf.sh"
-  elif [ -d $HOME/.asdf ]; then
-    . $HOME/.asdf/asdf.sh
-  fi
+if (( $+commands[brew] )); then
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+elif [ -d $HOME/.asdf ]; then
+  . $HOME/.asdf/asdf.sh
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
