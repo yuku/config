@@ -120,4 +120,6 @@
 	compactionHeuristic = true
 [include]
 	path = ~/.gitconfig.local
+[credential "https://github.com"]
+	username = yuku
 # vim: ft=gitconfig

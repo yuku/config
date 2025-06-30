@@ -11,9 +11,12 @@ set visualbell t_vb=         " No beep sound
 set nolazyredraw             " don't redraw while executing macros
 set report=0                 " tell us about changes
 set encoding=utf-8           " Use utf-8
-set termencoding=utf-8       " ..
 set fileencodings=utf-8      " ..
 set fileformats=unix,mac,dos " Automatic end-of-file format detection
+
+if !has('nvim')
+  set termencoding=utf-8     " ..
+endif
 
 set number                   " line numbers
 set showcmd                  " display incomplete commands

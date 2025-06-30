@@ -5,3 +5,5 @@ Thumbs.db
 .envrc
 \#*
 tmp
+
+**/.claude/settings.local.json
