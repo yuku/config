@@ -53,6 +53,7 @@ alias ll='ls -lh'
 alias lla='ls -lhA'
 alias lsd='ls -ld *(-/DN)'
 alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
+alias yolo='claude --dangerously-skip-permissions'
 
 case ${OSTYPE} in
 darwin*)
