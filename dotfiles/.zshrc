@@ -258,6 +258,13 @@ bindkey '^R'   zaw-history
 bindkey '^T'   zaw-cdr
 
 # {{{1 Tools
+# {{{2 Homebrew
+if [ -x /opt/homebrew/bin/brew ]; then
+    eval "$(/opt/homebrew/bin/brew shellenv)" # Apple Silicon Mac
+elif [ -x /usr/local/bin/brew ]; then
+    eval "$(/usr/local/bin/brew shellenv)" # Intel Mac
+fi
+
 # {{{2 Git
 if [ -d /usr/local/share/git-core/contrib/diff-highlight ] ; then
     path=(/usr/local/share/git-core/contrib/diff-highlight $path)
@@ -274,8 +281,6 @@ fi
 # {{{2 asdf
 if (( $+commands[brew] )); then
   . "$(brew --prefix asdf)/libexec/asdf.sh"
-elif [ -d $HOME/.asdf ]; then
-  . $HOME/.asdf/asdf.sh
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
