@@ -21,6 +21,7 @@ brew 'neovim'
 cask_args appdir: '/Applications'
 
 cask 'alfred'
+cask 'ghostty'
 cask 'docker-desktop'
 cask 'hammerspoon'
 cask 'visual-studio-code'
