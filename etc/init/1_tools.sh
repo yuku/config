@@ -6,7 +6,12 @@ is_exists() {
 }
 
 export ZPLUG_HOME=~/.zplug
-curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+if [ -d "$ZPLUG_HOME" ]; then
+  echo "zplug is already installed"
+else
+  echo "Installing zplug..."
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
 
 ~/.tmux/plugins/tpm/bin/clean_plugins
 ~/.tmux/plugins/tpm/bin/install_plugins
