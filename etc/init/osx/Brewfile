@@ -25,6 +25,6 @@ cask_args appdir: '/Applications'
 tap 'homebrew/cask'
 
 cask 'alfred'
-cask 'docker'
+cask 'docker-desktop'
 cask 'hammerspoon'
 cask 'visual-studio-code'
