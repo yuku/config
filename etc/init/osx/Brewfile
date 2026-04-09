@@ -19,7 +19,6 @@ brew 'gawk'
 brew 'neovim'
 
 cask_args appdir: '/Applications'
-tap 'homebrew/cask'
 
 cask 'alfred'
 cask 'docker-desktop'
