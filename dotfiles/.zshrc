@@ -181,6 +181,21 @@ else
   echo "no ssh-agent"
 fi
 
+# Override 'pbcopy' when connected via SSH to forward clipboard data
+# from the remote server back to the local host machine.
+# 
+# Standard 'pbcopy' writes to the remote machine's clipboard. Instead, 
+# this function reads stdin, encodes it to Base64 (stripping newlines), 
+# and sends it using the OSC 52 ANSI escape sequence. Modern terminal 
+# emulators (like Ghostty, iTerm2, Alacritty) intercept this sequence 
+# and securely place the payload into your local system clipboard.
+if [ -n "$SSH_CONNECTION" ]; then
+    function pbcopy() {
+        local b64="$(cat | base64 | tr -d '\n\r')"
+        printf "\e]52;c;%s\a" "$b64"
+    }
+fi
+
 # {{{1 widgets
 autoload history-search-end
 zle -N self-insert url-quote-magic # Automatically escape URL string
