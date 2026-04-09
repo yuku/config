@@ -122,4 +122,6 @@
 	path = ~/.gitconfig.local
 [credential "https://github.com"]
 	username = yuku
+[credential]
+	helper = osxkeychain
 # vim: ft=gitconfig
