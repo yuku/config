@@ -1,0 +1,4 @@
+brew 'peco'
+brew 'tig'
+brew 'tmux'
+brew 'neovim'

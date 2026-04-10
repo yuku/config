@@ -279,14 +279,13 @@ if [ -x /opt/homebrew/bin/brew ]; then
     eval "$(/opt/homebrew/bin/brew shellenv)" # Apple Silicon Mac
 elif [ -x /usr/local/bin/brew ]; then
     eval "$(/usr/local/bin/brew shellenv)" # Intel Mac
+elif [ -x /home/linuxbrew/.linuxbrew/bin/brew ]; then
+    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)" # Linux
 fi
 
 # {{{2 Git
 if [ -d /usr/local/share/git-core/contrib/diff-highlight ] ; then
     path=(/usr/local/share/git-core/contrib/diff-highlight $path)
-fi
-if (( $+commands[hub] )); then
-    eval "$(hub alias -s)"
 fi
 
 # {{{2 direnv
@@ -296,7 +295,9 @@ fi
 
 # {{{2 asdf
 if (( $+commands[brew] )); then
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
+    if [ -d "$(brew --prefix asdf)" ]; then
+        . "$(brew --prefix asdf)/libexec/asdf.sh"
+    fi
 fi
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local
