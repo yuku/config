@@ -178,8 +178,6 @@ if [ -S "$SSH_AUTH_SOCK" ]; then
   esac
 elif [ -S $agent ]; then
   export SSH_AUTH_SOCK=$agent
-else
-  echo "no ssh-agent"
 fi
 
 # Override 'pbcopy' when connected via SSH to forward clipboard data
