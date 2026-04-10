@@ -54,6 +54,7 @@ alias lla='ls -lhA'
 alias lsd='ls -ld *(-/DN)'
 alias sudo='env PATH=${PATH}:/sbin:/usr/sbin:/usr/local/sbin \sudo'
 alias yolo='claude --dangerously-skip-permissions'
+alias mux="tmuxinator"
 
 case ${OSTYPE} in
 darwin*)
