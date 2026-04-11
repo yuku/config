@@ -1,6 +1,2 @@
-/dotfiles/.config/*
-!/dotfiles/.config/git
-!/dotfiles/.config/nvim
-
 /dotfiles/.tmux/plugins/*
 !/dotfiles/.tmux/plugins/tpm

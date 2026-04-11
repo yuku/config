@@ -1,8 +1,9 @@
 CONFIG_ROOT := $(realpath ./)
-CANDIDATES    := $(wildcard dotfiles/.??*)
-EXCLUSIONS    := .DS_Store .git .gitmodules
-DOTFILES      := $(filter-out $(foreach val, $(EXCLUSIONS), dotfiles/$(val);), $(CANDIDATES))
-INSTALLED     := $(shell find $(HOME) -maxdepth 1 -type l -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(CONFIG_ROOT) | cut -d: -f2)
+CANDIDATES  := $(wildcard dotfiles/.??*)
+EXCLUSIONS  := .DS_Store .config
+DOTFILES    := $(filter-out $(foreach val,$(EXCLUSIONS),dotfiles/$(val)),$(CANDIDATES))
+INSTALLED   := $(shell find $(HOME) -maxdepth 1 -type l -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(CONFIG_ROOT) | cut -d: -f2)
+CONFIG_DIRS := $(wildcard dotfiles/.config/*/)
 
 .DEFAULT_GOAL := help
 
@@ -11,6 +12,8 @@ list: ## Show dot files in this repo
 
 deploy: ## Create symlinks to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(notdir $(val));)
+	@mkdir -p $(HOME)/.config
+	@$(foreach val, $(CONFIG_DIRS), ln -sfnv $(abspath $(val)) $(HOME)/.config$(notdir $(val));)
 
 clean: ## Remove symlinks from home directory
 	@$(foreach val, $(INSTALLED), rm $(val);)
