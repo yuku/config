@@ -1,9 +1,8 @@
 CONFIG_ROOT := $(realpath ./)
 CANDIDATES  := $(wildcard dotfiles/.??*)
-EXCLUSIONS  := .DS_Store .config
+EXCLUSIONS  := .DS_Store .config .gemini
 DOTFILES    := $(filter-out $(foreach val,$(EXCLUSIONS),dotfiles/$(val)),$(CANDIDATES))
 INSTALLED   := $(shell find $(HOME) -maxdepth 1 -type l -exec readlink -n {} ';' -exec echo ':{}' ';' | grep $(CONFIG_ROOT) | cut -d: -f2)
-CONFIG_DIRS := $(wildcard dotfiles/.config/*/)
 
 .DEFAULT_GOAL := help
 
@@ -13,7 +12,9 @@ list: ## Show dot files in this repo
 deploy: ## Create symlinks to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(notdir $(val));)
 	@mkdir -p $(HOME)/.config
-	@$(foreach val, $(CONFIG_DIRS), ln -sfnv $(abspath $(val)) $(HOME)/.config$(notdir $(val));)
+	@$(foreach val, $(wildcard dotfiles/.config/*/), ln -sfnv $(abspath $(val)) $(HOME)/.config$(notdir $(val));)
+	@mkdir -p $(HOME)/.gemini
+	@$(foreach val, $(wildcard dotfiles/.gemini/*/), ln -sfnv $(abspath $(val)) $(HOME)/.gemini$(notdir $(val));)
 
 clean: ## Remove symlinks from home directory
 	@$(foreach val, $(INSTALLED), rm $(val);)
