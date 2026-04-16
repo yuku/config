@@ -1,0 +1,10 @@
+[
+  {
+    "command": "-background.toggle",
+    "key": "ctrl+b"
+  },
+  {
+    "command": "cursor.left",
+    "key": "ctrl+b"
+  }
+]
