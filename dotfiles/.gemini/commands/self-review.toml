@@ -1,0 +1,30 @@
+description = "手元のコードをreviewerエージェントでセルフレビューし、指摘に基づいて自動修正する"
+
+prompt = """
+以下の手順を順番に実行する
+
+## ステップ1: レビュー対象の特定
+
+レビュー対象: !{[[ "{{args}}" = "" ]] && echo "diff" || echo "{{args}}"}
+
+### レビュー対象の指定方法
+- `HEAD`: `git diff HEAD^...HEAD`
+- `diff`: `git diff` + `git ls-files --others --exclude-standard` で新規ファイルも取得
+- `staged`: `git diff --cached`
+- `branch` または `ブランチ`: `git diff origin/main...HEAD`
+- `#123`: `gh pr diff 123`
+- その他: そのまま渡す
+
+## ステップ2: レビュー実行
+
+全reviewerのエージェントを**同時に並列起動**し、レビュー対象の情報を渡してコードレビューを実行する
+
+### 利用可能なreviewer
+- `reviewer` - Gemini自身による詳細レビュー
+- `codex-reviewer` - Codex CLIを使ったレビュー
+- `simplify-reviewer` - 可読性・一貫性・保守性に特化したレビュー
+
+## ステップ3: レビュー修正
+
+すべてのレビューが完了したら fix-review-comments スキルを実行して、レビュー指摘に対応してください。
+"""
