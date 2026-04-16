@@ -1,0 +1,26 @@
+#!/bin/bash
+# Post edit hook for Gemini's AfterTool hook matching to write_file|replace events.
+
+# Read hook input from stdin
+input=$(cat)
+
+filePath=$(echo "$input" | jq -r '.tool_input.file_path')
+
+is_exists() {
+  command -v "$1" > /dev/null 2>&1
+  return $?
+}
+
+case "$filePath" in
+*.go)
+  echo "Formatting $filePath with go fmt and goimports..."
+
+  go fmt "$filePath"
+
+  if ! is_exists "goimports"; then
+    echo "Installing goimports..."
+    go install golang.org/x/tools/cmd/goimports@latest
+  fi
+  goimports -w "$filePath"
+  ;;
+esac
