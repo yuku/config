@@ -1,0 +1,25 @@
+{
+  "hooks": {
+    "AfterTool": [
+      {
+        "matcher": "write_file|replace",
+        "hooks": [
+          {
+            "name": "Run post-edit",
+            "description": "Run post-edit script after editing a file",
+            "type": "command",
+            "command": "gemini-post-edit"
+          }
+        ]
+      }
+    ]
+  },
+  "security": {
+    "auth": {
+      "selectedType": "oauth-personal"
+    }
+  },
+  "ide": {
+    "hasSeenNudge": true
+  }
+}

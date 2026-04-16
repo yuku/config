@@ -12,9 +12,9 @@ list: ## Show dot files in this repo
 deploy: ## Create symlinks to home directory
 	@$(foreach val, $(DOTFILES), ln -sfnv $(abspath $(val)) $(HOME)/$(notdir $(val));)
 	@mkdir -p $(HOME)/.config
-	@$(foreach val, $(wildcard dotfiles/.config/*/), ln -sfnv $(abspath $(val)) $(HOME)/.config$(notdir $(val));)
+	@$(foreach val, $(wildcard dotfiles/.config/*), ln -sfnv $(abspath $(val)) $(HOME)/.config/$(notdir $(val));)
 	@mkdir -p $(HOME)/.gemini
-	@$(foreach val, $(wildcard dotfiles/.gemini/*/), ln -sfnv $(abspath $(val)) $(HOME)/.gemini$(notdir $(val));)
+	@$(foreach val, $(wildcard dotfiles/.gemini/*), ln -sfnv $(abspath $(val)) $(HOME)/.gemini/$(notdir $(val));)
 
 clean: ## Remove symlinks from home directory
 	@$(foreach val, $(INSTALLED), rm $(val);)
