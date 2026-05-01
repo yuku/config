@@ -25,6 +25,7 @@ done
 # 2. post new plan
 TEMP_FILE=$(mktemp)
 echo "$MARKER" > "$TEMP_FILE"
+echo "_Planned by Gemini Issue Planner on $(date)_" >> "$TEMP_FILE"
 echo "" >> "$TEMP_FILE"
 cat "$PLAN_FILE" >> "$TEMP_FILE"
 
