@@ -11,18 +11,22 @@ brew 'tree'
 brew 'asdf'
 brew 'pam-reattach'
 
+# Neovim
+brew 'neovim'
+brew 'fd'
+brew 'font-hack-nerd-font'
+brew 'ripgrep'
+brew 'tree-sitter-cli'
+
 # For asdf-golang
 brew 'coreutils'
 # For asdf-nodejs
 brew 'gpg'
 brew 'gawk'
 
-brew 'neovim'
-
 cask_args appdir: '/Applications'
 
 cask 'alfred'
 cask 'ghostty'
-cask 'docker-desktop'
 cask 'hammerspoon'
 cask 'visual-studio-code'

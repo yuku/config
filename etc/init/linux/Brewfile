@@ -1,6 +1,12 @@
 brew 'peco'
 brew 'tig'
 brew 'tmux'
-brew 'neovim'
 brew 'ghq'
 brew 'jq'
+
+# Neovim
+brew 'neovim'
+brew 'fd'
+brew 'font-hack-nerd-font'
+brew 'ripgrep'
+brew 'tree-sitter-cli'
