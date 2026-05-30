@@ -258,7 +258,7 @@ zle -N git-checkout-pull-request
 bindkey '^O^E' git-checkout-pull-request
 
 zle -N peco-src
-bindkey '^[' peco-src
+bindkey '^]' peco-src
 
 zle -N history-beginning-search-backward-end history-search-end
 bindkey '^N'   history-beginning-search-forward-end
