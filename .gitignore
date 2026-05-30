@@ -1,3 +1,4 @@
 /dotfiles/.tmux/plugins/*
 !/dotfiles/.tmux/plugins/tpm
 /dotfiles/.gemini/commands/hq
+/dotfiles/.config/gcloud
