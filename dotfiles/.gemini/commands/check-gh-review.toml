@@ -1,0 +1,29 @@
+description = "GitHubのプルリクエストのレビューコメントを取得し、fix-review-commentsスキルで対応して返信する"
+
+prompt = """
+以下の手順を順番に実行する
+
+## ステップ1: レビュー情報の取得
+
+対象: !{[[ "{{args}}" = "" ]] && echo "(現在のブランチ)" || echo "{{args}}"}
+
+1. `gh pr view {{args}} --json number,url,reviewThreads` を実行して情報を取得する。
+2. 取得した `reviewThreads` の中から、未解決（`isResolved: false`）の指摘事項を特定し、内容がわかるように一覧として書き出す。
+3. `gh pr diff {{args}}` を実行して、コードの現在の差分を確認する。
+
+## ステップ2: 自動修正の実行
+
+ステップ1で特定した指摘事項を対象に、 `fix-review-comments` スキルを起動してください。
+スキルが適切に判断できるよう、直前の手順で指摘内容を明確にコンテキストに含めてください。
+
+## ステップ3: GitHubへの返信
+
+修正が完了、あるいは対応方針が決定した各指摘（スレッド）に対して、GitHub上でリプライを投稿してください。
+
+1. 各レビューコメントスレッドの**トップレベル（最初）の `id`** を確認する。
+2. `gh api` を使用してリプライを投稿する。
+   `gh api repos/:owner/:repo/pulls/:number/comments/:comment_id/replies -f body="<返信内容>"`
+   ※ `:owner/:repo` と `:number` は `url` から抽出するか、別途 `gh repo view --json nameWithOwner` 等で取得した値を使用すること。
+
+最後に、どの指摘に対応し、どのようなリプライを送ったかのサマリーを報告してください。
+"""
