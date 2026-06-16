@@ -24,6 +24,8 @@ zmodule direnv
 zmodule asdf
 # Adds aliases for Homebrew.
 zmodule homebrew
+# Configures fzf for faster fetching of files and directories names.
+zmodule fzf
 
 #
 # Prompt

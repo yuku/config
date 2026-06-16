@@ -1,23 +1,26 @@
+cask_args appdir: '/Applications'
+
 brew 'direnv'
 brew 'gh'
 brew 'ghq'
 brew 'git'
 brew 'jq'
-brew 'peco'
 brew 'tig'
 brew 'tmux'
 brew 'tmuxinator'
 brew 'tree'
-brew 'asdf'
 brew 'pam-reattach'
 
 # Zsh
 brew 'starship'
+brew 'fzf'
+brew 'asdf'
+brew 'zoxide'
 
 # Neovim
 brew 'neovim'
 brew 'fd'
-brew 'font-hack-nerd-font'
+cask 'font-hack-nerd-font'
 brew 'ripgrep'
 brew 'tree-sitter-cli'
 
@@ -27,7 +30,6 @@ brew 'coreutils'
 brew 'gpg'
 brew 'gawk'
 
-cask_args appdir: '/Applications'
 
 cask 'alfred'
 cask 'ghostty'

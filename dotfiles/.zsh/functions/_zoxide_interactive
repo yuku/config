@@ -1,0 +1,4 @@
+#!/usr/bin/env zsh
+
+BUFFER="zi"
+zle accept-line

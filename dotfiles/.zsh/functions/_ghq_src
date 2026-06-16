@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-local selected_dir=$(ghq list -p | peco --query "$LBUFFER")
+local selected_dir=$(ghq list -p | fzf --query "$LBUFFER")
 if [ -n "$selected_dir" ] ; then
     BUFFER="cd ${selected_dir}"
     zle accept-line

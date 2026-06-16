@@ -185,35 +185,36 @@ if [ -n "$SSH_CONNECTION" ]; then
 fi
 
 # Keybinding {{{
+stty -ixon # Disable Ctrl-S and Ctrl-Q flow control to allow using them for other purposes.
 bindkey -e # emacs like keybinding. Must call before following bindkey settings.
 
-zle -N git-fetch
-bindkey '^G^F' git-fetch
+zle -N _git_fetch
+bindkey '^G^F' _git_fetch
 
-zle -N git-pull-current-branch
-bindkey '^G^P' git-pull-current-branch
+zle -N _git_pull_current_branch
+bindkey '^G^P' _git_pull_current_branch
 
-zle -N git-status
-bindkey '^G^S' git-status
+zle -N _git_status
+bindkey '^G^S' _git_status
 
-zle -N git-checkout-pull-request
-bindkey '^O^E' git-checkout-pull-request
+zle -N _git_checkout_pull_request
+bindkey '^O^E' _git_checkout_pull_request
 
-zle -N peco-src
-bindkey '^]' peco-src
+zle -N _ghq_src
+bindkey '^]' _ghq_src
 
-zle -N history-beginning-search-backward-end history-search-end
+zle -N _zoxide_interactive
+bindkey '^T' _zoxide_interactive
+
+zle -N history-beginning-search-forward-end history-search-end
 bindkey '^N'   history-beginning-search-forward-end
 
 zle -N history-beginning-search-forward-end history-search-end
-bindkey '^P'   history-beginning-search-backward-end
+bindkey '^P'   history-beginning-search-forward-end
 
-# bindkey '^O^B' zaw-git-recent-branches
-# bindkey '^O^R' zaw-git-branches
-# bindkey '^R'   zaw-history
-# bindkey '^T'   zaw-cdr
 # }}}
 
+eval "$(zoxide init zsh)"
 eval "$(starship init zsh)"
 
 [ -f ~/.zshrc.local ] && source ~/.zshrc.local

@@ -1,4 +1,3 @@
-brew 'peco'
 brew 'tig'
 brew 'tmux'
 brew 'ghq'
@@ -6,10 +5,13 @@ brew 'jq'
 
 # Zsh
 brew 'starship'
+brew 'fzf'
+brew 'asdf'
+brew 'zoxide'
 
 # Neovim
 brew 'neovim'
 brew 'fd'
-brew 'font-hack-nerd-font'
+cask 'font-hack-nerd-font'
 brew 'ripgrep'
 brew 'tree-sitter-cli'
