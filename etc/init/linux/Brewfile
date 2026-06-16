@@ -4,6 +4,9 @@ brew 'tmux'
 brew 'ghq'
 brew 'jq'
 
+# Zsh
+brew 'starship'
+
 # Neovim
 brew 'neovim'
 brew 'fd'

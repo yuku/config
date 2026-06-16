@@ -11,6 +11,9 @@ brew 'tree'
 brew 'asdf'
 brew 'pam-reattach'
 
+# Zsh
+brew 'starship'
+
 # Neovim
 brew 'neovim'
 brew 'fd'
