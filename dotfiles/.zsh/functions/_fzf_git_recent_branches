@@ -1,0 +1,19 @@
+#!/usr/bin/env zsh
+
+if ! in-git-repository; then
+    zle reset-prompt
+    return
+fi
+
+local branch
+branch=$(git branch --sort=-committerdate --format='%(refname:short)' | \
+    fzf --height 50% --layout=reverse --prompt="Checkout> " \
+        --preview="git log --color=always -10 main..{}" \
+        --preview-window=right:60%)
+
+if [[ -n "$branch" ]]; then
+    BUFFER="git checkout ${branch}"
+    zle accept-line
+else
+    zle reset-prompt
+fi

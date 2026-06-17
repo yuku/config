@@ -212,6 +212,9 @@ bindkey '^N'   history-beginning-search-forward-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey '^P'   history-beginning-search-forward-end
 
+zle -N _fzf_git_recent_branches
+bindkey '^O^B' _fzf_git_recent_branches
+
 # }}}
 
 eval "$(zoxide init zsh)"
