@@ -1,6 +1,10 @@
 /dotfiles/.tmux/plugins/*
 !/dotfiles/.tmux/plugins/tpm
+
 /dotfiles/.gemini/commands/hq
+/dotfiles/.claude/commands/hq-*.md
+
 /dotfiles/.config/*
 !/dotfiles/.config/git
 !/dotfiles/.config/nvim
+
