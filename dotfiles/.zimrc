@@ -18,12 +18,12 @@ zmodule utility
 # <-- Normally new modules should be added here. Check each module documentation
 # for any caveats.
 
+# Adds aliases for Homebrew. Must before asdf.
+zmodule homebrew
 # Sets up the direnv Zsh shell integration.
 zmodule direnv
 # Sets up asdf, with auto install and optimized usage of the direnv plugin.
 zmodule asdf
-# Adds aliases for Homebrew.
-zmodule homebrew
 # Configures fzf for faster fetching of files and directories names.
 zmodule fzf
 
