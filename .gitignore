@@ -3,6 +3,7 @@
 
 /dotfiles/.gemini/commands/hq
 /dotfiles/.claude/commands/hq-*.md
+/dotfiles/.claude/skills/hq-*
 
 /dotfiles/.config/*
 !/dotfiles/.config/git
