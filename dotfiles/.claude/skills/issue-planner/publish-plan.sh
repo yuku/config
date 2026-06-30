@@ -8,7 +8,7 @@ if [ -z "$ISSUE_NUMBER" ] || [ -z "$PLAN_FILE" ]; then
   exit 1
 fi
 
-MARKER="<!-- gemini issue-planner -->"
+MARKER="<!-- claude issue-planner -->"
 
 # 1. hide outdated comments
 NODE_IDS=$(gh issue view "$ISSUE_NUMBER" --json comments -q ".comments[] | select(.body | contains(\"$MARKER\")) | .id")
@@ -25,7 +25,7 @@ done
 # 2. post new plan
 TEMP_FILE=$(mktemp)
 echo "$MARKER" > "$TEMP_FILE"
-echo "_Planned by Gemini Issue Planner on $(date)_" >> "$TEMP_FILE"
+echo "_Planned by Claude Issue Planner on $(date)_" >> "$TEMP_FILE"
 echo "" >> "$TEMP_FILE"
 cat "$PLAN_FILE" >> "$TEMP_FILE"
 

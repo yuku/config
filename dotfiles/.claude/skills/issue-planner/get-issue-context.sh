@@ -7,7 +7,7 @@ if [ -z "$ISSUE_NUMBER" ]; then
   exit 1
 fi
 
-MARKER="<!-- gemini issue-planner -->"
+MARKER="<!-- claude issue-planner -->"
 
 ISSUE_JSON=$(gh issue view "$ISSUE_NUMBER" --json title,body,comments,author)
 
