@@ -1,0 +1,24 @@
+#!/usr/bin/env zsh
+
+if ! git rev-parse --is-inside-work-tree > /dev/null 2>&1; then
+    echo "Not a git repository."
+    return
+fi
+
+local current_branch branches
+current_branch=$(git branch --show-current)
+
+# 変更点: grep -vE を使って current_branch, main, master を除外
+branches=$(git branch --format='%(refname:short)' --sort=-committerdate | \
+    grep -vE "^(${current_branch}|main|master)$" | \
+    fzf --multi --height 50% --layout=reverse --prompt="Delete Branches (Tab to select)> " \
+        --bind 'ctrl-a:select-all,ctrl-d:deselect-all' \
+        --preview="git log --color=always --oneline --graph -10 {}" \
+        --preview-window=right:60%)
+
+if [[ -n "$branches" ]]; then
+    echo "Deleting branches:\n$branches"
+    echo "$branches" | xargs git branch -D
+else
+    echo "Canceled."
+fi
