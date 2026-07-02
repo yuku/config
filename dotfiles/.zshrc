@@ -188,23 +188,23 @@ fi
 stty -ixon # Disable Ctrl-S and Ctrl-Q flow control to allow using them for other purposes.
 bindkey -e # emacs like keybinding. Must call before following bindkey settings.
 
-zle -N _git_fetch
-bindkey '^G^F' _git_fetch
+zle -N git_fetch
+bindkey '^G^F' git_fetch
 
-zle -N _git_pull_current_branch
-bindkey '^G^P' _git_pull_current_branch
+zle -N git_pull_current_branch
+bindkey '^G^P' git_pull_current_branch
 
-zle -N _git_status
-bindkey '^G^S' _git_status
+zle -N git_status
+bindkey '^G^S' git_status
 
-zle -N _git_checkout_pull_request
-bindkey '^O^E' _git_checkout_pull_request
+zle -N git_checkout_pull_request
+bindkey '^O^E' git_checkout_pull_request
 
-zle -N _ghq_src
-bindkey '^]' _ghq_src
+zle -N ghq_src
+bindkey '^]' ghq_src
 
-zle -N _zoxide_interactive
-bindkey '^T' _zoxide_interactive
+zle -N zoxide_interactive
+bindkey '^T' zoxide_interactive
 
 zle -N history-beginning-search-forward-end history-search-end
 bindkey '^N'   history-beginning-search-forward-end
@@ -212,8 +212,8 @@ bindkey '^N'   history-beginning-search-forward-end
 zle -N history-beginning-search-forward-end history-search-end
 bindkey '^P'   history-beginning-search-forward-end
 
-zle -N _fzf_git_recent_branches
-bindkey '^O^B' _fzf_git_recent_branches
+zle -N fzf_git_recent_branches
+bindkey '^O^B' fzf_git_recent_branches
 
 # }}}
 
