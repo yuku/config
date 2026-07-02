@@ -1,17 +1,40 @@
 #!/usr/bin/env zsh
 # Usage: git substitute Foo Bar -- app/models
 
-set -e
+set -euo pipefail
 
-# Escape '/' as '\/'
-before="$(echo $1 | ruby -pe "gsub('/', '\\/')")"
-after="$(echo $2 | ruby -pe "gsub('/', '\\/')")"
-
-if [[ "$3" = "--" ]] ; then
-    filter="${@[4,-1]}"
-else
-    filter=""
+if (( $# < 2 )); then
+  print -u2 "Usage: git substitute <before> <after> [-- <git-grep pathspec...>]"
+  exit 1
 fi
 
-# See 13.3.1 Parameter Expansion Flags
-git grep -l $1 -- ${(z)filter} | xargs sed -i '' -e "s/${before}/${after}/g"
+before_raw=$1
+after_raw=$2
+shift 2
+
+# Escape special characters for sed
+before_esc=${before_raw//\//\\/}
+before_esc=${before_esc//&/\\&}
+after_esc=${after_raw//\//\\/}
+after_esc=${after_esc//&/\\&}
+
+typeset -a pathspec
+if [[ ${1-} == "--" ]]; then
+  shift
+  pathspec=("$@")
+else
+  pathspec=()
+fi
+
+typeset -a files
+if (( ${#pathspec[@]} )); then
+  files=("${(@f)$(git grep -l -- "$before_raw" -- "${pathspec[@]}")}")
+else
+  files=("${(@f)$(git grep -l -- "$before_raw")}")
+fi
+
+(( ${#files[@]} )) || exit 0
+
+for f in "${files[@]}"; do
+  sed -i '' -e "s/${before_esc}/${after_esc}/g" -- "$f"
+done
