@@ -32,22 +32,9 @@ ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 
 ## Trouble shooting
 
-### `zsh compinit: insecure directories`
+### Copilot
 
-Run `compaudit` then change the permission of listed directories:
-
-```bash
-compaudit
-#=> There are insecure directories:
-#=> /usr/local/share/zsh/site-functions
-#=> /usr/local/share/zsh
-chmod 755 /usr/local/share/zsh/site-functions
-chmod 755 /usr/local/share/zsh
-```
-
-### `E185: Cannot find color scheme 'base16-default-dark'`
-
-Run `:PlugInstall` to install neovim plugins including `base16-default-dark`.
+`:Copilot auth`
 
 ### VSCode devcontainer settings
 
