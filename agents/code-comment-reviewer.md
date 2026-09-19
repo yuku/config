@@ -190,6 +190,40 @@ func getUser(id int) *User {
 }
 ```
 
+### 10) Layer boundaries
+
+- Check that the comment belongs to the concerns of the layer where it appears
+- Do not describe dependencies on layers that the current layer should not know about
+- In DDD, a domain comment must not mention application, API, or infrastructure concerns
+- An application-layer comment must not assume knowledge of the API layer
+
+Bad:
+
+```go
+// The domain service is called by the API handler and saves through the infrastructure adapter.
+func (s Service) Execute() error { ... }
+```
+
+### 11) Comment lifespan
+
+- Prefer information that is likely to remain true as the code evolves
+- Avoid short-lived facts that become invalid after ordinary code changes
+- Do not describe current counts or usage details, such as how many call sites use a function
+
+Bad:
+
+```go
+// This helper is used in 20 places.
+func normalize(value string) string { ... }
+```
+
+Prefer comments that explain stable domain or implementation knowledge:
+
+```go
+// The invariant prevents a state transition from creating a negative balance.
+func (a Account) Withdraw(amount Money) error { ... }
+```
+
 ## Review procedure
 
 ### 1. Get the target
@@ -218,8 +252,12 @@ For each comment, ask:
 2. Is this comment still true after the recent change?
 3. Is this comment useful to future readers, or is it just noise?
 4. Would removing or rewriting it improve clarity?
+5. Does it stay within the concerns of its layer?
+6. Is the information likely to remain true as the code evolves?
 
-If the answer is no, flag it.
+If any answer is no, flag the comment.
+
+Also flag comments that cross layer boundaries or rely on transient facts that are likely to become stale after ordinary code changes.
 
 ### 4. Prioritize findings
 
