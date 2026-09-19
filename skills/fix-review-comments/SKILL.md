@@ -1,67 +1,84 @@
 ---
 name: fix-review-comments
-description: 直前の会話に含まれるレビュー結果を精査し、妥当な指摘に対して修正を実施する。
+description: Review the latest review findings, accept only valid ones, and apply the necessary fixes.
 user_invocable: true
 ---
 
 # fix-review-comments
 
-直前の会話に含まれるレビュー指摘を精査し、妥当な指摘のみ修正を行う。
-レビュアーの指摘がすべて正しいとは限らないため、各コメントを批判的に評価する。
+Review the latest review comments and apply changes only for findings that are valid.
+Reviewers are not always correct, so each comment should be evaluated critically.
 
-## 動作フロー
+## Review flow
 
-1. 直前の会話からレビュー指摘を特定・一覧化する
-2. 各指摘の妥当性を評価する
-   - 技術的に正しいか
-   - プロジェクトの方針・コンテキストと合致するか
-   - 実装上のトレードオフとして妥当か
-3. 妥当と判断した指摘のみ修正を実施する
-4. 最終サマリーを出力する
+1. Identify the review findings from the previous conversation
+2. Evaluate each finding
+   - Is it technically correct?
+   - Does it match the project context and goals?
+   - Is it a valid trade-off in the current implementation?
+3. Apply only the findings that are valid
+4. Output a final summary
 
-## 妥当性評価の基準
+## Validity criteria
 
-- レビュアーの指摘を鵜呑みにせず、技術的妥当性を独自に判断する
-- 対応しない場合は、レビュアーが納得できる理由を明記する
-- 修正によって新たな問題が発生しないか確認する
+- Do not accept reviewer comments without checking their technical validity
+- If a comment is not applied, explain why in a way the reviewer can understand
+- Check whether the fix introduces a new problem
 
-## 最終サマリーの形式
+## Final summary format
 
-修正完了後、以下の形式でサマリーを出力すること。
-サマリーの目的は「修正判断が適切だったかをユーザーがダブルチェックできること」であり、元の指摘内容・判断根拠を省略しすぎないこと。
+After finishing the fix, output a summary in the following format.
+The goal is to let the user double-check whether the fix decisions were appropriate.
+Do not omit the original issue or the reason for the decision.
 
-### 記載ルール
+### Required writing rules
 
-各指摘について以下の3点を必ず記載する：
+For each finding, include all of the following three points:
 
-1. **見出し**：「レビュアー識別子: 指摘の要点」の形式
-   - レビュアー識別子は会話中のレビュー結果に記載された名前・番号をそのまま使う（例：reviewer #1, simplify #3, codex #1）
-   - 複数レビュアーが同じ指摘をしている場合は「reviewer #5 / simplify #3」のようにスラッシュで併記する
-2. **指摘内容**：レビュアーが何を問題視したか。元のレビューコメントの趣旨がわかる程度に具体的に書く
-3. **修正内容 or 対応しない理由**：何をどう変えたか、またはなぜ対応不要と判断したかの根拠
+1. **Header**: use the format `Reviewer identifier: issue summary`
+   - Use the reviewer name and number exactly as shown in the review output, such as `reviewer #1`, `simplify #3`, or `codex #1`
+   - If multiple reviewers mention the same issue, combine them, such as `reviewer #5 / simplify #3`
+2. **Issue description**: explain what the reviewer was concerned about
+3. **Fix or reason**: explain what changed or why the issue was not addressed
 
-### 出力テンプレート
+### Output template
 
 ```markdown
-## レビュー対応サマリー
+## Review Response Summary
 
-### 対応した指摘
+### Applied findings
 
-#### reviewer #1: やりとり回数カウント不明確
-- **指摘内容**: 2回目以降のやりとりで、バグ案内のみのやりとりが最大3回のカウントに含まれるのかどうかが読み取れない
-- **修正内容**: 2回目以降の注記に「バグ案内のみのやりとりは最大3回のカウントに含めず、フィードバック深掘りが始まってからカウント」を明記
+#### reviewer #1: unclear counting of follow-up interactions
+- **Issue description**: It is unclear whether bug-only follow-up replies count toward the maximum of three interactions after the first one.
+- **Fix**: The note was clarified to say that bug-only replies do not count toward the maximum, and the count starts when deeper feedback begins.
 
-#### reviewer #5 / simplify #3: セクション配置位置
-- **指摘内容**: 「バグ報告の案内」セクションが出力フィールド説明の直後にあり、対話フローとの関連が読み取りにくい
-- **修正内容**: 「バグ報告の案内」セクションを「対話の進め方」の直前に移動し、流れを「役割→収集項目→判断基準→対話フロー→出力仕様→ルール」に整理
+#### reviewer #5 / simplify #3: section ordering
+- **Issue description**: The “bug report guidance” section appears immediately after the output field description, which makes the flow harder to follow.
+- **Fix**: The “bug report guidance” section was moved just before the interaction flow so the sequence reads: role -> collection -> criteria -> flow -> output format -> rules.
 
-### 対応しなかった指摘
+### Not applied findings
 
-#### reviewer #2: バグ案内のみで終了するパスの扱い
-- **指摘内容**: バグ案内のみで終了した場合にSpreadsheetへの記録が行われないパスが考慮されていないのでは
-- **対応しない理由**: 要件に「案内のみで終了した場合はSpreadsheet記録不要」と明記されており、意図的な設計。プロンプトにコメント追加は過剰
+#### reviewer #2: handling the path where only bug guidance is given
+- **Issue description**: It may not account for the case where the process ends after only a bug guidance message and no spreadsheet record is created.
+- **Reason not applied**: The requirement explicitly says that a guidance-only ending does not require spreadsheet recording. The design is intentional, and adding this note would be unnecessary.
 
-#### reviewer #3: 曖昧な場合のステップ4の3点説明
-- **指摘内容**: フィードバックが曖昧な場合にステップ4で3点の説明を提示すべきだが、その記述が明示されていない
-- **対応しない理由**: 「ステップ2以降」の記述でステップ4も包含されている。追加の明示は不要
+#### reviewer #3: missing three-point explanation in step 4
+- **Issue description**: When feedback is unclear, step 4 should explain three points, but this is not explicitly described.
+- **Reason not applied**: The instructions in step 2 and later already cover step 4. Adding another explicit list would be redundant.
 ```
+
+## Compatibility rule
+
+Keep the following naming and output conventions stable so the review system remains compatible across English-language prompts:
+
+- `reviewer #1`
+- `simplify #3`
+- `reviewer #5 / simplify #3`
+- `Applied findings`
+- `Not applied findings`
+- `Issue description`
+- `Fix`
+- `Reason not applied`
+
+The protocol must stay the same even when the surrounding text is written in simple English.
+

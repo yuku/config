@@ -1,40 +1,55 @@
 ---
 name: self-review
-description: 手元のコードをreviewerエージェントでセルフレビューし、指摘に基づいて自動修正するループ
-argument-hint: [レビュー対象] [reviewer名]
+description: Run a self-review of local code with reviewer agents and apply fixes only for valid findings.
+argument-hint: [review target] [reviewer name]
 user-invocable: true
 ---
 
-以下の手順を順番に実行してください。
+Follow these steps in order.
 
-## ステップ1: 引数の解釈
+## Step 1: Parse the arguments
 
-$ARGUMENTS を以下のルールで解釈してください：
+Interpret $ARGUMENTS using these rules:
 
-- 第一引数: レビュー対象（省略時は `diff` = 現在のunstaged changes + untracked files）
-- 第二引数: reviewer名（省略時は全reviewerを並列実行）
+- First argument: review target. If omitted, use `diff` = current unstaged changes + untracked files.
+- Second argument: reviewer name. If omitted, run all reviewers in parallel.
 
-### レビュー対象の指定方法
+### Review target formats
 
-- 指定なし / `diff`: `git diff` + `git ls-files --others --exclude-standard` で新規ファイルも取得
-- `staged`: `git diff --cached`
-- `branch` または `ブランチ`: `git diff origin/main...HEAD`
-- `PR #123` または `pr 123`: `gh pr diff 123`
-- その他: そのまま渡す
+- No argument or `diff`: use `git diff` + `git ls-files --others --exclude-standard` to include new files
+- `staged`: use `git diff --cached`
+- `branch`: use `git diff origin/main...HEAD`
+- `PR #123` or `pr 123`: use `gh pr diff 123`
+- Any other value: pass it through as-is
 
-### 利用可能なreviewer名
+### Available reviewer names
 
-- `reviewer` - Claude自身による詳細レビュー
-- `simplify-reviewer` - 可読性・一貫性・保守性に特化したレビュー
-- `code-comment-reviewer` - コードコメントに特化したレビュー（不要・有害なコメントの削除提案）
+- `reviewer` - general review of quality, security, and performance
+- `simplify-reviewer` - review focused on readability, consistency, and maintainability
+- `code-comment-reviewer` - review focused on comments that are useless, stale, harmful, or noisy
 
-reviewer名が上記のいずれにも一致しない場合は、エラーとしてユーザーに利用可能なreviewer名を案内してください。
+If the reviewer name does not match one of the names above, return an error and tell the user which reviewer names are valid.
 
-## ステップ2: レビュー実行
+## Step 2: Run the review
 
-- reviewer名が指定された場合: そのreviewerのエージェントを起動し、レビュー対象の情報を渡してコードレビューを実行する
-- reviewer名が省略された場合: 全reviewerのエージェントを**同時に並列起動**し、レビュー対象の情報を渡してコードレビューを実行する
+- If a reviewer name is specified: start that reviewer agent and pass it the review target.
+- If the reviewer name is omitted: start all reviewer agents in parallel and pass them the same review target.
 
-## ステップ3: レビュー修正
+## Step 3: Apply the review feedback
 
-すべてのレビューが完了したら、/fix-review-comments スキルを実行して、レビュー指摘に対応してください。
+After all reviews finish, run the `/fix-review-comments` skill and apply only the valid review findings.
+
+## Compatibility rule
+
+Keep the following names and values stable across the full review flow:
+
+- `reviewer`
+- `simplify-reviewer`
+- `code-comment-reviewer`
+- `diff`
+- `staged`
+- `branch`
+- `PR #123`
+- `fix-review-comments`
+
+The protocol must remain compatible even when the surrounding text is written in English.
